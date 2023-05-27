@@ -1,19 +1,17 @@
 import Image from 'next/image';
 
-
-
 export default function Landing() {
-
+    
     return (
         <div className="flex items-center justify-center h-full w-full flex-col">
 
             <div className='flex items-center justify-center h-full w-full rounded-full flex-col'>
-                <div className='flex flex-col z-10 space-y-12'>
-                    <div className='flex font-bold text-9xl opacity-70'>
+                <div className='flex justify-center items-center flex-col z-10 space-y-4 xl:space-y-12'>
+                    <div className='flex font-bold text-8xl xl:text-9xl opacity-70'>
                         PYRE
                     </div>
                     <button
-                        className="flex text-xl hover:opacity-80 duration-200 font-bold justify-center bg-black m-auto px-28 py-4 rounded-xl"
+                        className="flex w-24 xl:w-auto text-lg xl:text-2xl hover:opacity-80 duration-200 font-bold justify-center bg-black m-auto px-24 xl:px-28 py-4 rounded-xl"
                     // onClick={}
                     >
                         START
