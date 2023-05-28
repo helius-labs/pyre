@@ -4,7 +4,7 @@ export default function Landing({setSelectedComponent}:any) {
 
     
     return (
-        <div className="flex items-center justify-center h-full w-full flex-col">
+        <div className="flex items-center justify-center h-full w-full flex-col animate-fade">
 
             <div className='flex items-center justify-center h-full w-full rounded-full flex-col'>
                 <div className='flex justify-center items-center flex-col z-10 space-y-4 xl:space-y-12'>
@@ -20,7 +20,7 @@ export default function Landing({setSelectedComponent}:any) {
                         </div>
                     </button>
                 </div>
-                <img className='absolute' src="gradient.png"></img>
+                <img className='absolute xl:h-full' src="gradient.png"></img>
 
             </div>
 
