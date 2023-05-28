@@ -20,11 +20,12 @@ export default function Landing({setSelectedComponent}:any) {
                         </div>
                     </button>
                 </div>
-                <img className='absolute xl:h-full' src="gradient.png"></img>
+
+                <img className='fixed' src="gradient.png"></img>
 
             </div>
 
-            <div className='flex space-x-4'>
+            <div className='flex space-x-4 py-4'>
                 <a href='https://twitter.com/heliuslabs' target="_blank" className='flex opacity-70 hover:opacity-100 duration-200 items-center justify-center w-12 h-12  rounded-lg'>
                 <Image className='' alt="start" src="/twt.svg" width={24} height={24}></Image>
                 </a>

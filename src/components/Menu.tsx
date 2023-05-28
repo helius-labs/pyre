@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { Lato } from 'next/font/google';
 
 interface Questions {
     name: string,
@@ -23,11 +22,11 @@ export default function Menu({ setSelectedComponent, questions, setQuestion }: a
 
         questionDIVs.push(
 
-            <div onClick={() => {setSelectedComponent('Question'); setQuestion(questions[i])}} className='flex animate-fade w-full h-max bg-zinc-800 rounded-lg hover:bg-zinc-950 duration-200 cursor-pointer'>
+            <div onClick={() => {setSelectedComponent('Question'); setQuestion(questions[i])}} className='flex animate-fade w-full h-max bg-zinc-800 rounded-lg hover:bg-zinc-700 duration-200 cursor-pointer'>
 
-                <div className='flex flex-col w-[15%] xl:w-[4%] space-y-2 p-2'>
-                    <div className={`flex w-full bg-zinc-900 h-1/3 rounded-md ${(questions[i].difficulty > 2) ? ('bg-orange-500') : ('')}`}></div>
-                    <div className={`flex w-full bg-zinc-900 h-1/3 rounded-md ${(questions[i].difficulty > 1) ? ('bg-orange-500') : ('')}`}></div>
+                <div className='flex flex-col w-[12%] xl:w-[4%] space-y-2 p-2'>
+                    <div className={`flex w-full h-1/3 rounded-md ${(questions[i].difficulty > 2) ? (`bg-orange-500`) : (`bg-zinc-900`)}`}></div>
+                    <div className={`flex w-full h-1/3 rounded-md ${(questions[i].difficulty > 1) ? (`bg-orange-500`) : (`bg-zinc-900`)}`}></div>
                     <div className='flex w-full bg-orange-500 h-1/3 rounded-md'></div>
                 </div>
 
@@ -47,7 +46,7 @@ export default function Menu({ setSelectedComponent, questions, setQuestion }: a
         <div className='flex items-center justify-center h-max w-full flex-col bg-zinc-950 xl:space-y-16'>
 
 
-            <div className='absolute w-full top-0 sticky px-2 xl:px-8 py-4 bg-zinc-950'>
+            <div className='absolute w-full top-0 sticky z-10 px-2 xl:px-8 py-4 bg-zinc-950'>
                 <div className='flex flex-row items-center space-x-2 xl:space-x-8'>
                     <button
                         className="flex opacity-70 hover:opacity-100 duration-200 font-bold justify-center rounded-full overflow-show"
@@ -66,7 +65,7 @@ export default function Menu({ setSelectedComponent, questions, setQuestion }: a
             </div>
 
 
-            <div className='flex w-full xl:w-2/3 h-max flex-col justify-center gap-6 p-2'>
+            <div className='flex w-full xl:w-2/3 h-max flex-col justify-center gap-4 p-4'>
                 {questionDIVs}
             </div>
 

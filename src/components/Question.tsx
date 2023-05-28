@@ -57,7 +57,7 @@ export default function Menu({ setSelectedComponent, question }: any) {
                 </div>
             </div>
 
-            <div className='flex h-full p-4 flex-col justify-center items-center space-y-48 xl:justify-evenly'>
+            <div className='flex h-full p-4 flex-col justify-center items-center justify-between xl:justify-evenly overflow-hidden'>
 
                 <div className='flex justify-center flex-col items-center space-y-8'>
                 <div className='flex text-xl text-white font-bold'>{question.name}</div>
