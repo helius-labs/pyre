@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
-export default function Landing() {
-    
+export default function Landing({setSelectedComponent}:any) {
+
     return (
         <div className="flex items-center justify-center h-full w-full flex-col">
 
@@ -11,25 +11,27 @@ export default function Landing() {
                         PYRE
                     </div>
                     <button
-                        className="flex w-24 xl:w-auto text-lg xl:text-2xl hover:opacity-80 duration-200 font-bold justify-center bg-black m-auto px-24 xl:px-28 py-4 rounded-xl"
-                    // onClick={}
+                        className="flex opacity-70 hover:opacity-100 duration-200 font-bold justify-center bg-black p-1 rounded-full overflow-show"
+                    onClick={() => setSelectedComponent('Menu')}
                     >
-                        START
+                        <div className='flex items-center justify-center w-12 h-8'>
+                            <Image className='' alt="start" src="/start.svg" width={36} height={36}></Image>
+                        </div>
                     </button>
                 </div>
                 <img className='absolute' src="gradient.png"></img>
 
             </div>
 
-            <div className='flex space-x-4 opacity-70'>
-                <a href='https://twitter.com/heliuslabs' target="_blank" className='flex hover:border-zinc-600 duration-200 items-center justify-center w-12 h-12 border border-2 border-zinc-700 rounded-lg'>
-                    <Image className='' alt="Twt" src="/twt.svg" width={24} height={24}></Image>
+            <div className='flex space-x-4'>
+                <a href='https://twitter.com/heliuslabs' target="_blank" className='flex opacity-70 hover:opacity-100 duration-200 items-center justify-center w-12 h-12  rounded-lg'>
+                <Image className='' alt="start" src="/twt.svg" width={24} height={24}></Image>
                 </a>
                 
-                <a href='https://docs.helius.xyz/' target="_blank" className='flex hover:border-zinc-600 duration-200 items-center justify-center w-12 h-12 border border-2 border-zinc-700 rounded-lg'>
+                <a href='https://docs.helius.xyz/' target="_blank" className='flex opacity-70 hover:opacity-100 duration-200 items-center justify-center w-12 h-12 rounded-lg'>
                     <Image className='' alt="Gitb" src="/gitbook.svg" width={24} height={24}></Image>
                 </a>
-                <a href='https://helius.dev' target="_blank" className='flex hover:border-zinc-600 duration-200 items-center justify-center w-12 h-12 border border-2 border-zinc-700 rounded-lg'>
+                <a href='https://helius.dev' target="_blank" className='flex opacity-70 hover:opacity-100 duration-200 items-center justify-center w-12 h-12 rounded-lg'>
                     <Image className='' alt="Helius" src="/helius.svg" width={24} height={24}></Image>
                 </a>
             </div>

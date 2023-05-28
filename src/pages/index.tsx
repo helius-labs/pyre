@@ -1,12 +1,23 @@
-import { Space_Grotesk } from 'next/font/google'
+import { useState } from 'react';
 import Landing from '../components/Landing';
-
-const spaceGrostesk = Space_Grotesk({ subsets: ['latin'] })
+import Menu from '../components/Menu';
+import Question from '../components/Question';
 
 export default function Home() {
+  const [selectedComponent, setSelectedComponent] = useState('Landing')
+  console.log(selectedComponent)
+
   return (
     <main className={`flex w-full h-screen flex-col items-center justify-between p-24 font-sans `}>
-      <Landing></Landing>
+      {selectedComponent === "Landing" ? (
+          <Landing setSelectedComponent={setSelectedComponent} />
+        ) : (
+          selectedComponent === "Menu" ? (
+            <Menu setSelectedComponent={setSelectedComponent} />
+          ) : (
+            <Question setSelectedComponent={setSelectedComponent}  />
+          )
+        )}
     </main>
   )
 }
