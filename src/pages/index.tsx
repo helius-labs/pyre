@@ -75,7 +75,7 @@ export default function Home() {
         <Landing setSelectedComponent={setSelectedComponent} />
       ) : (
         selectedComponent === "Menu" ? (
-          <Menu questions={questions} progress={progress} setQuestion={setQuestion} setSelectedComponent={setSelectedComponent} />
+          <Menu questions={questions} progress={progress} setProgress={setProgress} setQuestion={setQuestion} setSelectedComponent={setSelectedComponent} />
         ) : (
           <Question question={question} questions={questions} progress={progress} setQuestions={setQuestions} setProgress={setProgress} setSelectedComponent={setSelectedComponent} />
         )

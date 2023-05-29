@@ -21,9 +21,11 @@ export default function Menu({ setSelectedComponent, question, questions, progre
     const [answer, setAnswer] = useState('')
     const [solved, setSolved] = useState(false);
     const [submit, setSubmit] = useState(false);
+    const [load, setLoad] = useState(false)
 
     async function handleSubmit(event: any) {
         event.preventDefault();
+        setLoad(true)
         const response = await axios.post(`/api/${question.api}`, { address: chosenWallet });
         setSubmit(true)
         try {
@@ -33,17 +35,20 @@ export default function Menu({ setSelectedComponent, question, questions, progre
                 setProgress(progress += question.difficulty);
                 // setQuestions()
 
-                let newArr:any = questions
-                const index = questions.findIndex((e:any) => e.name === question.name);
+                let newArr: any = questions
+                const index = questions.findIndex((e: any) => e.name === question.name);
                 if (index !== -1) {
                     newArr.splice(index, 1);
                 }
                 setQuestions(newArr)
-                setSelectedComponent('Menu')
+
+                setTimeout(() => {
+                    setSelectedComponent('Menu')
+                }, 500)
 
             }
             else if (response.data != answer) {
-
+                setLoad(false)
             }
         }
         catch (err: any) {
@@ -90,7 +95,18 @@ export default function Menu({ setSelectedComponent, question, questions, progre
                         onChange={(e: any) => setAnswer(e.target.value)}
                     />
                     <button className='flex h-10 p-2 rounded-r-lg bg-zinc-800 font-bold text-white duration-200 cursor-pointer' type="submit">
-                        <Image className='opacity-70 hover:opacity-100 duration-200' alt="back" src="/check.svg" width={24} height={24}></Image>
+
+                        <>{(
+                            load ? (
+                                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                            ) : 
+                            (
+                                <Image className='opacity-70 hover:opacity-100 duration-200' alt="back" src="/check.svg" width={24} height={24}></Image>
+                            ))}
+                        </>
                     </button>
                 </form>
 

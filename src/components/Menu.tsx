@@ -7,7 +7,7 @@ interface Questions {
     tags: string[]
 }
 
-export default function Menu({ setSelectedComponent, progress, questions, setQuestion }: any) {
+export default function Menu({ setSelectedComponent, progress, setProgress, questions, setQuestion }: any) {
 
     let questionDIVs: JSX.Element[] = []
 
