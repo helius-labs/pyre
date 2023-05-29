@@ -32,7 +32,7 @@ export default function Home() {
       name: "Extract the image URL of a NFT",
       description: "Make use of Helius's services to find the image of an NFT, you'll need to extract the URL pointing to the image from the data.",
       difficulty: 1,
-      api: 'nfts_held',
+      api: 'image_nft',
       solved: false,
       type: 'nft',
       tags: ["NFT API", "DAS", "RPC"]
@@ -41,29 +41,21 @@ export default function Home() {
       name: "Identify the NFT's holder",
       description: "Make use of Helius's services to identify the holder of the provided NFT token address.",
       difficulty: 1,
-      api: 'nfts_held',
+      api: 'nft_holder',
       solved: false,
       type: 'nft',
-      tags: ["NFT API", "DAS"]
+      tags: ["DAS", "RPC"]
     },
     {
       name: "Identify the epoch time of a transaction",
       description: "Make use of Helius's services to identify the time at which the provided transaction took place.",
       difficulty: 1,
-      api: 'nfts_held',
+      api: 'epoch_tx',
       solved: false,
       type: 'tx',
       tags: ["ENHANCED API"]
     },
-    {
-      name: "Find the biggest holder of the BOOGLE NFT collection",
-      description: "You are provided a collection ID and you will need to make use of Helius services to get the biggest holder of the BOOGLE collection.",
-      difficulty: 2,
-      api: 'nfts_held',
-      solved: false,
-      type: 'nft',
-      tags: ["NFT API", "DAS"]
-    },
+
   ])
 
 

@@ -1,6 +1,6 @@
 const axios = require('axios')
 
-const getAssetsByOwner = async (wallet:string) => {
+const getAssetsByOwner = async (context:string) => {
 
   let held = [], page:any = 1;
 
@@ -13,7 +13,7 @@ const getAssetsByOwner = async (wallet:string) => {
       "id": "my-id",
       "method": "getAssetsByOwner",
       "params": {
-       "ownerAddress": wallet,
+       "ownerAddress": context,
         "page": page,
         "limit": 1000
       }
@@ -37,7 +37,7 @@ export default async function handler(req: any, res: any) {
   try {
     if (req.method === "POST") {
 
-      let data = await getAssetsByOwner(req.body.address)
+      let data = await getAssetsByOwner(req.body.context)
 
       res.status(200).json(data)
     };

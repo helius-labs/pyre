@@ -43,7 +43,7 @@ export default function Menu({ setSelectedComponent, question, questions, progre
     async function handleSubmit(event: any) {
         event.preventDefault();
         setLoad(true)
-        const response = await axios.post(`/api/${question.api}`, { address: context });
+        const response = await axios.post(`/api/${question.api}`, { context: context });
         setSubmit(true)
         try {
             if (response.data == answer) {
