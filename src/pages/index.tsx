@@ -9,6 +9,7 @@ interface Questions {
   difficulty: number,
   api: string,
   solved : boolean,
+  type: string,
   tags: string[]
 }
 
@@ -24,6 +25,7 @@ export default function Home() {
       difficulty: 1,
       api: 'nfts_held',
       solved: false,
+      type: 'wallet',
       tags: ["DAS", "RPC"]
     },
     {
@@ -32,6 +34,7 @@ export default function Home() {
       difficulty: 1,
       api: 'nfts_held',
       solved: false,
+      type: 'nft',
       tags: ["NFT API", "DAS", "RPC"]
     },
     {
@@ -40,6 +43,7 @@ export default function Home() {
       difficulty: 1,
       api: 'nfts_held',
       solved: false,
+      type: 'nft',
       tags: ["NFT API", "DAS"]
     },
     {
@@ -48,6 +52,7 @@ export default function Home() {
       difficulty: 1,
       api: 'nfts_held',
       solved: false,
+      type: 'tx',
       tags: ["ENHANCED API"]
     },
     {
@@ -56,15 +61,8 @@ export default function Home() {
       difficulty: 2,
       api: 'nfts_held',
       solved: false,
+      type: 'nft',
       tags: ["NFT API", "DAS"]
-    },
-    {
-      name: "Mint an NFT",
-      description: "Mint an NFT that has the name: 'Helius Quiz NFT'. It can have any toher attributes and use any image.",
-      difficulty: 3,
-      api: 'nfts_held',
-      solved: false,
-      tags: ["Basics", "RPC"]
     },
   ])
 

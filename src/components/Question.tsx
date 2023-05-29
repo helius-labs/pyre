@@ -7,18 +7,35 @@ export default function Menu({ setSelectedComponent, question, questions, progre
     let wallets = [
         "EHyagVK6vWdhyp8Mn3NGLeC33LtQyPdDs1idNiBddTjF",
         "FpscJFipKBoAFXjhXfrruWyhsoNFisu8H8kLDdw1k8yH",
-        "AqCnjhn3NAroQ1q18TSVZ3Kj5FcukkZH1GbXhc1gCMva",
         "H7y6nvRCqe96ip1iYT5Hnjd7HMzRrN1nM8Z3d2Ad5LEk",
         "CAyxRpZ5dJzww7AjTf2pM8R6UNDfSLuHkouoHTyeu9rC",
         "D77Jk7KfBKWrtMfaZDLJTLhd1dFac2YAM6CoiwzSYnp7",
         "AmoRXq81SmTSn1M2ZMSo6zuzCjrYAkCVimZWqXAgaLDt",
         "GkEVXEapXkxc7pScePBP37BJaRBycyEPBYaS7uYJuq8m",
         "6qwiJTLDPS222HsdsN423f1VAPxyJGc8LHKZSBzQKK5U",
-        "T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW"
+        "T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW",
     ]
 
-    const [chosenWallet, setChosenWallet] = useState(wallets[Math.floor(Math.random() * wallets.length)])
-    const [answer, setAnswer] = useState('')
+    let tokens = [
+        "5B72RArx2mQvudmS9CBZzDFhNC7FTFtp2k2GEhQV6HqZ",
+        "9ARngHhVaCtH5JFieRdSS5Y8cdZk2TMF4tfGSWFB9iSK",
+        "F9Lw3ki3hJ7PF9HQXsBzoY8GyE6sPoEZZdXJBsTTD2rk",
+        "BDR44BrnjaeuvNhYkznu5YW5DzLda7BSGsWJ6jvDRaYS",
+    ]
+
+    let transactions = [
+        "4gWppNT3N7J4se2E6FAhG9BK7FUP5y5etDyBPPEJ7hz1M2UgAD2pfMieNAVbwr2NuZF8fNtUEEkNPki8Dea7NFoW",
+        "5hdwrwgfbFDbxsigaqHEB8syYrWjaidRec96xdbP7V4BPSMuYBk8yFeq8jdWxDPgK7CYLwEV2bAgSuPbf55HGzvg",
+        "5HLQwnpm2jLP4FJwin7Ae59ayXgJ9U41H5JushgkY1kQEe5q9Hnk5ksNPt6f7YpayhWp4xTqya2WKjYaUghbnhTV",
+        "5xHyU7YfXQRvpn6LxEgVKmT8XuquLzp99T2ewxaiNjfLwz6iuWKVfUv3ZArNDKytY7dakKwThtpWygwJcvr5wveU",
+        "5rx5m8MFM1rvWfjH2vNe7vix1d1Pyb4TKUApM5M9Fmr3XEeWqFizNZk4XVhB8Xa5VyfirfpfrEbMdXxvzVLS3amh"
+    ]
+
+    const [context, setContext] = useState(question.type == "wallet" ? (wallets[Math.floor(Math.random() * wallets.length)]) :
+        question.type == "nft" ? (tokens[Math.floor(Math.random() * tokens.length)]) :
+            transactions[Math.floor(Math.random() * transactions.length)])
+    const [answer, setAnswer] =
+        useState('')
     const [solved, setSolved] = useState(false);
     const [submit, setSubmit] = useState(false);
     const [load, setLoad] = useState(false)
@@ -26,14 +43,13 @@ export default function Menu({ setSelectedComponent, question, questions, progre
     async function handleSubmit(event: any) {
         event.preventDefault();
         setLoad(true)
-        const response = await axios.post(`/api/${question.api}`, { address: chosenWallet });
+        const response = await axios.post(`/api/${question.api}`, { address: context });
         setSubmit(true)
         try {
             if (response.data == answer) {
 
                 setSolved(true);
                 setProgress(progress += question.difficulty);
-                // setQuestions()
 
                 let newArr: any = questions
                 const index = questions.findIndex((e: any) => e.name === question.name);
@@ -81,11 +97,17 @@ export default function Menu({ setSelectedComponent, question, questions, progre
 
             <div className='flex h-full p-4 flex-col justify-center items-center justify-between xl:justify-evenly overflow-hidden'>
 
+
+
                 <div className='flex justify-center flex-col items-center space-y-8'>
                     <div className='flex text-xl text-white font-bold'>{question.name}</div>
                     <div className='flex items-center text-zinc-400 bg-zinc-900 p-3 rounded-md'>{question.description}</div>
-                    <div onClick={() => { navigator.clipboard.writeText(chosenWallet) }} className='flex duration-200 cursor-pointer hover:bg-zinc-800 rounded-full bg-zinc-900 px-4 py-2 justify-center'>{chosenWallet.slice(0, 4) + '..' + chosenWallet.slice(-4)}</div>
+
+                    <div onClick={() => { navigator.clipboard.writeText(context) }} className='flex duration-200 cursor-pointer hover:bg-zinc-800 rounded-full bg-zinc-900 px-4 py-2 justify-center'>
+                        {context.slice(0, 4) + '..' + context.slice(-4)}</div>
                 </div>
+
+
 
                 <form onSubmit={handleSubmit} className={`flex duration-200 ${(solved) ? (`border-2 border-green-500`) : (submit == false ? ('') : ('border-2 border-red-500 animate-shake'))} rounded-lg w-full items-center justify-center`}>
                     <input
@@ -94,19 +116,19 @@ export default function Menu({ setSelectedComponent, question, questions, progre
                         className="flex px-4 py-2 rounded-l-lg w-full outline-0 bg-zinc-800 text-white"
                         onChange={(e: any) => setAnswer(e.target.value)}
                     />
-                    <button className='flex h-10 p-2 rounded-r-lg bg-zinc-800 font-bold text-white duration-200 cursor-pointer' type="submit">
+                    <button className='flex items-center justify-center h-10 p-2 rounded-r-lg bg-zinc-800 font-bold text-white duration-200 cursor-pointer' type="submit">
 
-                        <>{(
+                        <div className='flex justify-center items-center'>{(
                             load ? (
-                                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <svg className="flex animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                 </svg>
-                            ) : 
-                            (
-                                <Image className='opacity-70 hover:opacity-100 duration-200' alt="back" src="/check.svg" width={24} height={24}></Image>
-                            ))}
-                        </>
+                            ) :
+                                (
+                                    <Image className='opacity-70 hover:opacity-100 duration-200' alt="back" src="/check.svg" width={24} height={24}></Image>
+                                ))}
+                        </div>
                     </button>
                 </form>
 

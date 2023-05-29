@@ -1,18 +1,18 @@
 {
     "name": "Pyre",
     "version": "0.0.1",
-    "storage": "",
-    "description": "An educational app and quiz that teaches users about Helius and it's applications through practical means.",
+    "storage": "arweave",
+    "description": "Practical applications of Helius",
     "website": "http://pyre-xnft.vercel.app",
     "kind": "app",
     "icon": {
       "md": "./assets/helius.png"
     },
-    "contact": "",
+    "contact": "@heliuslabs or @t1d3law on Twitter",
     "screenshots": [
-      "./assets/landingScreenShot.png",
-      "./assets/menuScreenShot.png",
-      "./assets/questionScreenShot.png"
+      "./assets/landingScreenshot.png",
+      "./assets/menuScreenshot.png",
+      "./assets/questionScreenshot.png"
     ],
     "entrypoints": {
       "default": {
