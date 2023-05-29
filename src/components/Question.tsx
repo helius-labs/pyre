@@ -2,11 +2,10 @@ import Image from 'next/image';
 import { useState } from 'react';
 import axios from 'axios';
 
-export default function Menu({ setSelectedComponent, question }: any) {
+export default function Menu({ setSelectedComponent, question, progress, setProgress }: any) {
 
     let wallets = [
         "EHyagVK6vWdhyp8Mn3NGLeC33LtQyPdDs1idNiBddTjF",
-        "DkWmvU6Qer7CcArfCDk76tr4oHMP9ioDUnb3ifdTKVDc",
         "FpscJFipKBoAFXjhXfrruWyhsoNFisu8H8kLDdw1k8yH",
         "AqCnjhn3NAroQ1q18TSVZ3Kj5FcukkZH1GbXhc1gCMva",
         "H7y6nvRCqe96ip1iYT5Hnjd7HMzRrN1nM8Z3d2Ad5LEk",
@@ -14,24 +13,36 @@ export default function Menu({ setSelectedComponent, question }: any) {
         "D77Jk7KfBKWrtMfaZDLJTLhd1dFac2YAM6CoiwzSYnp7",
         "AmoRXq81SmTSn1M2ZMSo6zuzCjrYAkCVimZWqXAgaLDt",
         "GkEVXEapXkxc7pScePBP37BJaRBycyEPBYaS7uYJuq8m",
-        "6qwiJTLDPS222HsdsN423f1VAPxyJGc8LHKZSBzQKK5U"
+        "6qwiJTLDPS222HsdsN423f1VAPxyJGc8LHKZSBzQKK5U",
+        "T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW"
     ]
 
     const [chosenWallet, setChosenWallet] = useState(wallets[Math.floor(Math.random() * wallets.length)])
     const [answer, setAnswer] = useState('')
+    const [solved, setSolved] = useState(false);
+    const [submit, setSubmit] = useState(false);
 
     async function handleSubmit(event: any) {
         event.preventDefault();
-        console.log(answer)
-        // const response = await axios.post("/api/${api_of_question}", { address: chosenWallet });
+        const response = await axios.post(`/api/${question.api}`, { address: chosenWallet });
+        setSubmit(true)
+        try {
+            if (response.data==answer) {
+                console.log('correct')
+                setSolved(true);
+                setProgress(progress+=1);
+                question.solved = true;
 
-        // try {
-        //     setAnswer(response.data)
-        //     console.log(response.data)
-        // }
-        // catch (err) {
-        //     console.log(err)
-        // }
+
+                // setSelectedComponent('Menu')
+            }
+            else if (response.data!=answer){
+
+            }
+        }
+        catch (err:any) {
+            console.log(err.response.data)
+        }
     }
 
 
@@ -65,7 +76,7 @@ export default function Menu({ setSelectedComponent, question }: any) {
                 <div onClick={() => { navigator.clipboard.writeText(chosenWallet) }} className='flex duration-200 cursor-pointer hover:bg-zinc-800 rounded-full bg-zinc-900 px-4 py-2 justify-center'>{chosenWallet.slice(0, 4) + '..' + chosenWallet.slice(-4)}</div>
                 </div>
                 
-                <form onSubmit={handleSubmit} className="flex w-full items-center justify-center">
+                <form onSubmit={handleSubmit} className={`flex duration-200 ${(solved) ? (`border-2 border-green-500`) : (submit==false?(''):('border-2 border-red-500 animate-shake'))} rounded-lg w-full items-center justify-center`}>
                     <input
                         type="text"
                         value={answer}

@@ -22,7 +22,7 @@ export default function Menu({ setSelectedComponent, questions, setQuestion }: a
 
         questionDIVs.push(
 
-            <div onClick={() => {setSelectedComponent('Question'); setQuestion(questions[i])}} className='flex animate-fade w-full h-max bg-zinc-800 rounded-lg hover:bg-zinc-700 duration-200 cursor-pointer'>
+            <div onClick={() => {setSelectedComponent('Question'); setQuestion(questions[i])}} className={`flex ${questions[i].solved?('bg-neutral-950'):('')} animate-fade w-full h-max bg-zinc-800 rounded-lg hover:bg-zinc-700 duration-200 cursor-pointer`}>
 
                 <div className='flex flex-col w-[12%] xl:w-[4%] space-y-2 p-2'>
                     <div className={`flex w-full h-1/3 rounded-md ${(questions[i].difficulty > 2) ? (`bg-orange-500`) : (`bg-zinc-900`)}`}></div>
