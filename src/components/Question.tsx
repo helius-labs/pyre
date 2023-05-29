@@ -86,7 +86,7 @@ export default function Menu({ setSelectedComponent, question, questions, progre
                     <input
                         type="text"
                         value={answer}
-                        className="flex px-4 py-2 rounded-l-lg w-full xl:w-[28.3rem] outline-0 bg-zinc-800 text-white"
+                        className="flex px-4 py-2 rounded-l-lg w-full outline-0 bg-zinc-800 text-white"
                         onChange={(e: any) => setAnswer(e.target.value)}
                     />
                     <button className='flex h-10 p-2 rounded-r-lg bg-zinc-800 font-bold text-white duration-200 cursor-pointer' type="submit">

@@ -12,7 +12,6 @@ export default function Menu({ setSelectedComponent, progress, questions, setQue
     let questionDIVs: JSX.Element[] = []
 
     for (let i = 0; i < questions.length; i++) {
-        console.log(questions)
         let tags = [];
         for (let x = 0; x < questions[i].tags.length; x++) {
             tags.push(
