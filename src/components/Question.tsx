@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import axios from 'axios';
 
-export default function Menu({ setSelectedComponent, question, progress, setProgress }: any) {
+export default function Menu({ setSelectedComponent, question, questions, progress, setProgress, setQuestions }: any) {
 
     let wallets = [
         "EHyagVK6vWdhyp8Mn3NGLeC33LtQyPdDs1idNiBddTjF",
@@ -27,20 +27,26 @@ export default function Menu({ setSelectedComponent, question, progress, setProg
         const response = await axios.post(`/api/${question.api}`, { address: chosenWallet });
         setSubmit(true)
         try {
-            if (response.data==answer) {
-                console.log('correct')
+            if (response.data == answer) {
+
                 setSolved(true);
-                setProgress(progress+=1);
-                question.solved = true;
+                setProgress(progress += question.difficulty);
+                // setQuestions()
 
+                let newArr:any = questions
+                const index = questions.findIndex((e:any) => e.name === question.name);
+                if (index !== -1) {
+                    newArr.splice(index, 1);
+                }
+                setQuestions(newArr)
+                setSelectedComponent('Menu')
 
-                // setSelectedComponent('Menu')
             }
-            else if (response.data!=answer){
+            else if (response.data != answer) {
 
             }
         }
-        catch (err:any) {
+        catch (err: any) {
             console.log(err.response.data)
         }
     }
@@ -62,8 +68,8 @@ export default function Menu({ setSelectedComponent, question, progress, setProg
                     </button>
 
                     <div className="flex relative w-full h-4 bg-zinc-800 rounded-lg z-0">
-                        <div style={{ width: `${40}%` }}
-                            className={`flex relative h-4 items-center rounded-lg bg-orange-500 max-w-full justify-center`}>
+                        <div style={{ width: `${progress * 10}%` }}
+                            className={`flex duration-200 relative h-4 items-center rounded-lg bg-orange-500 max-w-full justify-center`}>
                         </div></div>
                 </div>
             </div>
@@ -71,12 +77,12 @@ export default function Menu({ setSelectedComponent, question, progress, setProg
             <div className='flex h-full p-4 flex-col justify-center items-center justify-between xl:justify-evenly overflow-hidden'>
 
                 <div className='flex justify-center flex-col items-center space-y-8'>
-                <div className='flex text-xl text-white font-bold'>{question.name}</div>
-                <div className='flex items-center text-zinc-400 bg-zinc-900 p-3 rounded-md'>{question.description}</div>
-                <div onClick={() => { navigator.clipboard.writeText(chosenWallet) }} className='flex duration-200 cursor-pointer hover:bg-zinc-800 rounded-full bg-zinc-900 px-4 py-2 justify-center'>{chosenWallet.slice(0, 4) + '..' + chosenWallet.slice(-4)}</div>
+                    <div className='flex text-xl text-white font-bold'>{question.name}</div>
+                    <div className='flex items-center text-zinc-400 bg-zinc-900 p-3 rounded-md'>{question.description}</div>
+                    <div onClick={() => { navigator.clipboard.writeText(chosenWallet) }} className='flex duration-200 cursor-pointer hover:bg-zinc-800 rounded-full bg-zinc-900 px-4 py-2 justify-center'>{chosenWallet.slice(0, 4) + '..' + chosenWallet.slice(-4)}</div>
                 </div>
-                
-                <form onSubmit={handleSubmit} className={`flex duration-200 ${(solved) ? (`border-2 border-green-500`) : (submit==false?(''):('border-2 border-red-500 animate-shake'))} rounded-lg w-full items-center justify-center`}>
+
+                <form onSubmit={handleSubmit} className={`flex duration-200 ${(solved) ? (`border-2 border-green-500`) : (submit == false ? ('') : ('border-2 border-red-500 animate-shake'))} rounded-lg w-full items-center justify-center`}>
                     <input
                         type="text"
                         value={answer}

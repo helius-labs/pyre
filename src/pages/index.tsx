@@ -17,7 +17,7 @@ export default function Home() {
   const [question, setQuestion] = useState()
   const [progress, setProgress] = useState(0)
 
-  let questions:Questions[] = [
+  const [questions, setQuestions] = useState([
     {
       name: "Find the number of NFTs held by a wallet",
       description: "Query a Helius service to determine the number of NFTs held by the provided wallet.",
@@ -66,7 +66,7 @@ export default function Home() {
       solved: false,
       tags: ["Basics", "RPC"]
     },
-  ]
+  ])
 
 
   return (
@@ -77,7 +77,7 @@ export default function Home() {
         selectedComponent === "Menu" ? (
           <Menu questions={questions} progress={progress} setQuestion={setQuestion} setSelectedComponent={setSelectedComponent} />
         ) : (
-          <Question question={question} progress={progress} setProgress={setProgress} setSelectedComponent={setSelectedComponent} />
+          <Question question={question} questions={questions} progress={progress} setQuestions={setQuestions} setProgress={setProgress} setSelectedComponent={setSelectedComponent} />
         )
       )}
     </main>

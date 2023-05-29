@@ -7,12 +7,12 @@ interface Questions {
     tags: string[]
 }
 
-export default function Menu({ setSelectedComponent, questions, setQuestion }: any) {
+export default function Menu({ setSelectedComponent, progress, questions, setQuestion }: any) {
 
     let questionDIVs: JSX.Element[] = []
 
     for (let i = 0; i < questions.length; i++) {
-
+        console.log(questions)
         let tags = [];
         for (let x = 0; x < questions[i].tags.length; x++) {
             tags.push(
@@ -58,8 +58,8 @@ export default function Menu({ setSelectedComponent, questions, setQuestion }: a
                     </button>
 
                     <div className="flex relative w-full h-4 bg-zinc-800 rounded-lg z-0">
-                        <div style={{ width: `${40}%` }}
-                            className={`flex relative h-4 items-center rounded-lg bg-orange-500 max-w-full justify-center`}>
+                        <div style={{ width: `${progress*10}%` }}
+                            className={`flex duration-200 relative h-4 items-center rounded-lg bg-orange-500 max-w-full justify-center`}>
                         </div></div>
                 </div>
             </div>
