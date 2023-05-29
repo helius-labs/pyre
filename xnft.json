@@ -1,0 +1,22 @@
+{
+    "name": "Pyre",
+    "version": "0.0.1",
+    "storage": "",
+    "description": "An educational app and quiz that teaches users about Helius and it's applications through practical means.",
+    "website": "http://pyre-xnft.vercel.app",
+    "kind": "app",
+    "icon": {
+      "md": "./assets/helius.png"
+    },
+    "contact": "",
+    "screenshots": [
+      "./assets/landingScreenShot.png",
+      "./assets/menuScreenShot.png",
+      "./assets/questionScreenShot.png"
+    ],
+    "entrypoints": {
+      "default": {
+        "web": "http://pyre-xnft.vercel.app"
+      }
+    }
+  }
