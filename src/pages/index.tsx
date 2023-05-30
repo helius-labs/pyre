@@ -8,8 +8,9 @@ interface Questions {
   description: string,
   difficulty: number,
   api: string,
-  solved : boolean,
+  solved: boolean,
   type: string,
+  example_answer: string,
   tags: string[]
 }
 
@@ -26,6 +27,7 @@ export default function Home() {
       api: 'nfts_held',
       solved: false,
       type: 'wallet',
+      example_answer: "25",
       tags: ["DAS", "RPC"]
     },
     {
@@ -35,6 +37,7 @@ export default function Home() {
       api: 'image_nft',
       solved: false,
       type: 'nft',
+      example_answer: "https://madlads.s3.us-west-2.amazonaws.com/images/8420.png",
       tags: ["NFT API", "DAS", "RPC"]
     },
     {
@@ -44,6 +47,7 @@ export default function Home() {
       api: 'nft_holder',
       solved: false,
       type: 'nft',
+      example_answer: "T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW",
       tags: ["DAS", "RPC"]
     },
     {
@@ -53,9 +57,29 @@ export default function Home() {
       api: 'epoch_tx',
       solved: false,
       type: 'tx',
+      example_answer: "1633112174",
       tags: ["ENHANCED API"]
     },
-
+    {
+      name: "Find the first transaction of a wallet",
+      description: "You are provided a wallet address. Make use of Helius's services in order to retrieve the first transaction signature of the provided wallet.",
+      difficulty: 2,
+      api: "first_tx",
+      solved: false,
+      type: "wallet",
+      example_answer: "42JQVGf7V6LzAMizHEMk8tJ1HPozrBmB4dCxNgU14CSx8sXLxWau3JsS2NcM8vnDYK2XSXXhnNSVN8zfnBqiqGDd",
+      tags: ["RPC"]
+    },
+    {
+      name: "Find the SOL balance of a wallet",
+      description: "You are provided a wallet address. Make use of Helius's services in order to retrieve the wallet's native balance, otherwise known as SOL (data should be inputted rounded to 2 decimal places).",
+      difficulty: 1,
+      api: "sol_held",
+      solved: false,
+      type: "wallet",
+      example_answer: "25.01",
+      tags: ["ENHANCED API"]
+    },
   ])
 
 

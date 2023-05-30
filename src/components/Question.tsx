@@ -105,6 +105,7 @@ export default function Menu({ setSelectedComponent, question, questions, progre
 
                     <div onClick={() => { navigator.clipboard.writeText(context) }} className='flex duration-200 cursor-pointer hover:bg-zinc-800 rounded-full bg-zinc-900 px-4 py-2 justify-center'>
                         {context.slice(0, 4) + '..' + context.slice(-4)}</div>
+
                 </div>
 
 
@@ -115,6 +116,7 @@ export default function Menu({ setSelectedComponent, question, questions, progre
                         value={answer}
                         className="flex px-4 py-2 rounded-l-lg w-full outline-0 bg-zinc-800 text-white"
                         onChange={(e: any) => setAnswer(e.target.value)}
+                        placeholder={question.example_answer}
                     />
                     <button className='flex items-center justify-center h-10 p-2 rounded-r-lg bg-zinc-800 font-bold text-white duration-200 cursor-pointer' type="submit">
 
