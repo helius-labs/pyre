@@ -64,7 +64,7 @@ export default function Menu({ setSelectedComponent, progress, setProgress, ques
             </div>
 
 
-            <div className='flex w-full xl:w-2/3 h-max flex-col justify-center gap-4 p-4'>
+            <div className='flex w-full xl:w-2/3 h-max flex-col justify-center gap-4 p-4 no-scrollbar'>
                 {questionDIVs}
             </div>
 

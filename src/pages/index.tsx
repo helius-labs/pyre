@@ -2,6 +2,14 @@ import { useState } from 'react';
 import Landing from '../components/Landing';
 import Menu from '../components/Menu';
 import Question from '../components/Question';
+import { useEffect } from "react";
+import dynamic from "next/dynamic";
+
+const WalletMultiButtonDynamic = dynamic(
+  async () =>
+    (await import("@solana/wallet-adapter-react-ui")).WalletMultiButton,
+  { ssr: false }
+);
 
 interface Questions {
   name: string,
@@ -14,12 +22,14 @@ interface Questions {
   tags: string[]
 }
 
+
+
 export default function Home() {
   const [selectedComponent, setSelectedComponent] = useState('Landing')
   const [question, setQuestion] = useState()
   const [progress, setProgress] = useState(0)
 
-  const [questions, setQuestions] = useState([
+  const [questions, setQuestions] = useState<Questions[]>([
     {
       name: "Find the number of NFTs held by a wallet",
       description: "Query a Helius service to determine the number of NFTs held by the provided wallet.",
@@ -80,11 +90,22 @@ export default function Home() {
       example_answer: "25.01",
       tags: ["ENHANCED API"]
     },
+    {
+      name: "Find the supply of a collection.",
+      description: "You are provided a wallet address. Make use of Helius's services in order to retrieve the wallet's native balance, otherwise known as SOL (data should be inputted rounded to 2 decimal places).",
+      difficulty: 1,
+      api: "sol_held",
+      solved: false,
+      type: "wallet",
+      example_answer: "25.01",
+      tags: ["ENHANCED API"]
+    },
   ])
 
 
   return (
     <main className={`flex w-full h-screen flex-col items-center justify-between font-sans bg-neutral-950 text-zinc-200`}>
+      <div className="absolute top-0 right-0"><WalletMultiButtonDynamic /></div>
       {selectedComponent === "Landing" ? (
         <Landing setSelectedComponent={setSelectedComponent} />
       ) : (
