@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import axios from 'axios';
+import AppBar from './AppBar';
 
 export default function Menu({ setSelectedComponent, question, questions, progress, setProgress, setQuestions }: any) {
 
@@ -77,23 +78,8 @@ export default function Menu({ setSelectedComponent, question, questions, progre
         <div className='flex items-center justify-center h-full w-full flex-col bg-zinc-950 animate-fade'>
 
 
-            <div className='absolute w-full top-0 sticky px-2 xl:px-8 py-4 bg-zinc-950'>
-                <div className='flex flex-row items-center space-x-2 xl:space-x-8'>
-                    <button
-                        className="flex opacity-70 hover:opacity-100 duration-200 font-bold justify-center rounded-full overflow-show"
-                        onClick={() => setSelectedComponent('Menu')}
-                    >
-                        <div className='flex items-center justify-center w-6 h-4'>
-                            <Image className='' alt="back" src="/back.svg" width={16} height={16}></Image>
-                        </div>
-                    </button>
+            <AppBar setSelectedComponent={setSelectedComponent} progress={progress} ></AppBar>
 
-                    <div className="flex relative w-full h-4 bg-zinc-800 rounded-lg z-0">
-                        <div style={{ width: `${progress * 10}%` }}
-                            className={`flex duration-200 relative h-4 items-center rounded-lg bg-orange-500 max-w-full justify-center`}>
-                        </div></div>
-                </div>
-            </div>
 
             <div className='flex h-full p-4 flex-col justify-center items-center justify-between xl:justify-evenly overflow-hidden'>
 

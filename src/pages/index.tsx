@@ -1,7 +1,17 @@
-import { useState } from 'react';
 import Landing from '../components/Landing';
 import Menu from '../components/Menu';
 import Question from '../components/Question';
+import dynamic from "next/dynamic";
+import axios from 'axios';
+
+import { useWallet } from '@solana/wallet-adapter-react';
+import { useEffect, useState } from "react";
+
+const WalletMultiButtonDynamic = dynamic(
+  async () =>
+    (await import("@solana/wallet-adapter-react-ui")).WalletMultiButton,
+  { ssr: false }
+);
 
 interface Questions {
   name: string,
@@ -14,15 +24,16 @@ interface Questions {
   tags: string[]
 }
 
+
+
 export default function Home() {
   const [selectedComponent, setSelectedComponent] = useState('Landing')
   const [question, setQuestion] = useState()
   const [progress, setProgress] = useState(0)
-
-  const [questions, setQuestions] = useState([
+  const [questions, setQuestions] = useState<Questions[]>([
     {
       name: "Find the number of NFTs held by a wallet",
-      description: "Query a Helius service to determine the number of NFTs held by the provided wallet.",
+      description: "You are provided a wallet address. Make use of Helius's service to determine the number of NFTs held by the provided wallet.",
       difficulty: 1,
       api: 'nfts_held',
       solved: false,
@@ -32,7 +43,7 @@ export default function Home() {
     },
     {
       name: "Extract the image URL of a NFT",
-      description: "Make use of Helius's services to find the image of an NFT, you'll need to extract the URL pointing to the image from the data.",
+      description: "You are provided the mint address of a token. Make use of Helius's services to find the image of an NFT, you'll need to extract the URL pointing to the image from the data.",
       difficulty: 1,
       api: 'image_nft',
       solved: false,
@@ -42,7 +53,7 @@ export default function Home() {
     },
     {
       name: "Identify the NFT's holder",
-      description: "Make use of Helius's services to identify the holder of the provided NFT token address.",
+      description: "You are provided the mint address of a token. Make use of Helius's services to identify the holder of the provided NFT token address.",
       difficulty: 1,
       api: 'nft_holder',
       solved: false,
@@ -52,7 +63,7 @@ export default function Home() {
     },
     {
       name: "Identify the epoch time of a transaction",
-      description: "Make use of Helius's services to identify the time at which the provided transaction took place.",
+      description: "You are provided the signature of a transaction. Make use of Helius's services to identify the time at which the provided transaction took place.",
       difficulty: 1,
       api: 'epoch_tx',
       solved: false,
@@ -80,11 +91,54 @@ export default function Home() {
       example_answer: "25.01",
       tags: ["ENHANCED API"]
     },
+    {
+      name: "Find the supply of a collection.",
+      description: "You are provided a wallet address. Make use of Helius's services in order to retrieve the wallet's native balance, otherwise known as SOL (data should be inputted rounded to 2 decimal places).",
+      difficulty: 1,
+      api: "supply",
+      solved: false,
+      type: "wallet",
+      example_answer: "25.01",
+      tags: ["ENHANCED API"]
+    },
+    {
+      name: "Find the number of times an NFT has been sold.",
+      description: "You are provided a token address. Make use of Helius's services in order to find the number of times it has been sold since being minted.",
+      difficulty: 1,
+      api: "times_sold",
+      solved: false,
+      type: "token",
+      example_answer: "5",
+      tags: ["NFT API"]
+    },
   ])
+  const { publicKey } = useWallet();
+  const [wallet, setWallet] = useState('')
 
+  useEffect(() => {
+
+    async function saveProgress() {
+      const { data } = await axios.post(`/api/user_progress`,
+        {
+          user: publicKey?.toBase58(),
+          questions_remaining: questions,
+          progress: progress,
+        });
+      console.log(data)
+    }
+
+    if (publicKey) {
+      saveProgress()
+    }
+
+  }, [progress])
 
   return (
     <main className={`flex w-full h-screen flex-col items-center justify-between font-sans bg-neutral-950 text-zinc-200`}>
+
+      <WalletMultiButtonDynamic className='bg-zinc-900 hover:bg-zinc-900 hover:opacity-100 duration-200' />
+
+
       {selectedComponent === "Landing" ? (
         <Landing setSelectedComponent={setSelectedComponent} />
       ) : (
@@ -94,6 +148,7 @@ export default function Home() {
           <Question question={question} questions={questions} progress={progress} setQuestions={setQuestions} setProgress={setProgress} setSelectedComponent={setSelectedComponent} />
         )
       )}
+
     </main>
   )
 }
