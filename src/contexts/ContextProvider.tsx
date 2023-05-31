@@ -18,11 +18,9 @@ const ReactUIWalletModalProviderDynamic = dynamic(
 
 const WalletContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
     const { networkConfiguration } = useNetworkConfiguration();
-    const network = networkConfiguration as WalletAdapterNetwork;
+    const network = WalletAdapterNetwork.Mainnet;
     const endpoint = useMemo(() => clusterApiUrl(network), [network]);
-
-    console.log(network);
-
+    
     const wallets = useMemo(
         () => [
             new BackpackWalletAdapter(),
@@ -40,7 +38,6 @@ const WalletContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
     );
 
     return (
-        // TODO: updates needed for updating and referencing endpoint: wallet adapter rework
         <ConnectionProvider endpoint={endpoint}>
             <WalletProvider wallets={wallets} onError={onError}>
                 <ReactUIWalletModalProviderDynamic>
