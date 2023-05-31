@@ -40,28 +40,45 @@ export default function Menu({ setSelectedComponent, question, questions, progre
     const [solved, setSolved] = useState(false);
     const [submit, setSubmit] = useState(false);
     const [load, setLoad] = useState(false)
+    const [cachedAnswer, setCachedAnswer] = useState('')
+
+
+    function handleCorrect () {
+        setSolved(true);
+        setProgress(progress += question.difficulty);
+
+        let newArr: any = questions
+        const index = questions.findIndex((e: any) => e.name === question.name);
+        if (index !== -1) {
+            newArr.splice(index, 1);
+        }
+        setQuestions(newArr)
+
+        setTimeout(() => {
+            setSelectedComponent('Menu')
+        }, 500)
+    }
 
     async function handleSubmit(event: any) {
         event.preventDefault();
+        if (cachedAnswer) {
+            if (cachedAnswer==answer) {
+                handleCorrect()
+            }
+            else {
+                setLoad(false)
+
+            }
+        }
+
         setLoad(true)
         const response = await axios.post(`/api/${question.api}`, { context: context });
+        setCachedAnswer(response.data)
         setSubmit(true)
         try {
             if (response.data == answer) {
 
-                setSolved(true);
-                setProgress(progress += question.difficulty);
-
-                let newArr: any = questions
-                const index = questions.findIndex((e: any) => e.name === question.name);
-                if (index !== -1) {
-                    newArr.splice(index, 1);
-                }
-                setQuestions(newArr)
-
-                setTimeout(() => {
-                    setSelectedComponent('Menu')
-                }, 500)
+                handleCorrect()
 
             }
             else if (response.data != answer) {
@@ -78,7 +95,7 @@ export default function Menu({ setSelectedComponent, question, questions, progre
         <div className='flex items-center justify-center h-full w-full flex-col bg-zinc-950 animate-fade'>
 
 
-            <AppBar setSelectedComponent={setSelectedComponent} progress={progress} ></AppBar>
+            <AppBar setSelectedComponent={setSelectedComponent} progress={progress} component="Question" ></AppBar>
 
 
             <div className='flex h-full p-4 flex-col justify-center items-center justify-between xl:justify-evenly overflow-hidden'>

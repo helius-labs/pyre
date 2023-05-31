@@ -92,24 +92,24 @@ export default function Home() {
       tags: ["ENHANCED API"]
     },
     {
-      name: "Find the supply of a collection.",
-      description: "You are provided a wallet address. Make use of Helius's services in order to retrieve the wallet's native balance, otherwise known as SOL (data should be inputted rounded to 2 decimal places).",
-      difficulty: 1,
-      api: "supply",
-      solved: false,
-      type: "wallet",
-      example_answer: "25.01",
-      tags: ["ENHANCED API"]
-    },
-    {
       name: "Find the number of times an NFT has been sold.",
       description: "You are provided a token address. Make use of Helius's services in order to find the number of times it has been sold since being minted.",
       difficulty: 1,
       api: "times_sold",
       solved: false,
-      type: "token",
+      type: "nft",
       example_answer: "5",
       tags: ["NFT API"]
+    },
+    {
+      name: "Find the supply of a collection.",
+      description: "You are provided a token address. Make use of Helius's services in order to retrieve the token's collection address, and use that in order to figure out the supply of the collection (this does not include burned NFTs).",
+      difficulty: 2,
+      api: "nft_supply",
+      solved: false,
+      type: "nft",
+      example_answer: "9999",
+      tags: ["ENHANCED API", "RPC", "DAS"]
     },
   ])
   const { publicKey } = useWallet();
@@ -136,11 +136,13 @@ export default function Home() {
   return (
     <main className={`flex w-full h-screen flex-col items-center justify-between font-sans bg-neutral-950 text-zinc-200`}>
 
-      <WalletMultiButtonDynamic className='bg-zinc-900 hover:bg-zinc-900 hover:opacity-100 duration-200' />
-
 
       {selectedComponent === "Landing" ? (
-        <Landing setSelectedComponent={setSelectedComponent} />
+        <>
+            <WalletMultiButtonDynamic className='relative bg-zinc-900 hover:bg-zinc-900 hover:opacity-100 duration-200' />
+
+            <Landing setSelectedComponent={setSelectedComponent} />
+        </>
       ) : (
         selectedComponent === "Menu" ? (
           <Menu questions={questions} progress={progress} setProgress={setProgress} setQuestion={setQuestion} setSelectedComponent={setSelectedComponent} />

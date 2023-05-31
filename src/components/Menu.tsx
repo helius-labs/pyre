@@ -45,7 +45,7 @@ export default function Menu({ setSelectedComponent, progress, setProgress, ques
         <div className='flex items-center justify-center h-max w-full flex-col bg-zinc-950 xl:space-y-16'>
 
 
-            <AppBar setSelectedComponent={setSelectedComponent} progress={progress} ></AppBar>
+            <AppBar setSelectedComponent={setSelectedComponent} progress={progress} component="Menu" ></AppBar>
 
 
             <div className='flex w-full xl:w-2/3 h-max flex-col justify-center gap-4 p-4 no-scrollbar'>
