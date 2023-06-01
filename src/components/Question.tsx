@@ -22,6 +22,15 @@ export default function Menu({ setSelectedComponent, question, questions, progre
         "9ARngHhVaCtH5JFieRdSS5Y8cdZk2TMF4tfGSWFB9iSK",
         "F9Lw3ki3hJ7PF9HQXsBzoY8GyE6sPoEZZdXJBsTTD2rk",
         "BDR44BrnjaeuvNhYkznu5YW5DzLda7BSGsWJ6jvDRaYS",
+        "6p1PPMYGkKjBCXmWsBAETqiAEAEekgTaEMjmPUKLzjUc",
+        "7K6kTmwCSbm7nDhiURXZfedhFyYoxEEoguMrRjEQbcbh",
+        "B1rzqj4cEM6pWsrm3rLPCu8QwcXMn6H6bd7xAnk941dU",
+        "whSxaMUmZ66xTj7ZLkx28T9Nzwgc1chWZmoPSyovgJC",
+        "HthgzJVNKYeH4PjcwdAnq8qM4HzxzWNK1iEYSrcjAyfe",
+        "HeVXJCURxNSjkXESJvnofvmxZ3bAziepJWLk5EfqEt3y",
+        "EK4FizYeActi1CAt4j48Qb5bNsY38RLydnugsvvaj57e",
+        "6a76kXVZ5QA89yuoksAL7Ymha2DFAdXGa82sxtFYABH7",
+        "G1VBATFRMBFccq57Xtn6ZVT1Nby4FDZXLU9piz3gzpAP"
     ]
 
     let transactions = [
@@ -29,7 +38,9 @@ export default function Menu({ setSelectedComponent, question, questions, progre
         "5hdwrwgfbFDbxsigaqHEB8syYrWjaidRec96xdbP7V4BPSMuYBk8yFeq8jdWxDPgK7CYLwEV2bAgSuPbf55HGzvg",
         "5HLQwnpm2jLP4FJwin7Ae59ayXgJ9U41H5JushgkY1kQEe5q9Hnk5ksNPt6f7YpayhWp4xTqya2WKjYaUghbnhTV",
         "5xHyU7YfXQRvpn6LxEgVKmT8XuquLzp99T2ewxaiNjfLwz6iuWKVfUv3ZArNDKytY7dakKwThtpWygwJcvr5wveU",
-        "5rx5m8MFM1rvWfjH2vNe7vix1d1Pyb4TKUApM5M9Fmr3XEeWqFizNZk4XVhB8Xa5VyfirfpfrEbMdXxvzVLS3amh"
+        "5rx5m8MFM1rvWfjH2vNe7vix1d1Pyb4TKUApM5M9Fmr3XEeWqFizNZk4XVhB8Xa5VyfirfpfrEbMdXxvzVLS3amh",
+        "2xnGMnYxi9dbZJ6pTcNeYM98o7TtoVvn6SXrewUHsNFVRbZ3e8iwGdjGdovJ7ATmiRMsZa6rHquZWPqxkEdva1Fe",
+        "2TZPpjc9Kp8pDtCXFwTBkL8RzFivheMVKqzqv3TFjFaLhsbDsQuWFkAR4NG7sfRCVNx44N5rwiqrjA1aLbzwcQQc"
     ]
 
     const [context, setContext] = useState(question.type == "wallet" ? (wallets[Math.floor(Math.random() * wallets.length)]) :
@@ -117,7 +128,7 @@ export default function Menu({ setSelectedComponent, question, questions, progre
                         }, 1000);
                     }}
 
-                        className={`flex font-medium duration-200 opacity-70 hover:opacity-100 space-x-2 cursor-pointer rounded-full bg-zinc-900 px-4 py-2 justify-center`}>
+                        className={`flex font-medium duration-200 opacity-70 hover:opacity-100 space-x-2 cursor-pointer rounded-full bg-zinc-800 px-4 py-2 justify-center`}>
                             <div>{displayedContext}</div>
 
                             <>{

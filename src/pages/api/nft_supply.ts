@@ -37,6 +37,7 @@ const getAssetsByGroup = async (context:any) => {
         else {
             mintlist.push(...data.result.items);
             page++;
+            console.log(mintlist.length)
         }
     }
     return mintlist.length

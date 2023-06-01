@@ -183,20 +183,20 @@ export default function Home() {
       example_answer: "5",
       tags: ["NFT API"]
     },
-    {
-      name: "Find the supply of a collection.",
-      description: "You are provided a token address. Make use of Helius's services in order to retrieve the token's collection address, and use that in order to figure out the supply of the collection (this does not include burned NFTs).",
-      difficulty: 2,
-      api: "nft_supply",
-      solved: false,
-      type: "nft",
-      example_answer: "9999",
-      tags: ["ENHANCED API", "RPC", "DAS"]
-    },
+    // { Temporarily removed: takes too long. 
+    //   name: "Find the supply of a collection.",
+    //   description: "You are provided a token address. Make use of Helius's services in order to retrieve the token's collection address, and use that in order to figure out the supply of the collection (this does not include burned NFTs).",
+    //   difficulty: 2,
+    //   api: "nft_supply",
+    //   solved: false,
+    //   type: "nft",
+    //   example_answer: "9999",
+    //   tags: ["ENHANCED API", "RPC", "DAS"]
+    // },
   ])
   const { publicKey } = useWallet();
-  const [wallet, setWallet] = useState('');
-  const [currentWallet, setCurrentWallet] = useState('')
+  const [userData, setUserData] = useState()
+
 
   useEffect(() => {
 
@@ -226,9 +226,15 @@ export default function Home() {
         {
           user: publicKey?.toBase58()
         })
-      setProgress(data[0].progress)
-      setQuestions(data[0].questions_remaining)
-
+      if (data[0].user){
+        setProgress(data[0].progress)
+        setQuestions(data[0].questions_remaining)
+        setUserData(data[0])
+      }
+      else {
+        setProgress(0)
+        setQuestions(originalQuestions)
+      }
     }
 
     if (publicKey) {
@@ -244,7 +250,6 @@ export default function Home() {
   return (
     <main className={`flex w-full h-screen flex-col items-center justify-between font-sans bg-neutral-950 text-zinc-200`}>
 
-
       {selectedComponent === "Landing" ? (
         <>
           <WalletMultiButtonDynamic className='relative bg-zinc-900 hover:bg-zinc-900 hover:opacity-100 duration-200' />
@@ -253,7 +258,7 @@ export default function Home() {
         </>
       ) : (
         selectedComponent === "Menu" ? (
-          <Menu questions={questions} progress={progress} setProgress={setProgress} setQuestion={setQuestion} setSelectedComponent={setSelectedComponent} />
+          <Menu userData={userData} questions={questions} progress={progress} setProgress={setProgress} setQuestion={setQuestion} setSelectedComponent={setSelectedComponent} />
         ) : (
           <Question question={question} questions={questions} progress={progress} setQuestions={setQuestions} setProgress={setProgress} setSelectedComponent={setSelectedComponent} />
         )

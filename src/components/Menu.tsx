@@ -1,4 +1,6 @@
 import AppBar from './AppBar';
+import End from './End';
+
 
 interface Questions {
     name: string,
@@ -7,7 +9,7 @@ interface Questions {
     tags: string[]
 }
 
-export default function Menu({ setSelectedComponent, progress, setProgress, questions, setQuestion }: any) {
+export default function Menu({ setSelectedComponent, progress, userData, questions, setQuestion }: any) {
 
     let questionDIVs: JSX.Element[] = []
 
@@ -15,13 +17,13 @@ export default function Menu({ setSelectedComponent, progress, setProgress, ques
         let tags = [];
         for (let x = 0; x < questions[i].tags.length; x++) {
             tags.push(
-                <div key={questions[i].tags[x]+i+x} className='flex bg-zinc-900 rounded-md items-center justify-center px-2 py-1 w-max font-medium'>{questions[i].tags[x]}</div>
+                <div key={questions[i].tags[x] + i + x} className='flex bg-zinc-900 rounded-md items-center justify-center px-2 py-1 w-max font-medium'>{questions[i].tags[x]}</div>
             )
         }
 
         questionDIVs.push(
 
-            <div key={questions[i].api} onClick={() => {setSelectedComponent('Question'); setQuestion(questions[i])}} className={`flex ${questions[i].solved?('bg-neutral-950'):('')} animate-fade w-full h-max bg-zinc-800 rounded-lg hover:bg-zinc-700 duration-200 cursor-pointer`}>
+            <div key={questions[i].api} onClick={() => { setSelectedComponent('Question'); setQuestion(questions[i]) }} className={`flex ${questions[i].solved ? ('bg-neutral-950') : ('')} animate-fade w-full h-max bg-zinc-800 rounded-lg hover:bg-zinc-700 duration-200 cursor-pointer`}>
 
                 <div className='flex flex-col w-[12%] xl:w-[4%] space-y-2 p-2'>
                     <div className={`flex w-full h-1/3 rounded-md ${(questions[i].difficulty > 2) ? (`bg-orange-500`) : (`bg-zinc-900`)}`}></div>
@@ -42,16 +44,28 @@ export default function Menu({ setSelectedComponent, progress, setProgress, ques
     }
 
     return (
-        <div className='flex items-center justify-center h-max w-full flex-col bg-zinc-950 xl:space-y-16'>
 
 
-            <AppBar setSelectedComponent={setSelectedComponent} progress={progress} component="Menu" ></AppBar>
+        (questions.length != 0) ? (
+
+            <div className='flex items-center justify-center h-max w-full flex-col bg-zinc-950 xl:space-y-16'>
 
 
-            <div className='flex w-full xl:w-2/3 h-max flex-col justify-center gap-4 p-4 no-scrollbar'>
-                {questionDIVs}
+                <AppBar setSelectedComponent={setSelectedComponent} progress={progress} component="Menu" ></AppBar>
+
+
+                <div className='flex w-full xl:w-2/3 h-max flex-col justify-center gap-4 p-4 no-scrollbar'>
+                    {questionDIVs}
+                </div>
+
             </div>
 
-        </div>
+        ) : (
+            <div className='flex items-center justify-center h-full w-full flex-col bg-zinc-950 xl:space-y-16'>
+                <End setSelectedComponent={setSelectedComponent} progress={progress} userData={userData}></End>
+            </div>
+        )
+
+
     )
 }
