@@ -35,6 +35,9 @@ export default function Menu({ setSelectedComponent, question, questions, progre
     const [context, setContext] = useState(question.type == "wallet" ? (wallets[Math.floor(Math.random() * wallets.length)]) :
         question.type == "nft" ? (tokens[Math.floor(Math.random() * tokens.length)]) :
             transactions[Math.floor(Math.random() * transactions.length)])
+    const [displayedContext, setDisplayedContext] = useState(context.slice(0, 4) + '..' + context.slice(-4))
+
+
     const [answer, setAnswer] =
         useState('')
     const [solved, setSolved] = useState(false);
@@ -43,7 +46,7 @@ export default function Menu({ setSelectedComponent, question, questions, progre
     const [cachedAnswer, setCachedAnswer] = useState('')
 
 
-    function handleCorrect () {
+    function handleCorrect() {
         setSolved(true);
         setProgress(progress += question.difficulty);
 
@@ -62,7 +65,7 @@ export default function Menu({ setSelectedComponent, question, questions, progre
     async function handleSubmit(event: any) {
         event.preventDefault();
         if (cachedAnswer) {
-            if (cachedAnswer==answer) {
+            if (cachedAnswer == answer) {
                 handleCorrect()
             }
             else {
@@ -106,8 +109,27 @@ export default function Menu({ setSelectedComponent, question, questions, progre
                     <div className='flex text-xl text-white font-bold'>{question.name}</div>
                     <div className='flex items-center text-zinc-400 bg-zinc-900 p-3 rounded-md'>{question.description}</div>
 
-                    <div onClick={() => { navigator.clipboard.writeText(context) }} className='flex duration-200 cursor-pointer hover:bg-zinc-800 rounded-full bg-zinc-900 px-4 py-2 justify-center'>
-                        {context.slice(0, 4) + '..' + context.slice(-4)}</div>
+                    <div onClick={() => {
+                        navigator.clipboard.writeText(context)
+                        setDisplayedContext("Copied!")
+                        setTimeout(() => {
+                            setDisplayedContext(context.slice(0, 4) + '..' + context.slice(-4));
+                        }, 1000);
+                    }}
+
+                        className={`flex font-medium duration-200 opacity-70 hover:opacity-100 space-x-2 cursor-pointer rounded-full bg-zinc-900 px-4 py-2 justify-center`}>
+                            <div>{displayedContext}</div>
+
+                            <>{
+                                (displayedContext=="Copied!")?
+                                (
+                                    <Image className='duration-200' alt="check" src="/check.svg" width={16} height={16}></Image>
+                                ):(
+                                    <Image className='duration-200' alt="copy" src="/copy.svg" width={16} height={16}></Image>
+                                )
+                            }
+                            </>
+                    </div>
 
                 </div>
 

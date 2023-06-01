@@ -32,7 +32,7 @@ export default function Home() {
   const [progress, setProgress] = useState(0)
   const originalQuestions = [
     {
-      name: "Find the number of NFTs held by a wallet",
+      name: "Number of NFTs held by a wallet",
       description: "You are provided a wallet address. Make use of Helius's service to determine the number of NFTs held by the provided wallet.",
       difficulty: 1,
       api: 'nfts_held',
@@ -42,7 +42,7 @@ export default function Home() {
       tags: ["DAS", "RPC"]
     },
     {
-      name: "Extract the image URL of a NFT",
+      name: "Image URL of a NFT",
       description: "You are provided the mint address of a token. Make use of Helius's services to find the image of an NFT, you'll need to extract the URL pointing to the image from the data.",
       difficulty: 1,
       api: 'image_nft',
@@ -52,7 +52,7 @@ export default function Home() {
       tags: ["NFT API", "DAS", "RPC"]
     },
     {
-      name: "Identify the NFT's holder",
+      name: "Identify an NFT's holder",
       description: "You are provided the mint address of a token. Make use of Helius's services to identify the holder of the provided NFT token address.",
       difficulty: 1,
       api: 'nft_holder',
@@ -62,7 +62,7 @@ export default function Home() {
       tags: ["DAS", "RPC"]
     },
     {
-      name: "Identify the epoch time of a transaction",
+      name: "Epoch time of a transaction",
       description: "You are provided the signature of a transaction. Make use of Helius's services to identify the time at which the provided transaction took place.",
       difficulty: 1,
       api: 'epoch_tx',
@@ -72,7 +72,7 @@ export default function Home() {
       tags: ["ENHANCED API"]
     },
     {
-      name: "Find the first transaction of a wallet",
+      name: "First transaction of a wallet",
       description: "You are provided a wallet address. Make use of Helius's services in order to retrieve the first transaction signature of the provided wallet.",
       difficulty: 2,
       api: "first_tx",
@@ -82,7 +82,7 @@ export default function Home() {
       tags: ["RPC"]
     },
     {
-      name: "Find the SOL balance of a wallet",
+      name: "SOL balance of a wallet",
       description: "You are provided a wallet address. Make use of Helius's services in order to retrieve the wallet's native balance, otherwise known as SOL (data should be inputted rounded to 2 decimal places).",
       difficulty: 1,
       api: "sol_held",
@@ -92,7 +92,7 @@ export default function Home() {
       tags: ["ENHANCED API"]
     },
     {
-      name: "Find the number of times an NFT has been sold.",
+      name: "Number of times an NFT has been sold.",
       description: "You are provided a token address. Make use of Helius's services in order to find the number of times it has been sold since being minted.",
       difficulty: 1,
       api: "times_sold",
@@ -102,7 +102,7 @@ export default function Home() {
       tags: ["NFT API"]
     },
     {
-      name: "Find the supply of a collection.",
+      name: "Supply of a collection.",
       description: "You are provided a token address. Make use of Helius's services in order to retrieve the token's collection address, and use that in order to figure out the supply of the collection (this does not include burned NFTs).",
       difficulty: 2,
       api: "nft_supply",
