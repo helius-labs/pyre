@@ -143,7 +143,7 @@ export default function Guide({ setSelectedComponent, progress }: any) {
 
             <div className='flex flex-col h-full justify-between xl:w-1/2'>
 
-                <div className='flex h-max lg:h-full justify-center items-center flex-col p-8 space-y-12 animate-fade ease-in-out'>
+                <div className='flex h-max mt-12 xl:h-full xl:mt-0  justify-center items-center flex-col p-8 space-y-12 animate-fade ease-in-out'>
 
                     {guideDIVs[guide].image_path}
 

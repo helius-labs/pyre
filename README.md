@@ -30,7 +30,7 @@ The app is now fully functional on your local machine.
 
 Help add questions by following the interface below:
 
-``` javascript
+``` js
 interface Questions {
   name: string,
   description: string,
