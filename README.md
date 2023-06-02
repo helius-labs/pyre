@@ -1,4 +1,4 @@
-# **Getting Started:**
+# **Getting Started**
 
 **In order to run locally:**
 
@@ -24,3 +24,37 @@ Now, create a file called `.env.local` on the outermost directory of the cloned 
 HELIUS_KEY = <your Helius API key>
 ```
 The app is now fully functional on your local machine.
+
+
+# **Contribute**
+
+Help add questions by following the interface below:
+
+``` javascript
+interface Questions {
+  name: string,
+  description: string,
+  difficulty: number,
+  api: string,
+  solved: boolean,
+  type: string,
+  example_answer: string,
+  tags: string[]
+}
+```
+
+Here is an example
+```js
+{
+    name: "Identify an NFT's holder",
+    description: "You are provided the mint address of a token. Make use of Helius's services to identify the holder of the provided NFT token address.",
+    difficulty: 1,
+    api: 'nft_holder',
+    solved: false,
+    type: 'nft',
+    example_answer: "T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW",
+    tags: ["DAS", "RPC"]
+}
+```
+
+You can also contribute to the project by submitting pull requests to the repository to fix bugs or to add new features! For any inquiries, visit the Helius Discord or message Tidelaw#0707.
