@@ -92,7 +92,7 @@ export default function Guide({ setSelectedComponent, progress }: any) {
         {
             image_path:
 
-                <div className='flex animate-fade flex-col space-y-4 w-full xl:w-1/2 xl:h-1/2 items-center justify-center'>
+                <div className='flex flex-col space-y-4 w-full xl:w-1/2 xl:h-1/2 items-center justify-center'>
 
                     <div className={`flex w-full h-max bg-zinc-800 rounded-lg hover:bg-zinc-700 duration-200 cursor-pointer`}>
 
