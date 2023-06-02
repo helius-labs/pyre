@@ -172,7 +172,7 @@ export default function Home() {
 
       {selectedComponent === "Landing" ? (
         <>
-          <WalletMultiButtonDynamic className='relative bg-zinc-900 hover:bg-zinc-900 hover:opacity-100 duration-200' />
+          <WalletMultiButtonDynamic className='relative z-10 bg-zinc-900 hover:bg-zinc-900 hover:opacity-100 duration-200' />
 
           <Landing setSelectedComponent={setSelectedComponent} />
         </>

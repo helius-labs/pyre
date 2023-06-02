@@ -23,7 +23,7 @@ export default function Landing({ setSelectedComponent }: any) {
 
                 </div>
 
-                <img className='fixed' src="gradient.png"></img>
+                <img className='fixed max-w-none h-full' src="gradient.png"></img>
 
             </div>
 
