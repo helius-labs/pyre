@@ -143,11 +143,11 @@ export default function Guide({ setSelectedComponent, progress }: any) {
 
             <div className='flex flex-col h-full justify-between xl:w-1/2'>
 
-                <div className='flex h-full justify-center items-center flex-col p-8 space-y-12 animate-fade ease-in-out'>
+                <div className='flex h-max lg:h-full justify-center items-center flex-col p-8 space-y-12 animate-fade ease-in-out'>
 
                     {guideDIVs[guide].image_path}
 
-                    <div className='flex flex-col items-center space-y-2'>
+                    <div className='flex flex-col  items-center space-y-2'>
                         <div className='flex font-medium text-2xl rounded-lg text-zinc-300'>
                             {guideDIVs[guide].title}
                         </div>
@@ -158,7 +158,7 @@ export default function Guide({ setSelectedComponent, progress }: any) {
                 </div>
 
 
-                <div className=' flex flex-row justify-between w-full px-8 py-4 xl:p-16 font-medium'>
+                <div className=' flex flex-row justify-between w-full px-8 py-4 xl:p-16  font-medium bg-zinc-950'>
                     <button
                         className="flex w-max opacity-70 hover:opacity-100 duration-200 justify-center"
                         onClick={() => { if (guide > 0) { setGuide(guide - 1) } else { setSelectedComponent("Landing") } }}

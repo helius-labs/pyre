@@ -133,7 +133,7 @@ export default function Home() {
     if (publicKey) {
       saveProgress()
     }
-
+    console.log(progress)
   }, [progress])
 
 
@@ -168,7 +168,7 @@ export default function Home() {
   }, [publicKey])
 
   return (
-    <main className={`flex w-full h-screen flex-col items-center justify-between font-sans bg-neutral-950 text-zinc-200`}>
+    <main className={`flex w-full h-screen flex-col items-center justify-between font-sans bg-zinc-950 text-zinc-200`}>
 
       {selectedComponent === "Landing" ? (
         <>

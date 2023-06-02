@@ -4,6 +4,10 @@
 
 @layer utilities {
       
+    body {
+        background-color: rgb(9 9 11);
+    }
+
     .no-scrollbar::-webkit-scrollbar {
         display: none;
     }

@@ -58,6 +58,7 @@ export default function Menu({ setSelectedComponent, question, questions, progre
 
 
     function handleCorrect() {
+        console.log('e')
         setSolved(true);
         setProgress(progress += question.difficulty);
 
@@ -91,9 +92,9 @@ export default function Menu({ setSelectedComponent, question, questions, progre
         setSubmit(true)
         try {
             if (response.data == answer) {
-
-                handleCorrect()
-
+                if (!cachedAnswer) {
+                    handleCorrect()
+                }
             }
             else if (response.data != answer) {
                 setLoad(false)
