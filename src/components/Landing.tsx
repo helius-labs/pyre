@@ -13,7 +13,7 @@ export default function Landing({ setSelectedComponent }: any) {
                     </div>
                     <button
                         className="flex opacity-70 hover:opacity-100 duration-200 font-bold justify-center bg-black p-1 rounded-full overflow-show"
-                        onClick={() => setSelectedComponent('Menu')}
+                        onClick={() => setSelectedComponent('Guide')}
                     >
                         <div className='flex items-center justify-center w-12 h-8'>
                             <Image className='' alt="start" src="/start.svg" width={36} height={36}></Image>

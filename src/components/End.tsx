@@ -31,7 +31,7 @@ export default function End({ userData, setSelectedComponent, progress }: any) {
     }
 
     return (
-        <div className='flex items-center justify-center h-full w-full flex-col bg-zinc-950 animate-fade space-y-8'>
+        <div className='flex items-center justify-center h-full w-full flex-col bg-zinc-950 animate-fade space-y-8 animate-fade'>
 
             <AppBar setSelectedComponent={setSelectedComponent} progress={progress} component="Menu" ></AppBar>
 

@@ -108,13 +108,9 @@ export default function Menu({ setSelectedComponent, question, questions, progre
     return (
         <div className='flex items-center justify-center h-full w-full flex-col bg-zinc-950 animate-fade'>
 
-
             <AppBar setSelectedComponent={setSelectedComponent} progress={progress} component="Question" ></AppBar>
 
-
             <div className='flex h-full p-4 flex-col justify-center items-center justify-between xl:justify-evenly overflow-hidden'>
-
-
 
                 <div className='flex justify-center flex-col items-center space-y-8'>
                     <div className='flex text-xl text-white font-bold'>{question.name}</div>
@@ -129,17 +125,17 @@ export default function Menu({ setSelectedComponent, question, questions, progre
                     }}
 
                         className={`flex font-medium duration-200 opacity-70 hover:opacity-100 space-x-2 cursor-pointer rounded-full bg-zinc-800 px-4 py-2 justify-center`}>
-                            <div>{displayedContext}</div>
+                        <div>{displayedContext}</div>
 
-                            <>{
-                                (displayedContext=="Copied!")?
+                        <>{
+                            (displayedContext == "Copied!") ?
                                 (
                                     <Image className='duration-200' alt="check" src="/check.svg" width={16} height={16}></Image>
-                                ):(
+                                ) : (
                                     <Image className='duration-200' alt="copy" src="/copy.svg" width={16} height={16}></Image>
                                 )
-                            }
-                            </>
+                        }
+                        </>
                     </div>
 
                 </div>
