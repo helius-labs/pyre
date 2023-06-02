@@ -146,7 +146,7 @@ export default function Home() {
         {
           user: publicKey?.toBase58()
         })
-      if (data[0].user) {
+      if (data[0]?.user) {
         setProgress(data[0].progress)
         setQuestions(data[0].questions_remaining)
         setUserData(data[0])
