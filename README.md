@@ -43,7 +43,7 @@ interface Questions {
 }
 ```
 
-Here is an example
+Here is an example:
 ```js
 {
     name: "Identify an NFT's holder",
@@ -57,4 +57,4 @@ Here is an example
 }
 ```
 
-You can also contribute to the project by submitting pull requests to the repository to fix bugs or to add new features! For any inquiries, visit the Helius Discord or message Tidelaw#0707.
+You can also contribute to the project by submitting pull requests to the repository to fix bugs or to add new features! For any inquiries, visit the [Helius Discord](https://discord.gg/helius) or message Tidelaw#0707.
