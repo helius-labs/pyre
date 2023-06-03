@@ -117,6 +117,7 @@ export default function Home() {
   const { publicKey } = useWallet();
   const [userData, setUserData] = useState()
 
+  let walletConnect = <WalletMultiButtonDynamic className='relative z-10 bg-zinc-900 hover:bg-zinc-900 hover:opacity-100 duration-200' />
 
   useEffect(() => {
 
@@ -172,13 +173,12 @@ export default function Home() {
 
       {selectedComponent === "Landing" ? (
         <>
-          <WalletMultiButtonDynamic className='relative z-10 bg-zinc-900 hover:bg-zinc-900 hover:opacity-100 duration-200' />
-
+            {walletConnect}
           <Landing setSelectedComponent={setSelectedComponent} />
         </>
       ) : (
         selectedComponent === "Guide" ? (
-          <Guide setSelectedComponent={setSelectedComponent} progress={progress} ></Guide>
+          <Guide setSelectedComponent={setSelectedComponent} progress={progress} walletConnect={walletConnect} ></Guide>
         ) : (selectedComponent === "Menu") ? (
           <Menu userData={userData} questions={questions} progress={progress} setProgress={setProgress} setQuestion={setQuestion} setSelectedComponent={setSelectedComponent} />
         ) : (

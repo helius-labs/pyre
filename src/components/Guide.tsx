@@ -2,14 +2,14 @@ import { useState } from 'react';
 import AppBar from './AppBar';
 import Image from 'next/image';
 
-export default function Guide({ setSelectedComponent, progress }: any) {
+export default function Guide({ setSelectedComponent, progress, walletConnect }: any) {
     const [guide, setGuide] = useState<number>(0)
     const [context, setContext] = useState("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")
     const [displayedContext, setDisplayedContext] = useState(context.slice(0, 4) + '..' + context.slice(-4))
 
     let guideDIVs = [
         {
-            image_path:
+            div_example:
                 <div className='flex animate-fade flex-col space-y-4 w-full xl:w-1/2 xl:h-1/2 items-center justify-center'>
 
                     <div className={`flex w-full h-max bg-zinc-800 rounded-lg hover:bg-zinc-700 duration-200 cursor-pointer`}>
@@ -53,7 +53,7 @@ export default function Guide({ setSelectedComponent, progress }: any) {
             description: "A wide selection of questions tagged with specific Helius Services relevant to each question."
         },
         {
-            image_path:
+            div_example:
 
 
                 <div className='flex flex-col space-y-4 w-full xl:w-1/2 xl:h-1/2 items-center justify-center'>
@@ -90,7 +90,7 @@ export default function Guide({ setSelectedComponent, progress }: any) {
             description: "While the questions are the same, the context for each question is randomly chosen, leading to unique experiences."
         },
         {
-            image_path:
+            div_example:
 
                 <div className='flex flex-col space-y-4 w-full xl:w-1/2 xl:h-1/2 items-center justify-center'>
 
@@ -133,6 +133,15 @@ export default function Guide({ setSelectedComponent, progress }: any) {
             title: "Difficulty Based Progress",
             description: "Each question has a difficulty rating, you will be awarded points based on how difficult it is to complete."
         },
+        {
+            div_example:
+                <div className='flex flex-col space-y-4 w-full xl:w-1/2 xl:h-1/2 items-center justify-center'>
+                    {walletConnect}
+                </div>
+            ,
+            title: "Saved Progress",
+            description: "Connect your wallet in order to save progress, the same questions will be waiting for you each time you launch."
+        },
 
     ]
 
@@ -145,7 +154,7 @@ export default function Guide({ setSelectedComponent, progress }: any) {
 
                 <div className='flex h-max mt-12 xl:h-full xl:mt-0  justify-center items-center flex-col p-8 space-y-12 animate-fade ease-in-out'>
 
-                    {guideDIVs[guide].image_path}
+                    {guideDIVs[guide].div_example}
 
                     <div className='flex flex-col  items-center space-y-2'>
                         <div className='flex font-medium text-2xl rounded-lg text-zinc-300'>
@@ -170,12 +179,13 @@ export default function Guide({ setSelectedComponent, progress }: any) {
                         <div className={`flex ${guide == 0 ? ('bg-zinc-300') : ('bg-zinc-500')} rounded-full w-2 h-2 transition`}></div>
                         <div className={`flex ${guide == 1 ? ('bg-zinc-300') : ('bg-zinc-500')} rounded-full w-2 h-2 transition`}></div>
                         <div className={`flex ${guide == 2 ? ('bg-zinc-300') : ('bg-zinc-500')} rounded-full w-2 h-2 transition`}></div>
+                        <div className={`flex ${guide == 3 ? ('bg-zinc-300') : ('bg-zinc-500')} rounded-full w-2 h-2 transition`}></div>
 
                     </div>
 
                     <button
                         className="flex w-max opacity-70 hover:opacity-100 duration-200 justify-center"
-                        onClick={() => { if (guide < 2) { setGuide(guide + 1) } else { setSelectedComponent("Menu") } }}
+                        onClick={() => { if (guide < 3) { setGuide(guide + 1) } else { setSelectedComponent("Menu") } }}
                     >
                         NEXT
                     </button>
