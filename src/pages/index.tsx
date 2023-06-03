@@ -117,7 +117,7 @@ export default function Home() {
   const { publicKey } = useWallet();
   const [userData, setUserData] = useState()
 
-  let walletConnect = <WalletMultiButtonDynamic className='relative z-10 bg-zinc-900 hover:bg-zinc-900 hover:opacity-100 duration-200' />
+  let walletConnect = <WalletMultiButtonDynamic className='relative z-10 bg-zinc-900 hover:bg-zinc-900 hover:opacity-100 duration-200 animate-fade' />
 
   useEffect(() => {
 

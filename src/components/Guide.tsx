@@ -10,7 +10,7 @@ export default function Guide({ setSelectedComponent, progress, walletConnect }:
     let guideDIVs = [
         {
             div_example:
-                <div className='flex animate-fade flex-col space-y-4 w-full xl:w-1/2 xl:h-1/2 items-center justify-center'>
+                <div className='flex animate-fade flex-col space-y-4 w-full h-44 xl:w-1/2 xl:h-1/2 items-center justify-center'>
 
                     <div className={`flex w-full h-max bg-zinc-800 rounded-lg hover:bg-zinc-700 duration-200 cursor-pointer`}>
 
@@ -56,7 +56,7 @@ export default function Guide({ setSelectedComponent, progress, walletConnect }:
             div_example:
 
 
-                <div className='flex flex-col space-y-4 w-full xl:w-1/2 xl:h-1/2 items-center justify-center'>
+                <div className='flex flex-col space-y-4 w-full h-44 xl:w-1/2 xl:h-1/2 items-center justify-center'>
                     <div className='flex text-xl text-white font-bold duration-200'>Question</div>
                     <div className='flex items-center text-zinc-400 bg-zinc-900 p-3 rounded-md duration-200'>Description of the question.</div>
 
@@ -92,7 +92,7 @@ export default function Guide({ setSelectedComponent, progress, walletConnect }:
         {
             div_example:
 
-                <div className='flex flex-col space-y-4 w-full xl:w-1/2 xl:h-1/2 items-center justify-center'>
+                <div className='flex flex-col space-y-4 w-full h-44 xl:w-1/2 xl:h-1/2 items-center justify-center'>
 
                     <div className={`flex w-full h-max bg-zinc-800 rounded-lg hover:bg-zinc-700 duration-200 cursor-pointer`}>
 
@@ -135,7 +135,7 @@ export default function Guide({ setSelectedComponent, progress, walletConnect }:
         },
         {
             div_example:
-                <div className='flex flex-col space-y-4 w-full xl:w-1/2 xl:h-1/2 items-center justify-center'>
+                <div className='flex flex-col space-y-4 w-full h-44 xl:w-1/2 xl:h-1/2 items-center justify-center'>
                     {walletConnect}
                 </div>
             ,
