@@ -43,7 +43,7 @@ export default function Home() {
       tags: ["DAS", "RPC"]
     },
     {
-      name: "Image URL of a NFT",
+      name: "Image URL of an NFT",
       description: "You are provided the mint address of a token. Make use of Helius's services to find the image of an NFT, you'll need to extract the URL pointing to the image from the data.",
       difficulty: 1,
       api: 'image_nft',
@@ -93,7 +93,7 @@ export default function Home() {
       tags: ["ENHANCED API"]
     },
     {
-      name: "Number of times an NFT has been sold.",
+      name: "Sale activity of an NFT",
       description: "You are provided a token address. Make use of Helius's services in order to find the number of times it has been sold since being minted.",
       difficulty: 1,
       api: "times_sold",
@@ -102,16 +102,16 @@ export default function Home() {
       example_answer: "5",
       tags: ["NFT API"]
     },
-    {
-      name: "Supply of a collection.",
-      description: "You are provided a token address. Make use of Helius's services in order to retrieve the token's collection address, and use that in order to figure out the supply of the collection; this does not include burned NFTs (be patient, this question may take a little longer to check).",
-      difficulty: 2,
-      api: "nft_supply",
-      solved: false,
-      type: "nft",
-      example_answer: "9999",
-      tags: ["ENHANCED API", "RPC", "DAS"]
-    },
+    // {
+    //   name: "Supply of a collection",
+    //   description: "You are provided a token address. Make use of Helius's services in order to retrieve the token's collection address, and use that in order to figure out the supply of the collection; this does not include burned NFTs (be patient, this question may take a little longer to check).",
+    //   difficulty: 2,
+    //   api: "nft_supply",
+    //   solved: false,
+    //   type: "nft",
+    //   example_answer: "9999",
+    //   tags: ["ENHANCED API", "RPC", "DAS"]
+    // },
   ]
   const [questions, setQuestions] = useState<Questions[]>(originalQuestions)
   const { publicKey } = useWallet();
