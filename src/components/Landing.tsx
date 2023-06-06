@@ -39,6 +39,9 @@ export default function Landing({ setSelectedComponent }: any) {
                 <a href='https://helius.dev' target="_blank" className='flex opacity-70 hover:opacity-100 duration-200 items-center justify-center w-12 h-12 rounded-lg'>
                     <Image className='' alt="Helius" src="/helius.svg" width={24} height={24}></Image>
                 </a>
+                <a href='https://github.com/Tidelaw/pyre' target="_blank" className='flex opacity-70 hover:opacity-100 duration-200 items-center justify-center w-12 h-12 rounded-lg'>
+                    <Image className='' alt="Gith" src="/github.svg" width={24} height={24}></Image>
+                </a>
             </div>
 
         </div>
