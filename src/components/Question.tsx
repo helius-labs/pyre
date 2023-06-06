@@ -119,7 +119,9 @@ export default function Menu({ setSelectedComponent, question, questions, progre
 
             <div className='flex xl:w-1/2 h-full p-4 py-8 flex-col justify-center items-center justify-between xl:justify-evenly overflow-hidden'>
 
-                <div className='flex justify-center h-full flex-col items-center justify-between'>
+                <div className='flex justify-center flex-col items-center space-y-8'>
+                    <div className='flex text-4xl text-white font-bold w-max'>{question.name}</div>
+                    <div className='flex items-center text-zinc-400 bg-zinc-900 p-3 rounded-md'>{question.description}</div>
 
                     <div className='flex flex-row w-full justify-between'>
 
