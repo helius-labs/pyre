@@ -50,7 +50,7 @@ export default function Home() {
       solved: false,
       type: 'nft',
       example_answer: "https://madlads.s3.us-west-2.amazonaws.com/images/8420.png",
-      tags: ["NFT API", "DAS", "RPC"]
+      tags: ["DAS", "RPC"]
     },
     {
       name: "Identify an NFT's holder",
