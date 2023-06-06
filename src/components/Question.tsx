@@ -108,7 +108,7 @@ export default function Menu({ setSelectedComponent, question, questions, progre
     let tags = [];
     for (let i = 0; i < question.tags.length; i++) {
         tags.push(
-            <div key={i} className='flex bg-zinc-800 rounded-md items-center justify-center p-2 w-max font-medium'>{question.tags[i]}</div>
+            <div key={i} className={`flex bg-zinc-800 rounded-md items-center justify-center p-1 xl:p-2 w-max font-medium`}>{question.tags[i]}</div>
         )
     }
 
@@ -117,35 +117,38 @@ export default function Menu({ setSelectedComponent, question, questions, progre
 
             <AppBar setSelectedComponent={setSelectedComponent} progress={progress} component="Question" ></AppBar>
 
-            <div className='flex xl:w-1/2 h-full p-4 py-8 flex-col justify-center items-center justify-between xl:justify-evenly overflow-hidden'>
+            <div className='flex w-full xl:w-3/4 h-full p-4 py-8 flex-col justify-center items-center justify-between xl:justify-evenly overflow-hidden'>
 
                 <div className='flex justify-center h-full flex-col items-center justify-between'>
 
-                    <div className='flex flex-row w-full justify-between'>
+                    <div className='flex flex-col xl:flex-row w-full h-max xl:justify-between space-y-2'>
 
-                        <div className='flex w-2/3 flex-col space-y-4 h-10'>
+                        <div className='flex w-full xl:w-2/3 flex-col space-y-4'>
                             <div className='flex text-xl xl:text-4xl text-white font-bold'>{question.name}</div>
 
-                            <div className='flex flex-row justify-between h-full'>
-                                <div className='flex flex-row w-1/2 xl:w-1/3 h-8 space-x-4'>
-                                    <div className='flex w-full bg-orange-500 rounded-md'></div>
-                                    <div className={`flex w-full rounded-md ${(question.difficulty > 1) ? (`bg-orange-500`) : (`bg-zinc-800`)}`}></div>
-                                    <div className={`flex w-full rounded-md ${(question.difficulty > 2) ? (`bg-orange-500`) : (`bg-zinc-800`)}`}></div>
+                            <div className='flex flex-row justify-between items-center justify-center '>
+
+                                <div className='flex flex-row w-1/3 xl:w-1/3 h-6 xl:h-8 space-x-2 xl:space-x-4'>
+                                    <div className='flex w-full h-7 bg-orange-500 rounded-md'></div>
+                                    <div className={`flex w-full h-7 rounded-md ${(question.difficulty > 1) ? (`bg-orange-500`) : (`bg-zinc-800`)}`}></div>
+                                    <div className={`flex w-full h-7 rounded-md ${(question.difficulty > 2) ? (`bg-orange-500`) : (`bg-zinc-800`)}`}></div>
+                                </div>
+
+                                <div className='flex w-1/2 h-6 flex-row items-end justify-center xl:space-y-4 text-sm xl:text-lg tracking-wider leading-5 space-x-2'>
+                                    <div className='flex bg-zinc-800 xl:h-1/2 rounded-md items-center justify-center p-1 xl:w-full font-semibold'>{(question.type.toUpperCase())}</div>
+                                    <div className="flex xl:h-1/2 space-x-2 xl:space-x-4 flex-row xl:h-8 justify-end items-end xl:w-full">
+                                        {tags}</div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div className='flex flex-col items-center justify-center space-y-4 text-lg tracking-wider leading-5'>
-                            <div className='flex bg-zinc-800 h-10 rounded-md items-center justify-center p-2 w-full font-semibold'>{(question.type.toUpperCase())}</div>
-                            <div className="flex space-x-4 flex-row h-8 justify-end items-end w-full">
-                                {tags}</div>
+
                         </div>
 
                     </div>
 
                     <div className='flex flex-col space-y-8 justify-center items-center w-3/5'>
-                        
-                        <div className='flex items-center text-zinc-300 bg-zinc-900 p-3 rounded-md '>{question.description}</div>
+
+                        <div className='flex items-center text-zinc-300 bg-zinc-900 p-3 rounded-md xl:text-lg'>{question.description}</div>
 
                         <div onClick={() => {
                             navigator.clipboard.writeText(context)
@@ -170,7 +173,7 @@ export default function Menu({ setSelectedComponent, question, questions, progre
                         </div>
                     </div>
 
-                    <form onSubmit={handleSubmit} className={`flex py-8 duration-200 ${(solved) ? (`border-2 border-green-500`) : (submit == false ? ('') : ('border-2 border-red-500 animate-shake'))} rounded-lg w-full items-center justify-center`}>
+                    <form onSubmit={handleSubmit} className={`flex xl:py-8 duration-200 ${(solved) ? (`border-2 border-green-500`) : (submit == false ? ('') : ('border-2 border-red-500 animate-shake'))} rounded-lg w-full items-center justify-center`}>
                         <input
                             type="text"
                             value={answer}
