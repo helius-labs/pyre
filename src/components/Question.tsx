@@ -108,7 +108,7 @@ export default function Menu({ setSelectedComponent, question, questions, progre
     let tags = [];
     for (let i = 0; i < question.tags.length; i++) {
         tags.push(
-            <div key={i} className={`flex bg-zinc-800 rounded-md items-center justify-center p-2 w-max font-medium`}>{question.tags[i]}</div>
+            <div key={i} className={`flex bg-zinc-800 rounded-md items-center justify-center p-3 xl:p-4 w-max font-semibold`}>{question.tags[i]}</div>
         )
     }
 
@@ -124,10 +124,10 @@ export default function Menu({ setSelectedComponent, question, questions, progre
                     <div className='flex flex-col xl:flex-row w-full h-max xl:justify-center space-y-2'>
 
 
-                            <div className='flex w-full xl:w-full flex-col p-2 gap-2 xl:gap-4 animate-fade duration-200'>
+                            <div className='flex w-full xl:w-full flex-col gap-2 xl:gap-4 animate-fade duration-200'>
                                 <div className='text-xl xl:text-4xl font-semibold'>{question.name}</div>
                                 <div className='flex w-full flex-row h-6 xl:h-8 justify-between'>
-                                    <div className='flex flex-row w-1/3 xl:w-1/5 space-x-2'>
+                                    <div className='flex flex-row w-1/3 xl:w-[15%] space-x-2'>
                                         <div className='flex w-full bg-orange-500 h-full rounded-md'></div>
                                         <div className={`flex w-full h-full rounded-md ${(question.difficulty > 1) ? (`bg-orange-500`) : (`bg-zinc-800`)}`}></div>
                                         <div className={`flex w-full h-full rounded-md ${(question.difficulty > 2) ? (`bg-orange-500`) : (`bg-zinc-800`)}`}></div>
@@ -152,7 +152,7 @@ export default function Menu({ setSelectedComponent, question, questions, progre
                             }, 1000);
                         }}
 
-                            className={`flex w-max font-medium duration-200 opacity-70 hover:opacity-100 space-x-2 cursor-pointer rounded-full bg-zinc-800 px-4 py-2 justify-center`}>
+                            className={`flex w-max font-medium duration-200 opacity-80 hover:opacity-100 space-x-2 cursor-pointer rounded-full bg-zinc-800 px-4 py-2 justify-center`}>
                             <div>{displayedContext}</div>
 
                             <>{

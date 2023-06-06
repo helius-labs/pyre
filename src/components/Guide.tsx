@@ -12,11 +12,11 @@ export default function Guide({ setSelectedComponent, progress, walletConnect }:
             div_example:
                 <div className='flex animate-fade flex-col space-y-4 w-full h-44 xl:w-1/2 xl:h-1/2 items-center justify-center'>
 
-                    <div className={`flex w-full h-max bg-zinc-800 rounded-lg hover:bg-zinc-700 duration-200 cursor-pointer`}>
+                    <div className="flex w-full h-max bg-zinc-800 rounded-lg hover:bg-zinc-700 duration-200 cursor-pointer">
 
                         <div className='flex flex-col w-10 space-y-2 p-2'>
-                            <div className={`flex w-full h-1/3 rounded-md bg-zinc-900`}></div>
-                            <div className={`flex w-full h-1/3 rounded-md bg-zinc-900`}></div>
+                            <div className="flex w-full h-1/3 rounded-md bg-zinc-900"></div>
+                            <div className="flex w-full h-1/3 rounded-md bg-zinc-900"></div>
                             <div className='flex w-full bg-orange-500 h-1/3 rounded-md'></div>
                         </div>
 
@@ -28,11 +28,11 @@ export default function Guide({ setSelectedComponent, progress, walletConnect }:
                             </div>
                         </div>
                     </div>
-                    <div className={`flex w-full h-max bg-zinc-800 rounded-lg hover:bg-zinc-700 duration-200 cursor-pointer`}>
+                    <div className="flex w-full h-max bg-zinc-800 rounded-lg hover:bg-zinc-700 duration-200 cursor-pointer">
 
                         <div className='flex flex-col w-10 space-y-2 p-2'>
-                            <div className={`flex w-full h-1/3 rounded-md bg-zinc-900`}></div>
-                            <div className={`flex w-full h-1/3 rounded-md bg-zinc-900`}></div>
+                            <div className="flex w-full h-1/3 rounded-md bg-zinc-900"></div>
+                            <div className="flex w-full h-1/3 rounded-md bg-zinc-900"></div>
                             <div className='flex w-full bg-orange-500 h-1/3 rounded-md'></div>
                         </div>
 
@@ -56,9 +56,9 @@ export default function Guide({ setSelectedComponent, progress, walletConnect }:
             div_example:
 
 
-                <div className='flex flex-col space-y-4 w-full h-44 xl:w-1/2 xl:h-1/2 items-center justify-center'>
-                    <div className='flex text-xl text-white font-bold duration-200'>Question</div>
-                    <div className='flex items-center text-zinc-300 bg-zinc-900 p-3 rounded-md duration-200'>Description of the question.</div>
+                <div className='flex flex-col space-y-10 w-full h-44 xl:w-1/2 xl:h-1/2 items-center justify-center'>
+
+                    <div className='flex items-center text-zinc-300 bg-zinc-900 p-3 rounded-md xl:text-lg'>This is the description of a question, it is used in conjunction with the context to solve the question.</div>
 
                     <div onClick={() => {
                         navigator.clipboard.writeText(context)
@@ -68,7 +68,7 @@ export default function Guide({ setSelectedComponent, progress, walletConnect }:
                         }, 1000);
                     }}
 
-                        className={`flex duration-200 font-medium opacity-70 hover:opacity-100 space-x-2 cursor-pointer rounded-full bg-zinc-800 px-4 py-2 justify-center`}>
+                        className="flex duration-200 font-medium opacity-80 hover:opacity-100 space-x-2 cursor-pointer rounded-full bg-zinc-800 px-4 py-2 justify-center">
                         <div>{displayedContext}</div>
 
                         <>{
@@ -94,11 +94,11 @@ export default function Guide({ setSelectedComponent, progress, walletConnect }:
 
                 <div className='flex flex-col space-y-4 w-full h-44 xl:w-1/2 xl:h-1/2 items-center justify-center'>
 
-                    <div className={`flex w-full h-max bg-zinc-800 rounded-lg hover:bg-zinc-700 duration-200 cursor-pointer`}>
+                    <div className="flex w-full h-max bg-zinc-800 rounded-lg hover:bg-zinc-700 duration-200 cursor-pointer">
 
                         <div className='flex flex-col w-10 space-y-2 p-2'>
-                            <div className={`flex w-full h-1/3 rounded-md bg-zinc-900`}></div>
-                            <div className={`flex w-full h-1/3 rounded-md bg-zinc-900`}></div>
+                            <div className="flex w-full h-1/3 rounded-md bg-zinc-900"></div>
+                            <div className="flex w-full h-1/3 rounded-md bg-zinc-900"></div>
                             <div className='flex w-full bg-orange-500 h-1/3 rounded-md'></div>
                         </div>
 
@@ -109,11 +109,11 @@ export default function Guide({ setSelectedComponent, progress, walletConnect }:
                             </div>
                         </div>
                     </div>
-                    <div className={`flex w-full h-max bg-zinc-800 rounded-lg hover:bg-zinc-700 duration-200 cursor-pointer`}>
+                    <div className="flex w-full h-max bg-zinc-800 rounded-lg hover:bg-zinc-700 duration-200 cursor-pointer">
 
                         <div className='flex flex-col w-10 space-y-2 p-2'>
-                            <div className={`flex w-full h-1/3 rounded-md bg-orange-500`}></div>
-                            <div className={`flex w-full h-1/3 rounded-md bg-orange-500`}></div>
+                            <div className="flex w-full h-1/3 rounded-md bg-orange-500"></div>
+                            <div className="flex w-full h-1/3 rounded-md bg-orange-500"></div>
                             <div className='flex w-full bg-orange-500 h-1/3 rounded-md'></div>
                         </div>
 
