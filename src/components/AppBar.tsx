@@ -4,7 +4,7 @@ import ProgressBar from "./ProgressBar"
 export default function AppBar({ setSelectedComponent, progress, component }: any) {
 
     return (
-        <div className='absolute w-full top-0 sticky z-10 px-2 xl:px-8 py-4 bg-zinc-950'>
+        <div className='absolute w-full top-0 sticky z-10 px-2 xl:px-8 pb-2 py-4 bg-zinc-950'>
             <div className='flex flex-row justify-center items-center space-x-2 xl:space-x-8'>
                 <button
                     className="flex opacity-70 hover:opacity-100 duration-200 font-bold justify-center rounded-full overflow-show"
