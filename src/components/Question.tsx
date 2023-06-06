@@ -136,7 +136,6 @@ export default function Menu({ setSelectedComponent, question, questions, progre
                                         {tags}
                                     </div>
                                 </div>
-                                {/* <div className='h-full text-wrap truncate'>{questions[i].description}</div> */}
                             </div>
 
                     </div>
