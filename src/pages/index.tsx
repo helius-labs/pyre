@@ -4,6 +4,7 @@ import Question from '../components/Question';
 import dynamic from "next/dynamic";
 import axios from 'axios';
 import Guide from '../components/Guide'
+import Image from 'next/image';
 
 import { useWallet } from '@solana/wallet-adapter-react';
 import { useEffect, useState } from "react";
@@ -170,16 +171,32 @@ export default function Home() {
 
   return (
     <main className={`flex w-full h-screen flex-col items-center justify-between font-sans bg-zinc-950 text-zinc-200`}>
-
+        <title>Pyre</title>
       {selectedComponent === "Landing" ? (
         <>
-            {walletConnect}
+
+          <div className='flex flex-row justify-between w-full items-center p-2'>
+            <div className='flex text-zinc-200 text-2xl font-bold px-6 space-x-4'>
+              <Image className='' alt="Helius" src="/helius.svg" width={24} height={24}></Image>
+              <span>
+                PYRE
+              </span>
+            </div>
+
+
+            <div className='flex'>
+              {walletConnect}
+            </div>
+
+          </div>
+
           <Landing setSelectedComponent={setSelectedComponent} />
         </>
       ) : (
-        selectedComponent === "Guide" ? (
-          <Guide setSelectedComponent={setSelectedComponent} progress={progress} walletConnect={walletConnect} ></Guide>
-        ) : (selectedComponent === "Menu") ? (
+        // selectedComponent === "Guide" ? (
+        //   <Guide setSelectedComponent={setSelectedComponent} progress={progress} walletConnect={walletConnect} ></Guide>
+        // ) :
+        (selectedComponent === "Menu") ? (
           <Menu userData={userData} questions={questions} progress={progress} setProgress={setProgress} setQuestion={setQuestion} setSelectedComponent={setSelectedComponent} />
         ) : (
           <Question question={question} questions={questions} progress={progress} setQuestions={setQuestions} setProgress={setProgress} setSelectedComponent={setSelectedComponent} />
