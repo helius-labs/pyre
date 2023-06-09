@@ -1,5 +1,5 @@
 import Landing from '../components/Landing';
-import Menu from '../components/Menu';
+import QuestionMenu from '../components/QuestionMenu';
 import Question from '../components/Question';
 import dynamic from "next/dynamic";
 import axios from 'axios';
@@ -31,6 +31,7 @@ interface Questions {
 export default function Home() {
   const [selectedComponent, setSelectedComponent] = useState('Landing')
   const [question, setQuestion] = useState()
+  console.log(question)
   const [progress, setProgress] = useState(0)
   const originalQuestions = [
     {
@@ -103,6 +104,7 @@ export default function Home() {
       example_answer: "5",
       tags: ["NFT API"]
     },
+    
     // {
     //   name: "Supply of a collection",
     //   description: "You are provided a token address. Make use of Helius's services in order to retrieve the token's collection address, and use that in order to figure out the supply of the collection; this does not include burned NFTs (be patient, this question may take a little longer to check).",
@@ -170,7 +172,7 @@ export default function Home() {
   }, [publicKey])
 
   return (
-    <main className={`flex w-full h-screen flex-col items-center justify-between font-sans bg-zinc-950 text-zinc-200`}>
+    <main className={`flex w-full h-screen flex-col items-center justify-between font-sans bg-zinc-950 text-zinc-200 no-scrollbar`}>
         <title>Pyre</title>
       {selectedComponent === "Landing" ? (
         <>
@@ -196,8 +198,8 @@ export default function Home() {
         // selectedComponent === "Guide" ? (
         //   <Guide setSelectedComponent={setSelectedComponent} progress={progress} walletConnect={walletConnect} ></Guide>
         // ) :
-        (selectedComponent === "Menu") ? (
-          <Menu userData={userData} questions={questions} progress={progress} setProgress={setProgress} setQuestion={setQuestion} setSelectedComponent={setSelectedComponent} />
+        (selectedComponent === "QuestionMenu") ? (
+          <QuestionMenu userData={userData} questions={questions} progress={progress} setProgress={setProgress} setQuestion={setQuestion} setSelectedComponent={setSelectedComponent} />
         ) : (
           <Question question={question} questions={questions} progress={progress} setQuestions={setQuestions} setProgress={setProgress} setSelectedComponent={setSelectedComponent} />
         )

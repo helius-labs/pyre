@@ -10,10 +10,10 @@ export default function Landing({ setSelectedComponent }: any) {
                 <div className='flex justify-center items-center flex-col z-10 space-y-12 xl:space-y-12'>
 
                     <div className='flex flex-col space-y-8 items-center'>
-                        <div className='flex font-bold text-8xl xl:text-6xl opacity-100'>
+                        <div className='flex space-x-2 xl:space-x-4 font-bold text-3xl xl:text-6xl h-max leading-normal xl:leading-relaxed'>
                             Catalyse your progress
                         </div>
-                        <div className='flex font-medium text-2xl text-zinc-400 text-center w-2/3'>
+                        <div className='flex font-medium text-lg xl:text-2xl text-zinc-400 text-center w-[90%] xl:w-2/3'>
                             Master Helius and Solana Development in a matter of hours.
                         </div>
                     </div>
@@ -24,7 +24,7 @@ export default function Landing({ setSelectedComponent }: any) {
                     <div className='flex flex-row space-x-4'>
                         <button
                             className="flex duration-200 font-medium justify-center px-6 py-3 rounded-md overflow-show text-zinc-950 bg-zinc-300 hover:bg-zinc-400"
-                            onClick={() => setSelectedComponent('Menu')}
+                            onClick={() => setSelectedComponent('QuestionMenu')}
                         >
                             Get Started
                         </button>

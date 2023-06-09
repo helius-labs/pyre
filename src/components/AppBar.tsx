@@ -9,7 +9,7 @@ export default function AppBar({ setSelectedComponent, progress, component }: an
                 <button
                     className="flex opacity-70 hover:opacity-100 duration-200 font-bold justify-center rounded-full overflow-show"
                     // onClick={()=>(component=="Guide")?(setSelectedComponent("Landing")):(component=="Menu")?(setSelectedComponent("Guide")):((setSelectedComponent("Menu")))}
-                    onClick={() => (component == "Menu") ? (setSelectedComponent("Landing")) : (setSelectedComponent("Menu"))}
+                    onClick={() => (component == "QuestionMenu") ? (setSelectedComponent("Landing")) : (setSelectedComponent("QuestionMenu"))}
 
                 >
                     <div className='flex items-center justify-center w-6 h-4'>

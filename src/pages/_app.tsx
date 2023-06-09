@@ -9,8 +9,8 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <ContextProvider>
-      <Component {...pageProps} />
-      <Analytics />
+        <Component {...pageProps} />
+        <Analytics />
       </ContextProvider>
     </>
   );
