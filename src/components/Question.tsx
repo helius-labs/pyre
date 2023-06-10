@@ -80,7 +80,7 @@ export default function Menu({ setSelectedComponent, question, questions, progre
         setQuestions(newArr)
 
         setTimeout(() => {
-            setSelectedComponent('Menu')
+            setSelectedComponent('QuestionMenu')
         }, 500)
     }
 
@@ -186,11 +186,11 @@ export default function Menu({ setSelectedComponent, question, questions, progre
                         </div>
 
                         <div className='flex flex-col h-full space-y-8 justify-between bg-zinc-900 p-6 rounded-lg border border-zinc-800'>
-                            <div className='flex rounded-lg border border-zinc-800 bg-zinc-900 overflow-x-scroll xl:overflow-x-hidden '>
+                            <div className='flex rounded-lg border border-zinc-800 bg-zinc-950 overflow-x-scroll xl:overflow-x-hidden '>
 
                                 
 
-                                <pre className='flex bg-zinc-900 rounded-lg'><code style={{ background: '#09090b' }} className="js rounded-lg bg-zinc-900">
+                                <pre className='flex bg-zinc-900 rounded-lg'><code style={{ background: '#09090b' }} className="js rounded-lg">
                                     {`
 const getMetadata = async (context) => {
 
