@@ -31,7 +31,6 @@ interface Questions {
 export default function Home() {
   const [selectedComponent, setSelectedComponent] = useState('Landing')
   const [question, setQuestion] = useState()
-  console.log(question)
   const [progress, setProgress] = useState(0)
   const originalQuestions = [
     {
@@ -42,6 +41,9 @@ export default function Home() {
       solved: false,
       type: 'wallet',
       example_answer: "25",
+      hints: ["You will have to paginate through the wallet's balance!",
+              "In order to paginate you will need to make use of the 'page' property returned!",
+              "As you paginate through the wallet's balance, if a query does not return the maximum, 1000 tokens back, you'll have found every NFT a wallet has!"],
       tags: ["DAS", "RPC"]
     },
     {
@@ -137,7 +139,6 @@ export default function Home() {
     if (publicKey) {
       saveProgress()
     }
-    console.log(progress)
   }, [progress])
 
 

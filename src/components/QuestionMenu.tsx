@@ -43,7 +43,6 @@ export default function QuestionMenu({ setSelectedComponent, progress, userData,
             }
 
             if ((selectedTags && selectedTags.includes(questions[i].tags[0])) || selectedTags.length == 0) {
-                console.log(selectedTags, questions[i].name)
                 organizedQuestions.push(
 
                     <div key={questions[i].api} onClick={() => { setSelectedComponent('Question'); setQuestion(questions[i]) }}
@@ -57,8 +56,8 @@ export default function QuestionMenu({ setSelectedComponent, progress, userData,
                             </div>
 
                             <div className='flex w-max flex-col p-2 gap-2'>
-                                <div className='text-lg xl:text-xl font-semibold truncate'>{questions[i].name}</div>
-                                <div className="flex space-x-2 flex-row text-[10px] tracking-wider leading-5">
+                                <div className='text-lg xl:text-lg font-medium truncate tracking-wider'>{questions[i].name}</div>
+                                <div className="flex space-x-2 flex-row text-[10px] tracking-widest leading-5">
                                     {tags}
                                 </div>
                             </div>
@@ -91,7 +90,7 @@ export default function QuestionMenu({ setSelectedComponent, progress, userData,
                 <div className='flex xl:space-y-4 flex-col h-full w-full xl:w-2/3 items-center no-scrollbar'>
                     <div className='flex w-full flex-col space-y-2 items-start justify-start text-zinc-300 font-semibold p-4 py-6 xl:py-0 xl:mt-16 '>
 
-                        <div className='flex text-md tracking-widest font-bold'>FEATURED TAGS</div>
+                        <div className='flex text-md tracking-widest font-medium'>FEATURED TAGS</div>
 
                         <div className='flex flex-row space-x-4 text-[12px] tracking-wider leading-5'>
 

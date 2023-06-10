@@ -1,7 +1,13 @@
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import AppBar from './AppBar';
+import Hints from './Hints';
+import 'highlight.js/styles/default.css';
+import hljs from 'highlight.js';
+import 'highlight.js/styles/base16/nebula.css';
+import javascript from 'highlight.js/lib/languages/javascript';
+hljs.registerLanguage('javascript', javascript);
 
 export default function Menu({ setSelectedComponent, question, questions, progress, setProgress, setQuestions }: any) {
 
@@ -56,6 +62,10 @@ export default function Menu({ setSelectedComponent, question, questions, progre
     const [load, setLoad] = useState(false)
     const [cachedAnswer, setCachedAnswer] = useState('')
 
+
+    useEffect(() => {
+        hljs.initHighlighting();
+    }, []);
 
     function handleCorrect() {
         console.log('e')
@@ -117,79 +127,114 @@ export default function Menu({ setSelectedComponent, question, questions, progre
 
             <AppBar setSelectedComponent={setSelectedComponent} progress={progress} component="Question" ></AppBar>
 
-            <div className='flex w-full xl:w-3/4 h-full p-4 flex-col justify-center items-center justify-between xl:justify-evenly overflow-hidden'>
+            <div className='flex w-full h-full p-2 xl:p-8 justify-center xl:items-center overflow-y-scroll'>
 
-                <div className='flex justify-center xl:w-3/4 h-full flex-col items-center justify-between'>
+                <div className='flex justify-center w-full h-max xl:h-full flex-col xl:items-center p-2 space-y-12'>
 
-                    <div className='flex flex-col xl:flex-row w-full h-max xl:justify-center space-y-2'>
+                    {/* <div className='flex flex-col xl:flex-row w-full h-max xl:justify-center space-y-2'>
 
 
-                            <div className='flex w-full xl:w-full flex-col gap-2 xl:gap-4 animate-fade duration-200'>
-                                <div className='text-xl xl:text-4xl font-semibold'>{question.name}</div>
-                                <div className='flex w-full flex-row h-6 xl:h-8 justify-between'>
-                                    <div className='flex flex-row w-1/3 xl:w-[15%] space-x-2'>
-                                        <div className='flex w-full bg-orange-500 h-full rounded-md'></div>
-                                        <div className={`flex w-full h-full rounded-md ${(question.difficulty > 1) ? (`bg-orange-500`) : (`bg-zinc-800`)}`}></div>
-                                        <div className={`flex w-full h-full rounded-md ${(question.difficulty > 2) ? (`bg-orange-500`) : (`bg-zinc-800`)}`}></div>
-                                    </div>
-                                    <div className="flex w-max space-x-2 flex-row text-[14px] tracking-wider leading-5">
-                                        {tags}
-                                    </div>
+                        <div className='flex w-full xl:w-full flex-col gap-2 xl:gap-4 animate-fade duration-200'>
+                            <div className='text-xl xl:text-4xl font-semibold tracking-widest'>{(question.name).toUpperCase()}</div>
+                            <div className='flex w-full flex-row h-6 xl:h-8 space-x-4'>
+                                <div className='flex flex-row w-1/3 xl:w-[15%] space-x-2'>
+                                    <div className='flex w-full bg-orange-500 h-full rounded-md'></div>
+                                    <div className={`flex w-full h-full rounded-md ${(question.difficulty > 1) ? (`bg-orange-500`) : (`bg-zinc-800`)}`}></div>
+                                    <div className={`flex w-full h-full rounded-md ${(question.difficulty > 2) ? (`bg-orange-500`) : (`bg-zinc-800`)}`}></div>
+                                </div>
+                                <div className="flex w-max space-x-4 flex-row text-[14px] tracking-widest leading-5">
+                                    {tags}
                                 </div>
                             </div>
-
-                    </div>
-
-                    <div className='flex flex-col space-y-8 justify-center items-center xl:w-3/5'>
-
-                        <div className='flex items-center text-zinc-300 bg-zinc-900 p-3 rounded-md xl:text-lg'>{question.description}</div>
-
-                        <div onClick={() => {
-                            navigator.clipboard.writeText(context)
-                            setDisplayedContext("Copied!")
-                            setTimeout(() => {
-                                setDisplayedContext(context.slice(0, 4) + '..' + context.slice(-4));
-                            }, 1000);
-                        }}
-
-                            className={`flex w-max font-medium duration-200 opacity-80 hover:opacity-100 space-x-2 cursor-pointer rounded-full bg-zinc-800 px-4 py-2 justify-center`}>
-                            <div>{displayedContext}</div>
-
-                            <>{
-                                (displayedContext == "Copied!") ?
-                                    (
-                                        <Image className='duration-200' alt="check" src="/check.svg" width={16} height={16}></Image>
-                                    ) : (
-                                        <Image className='duration-200' alt="copy" src="/copy.svg" width={16} height={16}></Image>
-                                    )
-                            }
-                            </>
                         </div>
-                    </div>
 
-                    <form onSubmit={handleSubmit} className={`flex xl:py-8 duration-200 ${(solved) ? (`border-2 border-green-500`) : (submit == false ? ('') : ('border-2 border-red-500 animate-shake'))} rounded-lg w-full items-center justify-center`}>
-                        <input
-                            type="text"
-                            value={answer}
-                            className="flex px-4 py-2 rounded-l-lg w-full outline-0 bg-zinc-800 text-white"
-                            onChange={(e: any) => setAnswer(e.target.value)}
-                            placeholder={question.example_answer}
-                        />
-                        <button className='flex items-center justify-center h-10 p-2 rounded-r-lg bg-zinc-800 font-bold text-white duration-200 cursor-pointer' type="submit">
+                    </div> */}
 
-                            <div className='flex justify-center items-center'>{(
-                                load ? (
-                                    <svg className="flex animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                    </svg>
-                                ) :
-                                    (
-                                        <Image className='opacity-70 hover:opacity-100 duration-200' alt="back" src="/check.svg" width={24} height={24}></Image>
-                                    ))}
+                    <div className='flex flex-col space-y-16 xl:space-y-0 xl:space-x-16 xl:items-center w-full h-full xl:flex-row '>
+                        <div className='flex flex-col items-center justify-between space-y-8 h-full rounded-lg bg-zinc-900 border border-zinc-800 p-6'>
+
+                            
+                            <div className='flex flex-col space-y-6 xl:space-y-12'>
+                            <div className='text-2xl xl:text-4xl font-semibold tracking-wider'>{(question.name)}</div>
+                                <div className='flex text-md text-zinc-400 rounded-md xl:text-lg tracking-wider'>{question.description}</div>
                             </div>
-                        </button>
-                    </form>
+
+                            <div onClick={() => {
+                                navigator.clipboard.writeText(context)
+                                setDisplayedContext("Copied!")
+                                setTimeout(() => {
+                                    setDisplayedContext(context.slice(0, 4) + '..' + context.slice(-4));
+                                }, 1000);
+                            }}
+
+                                className={`flex w-max font-medium duration-200 hover:opacity-80 space-x-2 cursor-pointer rounded-full bg-zinc-800 px-4 py-2 justify-center`}>
+                                <div>{displayedContext}</div>
+
+                                <>{
+                                    (displayedContext == "Copied!") ?
+                                        (
+                                            <Image className='duration-200' alt="check" src="/check.svg" width={16} height={16}></Image>
+                                        ) : (
+                                            <Image className='duration-200' alt="copy" src="/copy.svg" width={16} height={16}></Image>
+                                        )
+                                }
+                                </>
+                            </div>
+
+                            <Hints content={question.hints}></Hints>
+
+                        </div>
+
+                        <div className='flex flex-col h-full space-y-8 justify-between bg-zinc-900 p-6 rounded-lg border border-zinc-800'>
+                            <div className='flex rounded-lg border border-zinc-800 bg-zinc-900 overflow-x-scroll xl:overflow-x-hidden '>
+
+                                
+
+                                <pre className='flex bg-zinc-900 rounded-lg'><code style={{ background: '#09090b' }} className="js rounded-lg bg-zinc-900">
+                                    {`
+const getMetadata = async (context) => {
+
+    const url = 'https://api.helius.xyz/v0/token-metadata?api-key=${process.env.HELIUS_KEY}'
+
+    const { data } = await axios.post(url, {
+        mintAccounts: [context],
+        includeOffChain: true,
+        disableCache: false,
+    });
+
+    return data[0].offChainMetadata.metadata.image;
+};    
+                            `}
+                                </code></pre>
+                            </div>
+
+                            <form onSubmit={handleSubmit} className={`flex duration-200 ${(solved) ? (`border-2 border-green-500`) : (submit == false ? ('border border-zinc-700') : ('border-2 border-red-500 animate-shake'))} rounded-full w-full items-center justify-center`}>
+                                <input
+                                    type="text"
+                                    value={answer}
+                                    className="flex px-4 py-2 rounded-l-full w-full outline-0 bg-zinc-800 text-zinc-300 placeholder-zinc-500"
+                                    onChange={(e: any) => setAnswer(e.target.value)}
+                                    placeholder={question.example_answer}
+                                />
+                                <button className='flex items-center justify-center h-10 p-2 px-4 rounded-r-full bg-zinc-800 font-bold text-white duration-200 cursor-pointer' type="submit">
+
+                                    <div className='flex justify-center items-center'>{(
+                                        load ? (
+                                            <svg className="flex animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                            </svg>
+                                        ) :
+                                            (
+                                                <Image className='opacity-70 hover:opacity-100 duration-200' alt="back" src="/check.svg" width={24} height={24}></Image>
+                                            ))}
+                                    </div>
+                                </button>
+                            </form>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
