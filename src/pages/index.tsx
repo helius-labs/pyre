@@ -26,8 +26,6 @@ interface Questions {
   tags: string[]
 }
 
-
-
 export default function Home() {
   const [selectedComponent, setSelectedComponent] = useState('Landing')
   const [question, setQuestion] = useState()
@@ -44,6 +42,31 @@ export default function Home() {
       hints: ["You will have to paginate through the wallet's balance!",
               "In order to paginate you will need to make use of the 'page' property returned!",
               "As you paginate through the wallet's balance, if a query does not return the maximum, 1000 tokens back, you'll have found every NFT a wallet has!"],
+      code: `
+const url = "https://rpc.helius.xyz/?api-key=<api-key>"
+
+const getAssetsByGroup = async () => {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        jsonrpc: '2.0',
+        id: 'my-id',
+        method: 'getAssetsByGroup',
+        params: {
+          groupKey: 'collection',
+          groupValue: 'J1S9H3QjnRtBbbuD4HjPV6RpRhwuk4zKbxsnCHuTgh9w',
+          page: 1, // Starts at 1
+          limit: 1000,
+        },
+      }),
+    });
+    const { result } = await response.json();
+    console.log("Assets by Group: ", result.items);
+};
+      `,
       tags: ["DAS", "RPC"]
     },
     {
@@ -54,6 +77,22 @@ export default function Home() {
       solved: false,
       type: 'nft',
       example_answer: "https://madlads.s3.us-west-2.amazonaws.com/images/8420.png",
+      hints: ["You can log the data returned from the endpoint in order to find out the path that has the URL for the image.",
+      "You'll need to log the 1st index, or data[0] if using the token-metadata endpoint as it is returned as an array.",
+      "If the link you've provided is not accepted, try querying for the link found in the offChainMetadata property of the data returned."],
+      code: `
+const getMetadata = async (context) => {
+  const url = "https://api.helius.xyz/v0/token-metadata?api-key=<api-key>"
+
+  const { data } = await axios.post(url, {
+      mintAccounts: [context],
+      includeOffChain: true,
+      disableCache: false,
+  });
+
+  console.log(data[0].offChainMetadata.metadata.image);
+};
+      `,
       tags: ["DAS", "RPC"]
     },
     {
@@ -64,6 +103,26 @@ export default function Home() {
       solved: false,
       type: 'nft',
       example_answer: "T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW",
+      hints: ["You can log the data returned from the endpoint in order to find out the path that has the URL for the image.",
+      "You'll need to log the 1st index, or data[0] if using the token-metadata endpoint as it is returned as an array.",
+      "If the link you've provided is not accepted, try querying for the link found in the offChainMetadata property of the data returned."],
+      code: `
+const getAsset = async (token) => {
+  const url = "https://rpc.helius.xyz/?api-key=<api-key>"
+
+  const { data } = await axios.post(url, {
+      "jsonrpc": "2.0",
+      "id": "my-id",
+      "method": "getAsset",
+      "params": {
+          "id": token
+      }
+  });
+
+  console.log(data)
+  return data
+};
+      `,
       tags: ["DAS", "RPC"]
     },
     {
@@ -74,6 +133,27 @@ export default function Home() {
       solved: false,
       type: 'tx',
       example_answer: "1633112174",
+      hints: ["You can log the data returned from the endpoint in order to find out the path that has the URL for the image.",
+      "You'll need to log the 1st index, or data[0] if using the token-metadata endpoint as it is returned as an array.",
+      "If the link you've provided is not accepted, try querying for the link found in the offChainMetadata property of the data returned."],
+      code: `
+const url = "https://api.helius.xyz/v0/transactions/?api-key=<your-key>";
+
+const parseTransaction = async () => {
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      transactions: ["your-txn-id-here"],
+    }),
+  });
+
+  const data = await response.json();
+  console.log("parsed transaction: ", data);
+};
+      `,
       tags: ["ENHANCED API"]
     },
     {
@@ -84,6 +164,20 @@ export default function Home() {
       solved: false,
       type: "wallet",
       example_answer: "42JQVGf7V6LzAMizHEMk8tJ1HPozrBmB4dCxNgU14CSx8sXLxWau3JsS2NcM8vnDYK2XSXXhnNSVN8zfnBqiqGDd",
+      hints: ["You can log the data returned from the endpoint in order to find out the path that has the URL for the image.",
+      "You'll need to log the 1st index, or data[0] if using the token-metadata endpoint as it is returned as an array.",
+      "If the link you've provided is not accepted, try querying for the link found in the offChainMetadata property of the data returned."],
+      code: `
+const url = "https://api.helius.xyz/v0/addresses/<signature>/transactions?api-key=<your-key>";
+
+const parseTransactions = async () => {
+  const response = await fetch(url);
+
+  const data = await response.json();
+
+  console.log("parsed transactions: ", data);
+};
+      `,
       tags: ["RPC"]
     },
     {
@@ -94,6 +188,18 @@ export default function Home() {
       solved: false,
       type: "wallet",
       example_answer: "25.01",
+      hints: ["Make sure the data input is rounded to 2 decimal places.",
+      "You can call the function .toFixed(2) to round to 2 decimal places.",
+      "If the link you've provided is not accepted, try querying for the link found in the offChainMetadata property of the data returned."],
+      code: `
+const getBalance = async (context) => {
+  const url = "https://api.helius.xyz/v0/addresses/<address>/balances?api-key=<api-key>"
+
+  const { data } = await axios.get(url)
+
+  console.log((data);
+};
+      `,
       tags: ["ENHANCED API"]
     },
     {
@@ -104,6 +210,23 @@ export default function Home() {
       solved: false,
       type: "nft",
       example_answer: "5",
+      hints: ["Make sure the data input is rounded to 2 decimal places.",
+      "You can call the function .toFixed(2) to round to 2 decimal places.",
+      "If the link you've provided is not accepted, try querying for the link found in the offChainMetadata property of the data returned."],
+      code: `
+const url = "https://api.helius.xyz/v1/nft-events?api-key=<api-key>"
+
+const getNftEvents = async () => {
+    const { data } = await axios.post(url, {
+        query: {
+            accounts: ["B1rzqj4cEM6pWsrm3rLPCu8QwcXMn6H6bd7xAnk941dU"],
+            types: ["NFT_SALE"],
+        }
+    });
+
+    console.log(data);
+};
+      `,
       tags: ["NFT API"]
     },
     
@@ -144,7 +267,6 @@ export default function Home() {
 
   useEffect(() => {
 
-
     async function retrieveProgress() {
 
       const { data } = await axios.post("/api/retrieve_progress",
@@ -179,7 +301,7 @@ export default function Home() {
         <>
 
           <div className='flex flex-row justify-between w-full items-center p-2'>
-            <div className='flex text-zinc-200 text-2xl font-bold px-6 space-x-4'>
+            <div className='flex text-zinc-200 text-2xl font-bold px-6 space-x-4 select-none'>
               <Image className='' alt="Helius" src="/helius.svg" width={24} height={24}></Image>
               <span>
                 PYRE

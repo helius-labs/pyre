@@ -127,7 +127,7 @@ export default function Menu({ setSelectedComponent, question, questions, progre
 
             <AppBar setSelectedComponent={setSelectedComponent} progress={progress} component="Question" ></AppBar>
 
-            <div className='flex w-full h-full p-2 xl:p-8 justify-center xl:items-center overflow-y-scroll'>
+            <div className='flex w-full h-full p-2 xl:p-8 justify-center xl:items-center overflow-y-scroll xl:overflow-y-hidden'>
 
                 <div className='flex justify-center w-full h-max xl:h-full flex-col xl:items-center p-2 space-y-12'>
 
@@ -191,20 +191,7 @@ export default function Menu({ setSelectedComponent, question, questions, progre
                                 
 
                                 <pre className='flex bg-zinc-900 rounded-lg'><code style={{ background: '#09090b' }} className="js rounded-lg">
-                                    {`
-const getMetadata = async (context) => {
-
-    const url = 'https://api.helius.xyz/v0/token-metadata?api-key=${process.env.HELIUS_KEY}'
-
-    const { data } = await axios.post(url, {
-        mintAccounts: [context],
-        includeOffChain: true,
-        disableCache: false,
-    });
-
-    return data[0].offChainMetadata.metadata.image;
-};    
-                            `}
+                                    {question.code}
                                 </code></pre>
                             </div>
 
