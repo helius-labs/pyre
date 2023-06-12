@@ -150,8 +150,8 @@ export default function Menu({ setSelectedComponent, question, questions, progre
 
                     </div> */}
 
-                    <div className='flex flex-col space-y-16 xl:space-y-0 xl:space-x-16 xl:items-center w-full h-full xl:flex-row '>
-                        <div className='flex flex-col items-center justify-between space-y-8 h-full rounded-lg bg-zinc-900 border border-zinc-800 p-6'>
+                    <div className='flex flex-col space-y-16 xl:space-y-0 xl:space-x-16 xl:items-center w-full h-full xl:flex-row'>
+                        <div className='flex flex-col items-center justify-between space-y-8 h-full rounded-lg bg-zinc-900 border border-zinc-800 p-6 xl:w-1/2'>
 
                             
                             <div className='flex flex-col space-y-6 xl:space-y-12'>
@@ -185,8 +185,8 @@ export default function Menu({ setSelectedComponent, question, questions, progre
 
                         </div>
 
-                        <div className='flex flex-col h-full space-y-8 justify-between bg-zinc-900 p-6 rounded-lg border border-zinc-800'>
-                            <div className='flex rounded-lg border border-zinc-800 bg-zinc-950 overflow-x-scroll xl:overflow-x-hidden '>
+                        <div className='flex flex-col h-full space-y-8 justify-between bg-zinc-900 p-6 rounded-lg border border-zinc-800 xl:w-1/2'>
+                            <div className='flex rounded-lg border border-zinc-800 bg-zinc-950 overflow-x-scroll xl:overflow-hidden'>
 
                                 
 
