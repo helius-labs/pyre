@@ -9,8 +9,6 @@ import Image from 'next/image';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { useEffect, useState } from "react";
 
-// todo: 
-// add copy code 
 // add links to gitbook
 
 const WalletMultiButtonDynamic = dynamic(
@@ -71,6 +69,7 @@ const getAssetsByGroup = async () => {
     console.log("Assets by Group: ", result.items);
 };
       `,
+      docs:"https://docs.helius.xyz/solana-rpc-nodes/digital-asset-standard-api/get-assets-by-owner",
       tags: ["DAS", "RPC"]
     },
     {
@@ -97,6 +96,7 @@ const getMetadata = async (context) => {
   console.log(data[0].offChainMetadata.metadata.image);
 };
       `,
+      docs:"https://docs.helius.xyz/solana-apis/token-metadata-api",
       tags: ["DAS", "RPC"]
     },
     {
@@ -127,6 +127,7 @@ const getAsset = async (token) => {
   return data
 };
       `,
+      docs:"https://docs.helius.xyz/solana-rpc-nodes/digital-asset-standard-api/get-asset",
       tags: ["DAS", "RPC"]
     },
     {
@@ -158,6 +159,7 @@ const parseTransaction = async () => {
   console.log("parsed transaction: ", data);
 };
       `,
+      docs:"https://docs.helius.xyz/solana-apis/enhanced-transactions-api/parse-transaction-s",
       tags: ["ENHANCED API"]
     },
     {
@@ -182,6 +184,7 @@ const parseTransactions = async () => {
   console.log("parsed transactions: ", data);
 };
       `,
+      docs:"https://docs.helius.xyz/solana-apis/enhanced-transactions-api/parsed-transaction-history",
       tags: ["RPC"]
     },
     {
@@ -204,6 +207,7 @@ const getBalance = async (context) => {
   console.log((data);
 };
       `,
+      docs:"https://docs.helius.xyz/solana-apis/balances-api",
       tags: ["ENHANCED API"]
     },
     {
@@ -231,6 +235,7 @@ const getNftEvents = async () => {
     console.log(data);
 };
       `,
+      docs:"https://docs.helius.xyz/solana-apis/nft-api/nft-events-historical-querying",
       tags: ["NFT API"]
     },
     
