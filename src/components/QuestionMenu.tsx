@@ -27,8 +27,6 @@ export default function QuestionMenu({ setSelectedComponent, progress, userData,
                 setSelectedTags(newArray)
             }
         }
-        console.log(selectedTags)
-
     }
 
     useEffect(() => {
@@ -72,7 +70,6 @@ export default function QuestionMenu({ setSelectedComponent, progress, userData,
         }
         setQuestionDIVs(organizedQuestions)
     }, [selectedTags])
-    console.log(questionDIVs)
 
     return (
 

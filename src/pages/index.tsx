@@ -93,7 +93,7 @@ const getMetadata = async (context) => {
       disableCache: false,
   });
 
-  console.log(data[0].offChainMetadata.metadata.image);
+  console.log(data);
 };
       `,
       docs:"https://docs.helius.xyz/solana-apis/token-metadata-api",

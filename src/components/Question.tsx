@@ -132,25 +132,6 @@ export default function Menu({ setSelectedComponent, question, questions, progre
 
                 <div className='flex justify-center w-full h-max xl:h-full flex-col xl:items-center p-2 space-y-12'>
 
-                    {/* <div className='flex flex-col xl:flex-row w-full h-max xl:justify-center space-y-2'>
-
-
-                        <div className='flex w-full xl:w-full flex-col gap-2 xl:gap-4 animate-fade duration-200'>
-                            <div className='text-xl xl:text-4xl font-semibold tracking-widest'>{(question.name).toUpperCase()}</div>
-                            <div className='flex w-full flex-row h-6 xl:h-8 space-x-4'>
-                                <div className='flex flex-row w-1/3 xl:w-[15%] space-x-2'>
-                                    <div className='flex w-full bg-orange-500 h-full rounded-md'></div>
-                                    <div className={`flex w-full h-full rounded-md ${(question.difficulty > 1) ? (`bg-orange-500`) : (`bg-zinc-800`)}`}></div>
-                                    <div className={`flex w-full h-full rounded-md ${(question.difficulty > 2) ? (`bg-orange-500`) : (`bg-zinc-800`)}`}></div>
-                                </div>
-                                <div className="flex w-max space-x-4 flex-row text-[14px] tracking-widest leading-5">
-                                    {tags}
-                                </div>
-                            </div>
-                        </div>
-
-                    </div> */}
-
                     <div className='flex flex-col space-y-16 xl:space-y-0 xl:space-x-16 xl:items-center w-full h-full xl:flex-row'>
                         <div className='flex flex-col items-center justify-between space-y-8 h-full rounded-lg bg-zinc-900 border border-zinc-800 p-6 xl:w-1/2'>
 
@@ -182,7 +163,7 @@ export default function Menu({ setSelectedComponent, question, questions, progre
                                 </>
                             </div>
 
-                            <a href={question.docs} target='_blank' className='flex w-full bg-zinc-800 hover:bg-zinc-700 tracking-widest text-zinc-300 font-medium duration-200 rounded-lg px-4 py-3 justify-between'>
+                            <a href={question.docs} target='_blank' className='flex w-full bg-zinc-800 hover:bg-zinc-700 text-lg tracking-widest text-zinc-300 font-medium duration-200 rounded-lg px-4 py-3 justify-between'>
                                 <div className='flex'>
                                     DOCS
                                 </div>

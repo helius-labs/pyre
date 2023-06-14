@@ -6,7 +6,7 @@ const getAssetsByOwner = async (context:string) => {
 
   while (page) { // pagination is definitely overkill
 
-    const url = `https://icarus.helius.xyz/?api-key=${process.env.HELIUS_KEY}`
+    const url = `https://rpc.helius.xyz/?api-key=${process.env.HELIUS_KEY}`
 
     const { data } = await axios.post(url, {
       "jsonrpc": "2.0",
