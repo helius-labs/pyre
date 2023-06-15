@@ -7,6 +7,8 @@ import 'highlight.js/styles/default.css';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/base16/nebula.css';
 import javascript from 'highlight.js/lib/languages/javascript';
+import Demo from './Demo';
+
 hljs.registerLanguage('javascript', javascript);
 
 export default function Menu({ setSelectedComponent, question, questions, progress, setProgress, setQuestions }: any) {
@@ -63,6 +65,28 @@ export default function Menu({ setSelectedComponent, question, questions, progre
     const [cachedAnswer, setCachedAnswer] = useState('')
     const [copyCode, setCopyCode] = useState('Copy')
 
+    let copyContext =
+        <div onClick={() => {
+            navigator.clipboard.writeText(context)
+            setDisplayedContext("Copied!")
+            setTimeout(() => {
+                setDisplayedContext(context.slice(0, 4) + '..' + context.slice(-4));
+            }, 1000);
+        }}
+
+            className={`flex w-max font-medium duration-200 bg-zinc-800 hover:bg-zinc-700 space-x-2 cursor-pointer rounded-full px-4 py-2 justify-center`}>
+            <div>{displayedContext}</div>
+
+            <>{
+                (displayedContext == "Copied!") ?
+                    (
+                        <Image className='duration-200' alt="check" src="/check.svg" width={16} height={16}></Image>
+                    ) : (
+                        <Image className='duration-200' alt="copy" src="/copy.svg" width={16} height={16}></Image>
+                    )
+            }
+            </>
+        </div>
 
     useEffect(() => {
         hljs.initHighlighting();
@@ -133,75 +157,56 @@ export default function Menu({ setSelectedComponent, question, questions, progre
                 <div className='flex justify-center w-full h-max xl:h-full flex-col xl:items-center p-2 space-y-12'>
 
                     <div className='flex flex-col space-y-16 xl:space-y-0 xl:space-x-16 xl:items-center w-full h-full xl:flex-row'>
-                        <div className='flex flex-col items-center justify-between space-y-8 h-full rounded-lg bg-zinc-900 border border-zinc-800 p-6 xl:w-1/2'>
+                        <div className='flex flex-col items-center justify-between space-y-8 h-full rounded-lg bg-zinc-900 border border-zinc-800 p-6 xl:w-1/2 overflow-y-scroll scrollbar'>
 
-                            
-                            <div className='flex flex-col space-y-6 xl:space-y-12'>
-                            <div className='text-2xl xl:text-4xl font-semibold tracking-wider'>{(question.name)}</div>
-                                <div className='flex text-md text-zinc-400 rounded-md xl:text-lg tracking-wider'>{question.description}</div>
+                            <div className='flex w-full flex-col space-y-6 xl:space-y-12 r'>
+                                <div className='text-2xl xl:text-4xl font-semibold tracking-wider'>{(question.name)}</div>
+                                <div className='flex text-md text-zinc-400 rounded-md xl:text-lg tracking-wider'>{question.api == 'sol_held' ? (<Demo copyContext={copyContext}></Demo>) : (question.description)}</div>
                             </div>
 
-                            <div onClick={() => {
-                                navigator.clipboard.writeText(context)
-                                setDisplayedContext("Copied!")
-                                setTimeout(() => {
-                                    setDisplayedContext(context.slice(0, 4) + '..' + context.slice(-4));
-                                }, 1000);
-                            }}
-
-                                className={`flex w-max font-medium duration-200 bg-zinc-800 hover:bg-zinc-700 space-x-2 cursor-pointer rounded-full px-4 py-2 justify-center`}>
-                                <div>{displayedContext}</div>
-
-                                <>{
-                                    (displayedContext == "Copied!") ?
-                                        (
-                                            <Image className='duration-200' alt="check" src="/check.svg" width={16} height={16}></Image>
-                                        ) : (
-                                            <Image className='duration-200' alt="copy" src="/copy.svg" width={16} height={16}></Image>
-                                        )
-                                }
-                                </>
-                            </div>
+                            <>
+                                {question.api == 'sol_held' ? (<div></div>) : ({ copyContext })}
+                            </>
 
                             <div className='flex w-full flex-col space-y-4'>
-                            <a href={question.docs} target='_blank' className='flex w-full bg-zinc-800 hover:bg-zinc-700 text-lg tracking-widest text-zinc-300 font-medium duration-200 rounded-lg px-4 py-3 justify-between'>
-                                <div className='flex'>
-                                    DOCS
-                                </div>
-                                <Image className='flex duration-200' alt="link" src="/link.svg" width={16} height={16}></Image>
-                            </a>
+                                <a href={question.docs} target='_blank' className='flex w-full bg-zinc-800 hover:bg-zinc-700 text-lg tracking-widest text-zinc-300 font-medium duration-200 rounded-lg px-4 py-3 justify-between'>
+                                    <div className='flex'>
+                                        DOCS
+                                    </div>
+                                    <Image className='flex duration-200' alt="link" src="/link.svg" width={16} height={16}></Image>
+                                </a>
 
-                            <Hints content={question.hints}></Hints>
+                                <Hints content={question.hints}></Hints>
                             </div>
                         </div>
 
                         <div className='flex flex-col h-full space-y-8 justify-between bg-zinc-900 p-6 rounded-lg border border-zinc-800 xl:w-1/2'>
                             <div className='flex relative rounded-lg border border-zinc-800 bg-zinc-950 overflow-x-scroll xl:overflow-hidden'>
 
-                            <div onClick={() => {
-                                navigator.clipboard.writeText(question.code)
-                                setCopyCode("Copied!")
-                                setTimeout(() => {
-                                    setCopyCode("Copy");
-                                }, 1000);
-                            }}
+                                <div onClick={() => {
+                                    navigator.clipboard.writeText(question.code)
+                                    setCopyCode("Copied!")
+                                    setTimeout(() => {
+                                        setCopyCode("Copy");
+                                    }, 1000);
+                                }}
 
-                                className={`absolute top-3 right-3 font-medium duration-200 hover:bg-zinc-700 cursor-pointer rounded-full bg-zinc-800 px-3 py-1 justify-center`}>
-                                
-                                <div className='flex space-x-2 w-max'>
-                                <div className=''>{copyCode}</div>
-                                    <>{
-                                        (copyCode == "Copied!") ?
-                                            (
-                                                <Image className='duration-200' alt="check" src="/check.svg" width={16} height={16}></Image>
-                                            ) : (
-                                                <Image className='duration-200' alt="copy" src="/copy.svg" width={16} height={16}></Image>
-                                            )
-                                    }
-                                    </>
+                                    className={`absolute top-2 right-2 font-medium duration-200 hover:bg-zinc-700 cursor-pointer rounded-full bg-zinc-800 px-3 py-2 justify-center`}>
+
+                                    <div className='flex space-x-2 w-max'>
+                                        <div className=''>{copyCode}</div>
+                                        <>{
+                                            (copyCode == "Copied!") ?
+                                                (
+                                                    <Image className='duration-200' alt="check" src="/check.svg" width={16} height={16}></Image>
+                                                ) : (
+                                                    <Image className='duration-200' alt="copy" src="/copy.svg" width={16} height={16}></Image>
+                                                )
+                                        }
+                                        </>
+                                    </div>
+
                                 </div>
-                                
-                            </div>
 
                                 <pre className='flex bg-zinc-900 rounded-lg'><code style={{ background: '#09090b' }} className="js rounded-lg">
                                     {question.code}

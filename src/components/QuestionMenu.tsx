@@ -29,6 +29,11 @@ export default function QuestionMenu({ setSelectedComponent, progress, userData,
         }
     }
 
+    if (progress==0) {
+        setSelectedComponent('Question'); 
+        setQuestion(questions[0])
+    }
+
     useEffect(() => {
         let organizedQuestions: any = [];
 

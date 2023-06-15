@@ -5,7 +5,7 @@ const getBalance = async (context:string) => {
     const url = `https://api.helius.xyz/v0/addresses/${context}/balances?api-key=${process.env.HELIUS_KEY}`
 
     const { data } = await axios.get(url)
-    return (data.nativeBalance/1000000000).toFixed(2);
+    return (data.nativeBalance/1000000000).toFixed(0);
 
 };
 

@@ -1,96 +1,107 @@
-// @ts-nocheck
-import AppBar from "./AppBar"
-import { useState } from 'react';
-import Image from 'next/image';
+import { useState, useEffect } from 'react';
+import 'highlight.js/styles/default.css';
+import hljs from 'highlight.js';
+import 'highlight.js/styles/base16/nebula.css';
+import javascript from 'highlight.js/lib/languages/javascript';
 
-export default function Demo({ userData, setSelectedComponent, progress }: any) {
+export default function Demo({ copyContext }: any) {
 
+    const [context, setContext] = useState('G9cBr5yC67Z39mGNDY6PWcAn2a5XJLH9b2PFAVRQ7sFr')
+
+    useEffect(() => {
+        hljs.initHighlighting();
+    }, []);
 
     return (
-        <div className='flex items-center justify-center h-full w-full flex-col bg-zinc-950 animate-fade'>
+        <div className='flex max-w-full flex-col space-y-12'>
+            <div className='flex text-md text-zinc-400 rounded-md xl:text-lg tracking-wider'>
+            You are provided a wallet address. Make use of Helius's services in order to retrieve the wallet's native balance and convert into SOL. For this question, the answer has to be inputted to the nearest SOL.
+            </div>
 
-            <AppBar setSelectedComponent={setSelectedComponent} progress={progress} component="Question" ></AppBar>
+            <div className='flex flex-col space-y-4'>
+                <div className='flex text-lg text-zinc-300 xl:text-3xl font-medium'>
+                    Prerequisites
+                </div>
+                <ul className='list-inside list-disc space-y-1'>
+                    <li>Node.js installed on your system, or another way to make POST requests.</li>
 
-            <div className='flex w-full xl:w-3/4 h-full p-4 flex-col justify-center items-center justify-between xl:justify-evenly overflow-hidden'>
+                    <li>A Solana wallet to get an API key from <a className='text-blue-500' href='https://dev.helius.xyz/dashboard/app' target='_blank'>Helius</a>.</li>
+                </ul>
+            </div>
 
-                <div className='flex justify-center xl:w-3/4 h-full flex-col items-center justify-between'>
+            <div className='flex w-full flex-col space-y-6'>
+                <div className='flex text-lg text-zinc-300 xl:text-3xl font-medium'>
+                    Walkthrough
+                </div>
+                <div className='flex w-full flex-col space-y-16'>
 
-                    <div className='flex flex-col xl:flex-row w-full h-max xl:justify-center space-y-2'>
-
-
-                            <div className='flex w-full xl:w-full flex-col gap-2 xl:gap-4 animate-fade duration-200'>
-                                <div className='text-xl xl:text-4xl font-semibold'>{question.name}</div>
-                                <div className='flex w-full flex-row h-6 xl:h-8 justify-between'>
-                                    <div className='flex flex-row w-1/3 xl:w-[15%] space-x-2'>
-                                        <div className='flex w-full bg-orange-500 h-full rounded-md'></div>
-                                        <div className={`flex w-full h-full rounded-md ${(question.difficulty > 1) ? (`bg-orange-500`) : (`bg-zinc-800`)}`}></div>
-                                        <div className={`flex w-full h-full rounded-md ${(question.difficulty > 2) ? (`bg-orange-500`) : (`bg-zinc-800`)}`}></div>
-                                    </div>
-                                    <div className="flex w-max space-x-2 flex-row text-[14px] tracking-wider leading-5">
-                                        {tags}
-                                    </div>
-                                </div>
-                            </div>
-
+                    <div className='flex flex-col space-y-6'>
+                        <div>Copy the code provided onto your text editor of choice.</div>
+                        <img className='flex' src="/pyre-code-demo.png"></img>
                     </div>
 
-                    <div className='flex flex-col space-y-8 justify-center items-center xl:w-3/5'>
+                    <div className='flex flex-col space-y-6 items-center'>
+                        <div>Different contexts is what makes Pyre special, whether it be transactions, wallets, or token addresses - randomized in each question for a unique experience.</div>
+                        
+                        <div>{`We will have to edit the URL variable to include the context of the question, in this case it is the wallet address. We will replace <address> with this wallet address:`}</div>
+                        {copyContext}
+                    </div>
 
-                        <div className='flex items-center text-zinc-300 bg-zinc-900 p-3 rounded-md xl:text-lg'>{question.description}</div>
+                    <div className='flex w-full flex-col space-y-6 items-start'>
+                        <div>Once you have replaced the URL variable with the address provided, you can now input your API key, your complete URL should now look something like this:</div>
+                        <div className='flex w-full rounded-lg border border-zinc-800 bg-zinc-950'>
 
-                        <div onClick={() => {
-                            navigator.clipboard.writeText(context)
-                            setDisplayedContext("Copied!")
-                            setTimeout(() => {
-                                setDisplayedContext(context.slice(0, 4) + '..' + context.slice(-4));
-                            }, 1000);
-                        }}
-
-                            className={`flex w-max font-medium duration-200 opacity-80 hover:opacity-100 space-x-2 cursor-pointer rounded-full bg-zinc-800 px-4 py-2 justify-center`}>
-                            <div>{displayedContext}</div>
-
-                            <>{
-                                (displayedContext == "Copied!") ?
-                                    (
-                                        <Image className='duration-200' alt="check" src="/check.svg" width={16} height={16}></Image>
-                                    ) : (
-                                        <Image className='duration-200' alt="copy" src="/copy.svg" width={16} height={16}></Image>
-                                    )
-                            }
-                            </>
+                            <pre className='flex w-full bg-zinc-900 rounded-lg overflow-x-scroll no-scrollbar'><code style={{ background: '#09090b' }} className="js rounded-lg w-full overflow-x-scroll no-scrollbar">
+                                {`const url = "https://api.helius.xyz/v0/addresses/${context}/balances?api-key=<your-key>";`}
+                            </code></pre>
                         </div>
                     </div>
 
-                    <form onSubmit={handleSubmit} className={`flex xl:py-8 duration-200 ${(solved) ? (`border-2 border-green-500`) : (submit == false ? ('') : ('border-2 border-red-500 animate-shake'))} rounded-lg w-full items-center justify-center`}>
-                        <input
-                            type="text"
-                            value={answer}
-                            className="flex px-4 py-2 rounded-l-lg w-full outline-0 bg-zinc-800 text-white"
-                            onChange={(e: any) => setAnswer(e.target.value)}
-                            placeholder={question.example_answer}
-                        />
-                        <button className='flex items-center justify-center h-10 p-2 rounded-r-lg bg-zinc-800 font-bold text-white duration-200 cursor-pointer' type="submit">
+                    <div className='flex w-full flex-col space-y-6 items-start'>
+                        <div>You can now run the code and it should return something like this:</div>
+                        <div className='flex w-full rounded-lg border border-zinc-800 bg-zinc-950'>
 
-                            <div className='flex justify-center items-center'>{(
-                                load ? (
-                                    <svg className="flex animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                    </svg>
-                                ) :
-                                    (
-                                        <Image className='opacity-70 hover:opacity-100 duration-200' alt="back" src="/check.svg" width={24} height={24}></Image>
-                                    ))}
-                            </div>
-                        </button>
-                    </form>
+                            <pre className='flex w-full bg-zinc-900 rounded-lg overflow-x-scroll no-scrollbar'><code style={{ background: '#09090b' }} className="js rounded-lg w-full overflow-x-scroll no-scrollbar">
+                                {`
+balances:  {
+    tokens: [
+        {
+        tokenAccount: '6XPjWrGJh9QJsknPWDP1ja5zLjyUKehzqfcaTou1X9BJ',
+        mint: '5q1sBRfc9kaRoY6k9B61f9g6YR1CkYjNWkm8nYffj8nt',
+        amount: 1,
+        decimals: 0
+        }
+    ],
+    nativeBalance: 7879160
+    }
+                                `}
+                            </code></pre>
+                        </div>
+                    </div>
+
+                    <div className='flex w-full flex-col space-y-6 items-start'>
+                        <div>The question asks for the native balance, or the amount of SOL a wallet has. From the data returned, we can determine it to be 7879160. However, this value is in Lamports, we'll have to convert it to what we're familiar with, SOL. As 1 SOL is equivalent to 1 billion lamports, we'll need to divide by 1 billion and round to the nearest SOL.</div>
+                        <pre className='flex w-full bg-zinc-900 rounded-lg overflow-x-scroll no-scrollbar'><code style={{ background: '#09090b' }} className="js rounded-lg w-full overflow-x-scroll no-scrollbar">
+                                {`
+console.log((data.nativeBalance/1000000000).toFixed(0));
+                                `}
+                            </code></pre>
+                    
+                    </div>
+
+                    <div className='flex flex-col space-y-6'>
+                        <div>Below is the complete code and demo:</div>
+                        <img className='flex' src="/pyre-complete-demo.png"></img>
+                    </div>
+
+
+                    <div className='flex flex-col space-y-6'>
+                        <div>Simply input the answer for your specific context and move onto harder questions!</div>
+                    </div>
 
                 </div>
-
             </div>
-
-
-
         </div>
     )
 }
+
