@@ -46,14 +46,14 @@ export default function QuestionMenu({ setSelectedComponent, progress, userData,
                     <div key={questions[i].api} onClick={() => { setSelectedComponent('Question'); setQuestion(questions[i]) }}
                         className={`flex bg-zinc-800 justify-between items-center animate-fade w-full h-max rounded-lg hover:bg-zinc-700 duration-200 cursor-pointer`}>
 
-                        <div className='flex rounded-lg xl:w-2/3 pr-2'>
+                        <div className='flex rounded-lg w-full xl:w-2/3'>
                             <div className='flex flex-col w-10 space-y-2 p-2'>
                                 <div className={`flex w-full h-1/3 rounded-md ${(questions[i].difficulty > 2) ? (`bg-orange-500`) : (`bg-zinc-900`)}`}></div>
                                 <div className={`flex w-full h-1/3 rounded-md ${(questions[i].difficulty > 1) ? (`bg-orange-500`) : (`bg-zinc-900`)}`}></div>
                                 <div className='flex w-full bg-orange-500 h-1/3 rounded-md'></div>
                             </div>
 
-                            <div className='flex w-max flex-col p-2 gap-2'>
+                            <div className='flex w-full flex-col p-2 gap-2 truncate'>
                                 <div className='text-lg xl:text-lg font-medium truncate tracking-wider'>{questions[i].name}</div>
                                 <div className="flex space-x-2 flex-row text-[10px] tracking-widest leading-5">
                                     {tags}
@@ -91,10 +91,10 @@ export default function QuestionMenu({ setSelectedComponent, progress, userData,
 
                         <div className='flex flex-row space-x-4 text-[12px] tracking-wider leading-5'>
 
-                            <div onClick={(() => setTags("DAS"))} className={`flex ${(selectedTags && selectedTags.some((e: any) => e == "DAS")) ? 'border-zinc-700' : 'border-transparent'} border bg-zinc-900 rounded-md items-center justify-center px-2 py-1 w-max font-medium hover:bg-zinc-900 cursor-pointer duration-200`}>DAS</div>
-                            <div onClick={(() => setTags("RPC"))} className={`flex ${(selectedTags && selectedTags.some((e: any) => e == "RPC")) ? 'border-zinc-700' : 'border-transparent'} border bg-zinc-900 rounded-md items-center justify-center px-2 py-1 w-max font-medium hover:bg-zinc-900 cursor-pointer duration-200`}>RPC</div>
-                            <div onClick={(() => setTags("ENHANCED API"))} className={`flex ${(selectedTags && selectedTags.some((e: any) => e == "ENHANCED API")) ? 'border-zinc-700' : 'border-transparent'} border bg-zinc-900 rounded-md items-center justify-center px-2 py-1 w-max font-medium hover:bg-zinc-900 cursor-pointer duration-200`}>ENHANCED API</div>
-                            <div onClick={(() => setTags("NFT API"))} className={`flex ${(selectedTags && selectedTags.some((e: any) => e == "NFT API")) ? 'border-zinc-700' : 'border-transparent'} border bg-zinc-900 rounded-md items-center justify-center px-2 py-1 w-max font-medium hover:bg-zinc-900 cursor-pointer duration-200`}>NFT API</div>
+                            <div onClick={(() => setTags("DAS"))} className={`flex ${(selectedTags && selectedTags.some((e: any) => e == "DAS")) ? 'border-zinc-700' : 'border-transparent'} border bg-zinc-900 rounded-md items-center justify-center px-2 py-1 w-max font-medium hover:bg-zinc-800 cursor-pointer duration-200`}>DAS</div>
+                            <div onClick={(() => setTags("RPC"))} className={`flex ${(selectedTags && selectedTags.some((e: any) => e == "RPC")) ? 'border-zinc-700' : 'border-transparent'} border bg-zinc-900 rounded-md items-center justify-center px-2 py-1 w-max font-medium hover:bg-zinc-800 cursor-pointer duration-200`}>RPC</div>
+                            <div onClick={(() => setTags("ENHANCED API"))} className={`flex ${(selectedTags && selectedTags.some((e: any) => e == "ENHANCED API")) ? 'border-zinc-700' : 'border-transparent'} border bg-zinc-900 rounded-md items-center justify-center px-2 py-1 w-max font-medium hover:bg-zinc-800 cursor-pointer duration-200`}>ENHANCED API</div>
+                            <div onClick={(() => setTags("NFT API"))} className={`flex ${(selectedTags && selectedTags.some((e: any) => e == "NFT API")) ? 'border-zinc-700' : 'border-transparent'} border bg-zinc-900 rounded-md items-center justify-center px-2 py-1 w-max font-medium hover:bg-zinc-800 cursor-pointer duration-200`}>NFT API</div>
 
                         </div>
                     </div>

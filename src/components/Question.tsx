@@ -128,7 +128,7 @@ export default function Menu({ setSelectedComponent, question, questions, progre
 
             <AppBar setSelectedComponent={setSelectedComponent} progress={progress} component="Question" ></AppBar>
 
-            <div className='flex w-full h-full p-2 xl:p-8 justify-center xl:items-center overflow-y-scroll xl:overflow-y-hidden'>
+            <div className='flex w-full h-full p-2 xl:p-8 xl:py-4 justify-center xl:items-center overflow-y-scroll xl:overflow-y-hidden'>
 
                 <div className='flex justify-center w-full h-max xl:h-full flex-col xl:items-center p-2 space-y-12'>
 
@@ -163,6 +163,7 @@ export default function Menu({ setSelectedComponent, question, questions, progre
                                 </>
                             </div>
 
+                            <div className='flex w-full flex-col space-y-4'>
                             <a href={question.docs} target='_blank' className='flex w-full bg-zinc-800 hover:bg-zinc-700 text-lg tracking-widest text-zinc-300 font-medium duration-200 rounded-lg px-4 py-3 justify-between'>
                                 <div className='flex'>
                                     DOCS
@@ -171,7 +172,7 @@ export default function Menu({ setSelectedComponent, question, questions, progre
                             </a>
 
                             <Hints content={question.hints}></Hints>
-
+                            </div>
                         </div>
 
                         <div className='flex flex-col h-full space-y-8 justify-between bg-zinc-900 p-6 rounded-lg border border-zinc-800 xl:w-1/2'>
@@ -185,7 +186,7 @@ export default function Menu({ setSelectedComponent, question, questions, progre
                                 }, 1000);
                             }}
 
-                                className={`absolute top-8 right-8 font-medium duration-200 hover:bg-zinc-700 cursor-pointer rounded-full bg-zinc-800 px-4 py-2 justify-center`}>
+                                className={`absolute top-3 right-3 font-medium duration-200 hover:bg-zinc-700 cursor-pointer rounded-full bg-zinc-800 px-3 py-1 justify-center`}>
                                 
                                 <div className='flex space-x-2 w-max'>
                                 <div className=''>{copyCode}</div>

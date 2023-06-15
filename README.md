@@ -4,7 +4,7 @@
 
 
 - **Node.js** needs to be installed on your OS
-- Clone the **pyre-xnft** [repo](https://github.com/Tidelaw/pyre.git)
+- Clone the **pyre** [repo](https://github.com/Tidelaw/pyre.git)
 - Start the project
     1. Run `npm install` to install all our project dependencies
     2. Run `npm run dev` to run our application

@@ -9,11 +9,11 @@ export default function Landing({ setSelectedComponent }: any) {
 
                 <div className='flex justify-center items-center flex-col z-10 space-y-12 xl:space-y-12'>
 
-                    <div className='flex flex-col space-y-8 items-center'>
-                        <div className='flex space-x-2 xl:space-x-4 font-bold text-3xl xl:text-6xl h-max leading-normal xl:leading-relaxed'>
-                            Catalyse your progress
+                    <div className='flex flex-col space-y-8 items-center justify-center text-center'>
+                        <div className='flex font-extrabold text-5xl min-[530px]:text-7xl xl:text-[112px] h-max leading-normal xl:leading-relaxed'>
+                            Catalyse Your Progress
                         </div>
-                        <div className='flex font-medium text-lg xl:text-2xl text-zinc-400 text-center w-[90%] xl:w-2/3'>
+                        <div className='flex font-medium text-lg xl:text-2xl text-zinc-400 text-center w-[90%] min-[530px]:w-1/2'>
                             Master Helius and Solana Development in a matter of hours.
                         </div>
                     </div>
@@ -21,20 +21,23 @@ export default function Landing({ setSelectedComponent }: any) {
                         AN INTERACTIVE EXPERIENCE THAT HELPS YOU MASTER HELIUS AND SOLANA DEVELOPMENT.
                     </div> */}
 
-                    <div className='flex flex-row space-x-4'>
+                    <div className='flex flex-row space-x-8'>
                         <button
-                            className="flex duration-200 font-medium justify-center px-6 py-3 rounded-md overflow-show text-zinc-950 bg-zinc-300 hover:bg-zinc-400"
+                            className="flex duration-200 font-bold items-center justify-center px-6 xl:px-12 py-2 rounded-lg overflow-show text-zinc-950 bg-zinc-300 hover:bg-zinc-400"
                             onClick={() => setSelectedComponent('QuestionMenu')}
                         >
                             Get Started
                         </button>
 
-                        <a
-                            className="flex duration-200 font-medium justify-center text-zinc-300 border border-zinc-300 hover:border-zinc-400 px-6 py-3 rounded-md overflow-show"
-                            href="https://docs.helius.xyz/welcome/what-is-helius" target="_blank"
-                        >
-                            View Docs
-                        </a>
+                        <div className='relative group items-center justify-center flex'>
+                            <div className="absolute -inset-0.5 blur bg-gradient-to-r from-orange-700 to-yellow-500 rounded-lg opacity-75 group-hover:opacity-100 transition duration-200 group-hover:duration-200"></div>
+                            <a
+                                className="relative font-bold justify-center items-center text-zinc-200 bg-black px-6 xl:px-12 py-3 rounded-lg overflow-show "
+                                href="https://docs.helius.xyz/welcome/what-is-helius" target="_blank"
+                            >
+                                View Docs
+                            </a>
+                        </div>
                     </div>
                     {/* <WalletMultiButtonDynamic className='bg-zinc-900 hover:bg-zinc-900 hover:opacity-100 duration-200' /> */}
 

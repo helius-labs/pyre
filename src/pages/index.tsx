@@ -5,11 +5,11 @@ import dynamic from "next/dynamic";
 import axios from 'axios';
 import Guide from '../components/Guide'
 import Image from 'next/image';
-
 import { useWallet } from '@solana/wallet-adapter-react';
 import { useEffect, useState } from "react";
 
-// add links to gitbook
+import { Inter } from 'next/font/google'
+ const inter = Inter({ subsets: ['latin'] })
 
 const WalletMultiButtonDynamic = dynamic(
   async () =>
@@ -304,7 +304,7 @@ const getNftEvents = async () => {
   }, [publicKey])
 
   return (
-    <main className={`flex w-full h-screen flex-col items-center justify-between font-sans bg-zinc-950 text-zinc-200 no-scrollbar`}>
+    <main className={`flex w-full h-screen flex-col items-center justify-between bg-zinc-950 text-zinc-200 no-scrollbar ${inter.className}`}>
         <title>Pyre</title>
       {selectedComponent === "Landing" ? (
         <>
