@@ -165,7 +165,7 @@ export default function Menu({ setSelectedComponent, question, questions, progre
                             </div>
 
                             <>
-                                {question.api == 'sol_held' ? (<div></div>) : ({ copyContext })}
+                                {question.api == 'sol_held' ? (<div></div>) : (copyContext)}
                             </>
 
                             <div className='flex w-full flex-col space-y-4'>
