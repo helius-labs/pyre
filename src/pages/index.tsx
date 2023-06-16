@@ -42,7 +42,7 @@ export default function Home() {
       type: "wallet",
       example_answer: "25.01",
       hints: ["As the data returned in the Balances API is returned in terms of Lamports, you'll need to divide by 1 billion for an accurate SOL answer.",
-        "You can call the native javascript function of variable.toFixed(2) to round your answer to 2 decimal places, necessary for the answer checking.",
+        "You can call the native javascript function of variable.toFixed(0) to round your answer to the nearest SOL, this is necessary for this question.",
         "If you're using the Balances API, the amount of SOL held is contained in the property 'nativeBalance'."],
       code: `
 const url = "https://api.helius.xyz/v0/addresses/<address>/balances?api-key=<api-key>";
