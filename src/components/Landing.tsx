@@ -7,14 +7,15 @@ export default function Landing({ setSelectedComponent }: any) {
 
             <div className='flex items-center justify-center h-full w-full rounded-full flex-col'>
 
-                <div className='flex justify-center items-center flex-col z-10 space-y-12 xl:space-y-12'>
+                <div className='flex justify-center items-center flex-col z-10 space-y-16 xl:space-y-12'>
 
-                    <div className='flex flex-col space-y-8 items-center justify-center text-center'>
-                        <div className='flex font-extrabold text-5xl min-[530px]:text-7xl xl:text-[112px] h-max leading-normal xl:leading-relaxed'>
-                            Catalyse Your Progress
+                    <div className='flex flex-col space-y-16 items-center justify-center text-center'>
+                        <div className='flex items-center flex-col font-extrabold text-5xl min-[530px]:text-7xl xl:text-[112px] h-max leading-normal'>
+                            <span className='flex'>catalyse your</span>
+                            <span className='flex text-orange-400'>progress</span>
                         </div>
-                        <div className='flex font-medium text-lg xl:text-2xl text-zinc-400 text-center w-[90%] min-[530px]:w-1/2'>
-                            Master Helius and Solana Development in a matter of hours.
+                        <div className='flex font-medium text-lg xl:text-lg tracking-widest text-zinc-400 text-center w-[75%]'>
+                            {"Master Helius and Solana development in a matter of hours".toUpperCase()}
                         </div>
                     </div>
                     {/* <div className='flex font-black text-md xl:text-xl text-zinc-950 opacity-70 xl:w-[60%] text-center py-3 px-1'>
@@ -23,13 +24,13 @@ export default function Landing({ setSelectedComponent }: any) {
 
                     <div className='flex flex-row space-x-8'>
                         <button
-                            className="flex duration-200 font-bold items-center justify-center px-6 xl:px-12 py-2 rounded-lg overflow-show text-zinc-950 bg-zinc-300 hover:bg-zinc-400"
+                            className="flex text-2xl font-medium tracking-widest duration-200 items-center justify-center px-6 xl:px-12 py-4 rounded-full overflow-show text-zinc-950 bg-orange-400 hover:bg-orange-300"
                             onClick={() => setSelectedComponent('QuestionMenu')}
                         >
-                            Get Started
+                            get started
                         </button>
 
-                        <div className='relative group items-center justify-center flex'>
+                        {/* <div className='relative group items-center justify-center flex'>
                             <div className="absolute -inset-0.5 blur bg-gradient-to-r from-orange-700 to-yellow-500 rounded-lg opacity-75 group-hover:opacity-100 transition duration-200 group-hover:duration-200"></div>
                             <a
                                 className="relative font-bold justify-center items-center text-zinc-200 bg-black px-6 xl:px-12 py-3 rounded-lg overflow-show "
@@ -37,7 +38,7 @@ export default function Landing({ setSelectedComponent }: any) {
                             >
                                 View Docs
                             </a>
-                        </div>
+                        </div> */}
                     </div>
                     {/* <WalletMultiButtonDynamic className='bg-zinc-900 hover:bg-zinc-900 hover:opacity-100 duration-200' /> */}
 
