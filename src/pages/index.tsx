@@ -34,7 +34,7 @@ export default function Home() {
   const [progress, setProgress] = useState(0)
   const originalQuestions = [
     {
-      name: "SOL balance of a wallet",
+      name: "Solana Balance",
       description: <Demo></Demo>,
       difficulty: 1,
       api: "sol_held",
