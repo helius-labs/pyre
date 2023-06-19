@@ -9,9 +9,12 @@ import 'highlight.js/styles/base16/nebula.css';
 import javascript from 'highlight.js/lib/languages/javascript';
 import Demo from './Demo';
 
+import Copy from '../../public/copy.svg';
+
+
 hljs.registerLanguage('javascript', javascript);
 
-export default function Menu({ setSelectedComponent, question, questions, progress, setProgress, setQuestions }: any) {
+export default function Question({ setSelectedComponent, question, questions, progress, setProgress, setQuestions }: any) {
 
     let wallets = [
         "EHyagVK6vWdhyp8Mn3NGLeC33LtQyPdDs1idNiBddTjF",
@@ -74,7 +77,7 @@ export default function Menu({ setSelectedComponent, question, questions, progre
             }, 1000);
         }}
 
-            className={`flex w-max font-medium duration-200 bg-zinc-800 hover:bg-zinc-700 space-x-2 cursor-pointer rounded-full px-4 py-2 justify-center`}>
+            className={`flex w-max font-medium text-zinc-900 dark:text-zinc-300  duration-200 bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700 space-x-2 cursor-pointer rounded-full px-4 py-2 justify-center`}>
             <div>{displayedContext}</div>
 
             <>{
@@ -148,28 +151,29 @@ export default function Menu({ setSelectedComponent, question, questions, progre
     }
 
     return (
-        <div className='flex items-center justify-center h-full w-full flex-col bg-zinc-950 animate-fade'>
+        <div className='flex items-center justify-center h-full w-full flex-col bg-zinc-300 dark:bg-zinc-950 animate-fade'>
 
             <AppBar setSelectedComponent={setSelectedComponent} progress={progress} component="Question" ></AppBar>
 
-            <div className='flex w-full h-full p-2 xl:p-8 xl:py-4 justify-center xl:items-center overflow-y-scroll xl:overflow-y-hidden'>
+            <div className='flex w-full h-full xl:p-0 justify-center xl:items-center overflow-y-scroll xl:overflow-y-hidden'>
 
-                <div className='flex justify-center w-full h-max xl:h-full flex-col xl:items-center p-2 space-y-12'>
+                <div className='flex justify-center w-full h-max xl:h-full flex-col xl:items-center space-y-12'>
 
                     <div className='flex flex-col space-y-16 xl:space-y-0 xl:space-x-16 xl:items-center w-full h-full xl:flex-row'>
-                        <div className='flex flex-col items-center justify-between space-y-8 h-full rounded-lg bg-zinc-900 border border-zinc-800 p-6 xl:w-1/2 overflow-y-scroll scrollbar'>
+                        <div className='flex flex-col items-center space-y-4 h-full bg-zinc-100 dark:bg-zinc-900 xl:w-1/2 overflow-y-scroll scrollbar'>
 
-                            <div className='flex w-full flex-col space-y-6 xl:space-y-12 r'>
-                                <div className='text-2xl xl:text-4xl font-semibold tracking-wider'>{(question.name)}</div>
-                                <div className='flex text-md text-zinc-400 rounded-md xl:text-lg tracking-wider'>{question.api == 'sol_held' ? (<Demo copyContext={copyContext}></Demo>) : (question.description)}</div>
+                            <div className='text-2xl xl:text-2xl font-black tracking-wider text-zinc-900 dark:text-zinc-200 w-full px-6 py-6'>{(question.name).toUpperCase()}</div>
+
+                            <div className='flex w-full flex-col px-6'>
+                                <div className='flex text-md text-zinc-800 dark:text-zinc-200 rounded-md xl:text-lg tracking-wider'>{question.api == 'sol_held' ? (<Demo copyContext={copyContext}></Demo>) : (question.description)}</div>
                             </div>
 
                             <>
                                 {question.api == 'sol_held' ? (<div></div>) : (copyContext)}
                             </>
 
-                            <div className='flex w-full flex-col space-y-4'>
-                                <a href={question.docs} target='_blank' className='flex w-full bg-zinc-800 hover:bg-zinc-700 text-lg tracking-widest text-zinc-300 font-medium duration-200 rounded-lg px-4 py-3 justify-between'>
+                            <div className='flex w-full flex-col space-y-4 p-6'>
+                                <a href={question.docs} target='_blank' className='flex w-full bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700 text-lg tracking-widest text-zinc-900 dark:text-zinc-300 font-medium duration-200 rounded-lg px-4 py-3 justify-between'>
                                     <div className='flex'>
                                         DOCS
                                     </div>
@@ -180,63 +184,67 @@ export default function Menu({ setSelectedComponent, question, questions, progre
                             </div>
                         </div>
 
-                        <div className='flex flex-col h-full space-y-8 justify-between bg-zinc-900 p-6 rounded-lg border border-zinc-800 xl:w-1/2'>
-                            <div className='flex relative rounded-lg border border-zinc-800 bg-zinc-950 overflow-x-scroll xl:overflow-hidden'>
+                        <div className='flex flex-col h-full space-y-8 px-8 justify-between rounded-lg xl:w-1/2'>
 
-                                <div onClick={() => {
-                                    navigator.clipboard.writeText(question.code)
-                                    setCopyCode("Copied!")
-                                    setTimeout(() => {
-                                        setCopyCode("Copy");
-                                    }, 1000);
-                                }}
+                            <div className='flex flex-col w-full rounded-lg bg-zinc-800 overflow-x-scroll xl:overflow-hidden mt-16'>
 
-                                    className={`absolute top-2 right-2 font-medium duration-200 hover:bg-zinc-700 cursor-pointer rounded-full bg-zinc-800 px-3 py-2 justify-center`}>
+                                <div className='flex flex-row justify-between bg-zinc-200 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-300 font-medium p-2'>
+                                    <div className='flex p-2 font-medium tracking-widest text-zinc-200'>BOILER PLATE</div>
+                                    <div onClick={() => {
+                                        navigator.clipboard.writeText(question.code)
+                                        setCopyCode("Copied!")
+                                        setTimeout(() => {
+                                            setCopyCode("Copy");
+                                        }, 1000);
+                                    }}
 
-                                    <div className='flex space-x-2 w-max'>
-                                        <div className=''>{copyCode}</div>
-                                        <>{
-                                            (copyCode == "Copied!") ?
-                                                (
-                                                    <Image className='duration-200' alt="check" src="/check.svg" width={16} height={16}></Image>
-                                                ) : (
-                                                    <Image className='duration-200' alt="copy" src="/copy.svg" width={16} height={16}></Image>
-                                                )
-                                        }
-                                        </>
+                                        className={`flex duration-200 cursor-pointer rounded-lg hover:bg-zinc-300 dark:hover:bg-zinc-700 justify-center p-2 `}>
+
+                                        <div className='flex space-x-2 w-max'>
+                                            <div className=''>{copyCode}</div>
+                                            <>{
+                                                (copyCode == "Copied!") ?
+                                                    (
+                                                        <Image className='duration-200 text-zinc-300 fill-orange-400' alt="check" src="/check.svg" width={16} height={16}></Image>
+                                                    ) : (
+                                                        <Image className='duration-200 text-zinc-300 fill-orange-400' alt="copy" src="/copy.svg" width={16} height={16}></Image>
+                                                    )
+                                            }
+                                            </>
+                                        </div>
+
                                     </div>
-
                                 </div>
-
-                                <pre className='flex bg-zinc-900 rounded-lg'><code style={{ background: '#09090b' }} className="js rounded-lg">
+                                <pre className='flex w-full bg-zinc-900 rounded-lg rounded-t-none '><code style={{ background: '#18181b' }} className="js scrollbar rounded-lg">
                                     {question.code}
                                 </code></pre>
                             </div>
 
-                            <form onSubmit={handleSubmit} className={`flex duration-200 ${(solved) ? (`border-2 border-green-500`) : (submit == false ? ('border border-zinc-700') : ('border-2 border-red-500 animate-shake'))} rounded-full w-full items-center justify-center`}>
-                                <input
-                                    type="text"
-                                    value={answer}
-                                    className="flex px-4 py-2 rounded-l-full w-full outline-0 bg-zinc-800 text-zinc-300 placeholder-zinc-500"
-                                    onChange={(e: any) => setAnswer(e.target.value)}
-                                    placeholder={question.example_answer}
-                                />
-                                <button className='flex items-center justify-center h-10 p-2 px-4 rounded-r-full bg-zinc-800 font-bold text-white duration-200 cursor-pointer' type="submit">
+                            <div className='flex py-16 '>
+                                <form onSubmit={handleSubmit} className={`flex duration-200 ${(solved) ? (`border-green-500`) : (submit == false ? ('border-4 border-zinc-200 dark:border-zinc-700') : ('border-red-500 animate-shake'))} border-4 rounded-full w-full items-center justify-center`}>
+                                    <input
+                                        type="text"
+                                        value={answer}
+                                        className="flex px-4 py-2 rounded-l-full w-full outline-0 bg-zinc-200 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-300 placeholder-zinc-500"
+                                        onChange={(e: any) => setAnswer(e.target.value)}
+                                        placeholder={question.example_answer}
+                                    />
+                                    <button className='flex items-center justify-center h-10 p-2 px-4 rounded-r-full bg-zinc-200 dark:bg-zinc-800 font-bold text-white duration-200 cursor-pointer' type="submit">
 
-                                    <div className='flex justify-center items-center'>{(
-                                        load ? (
-                                            <svg className="flex animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                            </svg>
-                                        ) :
-                                            (
-                                                <Image className='opacity-70 hover:opacity-100 duration-200' alt="back" src="/check.svg" width={24} height={24}></Image>
-                                            ))}
-                                    </div>
-                                </button>
-                            </form>
-
+                                        <div className='flex justify-center items-center'>{(
+                                            load ? (
+                                                <svg className="flex animate-spin h-5 w-5 text-black dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                                </svg>
+                                            ) :
+                                                (
+                                                    <Image className='opacity-70 hover:opacity-100 duration-200' alt="check" src="/check.svg" width={24} height={24}></Image>
+                                                ))}
+                                        </div>
+                                    </button>
+                                </form>
+                            </div>
                         </div>
 
                     </div>
