@@ -77,7 +77,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
             }, 1000);
         }}
 
-            className={`flex w-max font-medium text-orange-400 duration-200 bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700 space-x-2 cursor-pointer rounded-full px-4 py-2 justify-center`}>
+            className={`flex w-max font-medium text-zinc-900 dark:text-zinc-300  duration-200 bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700 space-x-2 cursor-pointer rounded-full px-4 py-2 justify-center`}>
             <div>{displayedContext}</div>
 
             <>{
@@ -188,7 +188,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
 
                             <div className='flex flex-col w-full rounded-lg bg-zinc-800 overflow-x-scroll xl:overflow-hidden mt-16'>
 
-                                <div className='flex flex-row justify-between bg-zinc-200 dark:bg-zinc-800 text-zinc-800 dark:text-orange-400 font-medium p-2'>
+                                <div className='flex flex-row justify-between bg-zinc-200 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-300 font-medium p-2'>
                                     <div className='flex p-2 font-medium tracking-widest text-zinc-200'>BOILER PLATE</div>
                                     <div onClick={() => {
                                         navigator.clipboard.writeText(question.code)
@@ -205,9 +205,9 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                             <>{
                                                 (copyCode == "Copied!") ?
                                                     (
-                                                        <Image className='duration-200 text-orange-400 fill-orange-400' alt="check" src="/check.svg" width={16} height={16}></Image>
+                                                        <Image className='duration-200 text-zinc-300 fill-orange-400' alt="check" src="/check.svg" width={16} height={16}></Image>
                                                     ) : (
-                                                        <Image className='duration-200 text-orange-400 fill-orange-400' alt="copy" src="/copy.svg" width={16} height={16}></Image>
+                                                        <Image className='duration-200 text-zinc-300 fill-orange-400' alt="copy" src="/copy.svg" width={16} height={16}></Image>
                                                     )
                                             }
                                             </>
@@ -239,7 +239,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                                 </svg>
                                             ) :
                                                 (
-                                                    <Image className='opacity-70 hover:opacity-100 duration-200' alt="back" src="/check.svg" width={24} height={24}></Image>
+                                                    <Image className='opacity-70 hover:opacity-100 duration-200' alt="check" src="/check.svg" width={24} height={24}></Image>
                                                 ))}
                                         </div>
                                     </button>

@@ -14,8 +14,8 @@ export default function Landing({ setSelectedComponent }: any) {
                             <span className='flex leading-none'>catalyse your</span>
                             <span className='flex text-orange-400 leading-none'>progress</span>
                         </div>
-                        <div className='flex items-start font-semibold text-md xl:text-2xl tracking-widest text-zinc-500 text-start w-full md:text-center'>
-                            {"Master Helius and Solana development in a matter of hours."}
+                        <div className='flex items-start font-semibold text-md xl:text-2xl tracking-widest text-zinc-500 text-start w-full md:w-[65%] md:text-center'>
+                            {"Master Helius and Solana development in a matter of hours.".toUpperCase()}
                         </div>
                     </div>
 
