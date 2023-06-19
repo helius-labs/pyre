@@ -25,7 +25,7 @@ export default function Hints({ content }:any) {
                 </div>
             </div>
             {isActive.includes(i) &&
-                <div className='flex tracking-widest text-zinc-900 p-4 rounded-b-lg animate-fade-down animate-duration-100'>
+                <div className='flex tracking-widest text-zinc-900 dark:text-zinc-300 p-4 rounded-b-lg animate-fade-down animate-duration-100'>
                     {content[i]}
                 </div>
             }
