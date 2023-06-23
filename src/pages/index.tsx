@@ -1,21 +1,14 @@
 import Landing from '../components/Landing';
 import QuestionMenu from '../components/QuestionMenu';
 import Question from '../components/Question';
-import dynamic from "next/dynamic";
 import axios from 'axios';
 import Demo from '../components/Demo'
 import Image from 'next/image';
-import { useWallet } from '@solana/wallet-adapter-react';
 import { useEffect, useState } from "react";
+import { SignMessage } from '../components/SignMessage';
 
 import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
-
-const WalletMultiButtonDynamic = dynamic(
-  async () =>
-    (await import("@solana/wallet-adapter-react-ui")).WalletMultiButton,
-  { ssr: false }
-);
 
 interface Questions {
   name: string,
@@ -25,7 +18,10 @@ interface Questions {
   solved: boolean,
   type: string,
   example_answer: string,
-  tags: string[]
+  hints: string[]
+  code: string,
+  docs: string,
+  tags: string[],
 }
 
 export default function Home() {
@@ -239,57 +235,62 @@ const getNftEvents = async () => {
     // },
   ]
   const [questions, setQuestions] = useState(originalQuestions)
-  const { publicKey } = useWallet();
+  // const { publicKey } = useWallet();
   const [userData, setUserData] = useState()
 
-  let walletConnect = <WalletMultiButtonDynamic className='relative z-10 bg-zinc-900 hover:bg-zinc-900 hover:opacity-100 duration-200 animate-fade' />
+  console.log(progress)
+  // useEffect(() => {
 
-  useEffect(() => {
+  //   async function saveProgress() {
+  //     const { data } = await axios.post(`/api/user_progress`,
+  //       {
+  //         user: publicKey?.toBase58(),
+  //         questions_remaining: questions,
+  //         progress: progress,
+  //       });
 
-    async function saveProgress() {
-      const { data } = await axios.post(`/api/user_progress`,
-        {
-          user: publicKey?.toBase58(),
-          questions_remaining: questions,
-          progress: progress,
-        });
+  //   }
 
-    }
-
-    if (publicKey) {
-      saveProgress()
-    }
-  }, [progress])
+  //   if (publicKey) {
+  //     saveProgress()
+  //   }
+  //   complete()
+  // }, [progress])
 
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    async function retrieveProgress() {
+  //   async function retrieveProgress() {
 
-      const { data } = await axios.post("/api/retrieve_progress",
-        {
-          user: publicKey?.toBase58()
-        })
-      if (data[0]?.user) {
-        setProgress(data[0].progress)
-        setQuestions(data[0].questions_remaining)
-        setUserData(data[0])
-      }
-      else {
-        setProgress(0)
-        setQuestions(originalQuestions)
-      }
-    }
+  //     const { data } = await axios.post("/api/retrieve_progress",
+  //       {
+  //         user: publicKey?.toBase58()
+  //       })
+  //     if (data[0]?.user) {
+  //       setProgress(data[0].progress)
+  //       setQuestions(data[0].questions_remaining)
+  //       setUserData(data[0])
+  //     }
+  //     else {
+  //       setProgress(0)
+  //       setQuestions(originalQuestions)
+  //     }
+  //   }
 
-    if (publicKey) {
-      retrieveProgress()
-    }
-    else {
-      setProgress(0)
-      setQuestions(originalQuestions)
-    }
+  //   if (publicKey) {
+  //     retrieveProgress()
+  //   }
+  //   else {
+  //     setProgress(0)
+  //     setQuestions(originalQuestions)
+  //   }
 
-  }, [publicKey])
+  // }, [publicKey])
+
+  // function complete () {
+  //   setProgress(7)
+  //   setQuestions([])
+  // }
 
   return (
     <main className={`flex w-full h-screen flex-col items-center justify-between bg-zinc-950 text-zinc-200 no-scrollbar ${inter.className}`}>
@@ -307,7 +308,8 @@ const getNftEvents = async () => {
 
 
             <div className='flex'>
-              {walletConnect}
+              {/* {walletConnect} */}
+              <SignMessage/>
             </div>
 
           </div>

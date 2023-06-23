@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@noble/ed25519": "^2.0.0",
     "@solana/wallet-adapter-base": "^0.9.22",
     "@solana/wallet-adapter-react": "^0.15.32",
     "@solana/wallet-adapter-react-ui": "^0.9.31",
@@ -21,6 +22,7 @@
     "@vercel/analytics": "^1.0.1",
     "autoprefixer": "10.4.14",
     "axios": "^1.4.0",
+    "bs58": "^5.0.0",
     "eslint": "8.41.0",
     "eslint-config-next": "13.4.4",
     "highlight.js": "^11.8.0",
