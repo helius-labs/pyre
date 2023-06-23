@@ -39,22 +39,40 @@ interface Questions {
   solved: boolean,
   type: string,
   example_answer: string,
-  tags: string[]
+  hints: string[]
+  code: string,
+  docs: string,
+  tags: string[],
 }
 ```
 
 Here is an example:
 ```js
-{
-    name: "Identify an NFT's holder",
-    description: "You are provided the mint address of a token. Make use of Helius's services to identify the holder of the provided NFT token address.",
-    difficulty: 1,
-    api: 'nft_holder',
-    solved: false,
-    type: 'nft',
-    example_answer: "T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW",
-    tags: ["DAS", "RPC"]
-}
+    {
+      name: "Number of NFTs held by a wallet",
+      description: "You are provided a wallet address. Make use of Helius's service to determine the number of NFTs held by the provided wallet.",
+      difficulty: 1,
+      api: 'nfts_held',
+      solved: false,
+      type: 'wallet',
+      example_answer: "25",
+      hints: ["There are multiple ways to determine the number of NFTs held, some options include: using the Balances API, using the more efficient DAS protocol.",
+        "Assuming the wallet provided has fewer NFTs than the limit returned in one query, the answer would simply be the length of the returned NFT array.",
+        "You can adjust the limit of NFTs returned! For some wallets you may still need to paginate."],
+      code: `
+const url = "https://api.helius.xyz/v0/addresses/<address>/balances?api-key=<your-key>";
+
+const getBalances = async () => {
+  const response = await fetch(url);
+  const data = await response.json();
+  console.log("balances: ", data);
+};
+
+getBalances();
+      `,
+      docs: "https://docs.helius.xyz/solana-rpc-nodes/digital-asset-standard-api/get-assets-by-owner",
+      tags: ["DAS", "RPC"]
+    },
 ```
 
 You can also contribute to the project by submitting pull requests to the repository to fix bugs or to add new features! For any inquiries, visit the [Helius Discord](https://discord.gg/helius) or message Tidelaw#0707.

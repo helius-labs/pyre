@@ -1,6 +1,6 @@
 {
     "name": "Pyre",
-    "version": "0.0.2",
+    "version": "0.1.0",
     "storage": "arweave",
     "description": "Practical applications of Helius.",
     "website": "http://pyre-xnft.vercel.app",
@@ -10,12 +10,10 @@
     },
     "contact": "@heliuslabs or @t1d3law on Twitter",
     "screenshots": [
-      "./assets/landing_screenshot.png",
-      "./assets/menu_screenshot.png",
-      "./assets/question_screenshot.png",
-      "./assets/guide_1.png",
-      "./assets/guide_2.png",
-      "./assets/guide_3.png"
+      "./assets/pyre-landing.png",
+      "./assets/pyre-menu.png",
+      "./assets/pyre-question.png",
+      "./assets/pyre-demo.png"
     ],
     "entrypoints": {
       "default": {
