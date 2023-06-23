@@ -15,7 +15,7 @@ export default function Demo({ copyContext }: any) {
     return (
         <div className='flex max-w-full flex-col space-y-12'>
             <div className='flex text-md font-medium text-zinc-900 dark:text-zinc-300 rounded-md xl:text-lg tracking-wider'>
-                You are provided a wallet address. Make use of Helius's services in order to retrieve the wallet's native balance and convert into SOL. For this question, the answer has to be inputted to the nearest SOL.
+                You are provided a wallet address. Make use of Helius' services in order to retrieve the wallet's native balance and convert into SOL. For this question, the answer has to be inputted to the nearest SOL.
             </div>
 
             <div className='flex flex-col space-y-4'>

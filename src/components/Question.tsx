@@ -155,12 +155,12 @@ export default function Question({ setSelectedComponent, question, questions, pr
 
             <AppBar setSelectedComponent={setSelectedComponent} progress={progress} component="Question" ></AppBar>
 
-            <div className='flex w-full h-full xl:p-0 justify-center xl:items-center overflow-y-scroll xl:overflow-y-hidden'>
+            <div className='flex w-full h-full p-4 md:p-0 justify-center xl:items-center overflow-y-scroll xl:overflow-y-hidden'>
 
                 <div className='flex justify-center w-full h-max xl:h-full flex-col xl:items-center space-y-12'>
 
                     <div className='flex flex-col space-y-16 xl:space-y-0 xl:space-x-16 xl:items-center w-full h-full xl:flex-row'>
-                        <div className='flex flex-col items-center space-y-4 h-full bg-zinc-100 dark:bg-zinc-900 xl:w-1/2 overflow-y-scroll scrollbar'>
+                        <div className='flex rounded-lg xl:rounded-none flex-col items-center space-y-4 h-full bg-zinc-100 dark:bg-zinc-900 xl:w-1/2 overflow-y-scroll scrollbar'>
 
                             <div className='text-2xl xl:text-2xl font-black tracking-wider text-zinc-900 dark:text-zinc-200 w-full px-6 py-6'>{(question.name).toUpperCase()}</div>
 

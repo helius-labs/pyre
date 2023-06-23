@@ -10,11 +10,11 @@ export default function Landing({ setSelectedComponent }: any) {
                 <div className='flex justify-center items-center flex-col z-10 space-y-10 xl:space-y-12'>
 
                     <div className='flex flex-col space-y-10 md:space-y-16 items-center justify-center text-start md:text-center px-8'>
-                        <div className='flex items-start md:items-center flex-col font-extrabold text-7xl min-[530px]:text-8xl xl:text-[112px] h-max leading-normal'>
+                        <div className='flex items-start md:items-center flex-col font-extrabold text-6xl min-[530px]:text-8xl xl:text-[112px] h-max leading-normal'>
                             <span className='flex leading-none'>catalyse your</span>
                             <span className='flex text-orange-400 leading-none'>progress</span>
                         </div>
-                        <div className='flex items-start font-semibold text-md xl:text-2xl tracking-widest text-zinc-500 text-start w-full md:w-[65%] md:text-center'>
+                        <div className='flex items-start font-semibold text-xs xl:text-2xl tracking-widest text-zinc-500 text-start w-full md:w-[65%] md:text-center'>
                             {"Master Helius and Solana development in a matter of hours.".toUpperCase()}
                         </div>
                     </div>
