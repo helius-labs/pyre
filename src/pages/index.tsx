@@ -6,6 +6,7 @@ import Demo from '../components/Demo'
 import Image from 'next/image';
 import { useEffect, useState } from "react";
 import { SignMessage } from '../components/SignMessage';
+import { useSession } from "next-auth/react"
 
 import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
@@ -235,62 +236,10 @@ const getNftEvents = async () => {
     // },
   ]
   const [questions, setQuestions] = useState(originalQuestions)
-  // const { publicKey } = useWallet();
   const [userData, setUserData] = useState()
 
-  console.log(progress)
-  // useEffect(() => {
-
-  //   async function saveProgress() {
-  //     const { data } = await axios.post(`/api/user_progress`,
-  //       {
-  //         user: publicKey?.toBase58(),
-  //         questions_remaining: questions,
-  //         progress: progress,
-  //       });
-
-  //   }
-
-  //   if (publicKey) {
-  //     saveProgress()
-  //   }
-  //   complete()
-  // }, [progress])
-
-
-  // useEffect(() => {
-
-  //   async function retrieveProgress() {
-
-  //     const { data } = await axios.post("/api/retrieve_progress",
-  //       {
-  //         user: publicKey?.toBase58()
-  //       })
-  //     if (data[0]?.user) {
-  //       setProgress(data[0].progress)
-  //       setQuestions(data[0].questions_remaining)
-  //       setUserData(data[0])
-  //     }
-  //     else {
-  //       setProgress(0)
-  //       setQuestions(originalQuestions)
-  //     }
-  //   }
-
-  //   if (publicKey) {
-  //     retrieveProgress()
-  //   }
-  //   else {
-  //     setProgress(0)
-  //     setQuestions(originalQuestions)
-  //   }
-
-  // }, [publicKey])
-
-  // function complete () {
-  //   setProgress(7)
-  //   setQuestions([])
-  // }
+  const { data } = useSession();
+  console.log(data)
 
   return (
     <main className={`flex w-full h-screen flex-col items-center justify-between bg-zinc-950 text-zinc-200 no-scrollbar ${inter.className}`}>

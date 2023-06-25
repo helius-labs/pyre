@@ -44,7 +44,7 @@ export default function QuestionMenu({ setSelectedComponent, progress, userData,
             let tags = [];
             for (let x = 0; x < questions[i].tags.length; x++) {
                 tags.push(
-                    <div key={questions[i].tags[x] + i + x} className='flex bg-zinc-900 rounded-md items-center justify-center px-2 py-1 w-max font-medium'>{questions[i].tags[x]}</div>
+                    <div key={questions[i].tags[x] + i + x} className='flex border border-zinc-700 bg-zinc-900 rounded-md items-center justify-center px-2 py-1 w-max font-medium'>{questions[i].tags[x]}</div>
                 )
             }
 
