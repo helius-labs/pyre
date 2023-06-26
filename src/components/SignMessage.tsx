@@ -32,13 +32,13 @@ export const SignMessage = () => {
             const signature = await wallet.signMessage(data);
             const serializedSignature = bs58.encode(signature);
 
-            console.log(serializedSignature)
-
             signIn("credentials", {
                 message: JSON.stringify(message),
                 redirect: false,
                 signature: serializedSignature,
             });
+
+
 
         } catch (error) {
             console.log(error);
@@ -59,7 +59,7 @@ export const SignMessage = () => {
                         (
                             <a
                                 href={`/api/auth/signout`}
-                                className="flex items-center justify-center rounded-lg z-10 bg-zinc-900 hover:bg-zinc-800 duration-200 animate-fade px-6 font-semibold text-lg h-12"
+                                className="flex items-center justify-center rounded z-10 bg-zinc-900 hover:bg-zinc-800 duration-200 animate-fade px-6 font-semibold text-lg h-12"
                                 onClick={(e) => {
                                     e.preventDefault();
                                     signOut({redirect: false});

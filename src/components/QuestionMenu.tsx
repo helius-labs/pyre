@@ -13,9 +13,6 @@ export default function QuestionMenu({ setSelectedComponent, progress, userData,
     let [selectedTags, setSelectedTags] = useState<string[]>(["DAS", "RPC", "ENHANCED API", "NFT API"]);
     let [questionDIVs, setQuestionDIVs] = useState([]);
 
-
-    console.log(userData)
-
     function setTags(tag: any) {
         if (!selectedTags) { setSelectedTags([tag]) }
         else {

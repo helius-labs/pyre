@@ -238,9 +238,56 @@ const getNftEvents = async () => {
   const [questions, setQuestions] = useState(originalQuestions)
   const [userData, setUserData] = useState()
 
-  const { data } = useSession();
-  console.log(data)
+  const sessionData:any = useSession();
 
+  useEffect(() => {
+
+    async function saveProgress() {
+      let { data } = await axios.post(`/api/user_progress`,
+        {
+          user: sessionData?.data?.publicKey,
+          questions_remaining: questions,
+          progress: progress,
+        });
+
+    }
+
+    if (sessionData?.data?.publicKey) {
+      saveProgress()
+    }
+  }, [progress])
+
+
+  useEffect(() => {
+
+    async function retrieveProgress() {
+
+      const { data } = await axios.post("/api/retrieve_progress",
+        {
+          user: sessionData?.data?.publicKey
+        })
+      if (data[0]?.user) {
+        setProgress(data[0].progress)
+        setQuestions(data[0].questions_remaining)
+        setUserData(data[0])
+      }
+      else {
+        setProgress(0)
+        setQuestions(originalQuestions)
+      }
+    }
+
+    if (sessionData?.data?.publicKey) {
+      retrieveProgress()
+    }
+    else {
+      setProgress(0)
+      setQuestions(originalQuestions)
+    }
+
+  }, [sessionData?.data?.publicKey])
+
+  
   return (
     <main className={`flex w-full h-screen flex-col items-center justify-between bg-zinc-950 text-zinc-200 no-scrollbar ${inter.className}`}>
       <title>Pyre</title>
