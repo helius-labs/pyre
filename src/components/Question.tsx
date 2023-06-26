@@ -11,7 +11,9 @@ import Demo from './Demo';
 
 import Copy from '../../public/copy.svg';
 
-
+hljs.configure({
+    ignoreUnescapedHTML: true
+  });
 hljs.registerLanguage('javascript', javascript);
 
 export default function Question({ setSelectedComponent, question, questions, progress, setProgress, setQuestions }: any) {
@@ -149,6 +151,10 @@ export default function Question({ setSelectedComponent, question, questions, pr
         )
     }
 
+    if ((progress!=0)&&question.api=="sol_held"){
+        setSelectedComponent("QuestionMenu")
+    }
+
     return (
         <div className='flex items-center justify-center h-full w-full flex-col bg-zinc-300 dark:bg-zinc-950 animate-fade'>
 
@@ -185,10 +191,10 @@ export default function Question({ setSelectedComponent, question, questions, pr
 
                         <div className='flex flex-col h-full space-y-8 px-8 justify-between rounded-lg xl:w-1/2'>
 
-                            <div className='flex flex-col w-full rounded-lg bg-zinc-800 overflow-x-scroll xl:overflow-hidden mt-16'>
+                            <div className='flex flex-col w-full rounded-lg bg-zinc-800 overflow-x-scroll xl:overflow-hidden'>
 
                                 <div className='flex flex-row justify-between bg-zinc-200 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-300 font-medium p-3'>
-                                    <div className='flex font-medium tracking-widest text-zinc-200 py-1'>BOILER PLATE</div>
+                                    <div className='flex font-medium tracking-widest text-zinc-200 py-1'>CODE SNIPPET</div>
                                     <div onClick={() => {
                                         navigator.clipboard.writeText(question.code)
                                         setCopyCode("Copied!")
@@ -214,10 +220,12 @@ export default function Question({ setSelectedComponent, question, questions, pr
 
                                     </div>
                                 </div>
-                                <pre className='flex w-full bg-zinc-900 rounded-lg rounded-t-none '><code style={{ background: '#18181b' }} className="js scrollbar rounded-lg">
+                                <pre className='flex w-full h-full bg-zinc-900 rounded-lg rounded-t-none '><code style={{ background: '#18181b' }} className="js no-scrollbar rounded-lg">
                                     {question.code}
                                 </code></pre>
                             </div>
+
+                            <iframe src="https://replit.com/@TideLaw/pyre-demo?embed=true" className='w-full h-1/3 rounded-lg' />
 
                             <div className='flex py-16 '>
                                 <form onSubmit={handleSubmit} className={`flex duration-200 ${(solved) ? (`border-green-500`) : (submit == false ? ('border-2 border-zinc-200 dark:border-zinc-700') : ('border-red-500 animate-shake'))} border-2 rounded-full w-full items-center justify-center`}>

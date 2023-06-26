@@ -3,6 +3,7 @@ import bs58 from 'bs58';
 import { FC, useCallback, useEffect } from 'react';
 import dynamic from "next/dynamic";
 import { SigninMessage } from "../../utils/SigninMessage"
+import Image from 'next/image'
 
 import { getCsrfToken, signIn, signOut, useSession } from "next-auth/react";
 
@@ -53,24 +54,26 @@ export const SignMessage = () => {
 
     return (
         <div className="flex flex-row justify-center">
-            <div className="relative group items-center h-12">
+            <div className="relative group items-center">
                 <> {
                     status == 'authenticated' ?
                         (
                             <a
                                 href={`/api/auth/signout`}
-                                className="flex items-center justify-center rounded z-10 bg-zinc-900 hover:bg-zinc-800 duration-200 animate-fade px-6 font-semibold text-lg h-12"
+                                className="flex items-center justify-center rounded-lg z-10 bg-orange-400 hover:bg-orange-300 duration-200 animate-fade px-6 h-12 space-x-4"
                                 onClick={(e) => {
                                     e.preventDefault();
-                                    signOut({redirect: false});
+                                    signOut({ redirect: false });
                                 }}
                             >
-                                Sign Out
+                                <Image className='opacity-80' alt="wallet" src="/wallet.svg" width={16} height={16}></Image>
+                                <span className='text-zinc-950 tracking-widest font-medium text-md '>sign out</span>
+                                
                             </a>
                         ) : (
                             <WalletMultiButtonDynamic
-                            // disabled={!publicKey}
-                            className='relative z-10 bg-zinc-900 hover:bg-zinc-900 hover:opacity-100 duration-200 animate-fade' />
+                                // disabled={!publicKey}
+                                className='relative z-10 bg-zinc-900 hover:bg-zinc-900 hover:opacity-100 duration-200 animate-fade' />
                         )
                 }
                 </>
