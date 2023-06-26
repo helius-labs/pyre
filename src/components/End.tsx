@@ -4,7 +4,6 @@ import { useState } from 'react';
 import Image from 'next/image';
 
 export default function End({ userData, setSelectedComponent, progress }: any) {
-
     const [displayedUser, setDisplayedUser] = useState(userData.user.slice(0, 4) + '..' + userData.user.slice(-4))
     console.log(userData)
 

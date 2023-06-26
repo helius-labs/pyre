@@ -77,7 +77,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
             }, 1000);
         }}
 
-            className={`flex w-max font-medium text-zinc-900 dark:text-zinc-300  duration-200 bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700 space-x-2 cursor-pointer rounded-full px-4 py-2 justify-center`}>
+            className={`flex w-max font-medium text-zinc-900 dark:text-zinc-300 p-2 duration-200 bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700 space-x-2 cursor-pointer rounded-full px-4 py-2 justify-center`}>
             <div>{displayedContext}</div>
 
             <>{
@@ -96,7 +96,6 @@ export default function Question({ setSelectedComponent, question, questions, pr
     }, []);
 
     function handleCorrect() {
-        console.log('e')
         setSolved(true);
         setProgress(progress += question.difficulty);
 
@@ -160,9 +159,9 @@ export default function Question({ setSelectedComponent, question, questions, pr
                 <div className='flex justify-center w-full h-max xl:h-full flex-col xl:items-center space-y-12'>
 
                     <div className='flex flex-col space-y-16 xl:space-y-0 xl:space-x-16 xl:items-center w-full h-full xl:flex-row'>
-                        <div className='flex rounded-lg xl:rounded-none flex-col items-center space-y-4 h-full bg-zinc-100 dark:bg-zinc-900 xl:w-1/2 overflow-y-scroll scrollbar'>
+                        <div className='flex rounded-lg xl:rounded-none flex-col items-center space-y-16 h-full bg-zinc-100 dark:bg-zinc-900 xl:w-1/2 overflow-y-scroll scrollbar'>
 
-                            <div className='text-2xl xl:text-2xl font-black tracking-wider text-zinc-900 dark:text-zinc-200 w-full px-6 py-6'>{(question.name).toUpperCase()}</div>
+                            <div className='text-2xl xl:text-5xl font-semibold tracking-wider text-zinc-900 dark:text-zinc-200 w-full px-6 py-8'>{(question.name)}</div>
 
                             <div className='flex w-full flex-col px-6'>
                                 <div className='flex text-md text-zinc-800 dark:text-zinc-200 rounded-md xl:text-lg tracking-wider'>{question.api == 'sol_held' ? (<Demo copyContext={copyContext}></Demo>) : (question.description)}</div>
@@ -172,7 +171,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                 {question.api == 'sol_held' ? (<div></div>) : (copyContext)}
                             </>
 
-                            <div className='flex w-full flex-col space-y-4 p-6'>
+                            <div className='flex w-full flex-col space-y-4 px-6 pb-6'>
                                 <a href={question.docs} target='_blank' className='flex w-full bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700 text-lg tracking-widest text-zinc-900 dark:text-zinc-300 font-medium duration-200 rounded-lg px-4 py-3 justify-between'>
                                     <div className='flex'>
                                         DOCS
@@ -188,8 +187,8 @@ export default function Question({ setSelectedComponent, question, questions, pr
 
                             <div className='flex flex-col w-full rounded-lg bg-zinc-800 overflow-x-scroll xl:overflow-hidden mt-16'>
 
-                                <div className='flex flex-row justify-between bg-zinc-200 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-300 font-medium p-2'>
-                                    <div className='flex p-2 font-medium tracking-widest text-zinc-200'>BOILER PLATE</div>
+                                <div className='flex flex-row justify-between bg-zinc-200 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-300 font-medium p-3'>
+                                    <div className='flex font-medium tracking-widest text-zinc-200 py-1'>BOILER PLATE</div>
                                     <div onClick={() => {
                                         navigator.clipboard.writeText(question.code)
                                         setCopyCode("Copied!")
@@ -198,9 +197,9 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                         }, 1000);
                                     }}
 
-                                        className={`flex duration-200 cursor-pointer rounded-lg hover:bg-zinc-300 dark:hover:bg-zinc-700 justify-center p-2 `}>
+                                        className={`flex duration-200 cursor-pointer rounded-lg hover:bg-zinc-300 dark:hover:bg-zinc-700 justify-center`}>
 
-                                        <div className='flex space-x-2 w-max'>
+                                        <div className='flex space-x-2 w-max px-2 py-1'>
                                             <div className=''>{copyCode}</div>
                                             <>{
                                                 (copyCode == "Copied!") ?
@@ -221,7 +220,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
                             </div>
 
                             <div className='flex py-16 '>
-                                <form onSubmit={handleSubmit} className={`flex duration-200 ${(solved) ? (`border-green-500`) : (submit == false ? ('border-4 border-zinc-200 dark:border-zinc-700') : ('border-red-500 animate-shake'))} border-4 rounded-full w-full items-center justify-center`}>
+                                <form onSubmit={handleSubmit} className={`flex duration-200 ${(solved) ? (`border-green-500`) : (submit == false ? ('border-2 border-zinc-200 dark:border-zinc-700') : ('border-red-500 animate-shake'))} border-2 rounded-full w-full items-center justify-center`}>
                                     <input
                                         type="text"
                                         value={answer}
@@ -234,7 +233,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                         <div className='flex justify-center items-center'>{(
                                             load ? (
                                                 <svg className="flex animate-spin h-5 w-5 text-black dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                                                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                                 </svg>
                                             ) :
