@@ -294,7 +294,7 @@ const getNftEvents = async () => {
       {selectedComponent === "Landing" ? (
         <>
 
-          <div className='flex flex-row justify-between w-full items-center p-2'>
+          <div className='flex flex-row justify-between w-full items-center p-4 py-4 border-b border-zinc-900'>
             <div className='flex text-zinc-200 text-2xl font-bold px-6 space-x-4 select-none'>
               <Image className='' alt="Helius" src="/helius.svg" width={24} height={24}></Image>
               <span>
@@ -304,7 +304,6 @@ const getNftEvents = async () => {
 
 
             <div className='flex'>
-              {/* {walletConnect} */}
               <SignMessage/>
             </div>
 
