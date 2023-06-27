@@ -225,7 +225,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                 </code></pre>
                             </div>
 
-                            <iframe src="https://replit.com/@TideLaw/pyre-demo?embed=true" className='w-full h-1/3 rounded-lg' />
+                            <iframe src={question.replit} className='w-full h-1/3 rounded-lg' />
 
                             <div className='flex py-16 '>
                                 <form onSubmit={handleSubmit} className={`flex duration-200 ${(solved) ? (`border-green-500`) : (submit == false ? ('border-2 border-zinc-200 dark:border-zinc-700') : ('border-red-500 animate-shake'))} border-2 rounded-full w-full items-center justify-center`}>

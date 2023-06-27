@@ -53,6 +53,7 @@ const getBalances = async () => {
 getBalances();      
       `,
       docs: "https://docs.helius.xyz/solana-apis/balances-api",
+      replit: "https://replit.com/@TideLaw/pyre-demo?embed=true",
       tags: ["ENHANCED API"]
     },
     {
@@ -67,17 +68,33 @@ getBalances();
         "Assuming the wallet provided has fewer NFTs than the limit returned in one query, the answer would simply be the length of the returned NFT array.",
         "You can adjust the limit of NFTs returned! For some wallets you may still need to paginate."],
       code: `
-const url = "https://api.helius.xyz/v0/addresses/<address>/balances?api-key=<your-key>";
+const url = "https://rpc.helius.xyz/?api-key=<api-key>"
 
-const getBalances = async () => {
-  const response = await fetch(url);
-  const data = await response.json();
-  console.log("balances: ", data);
+const getAssetsByOwner = async () => {
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      jsonrpc: '2.0',
+      id: 'my-id',
+      method: 'getAssetsByOwner',
+      params: {
+        ownerAddress: '86xCnPeV69n6t3DnyGvkKobf9FdN2H9oiVDdaMpo2MMY',
+        page: 1, // Starts at 1
+        limit: 1000
+      },
+    }),
+  });
+  const { result } = await response.json();
+  console.log("Assets by Owner: ", result.items);
 };
 
-getBalances();
+getAssetsByOwner();   
       `,
       docs: "https://docs.helius.xyz/solana-rpc-nodes/digital-asset-standard-api/get-assets-by-owner",
+      replit: "https://replit.com/@TideLaw/pyre-nfts-held?embed=true",
       tags: ["DAS", "RPC"]
     },
     {
@@ -93,18 +110,31 @@ getBalances();
         "If the link you've provided is not accepted, try querying for the link found in the offChainMetadata property of the data returned."],
       code: `
 const getMetadata = async (context) => {
-  const url = "https://api.helius.xyz/v0/token-metadata?api-key=<api-key>"
 
-  const { data } = await axios.post(url, {
-      mintAccounts: [context],
+
+  const url = "https://api.helius.xyz/v0/token-metadata?api-key=${process.env['HELIUS_KEY']}";
+  const nftAddresses = [context];
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      mintAccounts: nftAddresses,
       includeOffChain: true,
       disableCache: false,
+    }),
   });
 
-  console.log(data);
+  const data = await response.json();
+  console.log("metadata: ", data);
 };
+
+getMetadata('F9Lw3ki3hJ7PF9HQXsBzoY8GyE6sPoEZZdXJBsTTD2rk');
       `,
       docs: "https://docs.helius.xyz/solana-apis/token-metadata-api",
+      replit: "https://replit.com/@TideLaw/pyre-image-url?embed=true",
       tags: ["DAS", "RPC"]
     },
     {
@@ -119,23 +149,30 @@ const getMetadata = async (context) => {
         "You should log the data, regardless of which method you choose, expanding each property to see what lies within.",
         "If you're using DAS, the path to locate the holder of the NFT is data.result.ownership.owner."],
       code: `
-const getAsset = async (token) => {
-  const url = "https://rpc.helius.xyz/?api-key=<api-key>"
+const url = "https://rpc.helius.xyz/?api-key=<api_key>"
 
-  const { data } = await axios.post(url, {
-      "jsonrpc": "2.0",
-      "id": "my-id",
-      "method": "getAsset",
-      "params": {
-          "id": token
-      }
+const getAsset = async () => {
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      jsonrpc: '2.0',
+      id: 'my-id',
+      method: 'getAsset',
+      params: {
+        id: 'F9Lw3ki3hJ7PF9HQXsBzoY8GyE6sPoEZZdXJBsTTD2rk'
+      },
+    }),
   });
-
-  console.log(data)
-  return data
+  const { result } = await response.json();
+  console.log("Asset: ", result);
 };
+getAsset();
       `,
       docs: "https://docs.helius.xyz/solana-rpc-nodes/digital-asset-standard-api/get-asset",
+      replit: "https://replit.com/@TideLaw/pyre-nft-holder?embed=true",
       tags: ["DAS", "RPC"]
     },
     {
@@ -168,6 +205,7 @@ const parseTransaction = async () => {
 };
       `,
       docs: "https://docs.helius.xyz/solana-apis/enhanced-transactions-api/parse-transaction-s",
+      replit: "https://replit.com/@TideLaw/pyre-epoch-tx?embed=true",
       tags: ["ENHANCED API"]
     },
     {
@@ -193,6 +231,7 @@ const parseTransactions = async () => {
 };
       `,
       docs: "https://docs.helius.xyz/solana-apis/enhanced-transactions-api/parsed-transaction-history",
+      replit: "https://replit.com/@TideLaw/pyre-first-tx?embed=true",
       tags: ["RPC"]
     },
     {
@@ -207,20 +246,33 @@ const parseTransactions = async () => {
         "Assuming you've applied the NFT_SALE filter, the number of times sold is simply the length of the returned array.",
         "Fiddle around with the options, e.g sources, types, and other properties found on the Gitbook to get a better understanding of this endpoint."],
       code: `
-const url = "https://api.helius.xyz/v1/nft-events?api-key=<api-key>"
+const getNftEvents = async (context) => {
 
-const getNftEvents = async () => {
-    const { data } = await axios.post(url, {
+  const url = "https://api.helius.xyz/v1/nft-events?api-key=<api-key>"
+
+  const response = await fetch(url,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
         query: {
-            accounts: ["B1rzqj4cEM6pWsrm3rLPCu8QwcXMn6H6bd7xAnk941dU"],
-            types: ["NFT_SALE"],
+          accounts: [context],
+          types: ["NFT_SALE"],
         }
+      }),
     });
 
-    console.log(data);
+  const data = await response.json()
+  console.log(data)
+
 };
+
+getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")
       `,
       docs: "https://docs.helius.xyz/solana-apis/nft-api/nft-events-historical-querying",
+      replit: "https://replit.com/@TideLaw/pyre-sale-activity?embed=true",
       tags: ["NFT API"]
     },
 
@@ -238,14 +290,13 @@ const getNftEvents = async () => {
   const [questions, setQuestions] = useState(originalQuestions)
   const [userData, setUserData] = useState()
 
-  const sessionData:any = useSession();
+  const sessionData: any = useSession();
 
   useEffect(() => {
-
     async function saveProgress() {
-      let { data } = await axios.post(`/api/user_progress`,
+      const { data } = await axios.post(`/api/user_progress`,
         {
-          user: sessionData?.data?.publicKey,
+          user: sessionData.data.publicKey,
           questions_remaining: questions,
           progress: progress,
         });
@@ -260,6 +311,17 @@ const getNftEvents = async () => {
 
   useEffect(() => {
 
+    function updateQuestions(questions: any) { // in case the original questions are changed, e.g new properties
+
+      let updatedQuestions: any = []
+      let questionNames = originalQuestions.map((e: any) => e.name)
+
+      for (let i = 0; i < questions.length; i++) {
+        updatedQuestions.push(originalQuestions[questionNames.indexOf(questions[i].name)])
+      }
+      setQuestions(updatedQuestions)
+    }
+
     async function retrieveProgress() {
 
       const { data } = await axios.post("/api/retrieve_progress",
@@ -268,7 +330,8 @@ const getNftEvents = async () => {
         })
       if (data[0]?.user) {
         setProgress(data[0].progress)
-        setQuestions(data[0].questions_remaining)
+        updateQuestions(data[0].questions_remaining)
+        // setQuestions(data[0].questions_remaining)
         setUserData(data[0])
       }
       else {
@@ -287,7 +350,7 @@ const getNftEvents = async () => {
 
   }, [sessionData?.data?.publicKey])
 
-  
+
   return (
     <main className={`flex w-full h-screen flex-col items-center justify-between bg-zinc-950 text-zinc-200 no-scrollbar ${inter.className}`}>
       <title>Pyre</title>
@@ -304,7 +367,7 @@ const getNftEvents = async () => {
 
 
             <div className='flex'>
-              <SignMessage/>
+              <SignMessage />
             </div>
 
           </div>

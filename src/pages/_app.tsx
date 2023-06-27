@@ -7,7 +7,7 @@ import { SessionProvider } from "next-auth/react";
 import React, { useMemo } from "react";
 import { ConnectionProvider, WalletProvider, } from "@solana/wallet-adapter-react";
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
-import { PhantomWalletAdapter } from "@solana/wallet-adapter-wallets";
+import { PhantomWalletAdapter, BackpackWalletAdapter } from "@solana/wallet-adapter-wallets";
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import { clusterApiUrl } from "@solana/web3.js";
 
@@ -22,6 +22,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const wallets = useMemo(
     () => [
       new PhantomWalletAdapter(),
+      new BackpackWalletAdapter()
     ],
     []
   );
