@@ -110,7 +110,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
 
         setTimeout(() => {
             setSelectedComponent('QuestionMenu')
-        }, 500)
+        }, 1000)
     }
 
     async function handleSubmit(event: any) {
@@ -165,7 +165,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
                 <div className='flex justify-center w-full h-max xl:h-full flex-col xl:items-center space-y-12'>
 
                     <div className='flex flex-col space-y-16 xl:space-y-0 xl:space-x-16 xl:items-center w-full h-full xl:flex-row'>
-                        <div className='flex rounded-lg xl:rounded-none flex-col items-center space-y-16 h-full bg-zinc-100 dark:bg-zinc-900 xl:w-1/2 overflow-y-scroll scrollbar'>
+                        <div className='flex rounded-lg xl:rounded-none flex-col items-center space-y-12 h-full bg-zinc-100 dark:bg-zinc-900 xl:w-1/2 overflow-y-scroll scrollbar'>
 
                             <div className='text-2xl xl:text-5xl font-semibold tracking-wider text-zinc-900 dark:text-zinc-200 w-full px-6 py-8'>{(question.name)}</div>
 
@@ -191,10 +191,10 @@ export default function Question({ setSelectedComponent, question, questions, pr
 
                         <div className='flex flex-col h-full space-y-8 px-8 justify-between rounded-lg xl:w-1/2'>
 
-                            <div className='flex flex-col w-full rounded-lg bg-zinc-800 overflow-x-scroll xl:overflow-hidden'>
+                            <div className='flex flex-col w-full h-full rounded-lg bg-zinc-800 overflow-x-scroll xl:overflow-hidden resize-y'>
 
-                                <div className='flex flex-row justify-between bg-zinc-200 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-300 font-medium p-3'>
-                                    <div className='flex font-medium tracking-widest text-zinc-200 py-1'>CODE SNIPPET</div>
+                                <div className='flex flex-row justify-between bg-zinc-200 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-300 font-medium px-3 py-2'>
+                                    <div className='flex text-md font-medium tracking-widest text-zinc-200'>CODE SNIPPET</div>
                                     <div onClick={() => {
                                         navigator.clipboard.writeText(question.code)
                                         setCopyCode("Copied!")
@@ -205,7 +205,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
 
                                         className={`flex duration-200 cursor-pointer rounded-lg hover:bg-zinc-300 dark:hover:bg-zinc-700 justify-center`}>
 
-                                        <div className='flex space-x-2 w-max px-2 py-1'>
+                                        <div className='flex space-x-2 w-max'>
                                             <div className=''>{copyCode}</div>
                                             <>{
                                                 (copyCode == "Copied!") ?
@@ -224,8 +224,10 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                     {question.code}
                                 </code></pre>
                             </div>
-
-                            <iframe src={question.replit} className='w-full h-1/3 rounded-lg' />
+                            
+                            <div className='flex flex-grow w-full'>
+                                <iframe src={question.replit} className='flex w-full h-full rounded-lg' />
+                            </div>
 
                             <div className='flex py-16 '>
                                 <form onSubmit={handleSubmit} className={`flex duration-200 ${(solved) ? (`border-green-500`) : (submit == false ? ('border-2 border-zinc-200 dark:border-zinc-700') : ('border-red-500 animate-shake'))} border-2 rounded-full w-full items-center justify-center`}>
