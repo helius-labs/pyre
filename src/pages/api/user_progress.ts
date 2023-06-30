@@ -16,7 +16,6 @@ export default async function handler(req: any, res: any) {
                 .upsert(user_data)
 
             res.status(200).json(data)
-
         };
 
     }

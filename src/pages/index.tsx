@@ -300,11 +300,21 @@ getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")
           questions_remaining: questions,
           progress: progress,
         });
-
     }
 
     if (sessionData?.data?.publicKey) {
       saveProgress()
+      mintCNFT()
+    }
+
+    async function mintCNFT() {
+      console.log('startcnft')
+      const { data } = await axios.post(`/api/mint_cnft`,
+        {
+          publicKey: sessionData.data.publicKey,
+        });
+      console.log('a')
+      console.log(data)
     }
   }, [progress])
 
@@ -357,8 +367,8 @@ getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")
       {selectedComponent === "Landing" ? (
         <>
 
-          <div className='flex flex-row justify-between w-full items-center p-4 py-4 border-b border-zinc-900'>
-            <div className='flex text-zinc-200 text-2xl font-bold px-6 space-x-4 select-none'>
+          <div className='flex flex-row justify-between w-full items-center p-4 border-b border-zinc-900'>
+            <div className='flex text-zinc-200 text-2xl font-bold xl:px-6 space-x-4 select-none'>
               <Image className='' alt="Helius" src="/helius.svg" width={24} height={24}></Image>
               <span>
                 PYRE

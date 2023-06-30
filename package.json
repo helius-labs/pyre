@@ -9,7 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@metaplex-foundation/mpl-bubblegum": "^0.7.0",
+    "@metaplex-foundation/mpl-token-metadata": "^2.12.0",
     "@noble/ed25519": "^2.0.0",
+    "@solana/spl-account-compression": "^0.1.8",
     "@solana/wallet-adapter-base": "^0.9.22",
     "@solana/wallet-adapter-react": "^0.15.32",
     "@solana/wallet-adapter-react-ui": "^0.9.31",
