@@ -21,11 +21,14 @@ import {
 } from "@solana/spl-account-compression";
 import { PROGRAM_ID as TOKEN_METADATA_PROGRAM_ID } from "@metaplex-foundation/mpl-token-metadata";
 
-async function createMerkle(publicKey: any) {
-
+async function createMerkle(walletAddress: any) {
+  let publicKey = new PublicKey(walletAddress);
   const MERKLE_TREE_KP: any = process.env.MERKLE_TREE_SRC
   const COLLECTION_MINT: any = process.env.COLLECTION_MINT
   const NFT_METADATA: any = process.env.NFT_METADATA
+  const RPC_URL:any = process.env.HELIUS_RPC
+
+  const connection = new Connection(RPC_URL);
 
   const merkleTree = Keypair.fromSecretKey(
     new Uint8Array(JSON.parse(MERKLE_TREE_KP.toString()))
@@ -60,7 +63,7 @@ async function createMerkle(publicKey: any) {
     [Buffer.from("collection_cpi", "utf8")],
     BUBBLEGUM_PROGRAM_ID
   );
-  console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+
   const ix = await createMintToCollectionV1Instruction(
     {
       merkleTree: merkleTree.publicKey,
@@ -96,15 +99,14 @@ async function createMerkle(publicKey: any) {
       },
     }
   );
-
-  console.log(ix, 'ix')
-
-  const transaction = new Transaction();
-  transaction.add(ix);
-
-  const serializedTransaction = transaction.serialize();
-  console.log(serializedTransaction, 'a')
-  return serializedTransaction
+  // let blockhash = (await connection.getLatestBlockhash('finalized')).blockhash;
+  // const transaction = new Transaction();
+  // transaction.add(ix);
+  // transaction.recentBlockhash = blockhash;
+  // transaction.feePayer = publicKey;
+  // const serializedTransaction = transaction.serialize();
+  // console.log(serializedTransaction, 'a')
+  return ix
 }
 
 export default async function handler(req: any, res: any) {
@@ -115,7 +117,7 @@ export default async function handler(req: any, res: any) {
       let publicKey = req.body.publicKey;
 
       let serializedTX = await createMerkle(publicKey)
-
+      console.log(serializedTX, 's')
       res.status(200).json(serializedTX)
     };
 
