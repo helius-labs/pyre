@@ -9,8 +9,6 @@ import 'highlight.js/styles/base16/nebula.css';
 import javascript from 'highlight.js/lib/languages/javascript';
 import Demo from './Demo';
 
-import Copy from '../../public/copy.svg';
-
 hljs.configure({
     ignoreUnescapedHTML: true
   });

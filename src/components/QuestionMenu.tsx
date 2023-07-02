@@ -1,13 +1,5 @@
 import AppBar from './AppBar';
-import End from './End';
 import { useEffect, useState } from "react";
-
-interface Questions {
-    name: string,
-    description: string,
-    difficulty: number,
-    tags: string[]
-}
 
 export default function QuestionMenu({ setSelectedComponent, progress, userData, questions, setQuestion }: any) {
     let [selectedTags, setSelectedTags] = useState<string[]>(["DAS", "RPC", "ENHANCED API", "NFT API"]);
@@ -65,10 +57,6 @@ export default function QuestionMenu({ setSelectedComponent, progress, userData,
                                 </div>
                             </div>
                         </div>
-                        {/* <div className='flex h-full w-2/3 py-2 px-3 w-2/3 rounded-r-lg bg-neutral-900 text-zinc-300 font-medium'>
-                            <div className=''>{questions[i].description}</div>
-                        </div> */}
-
                     </div>
                 )
             }
@@ -77,8 +65,6 @@ export default function QuestionMenu({ setSelectedComponent, progress, userData,
     }, [selectedTags])
 
     return (
-        // <div className='flex items-center h-full w-full flex-col bg-zinc-950 no-scrollbar'>
-
         <>
 
             <AppBar setSelectedComponent={setSelectedComponent} progress={progress} component="QuestionMenu" ></AppBar>

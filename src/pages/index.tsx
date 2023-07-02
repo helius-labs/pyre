@@ -9,7 +9,6 @@ import { useEffect, useState } from "react";
 import { SignMessage } from '../components/SignMessage';
 import { useSession } from "next-auth/react"
 import { Inter } from 'next/font/google'
-import { useWallet } from '@solana/wallet-adapter-react';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -333,7 +332,6 @@ getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")
       if (data[0]?.user) {
         setProgress(data[0].progress)
         updateQuestions(data[0].questions_remaining)
-        // setQuestions(data[0].questions_remaining)
         setUserData(data[0])
       }
       else {
