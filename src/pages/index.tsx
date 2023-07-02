@@ -1,23 +1,15 @@
 import Landing from '../components/Landing';
 import QuestionMenu from '../components/QuestionMenu';
 import Question from '../components/Question';
+import End from '../components/End';
 import axios from 'axios';
 import Demo from '../components/Demo'
 import Image from 'next/image';
 import { useEffect, useState } from "react";
 import { SignMessage } from '../components/SignMessage';
 import { useSession } from "next-auth/react"
-import { useWallet } from '@solana/wallet-adapter-react';
 import { Inter } from 'next/font/google'
-
-import {
-  Keypair,
-  PublicKey,
-  SystemProgram,
-  Transaction,
-  sendAndConfirmTransaction,
-  Connection
-} from "@solana/web3.js";
+import { useWallet } from '@solana/wallet-adapter-react';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -122,7 +114,7 @@ getAssetsByOwner();
 const getMetadata = async (context) => {
 
 
-  const url = "https://api.helius.xyz/v0/token-metadata?api-key=${process.env['HELIUS_KEY']}";
+  const url = "https://api.helius.xyz/v0/token-metadata?api-key=<api-key>=";
   const nftAddresses = [context];
 
   const response = await fetch(url, {
@@ -299,7 +291,6 @@ getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")
   ]
   const [questions, setQuestions] = useState(originalQuestions)
   const [userData, setUserData] = useState()
-  const { publicKey, signTransaction, sendTransaction } = useWallet();
 
   const sessionData: any = useSession();
 
@@ -313,54 +304,10 @@ getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")
         });
     }
 
-    if (sessionData?.data?.publicKey && publicKey) {
+    if (sessionData?.data?.publicKey) {
       saveProgress()
-      mintCNFT()
     }
 
-    async function mintCNFT() {
-      // const RPC_URL:any = process.env.HELIUS_RPC
-      // console.log(RPC_URL, 'a', process.env.HELIUS_RPC)
-      try {
-
-      const connection = new Connection("https://rpc-devnet.helius.xyz/?api-key=bab18f15-583b-41a2-b45d-e05fee975208");
-      console.log('startcnft')
-      const { data } = await axios.post(`/api/mint_cnft`,
-        {
-          publicKey: sessionData.data.publicKey,
-        });
-      
-      const COLLECTION_MINT: any = "Ga7KxzDd7HAW6pjK1wPPeGaqCtWusozigjnNF2R7DrbD"
-
-      const COLLECTION_KEY: any = new PublicKey(COLLECTION_MINT)
-
-      let blockhash = (await connection.getLatestBlockhash('finalized')).blockhash;
-      const transaction = new Transaction();
-      transaction.add(data);
-      transaction.recentBlockhash = blockhash;
-      if (publicKey){
-        transaction.feePayer = publicKey;
-      }
-
-      const sig = await sendAndConfirmTransaction(
-        connection,
-        transaction,
-        [COLLECTION_KEY],
-        {
-          commitment: "confirmed",
-          skipPreflight: true,
-        }
-      );
-
-      console.log("%%%%%%")
-      console.log(sig)
-      console.log("%%%%%%")
-
-      }
-      catch (err) {
-        console.log(err)
-      }
-    }
   }, [progress])
 
 
@@ -434,7 +381,14 @@ getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")
         //   <Guide setSelectedComponent={setSelectedComponent} progress={progress} walletConnect={walletConnect} ></Guide>
         // ) :
         (selectedComponent === "QuestionMenu") ? (
-          <QuestionMenu userData={userData} questions={questions} progress={progress} setProgress={setProgress} setQuestion={setQuestion} setSelectedComponent={setSelectedComponent} />
+          <>
+          {
+            (questions.length==0)?
+            (<End></End>)
+            :(<QuestionMenu userData={userData} questions={questions} progress={progress} setProgress={setProgress} setQuestion={setQuestion} setSelectedComponent={setSelectedComponent} />
+            )
+          }
+          </>
         ) : (
           <Question question={question} questions={questions} progress={progress} setQuestions={setQuestions} setProgress={setProgress} setSelectedComponent={setSelectedComponent} />
         )
