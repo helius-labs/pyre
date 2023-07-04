@@ -1,14 +1,15 @@
 import Landing from '../components/Landing';
 import QuestionMenu from '../components/QuestionMenu';
 import Question from '../components/Question';
+import End from '../components/End';
 import axios from 'axios';
 import Demo from '../components/Demo'
 import Image from 'next/image';
 import { useEffect, useState } from "react";
 import { SignMessage } from '../components/SignMessage';
 import { useSession } from "next-auth/react"
-
 import { Inter } from 'next/font/google'
+
 const inter = Inter({ subsets: ['latin'] })
 
 interface Questions {
@@ -112,7 +113,7 @@ getAssetsByOwner();
 const getMetadata = async (context) => {
 
 
-  const url = "https://api.helius.xyz/v0/token-metadata?api-key=${process.env['HELIUS_KEY']}";
+  const url = "https://api.helius.xyz/v0/token-metadata?api-key=<api-key>=";
   const nftAddresses = [context];
 
   const response = await fetch(url, {
@@ -289,7 +290,7 @@ getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")
   ]
   const [questions, setQuestions] = useState(originalQuestions)
   const [userData, setUserData] = useState()
-
+  const [mintedAward, setMintedAward] = useState(false);
   const sessionData: any = useSession();
 
   useEffect(() => {
@@ -299,14 +300,15 @@ getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")
           user: sessionData.data.publicKey,
           questions_remaining: questions,
           progress: progress,
+          minted_award: mintedAward
         });
-
     }
 
     if (sessionData?.data?.publicKey) {
       saveProgress()
     }
-  }, [progress])
+
+  }, [progress, mintedAward])
 
 
   useEffect(() => {
@@ -331,7 +333,6 @@ getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")
       if (data[0]?.user) {
         setProgress(data[0].progress)
         updateQuestions(data[0].questions_remaining)
-        // setQuestions(data[0].questions_remaining)
         setUserData(data[0])
       }
       else {
@@ -357,8 +358,8 @@ getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")
       {selectedComponent === "Landing" ? (
         <>
 
-          <div className='flex flex-row justify-between w-full items-center p-4 py-4 border-b border-zinc-900'>
-            <div className='flex text-zinc-200 text-2xl font-bold px-6 space-x-4 select-none'>
+          <div className='flex flex-row justify-between w-full items-center p-4 border-b border-zinc-900'>
+            <div className='flex text-zinc-200 text-2xl font-bold xl:px-6 space-x-4 select-none'>
               <Image className='' alt="Helius" src="/helius.svg" width={24} height={24}></Image>
               <span>
                 PYRE
@@ -379,7 +380,14 @@ getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")
         //   <Guide setSelectedComponent={setSelectedComponent} progress={progress} walletConnect={walletConnect} ></Guide>
         // ) :
         (selectedComponent === "QuestionMenu") ? (
-          <QuestionMenu userData={userData} questions={questions} progress={progress} setProgress={setProgress} setQuestion={setQuestion} setSelectedComponent={setSelectedComponent} />
+          <>
+          {
+            (questions.length==0)?
+            (<End setMintedAward={setMintedAward} setSelectedComponent={setSelectedComponent} progress={progress}></End>)
+            :(<QuestionMenu userData={userData} questions={questions} progress={progress} setProgress={setProgress} setQuestion={setQuestion} setSelectedComponent={setSelectedComponent} />
+            )
+          }
+          </>
         ) : (
           <Question question={question} questions={questions} progress={progress} setQuestions={setQuestions} setProgress={setProgress} setSelectedComponent={setSelectedComponent} />
         )

@@ -9,8 +9,6 @@ import 'highlight.js/styles/base16/nebula.css';
 import javascript from 'highlight.js/lib/languages/javascript';
 import Demo from './Demo';
 
-import Copy from '../../public/copy.svg';
-
 hljs.configure({
     ignoreUnescapedHTML: true
   });
@@ -165,9 +163,9 @@ export default function Question({ setSelectedComponent, question, questions, pr
                 <div className='flex justify-center w-full h-max xl:h-full flex-col xl:items-center space-y-12'>
 
                     <div className='flex flex-col space-y-16 xl:space-y-0 xl:space-x-16 xl:items-center w-full h-full xl:flex-row'>
-                        <div className='flex rounded-lg xl:rounded-none flex-col items-center space-y-12 h-full bg-zinc-100 dark:bg-zinc-900 xl:w-1/2 overflow-y-scroll scrollbar'>
+                        <div className='flex rounded-lg xl:rounded-none flex-col items-center space-y-8 xl:space-y-12 h-full bg-zinc-100 dark:bg-zinc-900 xl:w-1/2 overflow-y-scroll scrollbar'>
 
-                            <div className='text-2xl xl:text-5xl font-semibold tracking-wider text-zinc-900 dark:text-zinc-200 w-full px-6 py-8'>{(question.name)}</div>
+                            <div className='text-2xl xl:text-5xl font-semibold tracking-wider text-zinc-900 dark:text-zinc-200 w-full px-6 py-6 xl:py-8'>{(question.name)}</div>
 
                             <div className='flex w-full flex-col px-6'>
                                 <div className='flex text-md text-zinc-800 dark:text-zinc-200 rounded-md xl:text-lg tracking-wider'>{question.api == 'sol_held' ? (<Demo copyContext={copyContext}></Demo>) : (question.description)}</div>
@@ -189,7 +187,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
                             </div>
                         </div>
 
-                        <div className='flex flex-col h-full space-y-8 px-8 justify-between rounded-lg xl:w-1/2'>
+                        <div className='flex flex-col h-full space-y-8 px-0 xl:px-8 justify-between rounded-lg xl:w-1/2'>
 
                             <div className='flex flex-col w-full h-full rounded-lg bg-zinc-800 overflow-x-scroll xl:overflow-hidden resize-y'>
 
