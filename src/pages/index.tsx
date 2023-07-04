@@ -290,7 +290,7 @@ getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")
   ]
   const [questions, setQuestions] = useState(originalQuestions)
   const [userData, setUserData] = useState()
-
+  const [mintedAward, setMintedAward] = useState(false);
   const sessionData: any = useSession();
 
   useEffect(() => {
@@ -300,6 +300,7 @@ getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")
           user: sessionData.data.publicKey,
           questions_remaining: questions,
           progress: progress,
+          minted_award: mintedAward
         });
     }
 
@@ -307,7 +308,7 @@ getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")
       saveProgress()
     }
 
-  }, [progress])
+  }, [progress, mintedAward])
 
 
   useEffect(() => {
@@ -382,7 +383,7 @@ getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")
           <>
           {
             (questions.length==0)?
-            (<End></End>)
+            (<End setMintedAward={setMintedAward} setSelectedComponent={setSelectedComponent} progress={progress}></End>)
             :(<QuestionMenu userData={userData} questions={questions} progress={progress} setProgress={setProgress} setQuestion={setQuestion} setSelectedComponent={setSelectedComponent} />
             )
           }

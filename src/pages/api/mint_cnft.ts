@@ -120,6 +120,7 @@ async function mintCNFT(publicKey: any) {
       payerPubKey,
   ]);
 
+  return stx
   // console.log(`Transaction sent: ${stx}`);
 }
 
