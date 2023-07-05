@@ -383,7 +383,7 @@ getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")
           <>
           {
             (questions.length==0)?
-            (<End setMintedAward={setMintedAward} setSelectedComponent={setSelectedComponent} progress={progress}></End>)
+            (<End mintedAward={mintedAward} setMintedAward={setMintedAward} setSelectedComponent={setSelectedComponent} progress={progress}></End>)
             :(<QuestionMenu userData={userData} questions={questions} progress={progress} setProgress={setProgress} setQuestion={setQuestion} setSelectedComponent={setSelectedComponent} />
             )
           }
