@@ -7,7 +7,7 @@ export default function Hints({ content }:any) {
 
     for (let i:any = 0; i<content.length; i++) {
         hintDIVs.push(
-        <div key={i} className="flex w-full flex-col bg-zinc-200 dark:bg-zinc-800 rounded-lg cursor-pointer hover:bg-zinc-700 duration-200" onClick={() => {
+        <div key={i} className="flex w-full flex-col bg-zinc-200 dark:bg-transparent border-2 border-zinc-900 rounded-lg cursor-pointer hover:border-orange-400 duration-200" onClick={() => {
             let newArr:any = [...isActive]; 
             if (!(newArr.includes(i))){
                 newArr.push(i)

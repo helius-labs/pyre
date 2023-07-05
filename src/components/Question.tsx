@@ -5,7 +5,7 @@ import AppBar from './AppBar';
 import Hints from './Hints';
 import 'highlight.js/styles/default.css';
 import hljs from 'highlight.js';
-import 'highlight.js/styles/base16/nebula.css';
+import 'highlight.js/styles/github-dark.css';
 import javascript from 'highlight.js/lib/languages/javascript';
 import Demo from './Demo';
 
@@ -66,8 +66,15 @@ export default function Question({ setSelectedComponent, question, questions, pr
     const [submit, setSubmit] = useState(false);
     const [load, setLoad] = useState(false)
     const [cachedAnswer, setCachedAnswer] = useState('')
-    const [copyCode, setCopyCode] = useState('Copy')
+    const [copy, setCopy] = useState(<Image className='flex duration-200 opacity-70' alt="copy" src="/copy.svg" width={20} height={20}></Image>)
 
+    function copyConf() {
+        console.log(copy, 'c')
+        setCopy(<Image className='flex duration-200' alt="check" src="/check.svg" width={24} height={24}></Image>)
+        setTimeout(() => {
+            setCopy(<Image className='flex duration-200 opacity-70' alt="copy" src="/copy.svg" width={20} height={20}></Image>)
+        }, 500);
+    }
     let copyContext =
         <div onClick={() => {
             navigator.clipboard.writeText(context)
@@ -77,7 +84,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
             }, 1000);
         }}
 
-            className={`flex w-max font-medium text-zinc-900 dark:text-zinc-300 p-2 duration-200 bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700 space-x-2 cursor-pointer rounded-full px-4 py-2 justify-center`}>
+            className={`flex w-max font-medium text-zinc-900 dark:text-zinc-300 p-2 duration-200 bg-zinc-200 dark:bg-zinc-950 border-2 border-zinc-900 dark:hover:border-orange-400 space-x-2 cursor-pointer rounded-full px-4 py-2 justify-center`}>
             <div>{displayedContext}</div>
 
             <>{
@@ -163,12 +170,13 @@ export default function Question({ setSelectedComponent, question, questions, pr
                 <div className='flex justify-center w-full h-max xl:h-full flex-col xl:items-center space-y-12'>
 
                     <div className='flex flex-col space-y-16 xl:space-y-0 xl:space-x-16 xl:items-center w-full h-full xl:flex-row'>
-                        <div className='flex rounded-lg xl:rounded-none flex-col items-center space-y-8 xl:space-y-12 h-full bg-zinc-100 dark:bg-zinc-900 xl:w-1/2 overflow-y-scroll scrollbar'>
+
+                        <div className='flex rounded-lg xl:rounded-none flex-col items-center space-y-8 xl:space-y-8 justify-between h-full bg-zinc-100 dark:bg-zinc-950 xl:w-1/2 overflow-y-scroll scrollbar'>
 
                             <div className='text-2xl xl:text-5xl font-semibold tracking-wider text-zinc-900 dark:text-zinc-200 w-full px-6 py-6 xl:py-8'>{(question.name)}</div>
 
                             <div className='flex w-full flex-col px-6'>
-                                <div className='flex text-md text-zinc-800 dark:text-zinc-200 rounded-md xl:text-lg tracking-wider'>{question.api == 'sol_held' ? (<Demo copyContext={copyContext}></Demo>) : (question.description)}</div>
+                                <div className='flex text-md text-zinc-800 dark:text-zinc-400 rounded-md xl:text-lg tracking-wider'>{question.api == 'sol_held' ? (<Demo copyContext={copyContext}></Demo>) : (question.description)}</div>
                             </div>
 
                             <>
@@ -176,7 +184,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
                             </>
 
                             <div className='flex w-full flex-col space-y-4 px-6 pb-6'>
-                                <a href={question.docs} target='_blank' className='flex w-full bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700 text-lg tracking-widest text-zinc-900 dark:text-zinc-300 font-medium duration-200 rounded-lg px-4 py-3 justify-between'>
+                                <a href={question.docs} target='_blank' className='flex w-full dark:bg-zinc-950 border-2 border-zinc-900 hover:border-orange-400 text-lg tracking-widest text-zinc-900 dark:text-zinc-300 font-medium duration-200 rounded-lg px-4 py-3 justify-between'>
                                     <div className='flex'>
                                         DOCS
                                     </div>
@@ -189,7 +197,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
 
                         <div className='flex flex-col h-full space-y-8 px-0 xl:px-8 justify-between rounded-lg xl:w-1/2'>
 
-                            <div className='flex flex-col w-full h-full rounded-lg bg-zinc-800 overflow-x-scroll xl:overflow-hidden resize-y'>
+                            {/* <div className='flex flex-col w-full h-full rounded-lg bg-zinc-800 overflow-x-scroll xl:overflow-hidden resize-y'>
 
                                 <div className='flex flex-row justify-between bg-zinc-200 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-300 font-medium px-3 py-2'>
                                     <div className='flex text-md font-medium tracking-widest text-zinc-200'>CODE SNIPPET</div>
@@ -221,22 +229,27 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                 <pre className='flex w-full h-full bg-zinc-900 rounded-lg rounded-t-none '><code style={{ background: '#18181b' }} className="js no-scrollbar rounded-lg">
                                     {question.code}
                                 </code></pre>
-                            </div>
-                            
-                            <div className='flex flex-grow w-full'>
-                                <iframe src={question.replit} className='flex w-full h-full rounded-lg' />
+                            </div> */}
+
+                            <div className="mockup-code pb-0 mt-8 bg-zinc-950 bg-transparent border-2 border-zinc-900 overflow-scroll no-scrollbar">
+                                <pre className='flex'><code style={{ background: '#09090b' }} className="js overflow-x-scroll scrollbar rounded-lg">{question.code}</code></pre>
                             </div>
 
+                            
+                            <a target='_blank' href={question.replit} className='flex cursor-pointer flex-grow w-full border-2 border-zinc-900 rounded-2xl hover:border-orange-400 duration-200'>
+                                <iframe src={question.replit} className='flex w-full h-full rounded-2xl cursor-pointer'/>
+                            </a>
+
                             <div className='flex py-16 '>
-                                <form onSubmit={handleSubmit} className={`flex duration-200 ${(solved) ? (`border-green-500`) : (submit == false ? ('border-2 border-zinc-200 dark:border-zinc-700') : ('border-red-500 animate-shake'))} border-2 rounded-full w-full items-center justify-center`}>
+                                <form onSubmit={handleSubmit} className={`flex duration-200 ${(solved) ? (`border-green-500`) : (submit == false ? ('border-2 border-zinc-200 dark:border-zinc-900') : ('border-red-500 animate-shake'))} border-2 rounded-full w-full items-center justify-center`}>
                                     <input
                                         type="text"
                                         value={answer}
-                                        className="flex px-4 py-2 rounded-l-full w-full outline-0 bg-zinc-200 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-300 placeholder-zinc-500"
+                                        className="flex px-4 py-2 rounded-l-full w-full outline-0 bg-zinc-200 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-300 placeholder-zinc-500"
                                         onChange={(e: any) => setAnswer(e.target.value)}
                                         placeholder={question.example_answer}
                                     />
-                                    <button className='flex items-center justify-center h-10 p-2 px-4 rounded-r-full bg-zinc-200 dark:bg-zinc-800 font-bold text-white duration-200 cursor-pointer' type="submit">
+                                    <button className='flex items-center justify-center h-10 p-2 px-4 rounded-r-full bg-zinc-200 dark:bg-zinc-950 font-bold text-white duration-200 cursor-pointer' type="submit">
 
                                         <div className='flex justify-center items-center'>{(
                                             load ? (

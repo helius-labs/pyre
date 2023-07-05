@@ -15,6 +15,7 @@ export default function QuestionMenu({ setSelectedComponent, progress, userData,
             }
             else {
                 const index = selectedTags.findIndex((e: any) => e === tag);
+                // setSelectedComponent([])
                 newArray.splice(index, 1)
                 setSelectedTags(newArray)
             }
@@ -41,7 +42,7 @@ export default function QuestionMenu({ setSelectedComponent, progress, userData,
                 organizedQuestions.push(
 
                     <div key={questions[i].api} onClick={() => { setSelectedComponent('Question'); setQuestion(questions[i]) }}
-                        className={`flex bg-zinc-800 justify-between items-center animate-fade w-full h-max rounded-lg hover:bg-zinc-700 duration-200 cursor-pointer`}>
+                        className={`flex bg-zinc-800 justify-between items-center animate-fade animate-fade-out w-full h-max rounded-lg hover:bg-zinc-700 duration-200 cursor-pointer`}>
 
                         <div className='flex rounded-lg w-full xl:w-2/3'>
                             <div className='flex flex-col w-10 space-y-2 p-2'>

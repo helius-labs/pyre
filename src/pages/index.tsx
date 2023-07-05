@@ -32,7 +32,7 @@ export default function Home() {
   const [progress, setProgress] = useState(0)
   const originalQuestions = [
     {
-      name: "Solana Balance",
+      name: "Native Balance",
       description: <Demo></Demo>,
       difficulty: 1,
       api: "sol_held",
@@ -58,7 +58,7 @@ getBalances();
       tags: ["ENHANCED API"]
     },
     {
-      name: "Number of NFTs held by a wallet",
+      name: "Number of NFTs Held",
       description: "You are provided a wallet address. Make use of Helius's service to determine the number of NFTs held by the provided wallet.",
       difficulty: 1,
       api: 'nfts_held',
@@ -177,7 +177,7 @@ getAsset();
       tags: ["DAS", "RPC"]
     },
     {
-      name: "Epoch time of a transaction",
+      name: "Transaction Epoch",
       description: "You are provided the signature of a transaction. Make use of Helius's services to identify the time at which the provided transaction took place.",
       difficulty: 1,
       api: 'epoch_tx',
@@ -210,7 +210,7 @@ const parseTransaction = async () => {
       tags: ["ENHANCED API"]
     },
     {
-      name: "First transaction of a wallet",
+      name: "First Transaction",
       description: "You are provided a wallet address. Make use of Helius's services in order to retrieve the first transaction signature of the provided wallet.",
       difficulty: 2,
       api: "first_tx",
@@ -236,7 +236,7 @@ const parseTransactions = async () => {
       tags: ["RPC"]
     },
     {
-      name: "Sale activity of an NFT",
+      name: "Sale Activity of an NFT",
       description: "You are provided a token address. Make use of Helius's services in order to find the number of times it has been sold.",
       difficulty: 1,
       api: "times_sold",

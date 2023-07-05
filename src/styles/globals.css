@@ -7,7 +7,11 @@
     body {
         background-color: rgb(9 9 11);
     }
-
+    ::selection {
+      background: #fb923c;
+      color: #000
+    }
+    
     .no-scrollbar::-webkit-scrollbar {
         display: none;
     }
@@ -22,7 +26,7 @@
       }
     
       .scrollbar::-webkit-scrollbar-thumb {
-        background: #27272a;
+        background: #18181b;
         border-radius: 100vh;
       }
 
