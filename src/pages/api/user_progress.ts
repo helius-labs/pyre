@@ -8,7 +8,8 @@ export default async function handler(req: any, res: any) {
             let user_data = {
                 user: req.body.user,
                 questions_remaining: req.body.questions_remaining,
-                progress: req.body.progress
+                progress: req.body.progress,
+                minted_award: req.body.minted_award
             }
 
             const { data, error } = await supabase

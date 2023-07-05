@@ -128,12 +128,13 @@ export default async function handler(req: any, res: any) {
 
   try {
     if (req.method === "POST") {
-
+      if (!req.body.publicKey) {
+        throw ("Wallet not connected!")
+      }
       let publicKey = req.body.publicKey;
       let serializedTX = await mintCNFT(publicKey)
       res.status(200).json(serializedTX)
     };
-
   }
 
   catch (err) { console.log(err) }

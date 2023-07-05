@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
-export default function End({ setSelectedComponent, progress, setMintedAward }) {
+export default function End({ setSelectedComponent, progress, setMintedAward, mintedAward }) {
     const { publicKey } = useWallet();
 
     const [tx, setTX] = useState('')
@@ -23,13 +23,19 @@ export default function End({ setSelectedComponent, progress, setMintedAward }) 
     }
 
     async function mintCNFT() {
-        const { data } = await axios.post(`/api/mint_cnft`,
-            {
-                publicKey: publicKey,
-            });
-        console.log(data, 'a')
-        setMintedAward(true)
-        setTX(data)
+        try {
+            const { data, error } = await axios.post(`/api/mint_cnft`,
+                {
+                    publicKey: publicKey,
+                });
+            console.log(data, 'a')
+            setMintedAward(true)
+            setTX(data)
+        }
+        catch (err) {
+            console.log('err', err, error)
+            setTX("error")
+        }
     }
     return (
 
@@ -37,7 +43,7 @@ export default function End({ setSelectedComponent, progress, setMintedAward }) 
             <AppBar setSelectedComponent={setSelectedComponent} progress={progress} component="QuestionMenu" ></AppBar>
 
             <div className='flex flex-col w-full h-full items-center justify-center py-16'>
-{/* 
+                {/* 
                 <div className='flex items-center justify-center md:items-center flex-row space-x-4 font-extrabold text-7xl leading-normal'>
                     <span className='flex leading-none'>you have reached</span>
                     <span className='flex text-orange-400 leading-none'>the end!</span>
@@ -52,8 +58,14 @@ export default function End({ setSelectedComponent, progress, setMintedAward }) 
                     <button htmlFor="my_modal_7"
                         className="flex text-2xl text-zinc-800 font-medium tracking-widest duration-200 items-center justify-center px-12 xl:px-12 py-4 rounded-full overflow-show bg-orange-400 hover:bg-orange-300"
                         onClick={() => {
-                            mintCNFT(publicKey);
+
                             window.mint_modal.showModal()
+                            if (!mintedAward) {
+                                mintCNFT(publicKey);
+                            }
+                            else {
+                                setTX("error")
+                            }
                         }}
                     >
                         mint cnft
@@ -63,8 +75,17 @@ export default function End({ setSelectedComponent, progress, setMintedAward }) 
                         <form method="dialog" className="modal-box bg-zinc-900 space-y-6">
 
                             {
-                                (tx) ? (
-                                    <>
+                                (tx) ? 
+                                    (tx==="error")?
+                                (
+                                    <div className='flex flex-col space-y-8 py-8 items-center justify-center'>
+                                        <Image className='animate-pulse' alt="Helius" src="/helius.svg" width={150} height={150}></Image>
+                                        <div className='flex flex-col space-y-4 text-center'>
+                                            <div className='text-3xl font-bold'>An error occurred!</div>
+                                            <div className='text-md text-zinc-500'>Common errors include, not connecting your wallet and already minting a cNFT! Visit the <a className='text-blue-500' href='https://discord.gg/helius' target='_blank'>Helius Discord</a> for more help!</div>
+                                        </div>
+                                    </div>
+                                ):(
                                         <div className='flex justify-center items-center py-8 flex-col space-y-8'>
 
                                             <img className="flex w-2/3 rounded-md border border-zinc-800" src="/pyre-trophy.png"></img>
@@ -93,8 +114,7 @@ export default function End({ setSelectedComponent, progress, setMintedAward }) 
                                             </div>
 
                                         </div>
-                                    </>
-                                ) : (
+                                ): ( // quat statement and modal for error
                                     <div className='flex flex-col space-y-8 py-8 items-center justify-center'>
                                         <Image className='animate-pulse' alt="Helius" src="/helius.svg" width={150} height={150}></Image>
                                         <div className='flex flex-col space-y-4'>
