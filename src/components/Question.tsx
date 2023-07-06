@@ -182,15 +182,16 @@ export default function Question({ setSelectedComponent, question, questions, pr
 
                         <div className='flex rounded-lg xl:rounded-none flex-col items-center space-y-8 xl:space-y-8 justify-between h-full bg-zinc-100 dark:bg-zinc-950 xl:w-1/2 overflow-y-scroll scrollbar'>
 
+                            <div className='flex w-full flex-col'>
                             <div className='text-2xl xl:text-5xl font-semibold tracking-wider text-zinc-900 dark:text-zinc-200 w-full px-6 py-6 xl:py-8'>{(question.name)}</div>
 
                             <div className='flex w-full flex-col px-6'>
                                 <div className='flex text-md text-zinc-800 dark:text-zinc-400 rounded-md xl:text-lg tracking-wider'>
                                     {question.api == 'sol_held' ? (
-                                    <Demo copyContext={copyContext}></Demo>
+                                    <Demo copyContext={copyContext} handleCorrect={handleCorrect}></Demo>
                                     ) : (question.description)}</div>
                             </div>
-
+                            </div>
                             <>
                                 {question.api == 'sol_held' ? (<div></div>) : (copyContext)}
                             </>

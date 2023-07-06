@@ -4,7 +4,7 @@ import hljs from 'highlight.js';
 import 'highlight.js/styles/base16/nebula.css';
 import javascript from 'highlight.js/lib/languages/javascript';
 
-export default function Demo({ copyContext }: any) {
+export default function Demo({ copyContext, handleCorrect }: any) {
 
     const [context, setContext] = useState('G9cBr5yC67Z39mGNDY6PWcAn2a5XJLH9b2PFAVRQ7sFr')
 
@@ -15,11 +15,16 @@ export default function Demo({ copyContext }: any) {
     return (
         <div className='flex max-w-full flex-col space-y-12'>
             
+            <div onClick={()=>{handleCorrect()}} className="absolute cursor-pointer top-8 right-8 z-20 text-lg text-zinc-800 font-medium tracking-widest duration-200 items-center justify-center px-8 py-2 rounded-md overflow-show bg-orange-400 hover:bg-orange-300">
+                skip demo
+            </div>
+
+            <div className='flex text-md font-medium text-zinc-900 dark:text-zinc-300 rounded-md xl:text-lg tracking-wider'>
+                You are provided a wallet address. Make use of Helius' services in order to retrieve the wallet's native balance and convert into SOL. For this question, the answer has to be inputted to the nearest SOL.
+            </div>
+
             <div className='flex w-full justify-center'>
             {copyContext}
-            </div>
-            <div className='flex text-md font-medium text-zinc-900 dark:text-zinc-400 rounded-md xl:text-lg tracking-wider'>
-                You are provided a wallet address. Make use of Helius' services in order to retrieve the wallet's native balance and convert into SOL. For this question, the answer has to be inputted to the nearest SOL.
             </div>
 
             <div className='flex flex-col space-y-4'>
