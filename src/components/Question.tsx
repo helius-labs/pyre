@@ -11,7 +11,7 @@ import Demo from './Demo';
 
 hljs.configure({
     ignoreUnescapedHTML: true
-  });
+});
 hljs.registerLanguage('javascript', javascript);
 
 export default function Question({ setSelectedComponent, question, questions, progress, setProgress, setQuestions }: any) {
@@ -67,6 +67,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
     const [load, setLoad] = useState(false)
     const [cachedAnswer, setCachedAnswer] = useState('')
     const [copy, setCopy] = useState(<Image className='flex duration-200 opacity-70' alt="copy" src="/copy.svg" width={20} height={20}></Image>)
+    const [codeOutput, setCodeOutput] = useState("Run code for example output.")
 
     function copyConf() {
         console.log(copy, 'c')
@@ -100,7 +101,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
 
     useEffect(() => {
         hljs.initHighlighting();
-    }, []);
+    }, [codeOutput]);
 
     function handleCorrect() {
         setSolved(true);
@@ -118,6 +119,14 @@ export default function Question({ setSelectedComponent, question, questions, pr
         }, 1000)
     }
 
+    async function questionQuery(type: string) {
+        let response = await axios.post(`/api/${question.api}`, { context: context, type: type });
+        if (type == "example") {
+            setCodeOutput(JSON.stringify(response.data, null, 4))
+        }
+        return response.data
+    }
+
     async function handleSubmit(event: any) {
         event.preventDefault();
         if (cachedAnswer) {
@@ -131,8 +140,8 @@ export default function Question({ setSelectedComponent, question, questions, pr
         }
 
         setLoad(true)
-        const response = await axios.post(`/api/${question.api}`, { context: context });
-        setCachedAnswer(response.data)
+        const response = await questionQuery("answer")
+        setCachedAnswer(response)
         setSubmit(true)
         try {
             if (response.data == answer) {
@@ -156,7 +165,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
         )
     }
 
-    if ((progress!=0)&&question.api=="sol_held"){
+    if ((progress != 0) && question.api == "sol_held") {
         setSelectedComponent("QuestionMenu")
     }
 
@@ -176,7 +185,10 @@ export default function Question({ setSelectedComponent, question, questions, pr
                             <div className='text-2xl xl:text-5xl font-semibold tracking-wider text-zinc-900 dark:text-zinc-200 w-full px-6 py-6 xl:py-8'>{(question.name)}</div>
 
                             <div className='flex w-full flex-col px-6'>
-                                <div className='flex text-md text-zinc-800 dark:text-zinc-400 rounded-md xl:text-lg tracking-wider'>{question.api == 'sol_held' ? (<Demo copyContext={copyContext}></Demo>) : (question.description)}</div>
+                                <div className='flex text-md text-zinc-800 dark:text-zinc-400 rounded-md xl:text-lg tracking-wider'>
+                                    {question.api == 'sol_held' ? (
+                                    <Demo copyContext={copyContext}></Demo>
+                                    ) : (question.description)}</div>
                             </div>
 
                             <>
@@ -184,7 +196,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
                             </>
 
                             <div className='flex w-full flex-col space-y-4 px-6 pb-6'>
-                                <a href={question.docs} target='_blank' className='flex w-full dark:bg-zinc-950 border-2 border-zinc-900 hover:border-orange-400 text-lg tracking-widest text-zinc-900 dark:text-zinc-300 font-medium duration-200 rounded-lg px-4 py-3 justify-between'>
+                                <a href={question.docs} target='_blank' className='flex w-full dark:bg-zinc-950 border border-zinc-900 hover:border-orange-400 text-lg tracking-widest text-zinc-900 dark:text-zinc-300 font-medium duration-200 rounded-lg px-4 py-3 justify-between'>
                                     <div className='flex'>
                                         DOCS
                                     </div>
@@ -230,18 +242,70 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                     {question.code}
                                 </code></pre>
                             </div> */}
-
-                            <div className="mockup-code pb-0 mt-8 bg-zinc-950 bg-transparent border-2 border-zinc-900 overflow-scroll no-scrollbar">
+                            {/* 
+                            <div className="mockup-code pb-0 mt-8 bg-zinc-950 bg-transparent border border-zinc-900 overflow-scroll no-scrollbar">
                                 <pre className='flex'><code style={{ background: '#09090b' }} className="js overflow-x-scroll scrollbar rounded-lg">{question.code}</code></pre>
                             </div>
 
-                            
-                            <a target='_blank' href={question.replit} className='flex cursor-pointer flex-grow w-full border-2 border-zinc-900 rounded-2xl hover:border-orange-400 duration-200'>
-                                <iframe src={question.replit} className='flex w-full h-full rounded-2xl cursor-pointer'/>
-                            </a>
+                            <div className='flex flex-row space-x-8'>
+                                <div className='flex opacity-60 hover:opacity-100 tracking-widest text-xs border border-zinc-900 w-max px-2 h-8 rounded-md justify-center items-center hover:border-orange-400 duration-200 cursor-pointer text-zinc-200 hover:text-orange-400'>
+                                    <svg className='text-current' width={20} fill="currentColor" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg" transform="matrix(-1, 0, 0, 1, 0, 0)" stroke="currentColor"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M694.018 926.244c-27.296 18.796-27.3 49.269 0 68.067l509.836 351.074c27.296 18.797 49.424 7.18 49.424-25.959V601.13c0-33.133-22.125-44.757-49.424-25.959L694.018 926.244Z" fill-rule="evenodd"></path> </g></svg>
+                                    <span className='flex font-medium text-center items-center'>RUN</span>
+                                </div>
+                                <div className='flex opacity-60 hover:opacity-100 tracking-widest text-xs border border-zinc-900 w-max px-2 h-8 rounded-md justify-center items-center hover:border-orange-400 duration-200 cursor-pointer text-zinc-200 hover:text-orange-400'>
+                                    <svg className="text-current" width={20} fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M21,8H9A1,1,0,0,0,8,9V21a1,1,0,0,0,1,1H21a1,1,0,0,0,1-1V9A1,1,0,0,0,21,8ZM20,20H10V10H20ZM6,15a1,1,0,0,1-1,1H3a1,1,0,0,1-1-1V3A1,1,0,0,1,3,2H15a1,1,0,0,1,1,1V5a1,1,0,0,1-2,0V4H4V14H5A1,1,0,0,1,6,15Z"></path></g></svg>
+                                </div>
+                            </div>
+                            <div className="mockup-code bg-zinc-950 border border-zinc-900">
+                                <pre className="flex flex-row mb-0"><code style={{ background: '#09090b' }}>{3.304}</code></pre>
+                            </div> */}
 
-                            <div className='flex py-16 '>
-                                <form onSubmit={handleSubmit} className={`flex duration-200 ${(solved) ? (`border-green-500`) : (submit == false ? ('border-2 border-zinc-200 dark:border-zinc-900') : ('border-red-500 animate-shake'))} border-2 rounded-full w-full items-center justify-center`}>
+                            <div className='mt-8 space-y-0 h-full'>
+
+                                <div className='flex flex-row space-x-8 w-full justify-between items-center border border-zinc-900 rounded-t-lg px-4 py-2'>
+
+                                    <div className='flex tracking-widest text-zinc-400 font-black text-sm'>DEMO</div>
+
+                                    <div className='flex flex-row space-x-4'>
+                                        <div onClick={() => { {
+                                            if (codeOutput=="Run code for example output."){questionQuery("example"); setCodeOutput("Loading...")}} }} className='flex space-x-1 hover:opacity-100 tracking-widest text-xs w-max h-8 rounded-md justify-center items-center hover:border-orange-400 duration-200 cursor-pointer text-zinc-400 hover:text-orange-400'>
+
+                                            <>{
+                                                (codeOutput == "e") ? (
+                                                    <svg className="flex animate-spin h-3 w-3 text-black dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                                    </svg>
+                                                ) : (
+                                                    <svg className='text-current' width={20} fill="currentColor" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg" transform="matrix(-1, 0, 0, 1, 0, 0)" stroke="currentColor"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M694.018 926.244c-27.296 18.796-27.3 49.269 0 68.067l509.836 351.074c27.296 18.797 49.424 7.18 49.424-25.959V601.13c0-33.133-22.125-44.757-49.424-25.959L694.018 926.244Z" fill-rule="evenodd"></path> </g></svg>
+
+                                                )
+                                            }</>
+
+                                            <span className='flex font-bold text-center items-center'>RUN</span>
+                                        </div>
+                                        {/* <div className='flex hover:opacity-100 tracking-widest text-xs border-zinc-900 w-max px-2 h-8 rounded-md justify-center items-center hover:border-orange-400 duration-200 cursor-pointer text-zinc-400 hover:text-orange-400'>
+                                            <svg className="text-current" width={20} fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M21,8H9A1,1,0,0,0,8,9V21a1,1,0,0,0,1,1H21a1,1,0,0,0,1-1V9A1,1,0,0,0,21,8ZM20,20H10V10H20ZM6,15a1,1,0,0,1-1,1H3a1,1,0,0,1-1-1V3A1,1,0,0,1,3,2H15a1,1,0,0,1,1,1V5a1,1,0,0,1-2,0V4H4V14H5A1,1,0,0,1,6,15Z"></path></g></svg>
+                                        </div> */}
+                                    </div>
+                                </div>
+
+                                <div className="pb-0 mt-8 bg-zinc-950 bg-transparent border border-t-0 border-b-0 border-zinc-900 overflow-scroll no-scrollbar">
+                                    <pre className='flex'><code style={{ background: '#09090b' }} className="js overflow-x-scroll scrollbar rounded-lg">{question.code}</code></pre>
+                                </div>
+
+                                <div className="bg-zinc-950 border border-zinc-900 rounded-b-lg max-h-96">
+                                    <pre className="flex h-1/3 max-h-96 flex-row mb-0 overflow-hidden"><code style={{ background: '#09090b' }} className="flex w-full border-b border-zinc-900 js rounded-lg scrollbar max-h-96">{codeOutput}</code></pre>
+                                </div>
+                            </div>
+
+
+                            {/* <a target='_blank' href={question.replit} className='flex cursor-pointer flex-grow w-full border border-zinc-900 rounded-2xl hover:border-orange-400 duration-200'>
+                                <iframe src={question.replit} className='flex w-full h-full rounded-2xl cursor-pointer'/>
+                            </a> */}
+
+                            <div className='flex pb-16 '>
+                                <form onSubmit={handleSubmit} className={`flex duration-200 ${(solved) ? (`border-green-500`) : (submit == false ? ('border border-zinc-200 dark:border-zinc-900') : ('border-red-500 animate-shake'))} border rounded-full w-full items-center justify-center`}>
                                     <input
                                         type="text"
                                         value={answer}

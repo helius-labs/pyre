@@ -11,23 +11,32 @@
       background: #fb923c;
       color: #000
     }
-    
+    svg {
+      color: #fff
+    }
+    .filter-orange:hover {
+      filter: invert(72%) sepia(12%) saturate(6021%) hue-rotate(332deg) brightness(102%) contrast(97%);
+    }
     .no-scrollbar::-webkit-scrollbar {
         display: none;
     }
-    
+    ::-webkit-scrollbar-corner {
+      background: rgba(0,0,0,0);
+    }
     .no-scrollbar {
         -ms-overflow-style: none;
         scrollbar-width: none;
     }
     .scrollbar::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
+        width: 6px;
+        height: 6px;
       }
     
       .scrollbar::-webkit-scrollbar-thumb {
         background: #18181b;
         border-radius: 100vh;
+        scroll-padding: 8px;
+        padding: 8px;
       }
 
       /* .scrollbar::-webkit-scrollbar-thumb:hover {

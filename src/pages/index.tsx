@@ -42,8 +42,8 @@ export default function Home() {
       hints: ["As the data returned in the Balances API is returned in terms of Lamports, you'll need to divide by 1 billion for an accurate SOL answer.",
         "You can call the native javascript function of variable.toFixed(0) to round your answer to the nearest SOL, this is necessary for this question.",
         "If you're using the Balances API, the amount of SOL held is contained in the property 'nativeBalance'."],
-      code: `
-const url = "https://api.helius.xyz/v0/addresses/<address>/balances?api-key=<api-key>";
+      code:
+`const url = "https://api.helius.xyz/v0/addresses/<address>/balances?api-key=<api-key>";
 
 const getBalances = async () => {
   const response = await fetch(url);
@@ -51,8 +51,7 @@ const getBalances = async () => {
   console.log("balances: ", data);
 };
 
-getBalances();      
-      `,
+getBalances();`,
       docs: "https://docs.helius.xyz/solana-apis/balances-api",
       replit: "https://replit.com/@TideLaw/pyre-demo?embed=true",
       tags: ["ENHANCED API"]
@@ -220,8 +219,8 @@ const parseTransaction = async () => {
       hints: ["There are two endpoints you can use for this question, one being the provided /v0/addresses/<address>/transactions and the other by querying directly through an RPC.",
         "Depending on the wallet provided, you may need to paginate through all their transactions.",
         "If you're using the RPC, a quick way to check would be to use the before and after properties, if no transactions occur before your answer for the transaction, it is the first transaction to take place!"],
-      code: `
-const url = "https://api.helius.xyz/v0/addresses/<address>/transactions?api-key=<your-key>";
+      code: 
+`const url = "https://api.helius.xyz/v0/addresses/<address>/transactions?api-key=<your-key>";
 
 const parseTransactions = async () => {
   const response = await fetch(url);
@@ -229,8 +228,7 @@ const parseTransactions = async () => {
   const data = await response.json();
 
   console.log("parsed transactions: ", data);
-};
-      `,
+};`,
       docs: "https://docs.helius.xyz/solana-apis/enhanced-transactions-api/parsed-transaction-history",
       replit: "https://replit.com/@TideLaw/pyre-first-tx?embed=true",
       tags: ["RPC"]
@@ -319,6 +317,7 @@ getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")
       let questionNames = originalQuestions.map((e: any) => e.name)
 
       for (let i = 0; i < questions.length; i++) {
+        console.log(questions[i], i, questions)
         updatedQuestions.push(originalQuestions[questionNames.indexOf(questions[i].name)])
       }
       setQuestions(updatedQuestions)

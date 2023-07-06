@@ -14,6 +14,10 @@ export default function Demo({ copyContext }: any) {
 
     return (
         <div className='flex max-w-full flex-col space-y-12'>
+            
+            <div className='flex w-full justify-center'>
+            {copyContext}
+            </div>
             <div className='flex text-md font-medium text-zinc-900 dark:text-zinc-400 rounded-md xl:text-lg tracking-wider'>
                 You are provided a wallet address. Make use of Helius' services in order to retrieve the wallet's native balance and convert into SOL. For this question, the answer has to be inputted to the nearest SOL.
             </div>
@@ -48,7 +52,7 @@ export default function Demo({ copyContext }: any) {
 
                     <div className='flex w-full flex-col space-y-6 items-start'>
                         <div>Once you have replaced the URL variable with the address provided, you can now input your API key, your complete URL should now look something like this:</div>
-                        <div className='flex w-full rounded-lg border border-zinc-800 bg-zinc-950'>
+                        <div className='flex w-full rounded-lg border border-zinc-900 bg-zinc-950'>
 
                             <pre className='flex w-full bg-zinc-900 rounded-2xl overflow-x-scroll no-scrollbar'><code style={{ background: '#09090b' }} className="js rounded-2xl w-full overflow-x-scroll no-scrollbar">
                                 {`const url = "https://api.helius.xyz/v0/addresses/${context}/balances?api-key=<your-key>";`}
@@ -58,7 +62,7 @@ export default function Demo({ copyContext }: any) {
 
                     <div className='flex w-full flex-col space-y-6 items-start'>
                         <div>You can now run the code and it should return something like this:</div>
-                        <div className='flex w-full rounded-lg border border-zinc-800 bg-zinc-950'>
+                        <div className='flex w-full rounded-lg border border-zinc-900 bg-zinc-950'>
 
                             <pre className='flex w-full bg-zinc-900 rounded-2xl overflow-x-scroll no-scrollbar'><code style={{ background: '#09090b' }} className="js rounded-2xl w-full overflow-x-scroll no-scrollbar">
 {`balances:  {
@@ -78,7 +82,7 @@ export default function Demo({ copyContext }: any) {
 
                     <div className='flex w-full flex-col space-y-6 items-start'>
                         <div>The question asks for the native balance, or the amount of SOL a wallet has. From the data returned, we can determine it to be 7879160. However, this value is in Lamports, we'll have to convert it to what we're familiar with, SOL. As 1 SOL is equivalent to 1 billion lamports, we'll need to divide by 1 billion and round to the nearest SOL.</div>
-                        <pre className='flex w-full bg-zinc-900 border border-zinc-800 rounded-2xl overflow-x-scroll no-scrollbar'><code style={{ background: '#09090b' }} className="js rounded-2xl w-full overflow-x-scroll no-scrollbar">
+                        <pre className='flex w-full bg-zinc-900 border border-zinc-900 rounded-2xl overflow-x-scroll no-scrollbar'><code style={{ background: '#09090b' }} className="js rounded-2xl w-full overflow-x-scroll no-scrollbar">
                             {`console.log((data.nativeBalance/1000000000).toFixed(0));`}
                         </code></pre>
 
