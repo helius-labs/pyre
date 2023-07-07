@@ -117,13 +117,14 @@ export default function Question({ setSelectedComponent, question, questions, pr
     }
 
     async function questionQuery(type: string) {
+        console.log(codeOutput, 'codeO')
         let response = await axios.post(`/api/${question.api}`, { context: context, type: type });
         if (type == "example") {
             setCodeOutput(JSON.stringify(response.data, null, 4))
         }
         return response.data
     }
-    // BUG FIRST SUBMIT FAILS, SECOND WORKs
+
     async function handleSubmit(event: any) {
         event.preventDefault();
         if (cachedAnswer) {
@@ -264,26 +265,27 @@ export default function Question({ setSelectedComponent, question, questions, pr
 
                                     <div className='flex tracking-widest text-zinc-400 font-black text-sm'>DEMO</div>
 
-                                    <div className='flex flex-row space-x-4'>
+                                    <div className='flex flex-row space-x-4 items-center justify-center'>
                                         <div onClick={() => {
                                             {
                                                 if (codeOutput == "Run code for example output.") { questionQuery("example"); setCodeOutput("Loading...") }
                                             }
-                                        }} className='flex space-x-1 hover:opacity-100 tracking-widest text-xs w-max h-8 rounded-md justify-center items-center hover:border-orange-400 duration-200 cursor-pointer text-zinc-400 hover:text-orange-400'>
+                                        }} className='flex space-x-2 hover:opacity-100 tracking-widest text-xs w-max h-8 rounded-md justify-center items-center hover:border-orange-400 duration-200 cursor-pointer text-zinc-400 hover:text-orange-400'>
 
                                             <>{
-                                                (codeOutput == "e") ? (
-                                                    <svg className="flex animate-spin h-3 w-3 text-black dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                (codeOutput == "Loading...") ? (
+
+                                                    <svg className="flex text-current animate-spin" width={20} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                                                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                                     </svg>
                                                 ) : (
-                                                    <svg className='text-current' width={20} fill="currentColor" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg" transform="matrix(-1, 0, 0, 1, 0, 0)" stroke="currentColor"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M694.018 926.244c-27.296 18.796-27.3 49.269 0 68.067l509.836 351.074c27.296 18.797 49.424 7.18 49.424-25.959V601.13c0-33.133-22.125-44.757-49.424-25.959L694.018 926.244Z" fill-rule="evenodd"></path> </g></svg>
+                                                    <svg className='flex text-current' width={20} fill="currentColor" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg" transform="matrix(-1, 0, 0, 1, 0, 0)" stroke="currentColor"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M694.018 926.244c-27.296 18.796-27.3 49.269 0 68.067l509.836 351.074c27.296 18.797 49.424 7.18 49.424-25.959V601.13c0-33.133-22.125-44.757-49.424-25.959L694.018 926.244Z" fill-rule="evenodd"></path> </g></svg>
 
                                                 )
                                             }</>
 
-                                            <span className='flex font-bold text-center items-center'>RUN</span>
+                                            <span className='flex font-bold text-center justify-center items-center'>RUN</span>
                                         </div>
                                         <div className='flex hover:opacity-100 tracking-widest text-xs border-zinc-900 w-max px-2 h-8 rounded-md justify-center items-center hover:border-orange-400 duration-200 cursor-pointer text-zinc-400 hover:text-orange-400'>
                                             <svg className="text-current" width={20} fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M21,8H9A1,1,0,0,0,8,9V21a1,1,0,0,0,1,1H21a1,1,0,0,0,1-1V9A1,1,0,0,0,21,8ZM20,20H10V10H20ZM6,15a1,1,0,0,1-1,1H3a1,1,0,0,1-1-1V3A1,1,0,0,1,3,2H15a1,1,0,0,1,1,1V5a1,1,0,0,1-2,0V4H4V14H5A1,1,0,0,1,6,15Z"></path></g></svg>
