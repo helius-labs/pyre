@@ -164,6 +164,7 @@ const getAsset = async () => {
   const { result } = await response.json();
   console.log("Asset: ", result);
 };
+
 getAsset();`,
       docs: "https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset",
       tags: ["DAS", "RPC"]

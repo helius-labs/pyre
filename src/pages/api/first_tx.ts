@@ -27,18 +27,37 @@ async function firstTransaction (context:string) {
   
 };
 
+const getExample = async (context:string) => {
+
+  
+  const url = `https://api.helius.xyz/v0/addresses/${context}/transactions?api-key=${process.env.HELIUS_KEY}`;
+
+  const response = await fetch(url);
+  const data = await response.json();
+  console.log(data)
+  return data
+};
+
 export default async function handler(req: any, res: any) {
 
-    try {
-        if (req.method === "POST") {
+  try {
+      if (req.method === "POST") {
 
-            let data = await firstTransaction(req.body.context)
+          let data;
 
-            res.status(200).json(data)
-        };
+          if (req.body.type == "answer") {
+              data = await firstTransaction(req.body.context)
+          }
+          else if (req.body.type == "example") {
+              data = await getExample(req.body.context)
+          }
 
-    }
+          res.status(200).json(data)
 
-    catch (err) { console.log(err) }
+      };
+
+  }
+
+  catch (err) { console.log(err) }
 
 }
