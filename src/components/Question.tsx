@@ -14,7 +14,7 @@ hljs.configure({
 });
 hljs.registerLanguage('javascript', javascript);
 
-export default function Question({ setSelectedComponent, question, questions, progress, setProgress, setQuestions }: any) {
+export default function Question({ setSelectedComponent, question, questions, progress, setProgress, setQuestions, completed, setCompleted, originalQuestions }: any) {
 
     let wallets = [
         "EHyagVK6vWdhyp8Mn3NGLeC33LtQyPdDs1idNiBddTjF",
@@ -69,13 +69,6 @@ export default function Question({ setSelectedComponent, question, questions, pr
     const [copy, setCopy] = useState(<Image className='flex duration-200 opacity-70' alt="copy" src="/copy.svg" width={20} height={20}></Image>)
     const [codeOutput, setCodeOutput] = useState("Run code for example output.")
 
-    function copyConf() {
-        console.log(copy, 'c')
-        setCopy(<Image className='flex duration-200' alt="check" src="/check.svg" width={24} height={24}></Image>)
-        setTimeout(() => {
-            setCopy(<Image className='flex duration-200 opacity-70' alt="copy" src="/copy.svg" width={20} height={20}></Image>)
-        }, 500);
-    }
     let copyContext =
         <div onClick={() => {
             navigator.clipboard.writeText(context)
@@ -106,6 +99,10 @@ export default function Question({ setSelectedComponent, question, questions, pr
     function handleCorrect() {
         setSolved(true);
         setProgress(progress += question.difficulty);
+        console.log(completed, 'completed')
+        console.log([...completed, question.api], 'setcom')
+
+        setCompleted([...completed, question.api])
 
         let newArr: any = questions
         const index = questions.findIndex((e: any) => e.name === question.name);
@@ -126,7 +123,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
         }
         return response.data
     }
-
+    // BUG FIRST SUBMIT FAILS, SECOND WORKs
     async function handleSubmit(event: any) {
         event.preventDefault();
         if (cachedAnswer) {
@@ -144,7 +141,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
         setCachedAnswer(response)
         setSubmit(true)
         try {
-            if (response.data == answer) {
+            if (response == answer) {
                 if (!cachedAnswer) {
                     handleCorrect()
                 }
@@ -183,14 +180,14 @@ export default function Question({ setSelectedComponent, question, questions, pr
                         <div className='flex rounded-lg xl:rounded-none flex-col items-center space-y-8 xl:space-y-8 justify-between h-full bg-zinc-100 dark:bg-zinc-950 xl:w-1/2 overflow-y-scroll scrollbar'>
 
                             <div className='flex w-full flex-col'>
-                            <div className='text-2xl xl:text-5xl font-semibold tracking-wider text-zinc-900 dark:text-zinc-200 w-full px-6 py-6 xl:py-8'>{(question.name)}</div>
+                                <div className='text-2xl xl:text-5xl font-semibold tracking-wider text-zinc-900 dark:text-zinc-200 w-full px-6 py-6 xl:py-8'>{(question.name)}</div>
 
-                            <div className='flex w-full flex-col px-6'>
-                                <div className='flex text-md text-zinc-800 dark:text-zinc-400 rounded-md xl:text-lg tracking-wider'>
-                                    {question.api == 'sol_held' ? (
-                                    <Demo copyContext={copyContext} handleCorrect={handleCorrect}></Demo>
-                                    ) : (question.description)}</div>
-                            </div>
+                                <div className='flex w-full flex-col px-6'>
+                                    <div className='flex text-md text-zinc-800 dark:text-zinc-400 rounded-md xl:text-lg tracking-wider'>
+                                        {question.api == 'sol_held' ? (
+                                            <Demo copyContext={copyContext} handleCorrect={handleCorrect}></Demo>
+                                        ) : (question.description)}</div>
+                                </div>
                             </div>
                             <>
                                 {question.api == 'sol_held' ? (<div></div>) : (copyContext)}
@@ -208,7 +205,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
                             </div>
                         </div>
 
-                        <div className='flex flex-col h-full space-y-8 px-0 xl:px-8 justify-between rounded-lg xl:w-1/2'>
+                        <div className='flex flex-col h-full space-y-8 px-0 xl:px-6 justify-between rounded-lg xl:w-1/2'>
 
                             {/* <div className='flex flex-col w-full h-full rounded-lg bg-zinc-800 overflow-x-scroll xl:overflow-hidden resize-y'>
 
@@ -268,8 +265,11 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                     <div className='flex tracking-widest text-zinc-400 font-black text-sm'>DEMO</div>
 
                                     <div className='flex flex-row space-x-4'>
-                                        <div onClick={() => { {
-                                            if (codeOutput=="Run code for example output."){questionQuery("example"); setCodeOutput("Loading...")}} }} className='flex space-x-1 hover:opacity-100 tracking-widest text-xs w-max h-8 rounded-md justify-center items-center hover:border-orange-400 duration-200 cursor-pointer text-zinc-400 hover:text-orange-400'>
+                                        <div onClick={() => {
+                                            {
+                                                if (codeOutput == "Run code for example output.") { questionQuery("example"); setCodeOutput("Loading...") }
+                                            }
+                                        }} className='flex space-x-1 hover:opacity-100 tracking-widest text-xs w-max h-8 rounded-md justify-center items-center hover:border-orange-400 duration-200 cursor-pointer text-zinc-400 hover:text-orange-400'>
 
                                             <>{
                                                 (codeOutput == "e") ? (
@@ -285,18 +285,18 @@ export default function Question({ setSelectedComponent, question, questions, pr
 
                                             <span className='flex font-bold text-center items-center'>RUN</span>
                                         </div>
-                                        {/* <div className='flex hover:opacity-100 tracking-widest text-xs border-zinc-900 w-max px-2 h-8 rounded-md justify-center items-center hover:border-orange-400 duration-200 cursor-pointer text-zinc-400 hover:text-orange-400'>
+                                        <div className='flex hover:opacity-100 tracking-widest text-xs border-zinc-900 w-max px-2 h-8 rounded-md justify-center items-center hover:border-orange-400 duration-200 cursor-pointer text-zinc-400 hover:text-orange-400'>
                                             <svg className="text-current" width={20} fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M21,8H9A1,1,0,0,0,8,9V21a1,1,0,0,0,1,1H21a1,1,0,0,0,1-1V9A1,1,0,0,0,21,8ZM20,20H10V10H20ZM6,15a1,1,0,0,1-1,1H3a1,1,0,0,1-1-1V3A1,1,0,0,1,3,2H15a1,1,0,0,1,1,1V5a1,1,0,0,1-2,0V4H4V14H5A1,1,0,0,1,6,15Z"></path></g></svg>
-                                        </div> */}
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div className="pb-0 mt-8 bg-zinc-950 bg-transparent border border-t-0 border-b-0 border-zinc-900 overflow-scroll no-scrollbar">
-                                    <pre className='flex'><code style={{ background: '#09090b' }} className="js overflow-x-scroll scrollbar rounded-lg">{question.code}</code></pre>
+                                <div className="bg-zinc-950 border border-b-0 border-zinc-900 max-h-96">
+                                    <pre className='flex w-full max-h-96'><code style={{ background: '#09090b' }} className="js flex w-full border-b border-zinc-900 overflow-x-scroll scrollbar ">{question.code}</code></pre>
                                 </div>
 
                                 <div className="bg-zinc-950 border border-zinc-900 rounded-b-lg max-h-96">
-                                    <pre className="flex h-1/3 max-h-96 flex-row mb-0 overflow-hidden"><code style={{ background: '#09090b' }} className="flex w-full border-b border-zinc-900 js rounded-lg scrollbar max-h-96">{codeOutput}</code></pre>
+                                    <pre className="flex max-h-96 flex-row mb-0 overflow-hidden"><code style={{ background: '#09090b' }} className="flex w-full border-b border-zinc-900 js rounded-lg scrollbar max-h-96">{codeOutput}</code></pre>
                                 </div>
                             </div>
 

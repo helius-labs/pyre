@@ -7,7 +7,7 @@ export default async function handler(req: any, res: any) {
 
             let user_data = {
                 user: req.body.user,
-                questions_remaining: req.body.questions_remaining,
+                completed_questions: req.body.completed_questions,
                 progress: req.body.progress,
                 minted_award: req.body.minted_award
             }

@@ -1,8 +1,33 @@
 const axios = require('axios')
 
-const getAssetsByOwner = async (context:string) => {
+const getExample = async (context: string) => {
 
-  let held = [], page:any = 1;
+  const url = `https://rpc.helius.xyz/?api-key=${process.env.HELIUS_KEY}`
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      jsonrpc: '2.0',
+      id: 'my-id',
+      method: 'getAssetsByOwner',
+      params: {
+        ownerAddress: context,
+        page: 1, // Starts at 1
+        limit: 1000
+      },
+    }),
+  });
+  const { result } = await response.json();
+  console.log("Assets by Owner: ", result.items);
+  return result.items
+};
+
+const getAssetsByOwner = async (context: string) => {
+
+  let held = [], page: any = 1;
 
   while (page) { // pagination is definitely overkill
 
@@ -13,7 +38,7 @@ const getAssetsByOwner = async (context:string) => {
       "id": "my-id",
       "method": "getAssetsByOwner",
       "params": {
-       "ownerAddress": context,
+        "ownerAddress": context,
         "page": page,
         "limit": 1000
       }
@@ -37,7 +62,14 @@ export default async function handler(req: any, res: any) {
   try {
     if (req.method === "POST") {
 
-      let data = await getAssetsByOwner(req.body.context)
+      let data;
+
+      if (req.body.type == "answer") {
+        data = await getAssetsByOwner(req.body.context)
+      }
+      else if (req.body.type == "example") {
+        data = await getExample(req.body.context)
+      }
 
       res.status(200).json(data)
     };

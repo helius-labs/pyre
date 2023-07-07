@@ -43,7 +43,7 @@ export default function Home() {
         "You can call the native javascript function of variable.toFixed(0) to round your answer to the nearest SOL, this is necessary for this question.",
         "If you're using the Balances API, the amount of SOL held is contained in the property 'nativeBalance'."],
       code:
-`const url = "https://api.helius.xyz/v0/addresses/<address>/balances?api-key=<api-key>";
+        `const url = "https://api.helius.xyz/v0/addresses/<address>/balances?api-key=<api-key>";
 
 const getBalances = async () => {
   const response = await fetch(url);
@@ -67,8 +67,8 @@ getBalances();`,
       hints: ["There are multiple ways to determine the number of NFTs held, some options include: using the Balances API, using the more efficient DAS protocol.",
         "Assuming the wallet provided has fewer NFTs than the limit returned in one query, the answer would simply be the length of the returned NFT array.",
         "You can adjust the limit of NFTs returned! For some wallets you may still need to paginate."],
-      code: `
-const url = "https://rpc.helius.xyz/?api-key=<api-key>"
+      code:
+        `const url = "https://rpc.helius.xyz/?api-key=<api-key>"
 
 const getAssetsByOwner = async () => {
   const response = await fetch(url, {
@@ -91,8 +91,7 @@ const getAssetsByOwner = async () => {
   console.log("Assets by Owner: ", result.items);
 };
 
-getAssetsByOwner();   
-      `,
+getAssetsByOwner();`,
       docs: "https://docs.helius.xyz/solana-rpc-nodes/digital-asset-standard-api/get-assets-by-owner",
       replit: "https://replit.com/@TideLaw/pyre-nfts-held?embed=true",
       tags: ["DAS", "RPC"]
@@ -108,8 +107,8 @@ getAssetsByOwner();
       hints: ["You can log the data returned from the endpoint in order to find out the path that has the URL for the image.",
         "You'll need to log the 1st index, or data[0] if using the token-metadata endpoint as it is returned as an array.",
         "If the link you've provided is not accepted, try querying for the link found in the offChainMetadata property of the data returned."],
-      code: `
-const getMetadata = async (context) => {
+      code:
+        `const getMetadata = async (context) => {
 
 
   const url = "https://api.helius.xyz/v0/token-metadata?api-key=<api-key>=";
@@ -131,8 +130,7 @@ const getMetadata = async (context) => {
   console.log("metadata: ", data);
 };
 
-getMetadata('F9Lw3ki3hJ7PF9HQXsBzoY8GyE6sPoEZZdXJBsTTD2rk');
-      `,
+getMetadata('F9Lw3ki3hJ7PF9HQXsBzoY8GyE6sPoEZZdXJBsTTD2rk');`,
       docs: "https://docs.helius.xyz/solana-apis/token-metadata-api",
       replit: "https://replit.com/@TideLaw/pyre-image-url?embed=true",
       tags: ["DAS", "RPC"]
@@ -148,8 +146,8 @@ getMetadata('F9Lw3ki3hJ7PF9HQXsBzoY8GyE6sPoEZZdXJBsTTD2rk');
       hints: ["There are multiple ways to determine the owner, the provided boiler plate code here uses DAS, however the NFT Events API is also viable albeit less efficient.",
         "You should log the data, regardless of which method you choose, expanding each property to see what lies within.",
         "If you're using DAS, the path to locate the holder of the NFT is data.result.ownership.owner."],
-      code: `
-const url = "https://rpc.helius.xyz/?api-key=<api_key>"
+      code:
+        `const url = "https://rpc.helius.xyz/?api-key=<api_key>"
 
 const getAsset = async () => {
   const response = await fetch(url, {
@@ -169,8 +167,7 @@ const getAsset = async () => {
   const { result } = await response.json();
   console.log("Asset: ", result);
 };
-getAsset();
-      `,
+getAsset();`,
       docs: "https://docs.helius.xyz/solana-rpc-nodes/digital-asset-standard-api/get-asset",
       replit: "https://replit.com/@TideLaw/pyre-nft-holder?embed=true",
       tags: ["DAS", "RPC"]
@@ -186,8 +183,8 @@ getAsset();
       hints: ["You can log the data returned from the endpoint in order to find out the path that has the epoch of the transaction.",
         "You'll need to log the 1st index, or data[0] if using the /v0/transactions/ endpoint as it is returned as an array.",
         "If you're using the /v0/transactions/ endpoint, the path to locate the holder of the NFT is data[0].timestamp."],
-      code: `
-const url = "https://api.helius.xyz/v0/transactions/?api-key=<your-key>";
+      code:
+        `const url = "https://api.helius.xyz/v0/transactions/?api-key=<your-key>";
 
 const parseTransaction = async () => {
   const response = await fetch(url, {
@@ -202,8 +199,7 @@ const parseTransaction = async () => {
 
   const data = await response.json();
   console.log("parsed transaction: ", data);
-};
-      `,
+};`,
       docs: "https://docs.helius.xyz/solana-apis/enhanced-transactions-api/parse-transaction-s",
       replit: "https://replit.com/@TideLaw/pyre-epoch-tx?embed=true",
       tags: ["ENHANCED API"]
@@ -219,8 +215,8 @@ const parseTransaction = async () => {
       hints: ["There are two endpoints you can use for this question, one being the provided /v0/addresses/<address>/transactions and the other by querying directly through an RPC.",
         "Depending on the wallet provided, you may need to paginate through all their transactions.",
         "If you're using the RPC, a quick way to check would be to use the before and after properties, if no transactions occur before your answer for the transaction, it is the first transaction to take place!"],
-      code: 
-`const url = "https://api.helius.xyz/v0/addresses/<address>/transactions?api-key=<your-key>";
+      code:
+        `const url = "https://api.helius.xyz/v0/addresses/<address>/transactions?api-key=<your-key>";
 
 const parseTransactions = async () => {
   const response = await fetch(url);
@@ -244,8 +240,8 @@ const parseTransactions = async () => {
       hints: ["You can use the NFT Events (Historical Querying) to determine the number of times an NFT has been sold, by changing the account to that of the token's mint address.",
         "Assuming you've applied the NFT_SALE filter, the number of times sold is simply the length of the returned array.",
         "Fiddle around with the options, e.g sources, types, and other properties found on the Gitbook to get a better understanding of this endpoint."],
-      code: `
-const getNftEvents = async (context) => {
+      code:
+        `const getNftEvents = async (context) => {
 
   const url = "https://api.helius.xyz/v1/nft-events?api-key=<api-key>"
 
@@ -268,11 +264,10 @@ const getNftEvents = async (context) => {
 
 };
 
-getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")
-      `,
+getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")`,
       docs: "https://docs.helius.xyz/solana-apis/nft-api/nft-events-historical-querying",
       replit: "https://replit.com/@TideLaw/pyre-sale-activity?embed=true",
-      tags: ["NFT API"]
+      tags: ["DAS"]
     },
 
     // {
@@ -290,13 +285,16 @@ getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")
   const [userData, setUserData] = useState()
   const [mintedAward, setMintedAward] = useState(false);
   const sessionData: any = useSession();
+  const [completed, setCompleted] = useState([]);
+
+  // Write a function in index.ts to iterate through the user's retrieved questions from the DB, and change based on API endpoint (least likely to change) to reflect new properties/changes to existing ones. Alternatively, come up with a new system, e.g removing the questions_remaining property entirely and change to 'completed_questions' whereby the client simply doesn't render the completed questions based on the checking endpoint property. 
 
   useEffect(() => {
     async function saveProgress() {
       const { data } = await axios.post(`/api/user_progress`,
         {
           user: sessionData.data.publicKey,
-          questions_remaining: questions,
+          completed_questions: completed,
           progress: progress,
           minted_award: mintedAward
         });
@@ -306,19 +304,27 @@ getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")
       saveProgress()
     }
 
-  }, [progress, mintedAward])
+  }, [completed, mintedAward])
 
 
   useEffect(() => {
 
-    function updateQuestions(questions: any) { // in case the original questions are changed, e.g new properties
+    function updateQuestions(completed_questions: any) { // in case the original questions are changed, e.g new properties
 
-      let updatedQuestions: any = []
-      let questionNames = originalQuestions.map((e: any) => e.name)
+      // let updatedQuestions: any = []
+      // let questionNames = originalQuestions.map((e: any) => e.name)
 
-      for (let i = 0; i < questions.length; i++) {
-        console.log(questions[i], i, questions)
-        updatedQuestions.push(originalQuestions[questionNames.indexOf(questions[i].name)])
+      // for (let i = 0; i < questions.length; i++) {
+      //   console.log(questions[i], i, questions)
+      //   updatedQuestions.push(originalQuestions[questionNames.indexOf(questions[i].name)])
+      // }
+      // setQuestions(updatedQuestions)
+      let updatedQuestions = originalQuestions;
+      for (let i = 0; i < completed_questions.length; i++) {
+        const index = originalQuestions.findIndex((e: any) => e.api === completed_questions[i]);
+        if (index !== -1) {
+          updatedQuestions.splice(index, 1);
+        }
       }
       setQuestions(updatedQuestions)
     }
@@ -331,7 +337,8 @@ getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")
         })
       if (data[0]?.user) {
         setProgress(data[0].progress)
-        updateQuestions(data[0].questions_remaining)
+        setCompleted(data[0].completed_questions)
+        updateQuestions(data[0].completed_questions)
         setUserData(data[0])
       }
       else {
@@ -380,15 +387,15 @@ getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")
         // ) :
         (selectedComponent === "QuestionMenu") ? (
           <>
-          {
-            (questions.length==0)?
-            (<End mintedAward={mintedAward} setMintedAward={setMintedAward} setSelectedComponent={setSelectedComponent} progress={progress}></End>)
-            :(<QuestionMenu userData={userData} questions={questions} progress={progress} setProgress={setProgress} setQuestion={setQuestion} setSelectedComponent={setSelectedComponent} />
-            )
-          }
+            {
+              (questions.length == 0) ?
+                (<End mintedAward={mintedAward} setMintedAward={setMintedAward} setSelectedComponent={setSelectedComponent} progress={progress}></End>)
+                : (<QuestionMenu userData={userData} questions={questions} progress={progress} setProgress={setProgress} setQuestion={setQuestion} setSelectedComponent={setSelectedComponent} />
+                )
+            }
           </>
         ) : (
-          <Question question={question} questions={questions} progress={progress} setQuestions={setQuestions} setProgress={setProgress} setSelectedComponent={setSelectedComponent} />
+          <Question originalQuestions={originalQuestions} completed={completed} setCompleted={setCompleted} question={question} questions={questions} progress={progress} setQuestions={setQuestions} setProgress={setProgress} setSelectedComponent={setSelectedComponent} />
         )
       )}
 
