@@ -53,7 +53,6 @@ const getBalances = async () => {
 
 getBalances();`,
       docs: "https://docs.helius.xyz/solana-apis/balances-api",
-      replit: "https://replit.com/@TideLaw/pyre-demo?embed=true",
       tags: ["ENHANCED API"]
     },
     {
@@ -92,8 +91,7 @@ const getAssetsByOwner = async () => {
 };
 
 getAssetsByOwner();`,
-      docs: "https://docs.helius.xyz/solana-rpc-nodes/digital-asset-standard-api/get-assets-by-owner",
-      replit: "https://replit.com/@TideLaw/pyre-nfts-held?embed=true",
+      docs: "https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-assets-by-owner",
       tags: ["DAS", "RPC"]
     },
     {
@@ -132,7 +130,6 @@ getAssetsByOwner();`,
 
 getMetadata('F9Lw3ki3hJ7PF9HQXsBzoY8GyE6sPoEZZdXJBsTTD2rk');`,
       docs: "https://docs.helius.xyz/solana-apis/token-metadata-api",
-      replit: "https://replit.com/@TideLaw/pyre-image-url?embed=true",
       tags: ["DAS", "RPC"]
     },
     {
@@ -168,8 +165,7 @@ const getAsset = async () => {
   console.log("Asset: ", result);
 };
 getAsset();`,
-      docs: "https://docs.helius.xyz/solana-rpc-nodes/digital-asset-standard-api/get-asset",
-      replit: "https://replit.com/@TideLaw/pyre-nft-holder?embed=true",
+      docs: "https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset",
       tags: ["DAS", "RPC"]
     },
     {
@@ -201,7 +197,6 @@ const parseTransaction = async () => {
   console.log("parsed transaction: ", data);
 };`,
       docs: "https://docs.helius.xyz/solana-apis/enhanced-transactions-api/parse-transaction-s",
-      replit: "https://replit.com/@TideLaw/pyre-epoch-tx?embed=true",
       tags: ["ENHANCED API"]
     },
     {
@@ -226,7 +221,6 @@ const parseTransactions = async () => {
   console.log("parsed transactions: ", data);
 };`,
       docs: "https://docs.helius.xyz/solana-apis/enhanced-transactions-api/parsed-transaction-history",
-      replit: "https://replit.com/@TideLaw/pyre-first-tx?embed=true",
       tags: ["RPC"]
     },
     {
@@ -266,7 +260,6 @@ const parseTransactions = async () => {
 
 getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")`,
       docs: "https://docs.helius.xyz/solana-apis/nft-api/nft-events-historical-querying",
-      replit: "https://replit.com/@TideLaw/pyre-sale-activity?embed=true",
       tags: ["DAS"]
     },
 
