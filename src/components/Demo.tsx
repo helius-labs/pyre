@@ -20,7 +20,7 @@ export default function Demo({ copyContext, handleCorrect }: any) {
             </div>
 
             <div className='flex text-md font-medium text-zinc-900 dark:text-zinc-300 rounded-md xl:text-lg tracking-wider'>
-                You are provided a wallet address. Make use of Helius' services in order to retrieve the wallet's native balance and convert into SOL. For this question, the answer has to be inputted to the nearest SOL.
+                You are provided a wallet address. Make use of Helius' services in order to retrieve the wallet's native balance and convert into SOL.
             </div>
 
             <div className='flex w-full justify-center'>
@@ -49,7 +49,7 @@ export default function Demo({ copyContext, handleCorrect }: any) {
                         <div className='w-full'>Copy the boiler plate code provided on the right onto your text editor of choice.</div>
 
 
-                        <div>Different contexts is what makes Pyre special, whether it be transactions, wallets, or token addresses - randomized in each question for a unique experience.</div>
+                        <div>Different contexts is what makes Pyre special, whether it be transactions, wallets, or token addresses - they are randomized in each question for a unique experience.</div>
 
                         <div>{`We will have to edit the URL variable to include the context of the question, in this case it is the wallet address. We will replace <address> with this wallet address:`}</div>
                         {copyContext}
@@ -69,7 +69,7 @@ export default function Demo({ copyContext, handleCorrect }: any) {
                         <div>You can now run the code and it should return something like this:</div>
                         <div className='flex w-full rounded-lg border border-zinc-900 bg-zinc-950'>
 
-                            <pre className='flex w-full bg-zinc-900 rounded-2xl overflow-x-scroll no-scrollbar'><code style={{ background: '#09090b' }} className="js rounded-2xl w-full overflow-x-scroll no-scrollbar">
+                            <pre className='flex w-full bg-zinc-900 rounded-lg overflow-x-scroll no-scrollbar'><code style={{ background: '#09090b' }} className="js rounded-2xl w-full overflow-x-scroll no-scrollbar">
 {`balances:  {
     tokens: [
         {
@@ -86,21 +86,21 @@ export default function Demo({ copyContext, handleCorrect }: any) {
                     </div>
 
                     <div className='flex w-full flex-col space-y-6 items-start'>
-                        <div>The question asks for the native balance, or the amount of SOL a wallet has. From the data returned, we can determine it to be 7879160. However, this value is in Lamports, we'll have to convert it to what we're familiar with, SOL. As 1 SOL is equivalent to 1 billion lamports, we'll need to divide by 1 billion and round to the nearest SOL.</div>
+                        <div>The question asks for the native balance, or the amount of SOL a wallet has. From the data returned, we can determine it to be 7879160. However, this value is in Lamports, we'll have to convert it to a term we're familiar with, Solana. As 1 SOL is equivalent to 1 billion lamports, we'll need to divide our nativeBalance by 1 billion.</div>
                         <pre className='flex w-full bg-zinc-900 border border-zinc-900 rounded-2xl overflow-x-scroll no-scrollbar'><code style={{ background: '#09090b' }} className="js rounded-2xl w-full overflow-x-scroll no-scrollbar">
-                            {`console.log((data.nativeBalance/1000000000).toFixed(0));`}
+                            {`console.log((data.nativeBalance/1000000000));`}
                         </code></pre>
 
                     </div>
 
                     <div className='flex flex-col space-y-6'>
                         <div>Below is the complete code and demo:</div>
-                        <img className='flex' src="/pyre-complete-demo.png"></img>
+                        <img className='flex' src="/pyre-demo-answer.png"></img>
                     </div>
 
 
                     <div className='flex flex-col space-y-6'>
-                        <div>Simply input the answer for your specific context and move onto harder questions!</div>
+                        <div>Simply input the answer for your specific context and complete the tutorial!</div>
                     </div>
 
                 </div>

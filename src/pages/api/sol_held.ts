@@ -6,7 +6,7 @@ const getBalance = async (context:string) => {
 
     const { data } = await axios.get(url)
 
-    return (data.nativeBalance/1000000000).toFixed(0);
+    return (data.nativeBalance/1000000000);
 
 };
 
