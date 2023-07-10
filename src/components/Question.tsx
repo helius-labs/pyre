@@ -216,7 +216,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
                             </div>
                         </div>
 
-                        <div className='flex flex-col h-full space-y-8 px-0 xl:px-6 justify-between rounded-lg xl:w-1/2'>
+                        <div className='flex flex-col h-full space-y-8 pr-2 justify-between rounded-lg xl:w-1/2'>
 
                             {/* <div className='flex flex-col w-full h-full rounded-lg bg-zinc-800 overflow-x-scroll xl:overflow-hidden resize-y'>
 
@@ -269,7 +269,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                 <pre className="flex flex-row mb-0"><code style={{ background: '#09090b' }}>{3.304}</code></pre>
                             </div> */}
 
-                            <div className='mt-8 space-y-0 h-full'>
+                            <div className='flex flex-col mt-8 space-y-0 h-full w-full overflow-x-hidden'>
 
                                 <div className='flex flex-row space-x-8 w-full justify-between items-center border border-zinc-900 rounded-t-lg px-4 py-2'>
 
@@ -302,12 +302,12 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                     </div>
                                 </div>
 
-                                <div className="bg-zinc-950 border border-b-0 border-zinc-900 max-h-96">
+                                <div className="w-full bg-zinc-950 border border-b-0 border-zinc-900 max-h-96">
                                     <pre className='flex w-full max-h-96'><code style={{ background: '#09090b' }} className="js flex w-full border-b border-zinc-900 overflow-x-scroll scrollbar ">{question.code}</code></pre>
                                 </div>
 
-                                <div className="bg-zinc-950 border border-zinc-900 rounded-b-lg max-h-96">
-                                    <pre className="flex max-h-96 flex-row mb-0 overflow-hidden"><code style={{ background: '#09090b' }} className="flex w-full border-b border-zinc-900 js rounded-lg scrollbar max-h-96">{codeOutput}</code></pre>
+                                <div className="w-full bg-zinc-950 border border-zinc-900 rounded-b-lg">
+                                    <pre className="flex w-full max-h-72 flex-row mb-0 overflow-hidden"><code style={{ background: '#09090b' }} className="flex w-full border-b border-zinc-900 js rounded-lg scrollbar max-h-96">{codeOutput}</code></pre>
                                 </div>
                             </div>
 
