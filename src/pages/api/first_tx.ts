@@ -35,7 +35,7 @@ const getExample = async (context:string) => {
   const response = await fetch(url);
   const data = await response.json();
   console.log(data)
-  return data
+  return data[0]
 };
 
 export default async function handler(req: any, res: any) {
@@ -52,7 +52,7 @@ export default async function handler(req: any, res: any) {
               data = await getExample(req.body.context)
           }
 
-          res.status(200).json(data[0])
+          res.status(200).json(data)
 
       };
 
