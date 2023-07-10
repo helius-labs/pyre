@@ -22,7 +22,7 @@ const getExample = async (context: string) => {
   });
   const { result } = await response.json();
   console.log("Assets by Owner: ", result.items);
-  return result.items
+  return result.items[0]
 };
 
 const getAssetsByOwner = async (context: string) => {

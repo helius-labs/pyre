@@ -41,7 +41,7 @@ export default async function handler(req: any, res: any) {
                 data = await getExample(req.body.context)
             }
 
-            res.status(200).json(data)
+            res.status(200).json(data[0])
 
         };
 
