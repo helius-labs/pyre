@@ -307,7 +307,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                 </div>
 
                                 <div className="w-full bg-zinc-950 border border-zinc-900 rounded-b-lg">
-                                    <pre className="flex w-full max-h-72 flex-row mb-0 overflow-hidden"><code style={{ background: '#09090b' }} className="flex w-full border-b border-zinc-900 js rounded-lg scrollbar max-h-96">{codeOutput}</code></pre>
+                                    <pre className="flex w-full max-h-72 flex-row mb-0 overflow-hidden"><code style={{ background: '#09090b' }} className="flex w-full border-b border-zinc-900 js rounded-lg scrollbar max-h-96 flex-col-reverse">{codeOutput}</code></pre>
                                 </div>
                             </div>
 

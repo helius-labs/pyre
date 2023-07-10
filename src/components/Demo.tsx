@@ -19,12 +19,13 @@ export default function Demo({ copyContext, handleCorrect }: any) {
                 skip demo
             </div>
 
-            <div className='flex text-md font-medium text-zinc-900 dark:text-zinc-300 rounded-md xl:text-lg tracking-wider'>
+            <div className='flex text-md font-medium text-zinc-900 dark:text-zinc-300 rounded-md xl:text-xl'>
                 You are provided a wallet address. Make use of Helius' services in order to retrieve the wallet's native balance and convert into SOL.
             </div>
 
+
             <div className='flex w-full justify-center'>
-            {copyContext}
+                {copyContext}
             </div>
 
             <div className='flex flex-col space-y-4'>
@@ -32,9 +33,9 @@ export default function Demo({ copyContext, handleCorrect }: any) {
                     Prerequisites
                 </div>
                 <ul className='list-inside list-disc space-y-1'>
-                    <li>Node.js installed on your system, or another way to make POST requests.</li>
+                    <li>A way to make POST requests. You can fork a repl.it template <a className='text-orange-400 hover:text-orange-500 duration-200' href='https://replit.com/@TideLaw/pyre-demo' target='_blank'>here</a>.</li>
 
-                    <li>A Solana wallet to get an API key from <a className='text-orange-400 hover:text-orange-500 duration-200' href='https://dev.helius.xyz/dashboard/app' target='_blank'>Helius</a>.</li>
+                    <li>An API key from <a className='text-orange-400 hover:text-orange-500 duration-200' href='https://dev.helius.xyz/dashboard/app' target='_blank'>Helius</a>.</li>
                 </ul>
             </div>
 
@@ -46,10 +47,9 @@ export default function Demo({ copyContext, handleCorrect }: any) {
 
                     <div className='flex flex-col space-y-6 items-center'>
 
-                        <div className='w-full'>Copy the boiler plate code provided on the right onto your text editor of choice.</div>
+                        <div className='w-full'>Copy the boilerplate code provided on the right or fork your repl.it accordingly.</div>
 
-
-                        <div>Different contexts is what makes Pyre special, whether it be transactions, wallets, or token addresses - they are randomized in each question for a unique experience.</div>
+                        <div>Different contexts is what makes Pyre special, whether it be transactions, wallets, or token addresses. They are randomized in each question for a unique experience.</div>
 
                         <div>{`We will have to edit the URL variable to include the context of the question, in this case it is the wallet address. We will replace <address> with this wallet address:`}</div>
                         {copyContext}
