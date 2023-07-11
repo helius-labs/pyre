@@ -261,66 +261,116 @@ const parseTransactions = async () => {
 
 getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")`,
       docs: "https://docs.helius.xyz/solana-apis/nft-api/nft-events-historical-querying",
-      tags: ["DAS"]
+      tags: ["NFT API"]
     },
     {
       name: "Leaves on a Merkle Tree",
-      description: "You are provided a cNFT mint address. Make use of Helius's services in order to find the current number of leaves on the merkle tree it was minted on.",
+      description: "You are provided a cNFT mint address. Make use of Helius's services in order to find the current number of leaves on the merkle tree the cNFT was minted on.",
       difficulty: 1,
       api: "merkle_leaves",
       solved: false,
       type: "cnft",
       example_answer: "12501",
-      hints: ["You can use the NFT Events (Historical Querying) to determine the number of times an NFT has been sold, by changing the account to that of the token's mint address.",
-        "Assuming you've applied the NFT_SALE filter, the number of times sold is simply the length of the returned array.",
-        "Fiddle around with the options, e.g sources, types, and other properties found on the Gitbook to get a better understanding of this endpoint."],
+      hints: ["https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset-proof"],
       code:
-        `const getNftEvents = async (context) => {
+`
+const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
 
-  const url = "https://api.helius.xyz/v1/nft-events?api-key=<api-key>"
-
-  const response = await fetch(url,
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        query: {
-          accounts: [context],
-          types: ["NFT_SALE"],
-        }
-      }),
-    });
-
-  const data = await response.json()
-  console.log(data)
-
-};
-
-getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")`,
-      docs: "https://docs.helius.xyz/solana-apis/nft-api/nft-events-historical-querying",
-      tags: ["DAS"]
+const getAsset = async (context:string) => {
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
     },
+    body: JSON.stringify({
+      jsonrpc: '2.0',
+      id: 'my-id',
+      method: 'getAsset',
+      params: {
+        id: context
+      },
+    }),
+  });
+  const { result } = await response.json();
+  console.log(result)
+};`,
+      docs: "https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset",
+      tags: ["DAS", "RPC", "CNFT"]
+    },
+    {
+      name: "Size of a Merkle Tree",
+      description: "You are provided a cNFT mint address. Make use of Helius's services in order to find the maximum number of leaves on the merkle tree the cNFT was minted on.",
+      difficulty: 1,
+      api: "max_merkle",
+      solved: false,
+      type: "cnft",
+      example_answer: "8192",
+      hints: ["https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset-proof"],
+      code:
+`
+const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
 
-    // {
-    //   name: "Supply of a collection",
-    //   description: "You are provided a token address. Make use of Helius's services in order to retrieve the token's collection address, and use that in order to figure out the supply of the collection; this does not include burned NFTs (be patient, this question may take a little longer to check).",
-    //   difficulty: 2,
-    //   api: "nft_supply",
-    //   solved: false,
-    //   type: "nft",
-    //   example_answer: "9999",
-    //   tags: ["ENHANCED API", "RPC", "DAS"]
-    // },
+const getAssetProof = async () => {
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      jsonrpc: '2.0',
+      id: 'my-id',
+      method: 'getAssetProof',
+      params: {
+        id: 'Bu1DEKeawy7txbnCEJE4BU3BKLXaNAKCYcHR4XhndGss'
+      },
+    }),
+  });
+  const { result } = await response.json();
+  console.log("Assets Proof: ", result);
+};`,
+      docs: "https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset",
+      tags: ["DAS", "RPC", "CNFT"]
+    },
+    {
+      name: "A cNFT's Merkle Tree",
+      description: "You are provided a cNFT mint address. Make use of Helius's services in order to find the ID of the merkle tree the cNFT was minted on.",
+      difficulty: 1,
+      api: "find_merkle",
+      solved: false,
+      type: "cnft",
+      example_answer: "2kuTFCcjbV22wvUmtmgsFR7cas7eZUzAu96jzJUvUcb7",
+      hints: ["https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset-proof"],
+      code:
+`
+const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
+
+const getAssetProof = async () => {
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      jsonrpc: '2.0',
+      id: 'my-id',
+      method: 'getAssetProof',
+      params: {
+        id: 'Bu1DEKeawy7txbnCEJE4BU3BKLXaNAKCYcHR4XhndGss'
+      },
+    }),
+  });
+  const { result } = await response.json();
+  console.log("Assets Proof: ", result);
+};`,
+      docs: "https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset",
+      tags: ["DAS", "RPC", "CNFT"]
+    },
   ]
   const [questions, setQuestions] = useState(originalQuestions)
   const [userData, setUserData] = useState()
   const [mintedAward, setMintedAward] = useState(false);
   const sessionData: any = useSession();
   const [completed, setCompleted] = useState([]);
-
-  // Write a function in index.ts to iterate through the user's retrieved questions from the DB, and change based on API endpoint (least likely to change) to reflect new properties/changes to existing ones. Alternatively, come up with a new system, e.g removing the questions_remaining property entirely and change to 'completed_questions' whereby the client simply doesn't render the completed questions based on the checking endpoint property. 
 
   useEffect(() => {
     async function saveProgress() {
@@ -342,16 +392,8 @@ getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")`,
 
   useEffect(() => {
 
-    function updateQuestions(completed_questions: any) { // in case the original questions are changed, e.g new properties
+    function updateQuestions(completed_questions: any) {
 
-      // let updatedQuestions: any = []
-      // let questionNames = originalQuestions.map((e: any) => e.name)
-
-      // for (let i = 0; i < questions.length; i++) {
-      //   console.log(questions[i], i, questions)
-      //   updatedQuestions.push(originalQuestions[questionNames.indexOf(questions[i].name)])
-      // }
-      // setQuestions(updatedQuestions)
       let updatedQuestions = originalQuestions;
       for (let i = 0; i < completed_questions.length; i++) {
         const index = originalQuestions.findIndex((e: any) => e.api === completed_questions[i]);
@@ -392,7 +434,7 @@ getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")`,
 
 
   return (
-    <main className={`flex w-full h-screen flex-col items-center justify-between bg-zinc-950 text-zinc-200 no-scrollbar ${inter.className}`}>
+    <main className={`flex scrollbar w-full h-screen flex-col items-center justify-between bg-zinc-950 text-zinc-200 no-scrollbar ${inter.className}`}>
       <title>Pyre</title>
       {selectedComponent === "Landing" ? (
         <>

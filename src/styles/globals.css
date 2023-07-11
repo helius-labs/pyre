@@ -3,9 +3,11 @@
 @tailwind utilities;
 
 @layer utilities {
-      
+    :root {
+      background-color: #09090b;
+    }
     body {
-        background-color: rgb(9 9 11);
+        background-color: #09090b !important;
     }
     ::selection {
       background: #fb923c;
