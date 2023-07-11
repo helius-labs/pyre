@@ -263,6 +263,45 @@ getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")`,
       docs: "https://docs.helius.xyz/solana-apis/nft-api/nft-events-historical-querying",
       tags: ["DAS"]
     },
+    {
+      name: "Leaves on a Merkle Tree",
+      description: "You are provided a cNFT mint address. Make use of Helius's services in order to find the current number of leaves on the merkle tree it was minted on.",
+      difficulty: 1,
+      api: "merkle_leaves",
+      solved: false,
+      type: "cnft",
+      example_answer: "12501",
+      hints: ["You can use the NFT Events (Historical Querying) to determine the number of times an NFT has been sold, by changing the account to that of the token's mint address.",
+        "Assuming you've applied the NFT_SALE filter, the number of times sold is simply the length of the returned array.",
+        "Fiddle around with the options, e.g sources, types, and other properties found on the Gitbook to get a better understanding of this endpoint."],
+      code:
+        `const getNftEvents = async (context) => {
+
+  const url = "https://api.helius.xyz/v1/nft-events?api-key=<api-key>"
+
+  const response = await fetch(url,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: {
+          accounts: [context],
+          types: ["NFT_SALE"],
+        }
+      }),
+    });
+
+  const data = await response.json()
+  console.log(data)
+
+};
+
+getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")`,
+      docs: "https://docs.helius.xyz/solana-apis/nft-api/nft-events-historical-querying",
+      tags: ["DAS"]
+    },
 
     // {
     //   name: "Supply of a collection",

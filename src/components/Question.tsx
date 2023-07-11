@@ -54,9 +54,27 @@ export default function Question({ setSelectedComponent, question, questions, pr
         "2TZPpjc9Kp8pDtCXFwTBkL8RzFivheMVKqzqv3TFjFaLhsbDsQuWFkAR4NG7sfRCVNx44N5rwiqrjA1aLbzwcQQc"
     ]
 
-    const [context, setContext] = useState(question.type == "wallet" ? (wallets[Math.floor(Math.random() * wallets.length)]) :
-        question.type == "nft" ? (tokens[Math.floor(Math.random() * tokens.length)]) :
-            transactions[Math.floor(Math.random() * transactions.length)])
+    let cnft = [
+        "F9aEsvqM1wUtLtDFsaY5m52Bkon4SgD7BbBczTbazSGS",
+    ]
+
+    const [context, setContext] = useState<any>(randomContext(question.type))
+
+    function randomContext (type:string) {
+        switch (type) {
+            case "wallet":
+                return wallets[Math.floor(Math.random()*wallets.length)]
+            case "nft":
+                return tokens[Math.floor(Math.random() * tokens.length)]
+            case "tx":
+                return transactions[Math.floor(Math.random() * transactions.length)]
+            case "cnft":
+                return cnft[Math.floor(Math.random() * cnft.length)]
+            default: 
+                break
+        }
+    }
+
     const [displayedContext, setDisplayedContext] = useState(context.slice(0, 4) + '..' + context.slice(-4))
 
 
