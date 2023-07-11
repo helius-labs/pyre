@@ -3,14 +3,13 @@
 import { useWallet } from '@solana/wallet-adapter-react';
 import AppBar from './AppBar';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 
 export default function End({ setSelectedComponent, progress, setMintedAward, mintedAward }) {
     const { publicKey } = useWallet();
-
+    const [cNFTSerial, setCNFTSerial] = useState('')
     const [tx, setTX] = useState('')
-    const [mintAddress, setMintAddress] = useState('')
 
     const [copy, setCopy] = useState(<Image className='flex duration-200 opacity-70' alt="copy" src="/copy.svg" width={20} height={20}></Image>)
 
@@ -28,12 +27,11 @@ export default function End({ setSelectedComponent, progress, setMintedAward, mi
                 {
                     publicKey: publicKey,
                 });
-            console.log(data, 'a')
             setMintedAward(true)
-            setTX(data)
+            setTX(data[0])
+            setCNFTSerial(data[1])
         }
         catch (err) {
-            console.log('err', err, error)
             setTX("error")
         }
     }
@@ -43,12 +41,6 @@ export default function End({ setSelectedComponent, progress, setMintedAward, mi
             <AppBar setSelectedComponent={setSelectedComponent} progress={progress} component="QuestionMenu" ></AppBar>
 
             <div className='flex flex-col w-full h-full items-center justify-center py-16'>
-                {/* 
-                <div className='flex items-center justify-center md:items-center flex-row space-x-4 font-extrabold text-7xl leading-normal'>
-                    <span className='flex leading-none'>you have reached</span>
-                    <span className='flex text-orange-400 leading-none'>the end!</span>
-                </div> */}
-
 
                 <div className="flex h-full w-full items-center justify-center flex-col space-y-8">
                     <div className="flex h-96 items-center rounded-md border border-zinc-800">
@@ -90,31 +82,31 @@ export default function End({ setSelectedComponent, progress, setMintedAward, mi
 
                                             <img className="flex w-2/3 rounded-md border border-zinc-800" src="/pyre-trophy.png"></img>
 
-                                            <div className='text-3xl  font-semibold text-zinc-200'>Your cNFT has been minted!</div>
+                                            <div className='text-3xl  font-semibold text-zinc-200'>{`Pyre #${cNFTSerial} has been minted!`}</div>
                                             <div className='text-zinc-400 font-medium text-center'>
                                                 Your cNFT is in your wallet and can be viewed or shared with the links below.
                                             </div>
 
                                             <div className='flex w-full justify-between space-x-4'>
-                                                <div className='w-[75%] h-min rounded-md p-2 border border-zinc-800 truncate'>https://explorer.solana.com/tx/{tx}?cluster=devnet</div>
+                                                <div className='w-[75%] h-min rounded-md p-2 border border-zinc-800 truncate'>https://explorer.solana.com/tx/{tx}</div>
 
                                                 <div className='flex flex-row w-[25%] justify-end space-x-2'>
 
                                                     <div target='_blank' onClick={() => {
-                                                        navigator.clipboard.writeText(`https://explorer.solana.com/tx/${tx}?cluster=devnet`);
+                                                        navigator.clipboard.writeText(`https://explorer.solana.com/tx/${tx}`);
                                                         copyConf()
                                                     }} className='flex w-1/2 cursor-pointer items-center justify-center bg-zinc-800 hover:bg-zinc-700 duration-200 rounded-lg '>
                                                         {copy}
                                                     </div>
 
-                                                    <a target='_blank' href={`https://explorer.solana.com/tx/${tx}?cluster=devnet`} className='flex w-1/2 items-center justify-center bg-zinc-800 hover:bg-zinc-700 duration-200 rounded-lg '>
+                                                    <a target='_blank' href={`https://explorer.solana.com/tx/${tx}`} className='flex w-1/2 items-center justify-center bg-zinc-800 hover:bg-zinc-700 duration-200 rounded-lg '>
                                                         <Image className='flex duration-200 opacity-70' alt="link" src="/link.svg" width={20} height={20}></Image>
                                                     </a>
                                                 </div>
                                             </div>
 
                                         </div>
-                                ): ( // quat statement and modal for error
+                                ): (
                                     <div className='flex flex-col space-y-8 py-8 items-center justify-center'>
                                         <Image className='animate-pulse' alt="Helius" src="/helius.svg" width={150} height={150}></Image>
                                         <div className='flex flex-col space-y-4'>

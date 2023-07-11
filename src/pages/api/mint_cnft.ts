@@ -21,6 +21,21 @@ import {
 } from "@solana/spl-account-compression";
 import { PROGRAM_ID as TOKEN_METADATA_PROGRAM_ID } from "@metaplex-foundation/mpl-token-metadata";
 
+
+import { ConcurrentMerkleTreeAccount } from "@solana/spl-account-compression";
+import web3 from "@solana/web3.js"
+
+const getAssetProof = async () => {
+
+
+    const connection = new web3.Connection(`https://rpc.helius.xyz/?api-key=c06d2673-cd88-43d0-8c04-a2a35d1f03a1`);
+    const publicKey = new web3.PublicKey("3RYFyDBd81h3hQ8P1PtZRgSJYgKeNKXamKJPXhWmy5e7");    
+
+    const cmt = await ConcurrentMerkleTreeAccount.fromAccountAddress(connection, publicKey)
+
+    return cmt.tree.rightMostPath.index
+};
+
 async function sendVersionedTx(
   connection: Connection,
   instructions: TransactionInstruction[],
@@ -80,6 +95,8 @@ async function mintCNFT(publicKey: any) {
       BUBBLEGUM_PROGRAM_ID
   );
 
+  let cnftIndex = await getAssetProof()
+
   const ix = await createMintToCollectionV1Instruction(
       {
           merkleTree: merkleTree.publicKey,
@@ -103,7 +120,7 @@ async function mintCNFT(publicKey: any) {
               collection: { key: collectionMint, verified: false },
               creators: [{ address: payerPubKey.publicKey, verified: true, share: 100 }],
               isMutable: true,
-              name: "Pyre",
+              name: `Pyre #${cnftIndex}`,
               primarySaleHappened: true,
               sellerFeeBasisPoints: 0,
               symbol: "PYR",
@@ -120,7 +137,7 @@ async function mintCNFT(publicKey: any) {
       payerPubKey,
   ]);
 
-  return stx
+  return [stx, cnftIndex]
   // console.log(`Transaction sent: ${stx}`);
 }
 
