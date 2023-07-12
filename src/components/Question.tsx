@@ -60,17 +60,17 @@ export default function Question({ setSelectedComponent, question, questions, pr
 
     const [context, setContext] = useState<any>(randomContext(question.type))
 
-    function randomContext (type:string) {
+    function randomContext(type: string) {
         switch (type) {
             case "wallet":
-                return wallets[Math.floor(Math.random()*wallets.length)]
+                return wallets[Math.floor(Math.random() * wallets.length)]
             case "nft":
                 return tokens[Math.floor(Math.random() * tokens.length)]
             case "tx":
                 return transactions[Math.floor(Math.random() * transactions.length)]
             case "cnft":
                 return cnft[Math.floor(Math.random() * cnft.length)]
-            default: 
+            default:
                 break
         }
     }
@@ -86,11 +86,10 @@ export default function Question({ setSelectedComponent, question, questions, pr
     const [cachedAnswer, setCachedAnswer] = useState('')
     const [codeOutput, setCodeOutput] = useState("Run code for example output.")
 
-
     const [copy, setCopy] = useState(<svg className="text-current" width={20} fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M21,8H9A1,1,0,0,0,8,9V21a1,1,0,0,0,1,1H21a1,1,0,0,0,1-1V9A1,1,0,0,0,21,8ZM20,20H10V10H20ZM6,15a1,1,0,0,1-1,1H3a1,1,0,0,1-1-1V3A1,1,0,0,1,3,2H15a1,1,0,0,1,1,1V5a1,1,0,0,1-2,0V4H4V14H5A1,1,0,0,1,6,15Z"></path></g></svg>)
 
     function copyConf() {
-        console.log(copy, 'c')
+        navigator.clipboard.writeText(question.code)
         setCopy(<svg className="text-current duration-200" width={20} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="Interface / Check"> <path id="Vector" d="M6 12L10.2426 16.2426L18.727 7.75732" stroke="currentColor" strokeWidth="2" stroke-linecap="round" stroke-linejoin="round"></path> </g> </g></svg>)
         setTimeout(() => {
             setCopy(<svg className="text-current duration-200" width={20} fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M21,8H9A1,1,0,0,0,8,9V21a1,1,0,0,0,1,1H21a1,1,0,0,0,1-1V9A1,1,0,0,0,21,8ZM20,20H10V10H20ZM6,15a1,1,0,0,1-1,1H3a1,1,0,0,1-1-1V3A1,1,0,0,1,3,2H15a1,1,0,0,1,1,1V5a1,1,0,0,1-2,0V4H4V14H5A1,1,0,0,1,6,15Z"></path></g></svg>)
@@ -289,7 +288,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
 
                             <div className='flex flex-col mt-8 space-y-0 h-full w-full overflow-x-hidden'>
 
-                                <div className='flex flex-row space-x-8 w-full justify-between items-center border border-zinc-900 rounded-t-lg px-4 py-2'>
+                                <div className='flex flex-row space-x-8 w-full justify-between items-center border border-b-0 border-zinc-900  rounded-t-lg px-4 py-2'>
 
                                     <div className='flex tracking-widest text-zinc-400 font-black text-sm'>DEMO</div>
 
@@ -314,7 +313,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
 
                                             {/* <span className='flex font-bold text-center justify-center items-center pr-1'>RUN</span> */}
                                         </div>
-                                        <div onClick={()=>{copyConf()}} className='flex duration-200 hover:bg-zinc-900 hover:opacity-100 tracking-widest text-xs border-zinc-900 w-max px-2 h-8 rounded-md justify-center items-center hover:border-orange-400 duration-200 cursor-pointer text-zinc-400 hover:text-orange-400'>
+                                        <div onClick={() => { copyConf() }} className='flex duration-200 hover:bg-zinc-900 hover:opacity-100 tracking-widest text-xs border-zinc-900 w-max px-2 h-8 rounded-md justify-center items-center hover:border-orange-400 duration-200 cursor-pointer text-zinc-400 hover:text-orange-400'>
                                             {copy}
                                         </div>
                                     </div>
@@ -334,18 +333,19 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                 <iframe src={question.replit} className='flex w-full h-full rounded-2xl cursor-pointer'/>
                             </a> */}
 
-                            <div className='flex pb-16 '>
-                                <form onSubmit={handleSubmit} className={`flex duration-200 ${(solved) ? (`border-green-500`) : (submit == false ? ('border border-zinc-200 dark:border-zinc-900') : ('border-red-500 animate-shake'))} border rounded-full w-full items-center justify-center`}>
+                            <div className='flex space-x-4 pb-16 '>
+                                <form onSubmit={handleSubmit} className="flex w-full space-x-4">
                                     <input
                                         type="text"
                                         value={answer}
-                                        className="flex px-4 py-2 rounded-l-full w-full outline-0 bg-zinc-200 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-300 placeholder-zinc-500"
+                                        className={`flex duration-200 ${(solved) ? (`border-green-500`) : (submit == false ? ('border border-zinc-200 dark:border-zinc-900') : ('border-red-500 animate-shake'))} border rounded-full w-full items-center justify-center px-4 py-2 rounded-full w-full outline-0 bg-zinc-200 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-300 placeholder-zinc-500`}
                                         onChange={(e: any) => setAnswer(e.target.value)}
                                         placeholder={question.example_answer}
                                     />
-                                    <button className='flex items-center justify-center h-10 p-2 px-4 rounded-r-full bg-zinc-200 dark:bg-zinc-950 font-bold text-white duration-200 cursor-pointer' type="submit">
 
-                                        <div className='flex justify-center items-center'>{(
+                                    <button className='flex bg-transparent border-2 rounded-md border-orange-400 opacity-90 hover:opacity-100 duration-200 items-center justify-center h-10 p-2 px-4 font-bold text-white duration-200 cursor-pointer' type="submit">
+
+                                        {/* <div className='flex justify-center items-center'>{(
                                             load ? (
                                                 <svg className="flex animate-spin h-5 w-5 text-black dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
@@ -355,9 +355,13 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                                 (
                                                     <Image className='opacity-70 hover:opacity-100 duration-200' alt="check" src="/check.svg" width={24} height={24}></Image>
                                                 ))}
-                                        </div>
+                                        </div> */}
+
+                                        <span className='font-semibold text-orange-400 tracking-widest'>SUBMIT</span>
+
                                     </button>
                                 </form>
+
                             </div>
                         </div>
 
