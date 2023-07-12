@@ -22,7 +22,8 @@ const getExample = async (context: string) => {
   });
   const { result } = await response.json();
   console.log("Assets by Owner: ", result.items);
-  return result.items[0]
+  console.log('exa')
+  return [result.items[0], "..."+(result.items.length-1)+" remaining"]
 };
 
 const getAssetsByOwner = async (context: string) => {

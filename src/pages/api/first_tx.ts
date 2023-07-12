@@ -35,7 +35,7 @@ const getExample = async (context:string) => {
   const response = await fetch(url);
   const data = await response.json();
   console.log(data)
-  return data[0]
+  return [data[0], "..."+data.length+" remaining"]
 };
 
 export default async function handler(req: any, res: any) {
