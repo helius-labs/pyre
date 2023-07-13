@@ -56,8 +56,150 @@ getBalances();`,
       tags: ["ENHANCED API"]
     },
     {
+      name: "Leaves on a Merkle Tree",
+      description: "You are provided a cNFT mint address. Make use of Helius' services in order to find the current number of leaves on the merkle tree the cNFT was minted on.",
+      difficulty: 1,
+      api: "merkle_leaves",
+      solved: false,
+      type: "cnft",
+      example_answer: "12501",
+      hints: ["https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset-proof"],
+      code:
+`
+const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
+
+const getAsset = async () => {
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      jsonrpc: '2.0',
+      id: 'my-id',
+      method: 'getAsset',
+      params: {
+        id: Bu1DEKeawy7txbnCEJE4BU3BKLXaNAKCYcHR4XhndGss
+      },
+    }),
+  });
+  const { result } = await response.json();
+  console.log(result)
+};
+getAsset()`,
+      docs: "https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset",
+      tags: ["DAS", "RPC", "CNFT"]
+    },
+    {
+      name: "Size of a Merkle Tree",
+      description: "You are provided a cNFT mint address. Make use of Helius' services in order to find the maximum number of leaves on the merkle tree the cNFT was minted on.",
+      difficulty: 1,
+      api: "max_merkle",
+      solved: false,
+      type: "cnft",
+      example_answer: "8192",
+      hints: ["https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset-proof"],
+      code:
+`
+const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
+
+const getAssetProof = async () => {
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      jsonrpc: '2.0',
+      id: 'my-id',
+      method: 'getAssetProof',
+      params: {
+        id: 'Bu1DEKeawy7txbnCEJE4BU3BKLXaNAKCYcHR4XhndGss'
+      },
+    }),
+  });
+  const { result } = await response.json();
+  console.log("Assets Proof: ", result);
+};
+getAssetProof()`,
+      docs: "https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset",
+      tags: ["DAS", "RPC", "CNFT"]
+    },
+    {
+      name: "A cNFT's Merkle Tree",
+      description: "You are provided a cNFT mint address. Make use of Helius' services in order to find the ID of the merkle tree the cNFT was minted on.",
+      difficulty: 1,
+      api: "find_merkle",
+      solved: false,
+      type: "cnft",
+      example_answer: "2kuTFCcjbV22wvUmtmgsFR7cas7eZUzAu96jzJUvUcb7",
+      hints: ["https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset-proof"],
+      code:
+`
+const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
+
+const getAssetProof = async () => {
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      jsonrpc: '2.0',
+      id: 'my-id',
+      method: 'getAssetProof',
+      params: {
+        id: 'Bu1DEKeawy7txbnCEJE4BU3BKLXaNAKCYcHR4XhndGss'
+      },
+    }),
+  });
+  const { result } = await response.json();
+  console.log("Assets Proof: ", result);
+};
+getAssetProof()`,
+      docs: "https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset",
+      tags: ["DAS", "RPC", "CNFT"]
+    },
+    {
+      name: "A cNFT's Transactions",
+      description: "You are provided a cNFT mint address. Make use of Helius' services in order to find the number of transactions relating to the cNFT.",
+      difficulty: 1,
+      api: "cnft_sigs",
+      solved: false,
+      type: "cnft",
+      example_answer: "2",
+      hints: ["https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-signatures-for-asset"],
+      code:
+`
+const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
+
+const getSignaturesForAsset = async () => {
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      jsonrpc: '2.0',
+      id: 'my-id',
+      method: 'getSignaturesForAsset',
+      params: {
+        id: 'FNt6A9Mfnqbwc1tY7uwAguKQ1JcpBrxmhczDgbdJy5AC',
+        page: 1, // Starts at 1
+        limit: 1000, // Limit 1000 per request.
+      },
+    }),
+  });
+  const { result } = await response.json();
+  console.log("Signatures: ", result);
+};
+getSignaturesForAsset();`,
+      docs: "https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-signatures-for-asset",
+      tags: ["DAS", "RPC", "CNFT"]
+    },
+    {
       name: "Number of NFTs Held",
-      description: "You are provided a wallet address. Make use of Helius's service to determine the number of NFTs held by the provided wallet.",
+      description: "You are provided a wallet address. Make use of Helius' service to determine the number of NFTs held by the provided wallet.",
       difficulty: 1,
       api: 'nfts_held',
       solved: false,
@@ -96,7 +238,7 @@ getAssetsByOwner();`,
     },
     {
       name: "Image URL of an NFT",
-      description: "You are provided the mint address of a token. Make use of Helius's services to find the image of an NFT, you'll need to extract the URL pointing to the image from the data.",
+      description: "You are provided the mint address of a token. Make use of Helius' services to find the image of an NFT, you'll need to extract the URL pointing to the image from the data.",
       difficulty: 1,
       api: 'image_nft',
       solved: false,
@@ -134,7 +276,7 @@ getMetadata('F9Lw3ki3hJ7PF9HQXsBzoY8GyE6sPoEZZdXJBsTTD2rk');`,
     },
     {
       name: "Identify an NFT's holder",
-      description: "You are provided the mint address of a token. Make use of Helius's services to identify the holder of the provided NFT token address.",
+      description: "You are provided the mint address of a token. Make use of Helius' services to identify the holder of the provided NFT token address.",
       difficulty: 1,
       api: 'nft_holder',
       solved: false,
@@ -171,7 +313,7 @@ getAsset();`,
     },
     {
       name: "Transaction Epoch",
-      description: "You are provided the signature of a transaction. Make use of Helius's services to identify the time at which the provided transaction took place.",
+      description: "You are provided the signature of a transaction. Make use of Helius' services to identify the time at which the provided transaction took place.",
       difficulty: 1,
       api: 'epoch_tx',
       solved: false,
@@ -202,7 +344,7 @@ const parseTransaction = async () => {
     },
     {
       name: "First Transaction",
-      description: "You are provided a wallet address. Make use of Helius's services in order to retrieve the first transaction signature of the provided wallet.",
+      description: "You are provided a wallet address. Make use of Helius' services in order to retrieve the first transaction signature of the provided wallet.",
       difficulty: 2,
       api: "first_tx",
       solved: false,
@@ -226,7 +368,7 @@ const parseTransactions = async () => {
     },
     {
       name: "Sale Activity of an NFT",
-      description: "You are provided a token address. Make use of Helius's services in order to find the number of times it has been sold.",
+      description: "You are provided a token address. Make use of Helius' services in order to find the number of times it has been sold.",
       difficulty: 1,
       api: "times_sold",
       solved: false,
@@ -262,148 +404,6 @@ const parseTransactions = async () => {
 getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")`,
       docs: "https://docs.helius.xyz/solana-apis/nft-api/nft-events-historical-querying",
       tags: ["NFT API"]
-    },
-    {
-      name: "Leaves on a Merkle Tree",
-      description: "You are provided a cNFT mint address. Make use of Helius's services in order to find the current number of leaves on the merkle tree the cNFT was minted on.",
-      difficulty: 1,
-      api: "merkle_leaves",
-      solved: false,
-      type: "cnft",
-      example_answer: "12501",
-      hints: ["https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset-proof"],
-      code:
-`
-const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
-
-const getAsset = async () => {
-  const response = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      jsonrpc: '2.0',
-      id: 'my-id',
-      method: 'getAsset',
-      params: {
-        id: Bu1DEKeawy7txbnCEJE4BU3BKLXaNAKCYcHR4XhndGss
-      },
-    }),
-  });
-  const { result } = await response.json();
-  console.log(result)
-};
-getAsset()`,
-      docs: "https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset",
-      tags: ["DAS", "RPC", "CNFT"]
-    },
-    {
-      name: "Size of a Merkle Tree",
-      description: "You are provided a cNFT mint address. Make use of Helius's services in order to find the maximum number of leaves on the merkle tree the cNFT was minted on.",
-      difficulty: 1,
-      api: "max_merkle",
-      solved: false,
-      type: "cnft",
-      example_answer: "8192",
-      hints: ["https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset-proof"],
-      code:
-`
-const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
-
-const getAssetProof = async () => {
-  const response = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      jsonrpc: '2.0',
-      id: 'my-id',
-      method: 'getAssetProof',
-      params: {
-        id: 'Bu1DEKeawy7txbnCEJE4BU3BKLXaNAKCYcHR4XhndGss'
-      },
-    }),
-  });
-  const { result } = await response.json();
-  console.log("Assets Proof: ", result);
-};
-getAssetProof()`,
-      docs: "https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset",
-      tags: ["DAS", "RPC", "CNFT"]
-    },
-    {
-      name: "A cNFT's Merkle Tree",
-      description: "You are provided a cNFT mint address. Make use of Helius's services in order to find the ID of the merkle tree the cNFT was minted on.",
-      difficulty: 1,
-      api: "find_merkle",
-      solved: false,
-      type: "cnft",
-      example_answer: "2kuTFCcjbV22wvUmtmgsFR7cas7eZUzAu96jzJUvUcb7",
-      hints: ["https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset-proof"],
-      code:
-`
-const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
-
-const getAssetProof = async () => {
-  const response = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      jsonrpc: '2.0',
-      id: 'my-id',
-      method: 'getAssetProof',
-      params: {
-        id: 'Bu1DEKeawy7txbnCEJE4BU3BKLXaNAKCYcHR4XhndGss'
-      },
-    }),
-  });
-  const { result } = await response.json();
-  console.log("Assets Proof: ", result);
-};
-getAssetProof()`,
-      docs: "https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset",
-      tags: ["DAS", "RPC", "CNFT"]
-    },
-    {
-      name: "A cNFT's Transactions",
-      description: "You are provided a cNFT mint address. Make use of Helius's services in order to find the number of transactions relating to the cNFT.",
-      difficulty: 1,
-      api: "cnft_sigs",
-      solved: false,
-      type: "cnft",
-      example_answer: "2",
-      hints: ["https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-signatures-for-asset"],
-      code:
-`
-const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
-
-const getSignaturesForAsset = async () => {
-  const response = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      jsonrpc: '2.0',
-      id: 'my-id',
-      method: 'getSignaturesForAsset',
-      params: {
-        id: 'FNt6A9Mfnqbwc1tY7uwAguKQ1JcpBrxmhczDgbdJy5AC',
-        page: 1, // Starts at 1
-        limit: 1000, // Limit 1000 per request.
-      },
-    }),
-  });
-  const { result } = await response.json();
-  console.log("Signatures: ", result);
-};
-getSignaturesForAsset();`,
-      docs: "https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-signatures-for-asset",
-      tags: ["DAS", "RPC", "CNFT"]
     },
   ]
   const [questions, setQuestions] = useState(originalQuestions)
@@ -474,7 +474,7 @@ getSignaturesForAsset();`,
 
 
   return (
-    <main className={`flex scrollbar w-full h-screen flex-col items-center justify-between bg-zinc-950 text-zinc-200 no-scrollbar ${inter.className}`}>
+    <main className={`flex scrollbar w-full h-screen flex-col items-center justify-between bg-black text-zinc-200 scrollbar ${inter.className}`}>
       <title>Pyre</title>
       {selectedComponent === "Landing" ? (
         <>

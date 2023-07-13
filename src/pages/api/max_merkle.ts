@@ -1,4 +1,5 @@
-
+import { ConcurrentMerkleTreeAccount } from "@solana/spl-account-compression";
+import web3 from "@solana/web3.js"
 const url = `https://rpc.helius.xyz/?api-key=${process.env.HELIUS_KEY}`
 
 const getAssetProof = async (context: string) => {
@@ -17,7 +18,13 @@ const getAssetProof = async (context: string) => {
         }),
     });
     const { result } = await response.json();
-    return result.node_index // incorrect will fix
+
+    const connection = new web3.Connection(url);
+    const publicKey = new web3.PublicKey(result.tree_id);
+
+    const cmt = await ConcurrentMerkleTreeAccount.fromAccountAddress(connection, publicKey)
+
+    return Math.pow(2, cmt.getMaxDepth())
 };
 
 

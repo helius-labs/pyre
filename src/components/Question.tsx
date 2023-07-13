@@ -288,7 +288,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                 <pre className="flex flex-row mb-0"><code style={{ background: '#09090b' }}>{3.304}</code></pre>
                             </div> */}
 
-                            <div className='flex flex-col mt-8 space-y-0 h-full w-full overflow-x-hidden'>
+                            <div className='flex flex-col mt-8 space-y-0 h-4/5 w-full overflow-x-hidden'>
 
                                 <div className='flex flex-row space-x-8 w-full justify-between items-center border border-b-0 border-zinc-900  rounded-t-lg px-4 py-2'>
 
@@ -299,17 +299,23 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                             {
                                                 if (codeOutput == "Run code for example output.") { questionQuery("example"); setCodeOutput("Loading...") }
                                             }
-                                        }} className='flex hover:bg-zinc-900 space-x-2 hover:opacity-100 tracking-widest text-xs w-8 h-8 rounded-md justify-center items-center hover:border-orange-400 duration-200 cursor-pointer text-zinc-400 hover:text-orange-400'>
+                                        }} className='flex w-max px-2 hover:bg-zinc-900 space-x-8 hover:opacity-100 tracking-widest text-xs w-8 h-8 rounded-md justify-center items-center hover:border-orange-400 duration-200 cursor-pointer text-zinc-400 hover:text-orange-400'>
 
                                             <>{
                                                 (codeOutput == "Loading...") ? (
 
-                                                    <svg className="flex text-current animate-spin" width={20} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                    <div className='flex space-x-2 w-16 justify-between items-center w-max tracking-widest flex-row'>
+                                                    <svg className="flex text-current animate-spin" width={24} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                                                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                                    </svg>
+                                                    </svg>                                                    <span className='flex font-bold'>RUN</span>
+                                                    </div>
                                                 ) : (
+                                                    
+                                                    <div className='flex space-x-2 w-16 justify-between items-center w-max tracking-widest flex-row'>
                                                     <svg className='flex text-current' width={24} fill="currentColor" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg" transform="matrix(-1, 0, 0, 1, 0, 0)" stroke="currentColor"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M694.018 926.244c-27.296 18.796-27.3 49.269 0 68.067l509.836 351.074c27.296 18.797 49.424 7.18 49.424-25.959V601.13c0-33.133-22.125-44.757-49.424-25.959L694.018 926.244Z" fill-rule="evenodd"></path> </g></svg>
+                                                    <span className='flex font-bold'>RUN</span>
+                                                    </div>
                                                 )
                                             }</>
 
@@ -321,12 +327,12 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                     </div>
                                 </div>
 
-                                <div className="w-full bg-zinc-950 border border-b-0 border-zinc-900 max-h-96">
-                                    <pre className='flex w-full max-h-96'><code style={{ background: '#09090b' }} className="js flex w-full border-b border-zinc-900 overflow-x-scroll scrollbar ">{question.code}</code></pre>
+                                <div className="w-full bg-zinc-950 border border-b-0 border-zinc-900 max-h-[40%]">
+                                    <pre className='flex w-full h-full'><code style={{ background: '#09090b' }} className="js flex w-full border-b border-zinc-900 overflow-x-scroll scrollbar">{question.code}</code></pre>
                                 </div>
 
-                                <div className="w-full bg-zinc-950 border border-zinc-900 rounded-b-lg">
-                                    <pre className="flex w-full max-h-72 flex-row mb-0 overflow-hidden"><code style={{ background: '#09090b' }} className="flex w-full border-b border-zinc-900 js rounded-lg scrollbar max-h-96 flex-col-reverse">{codeOutput}</code></pre>
+                                <div className="w-full max-h-[50%] bg-zinc-950 border border-zinc-900 rounded-b-lg">
+                                    <pre className="flex w-full h-full flex-row mb-0 overflow-hidden"><code style={{ background: '#09090b' }} className="flex w-full border-b border-zinc-900 js rounded-lg scrollbar max-h-1/3 flex-col-reverse">{codeOutput}</code></pre>
                                 </div>
                             </div>
 
