@@ -60,6 +60,8 @@ interface Questions {
 }
 ```
 
+Rendered version:
+
 ![Pyre Question](/public/pyre-question.png)
 
 
@@ -107,3 +109,12 @@ getAssetsByOwner();`,
 ```
 
 You can also contribute to the project by opening issues and submitting pull requests to fix bugs or add new features! For any inquiries, visit the [Helius Discord](https://discord.gg/helius) or message Tidelaw#0707.
+
+## License
+This project is open source and available under the Apache 2.0 License.
+
+## Related Links
+* [Live Demo](https://www.https://pyre.helius.xyz/)
+* [Helius Dev Portal](https://dev.helius.xyz/dashboard/app)
+* [Helius Documentation](https://docs.helius.xyz/)
+* [xNFT Version](https://www.xnft.gg/app/7BvNHEnUZ9oVhpAVFaKSxgYUuHnJqb1sz51fVejFokpb)

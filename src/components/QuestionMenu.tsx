@@ -72,9 +72,14 @@ export default function QuestionMenu({ setSelectedComponent, progress, userData,
             <div className='flex items-center h-full w-full flex-col bg-zinc-950 no-scrollbar'>
 
                 <div className='flex xl:space-y-4 flex-col h-full w-full xl:w-2/3 items-center no-scrollbar'>
-                    <div className='flex w-full flex-col space-y-2 items-start justify-start text-zinc-300 font-semibold p-4 py-6 xl:py-0 xl:mt-16 '>
+                    <div className='flex w-full flex-col space-y-4 items-start justify-start text-zinc-300 font-semibold p-4 py-6 xl:py-0 xl:mt-16 '>
 
+
+                        <div className='flex flex-col space-y-1'>
                         <div className='flex text-md tracking-widest font-medium'>FEATURED TAGS</div>
+                        
+                        <div className='flex text-xs text-zinc-400 font-medium tracking-widest uppercase'>Select a Tag</div>
+                        </div>
 
                         <div className='flex flex-row space-x-4 text-[12px] tracking-wider leading-5'>
 
