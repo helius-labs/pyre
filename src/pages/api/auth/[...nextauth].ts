@@ -24,11 +24,6 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
             JSON.parse(credentials?.message || "{}")
           );
 
-        //   const nextAuthUrl = new URL(process.env.NEXTAUTH_URL);
-        //   if (signinMessage.domain !== nextAuthUrl.host) {
-        //     return null;
-        //   }
-
           const csrfToken = await getCsrfToken({ req: { ...req, body: null } });
 
           if (signinMessage.nonce !== csrfToken) {

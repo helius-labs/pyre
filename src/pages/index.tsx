@@ -497,9 +497,6 @@ getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")`,
           <Landing setSelectedComponent={setSelectedComponent} />
         </>
       ) : (
-        // selectedComponent === "Guide" ? (
-        //   <Guide setSelectedComponent={setSelectedComponent} progress={progress} walletConnect={walletConnect} ></Guide>
-        // ) :
         (selectedComponent === "QuestionMenu") ? (
           <>
             {

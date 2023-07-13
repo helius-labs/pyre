@@ -26,23 +26,8 @@ export default function Landing({ setSelectedComponent }: any) {
                         >
                             get started
                         </button>
-
-                        {/* <div className='relative group items-center justify-center flex'>
-                            <div className="absolute -inset-0.5 blur bg-gradient-to-r from-orange-700 to-yellow-500 rounded-lg opacity-75 group-hover:opacity-100 transition duration-200 group-hover:duration-200"></div>
-                            <a
-                                className="relative font-bold justify-center items-center text-zinc-200 bg-black px-6 xl:px-12 py-3 rounded-lg overflow-show "
-                                href="https://docs.helius.xyz/welcome/what-is-helius" target="_blank"
-                            >
-                                View Docs
-                            </a>
-                        </div> */}
                     </div>
-                    {/* <WalletMultiButtonDynamic className='bg-zinc-900 hover:bg-zinc-900 hover:opacity-100 duration-200' /> */}
-
                 </div>
-
-                {/* <img className='fixed max-w-none h-full' src="gradient.png"></img> */}
-
             </div>
 
             <div className='flex space-x-8 py-4'>
@@ -57,10 +42,6 @@ export default function Landing({ setSelectedComponent }: any) {
                 <a href='https://helius.dev' target="_blank" className='flex opacity-70 hover:opacity-100 duration-200 items-center justify-center w-12 h-12 rounded-lg'>
                     <Image className='' alt="Helius" src="/helius.svg" width={24} height={24}></Image>
                 </a>
-                {/* <a href='https://github.com/Tidelaw/pyre' target="_blank" className='flex indicator opacity-70 hover:opacity-100 duration-200 items-center justify-center w-12 h-12 rounded-lg'>
-                    <span className="indicator-item badge bg-orange-400 animate-ping"></span>
-                    <Image className='' alt="Gith" src="/github.svg" width={24} height={24}></Image>
-                </a> */}
                 <a data-tip="Add new questions!" href='https://github.com/Tidelaw/pyre' target="_blank" className='flex tooltip tooltip-warning opacity-70 hover:opacity-100 duration-200 items-center justify-center w-12 h-12 rounded-lg'>
                     <div className='absolute animate-ping w-3 h-3 top-0 right-0 bg-orange-400 rounded-full absolute z-20'></div>
                     <div className='absolute w-3 h-3 top-0 right-0 bg-orange-400 rounded-full absolute z-20'></div>

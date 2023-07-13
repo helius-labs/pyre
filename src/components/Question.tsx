@@ -236,58 +236,6 @@ export default function Question({ setSelectedComponent, question, questions, pr
                         </div>
 
                         <div className='flex flex-col h-full space-y-8 pr-2 justify-between rounded-lg xl:w-1/2'>
-
-                            {/* <div className='flex flex-col w-full h-full rounded-lg bg-zinc-800 overflow-x-scroll xl:overflow-hidden resize-y'>
-
-                                <div className='flex flex-row justify-between bg-zinc-200 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-300 font-medium px-3 py-2'>
-                                    <div className='flex text-md font-medium tracking-widest text-zinc-200'>CODE SNIPPET</div>
-                                    <div onClick={() => {
-                                        navigator.clipboard.writeText(question.code)
-                                        setCopyCode("Copied!")
-                                        setTimeout(() => {
-                                            setCopyCode("Copy");
-                                        }, 1000);
-                                    }}
-
-                                        className={`flex duration-200 cursor-pointer rounded-lg hover:bg-zinc-300 dark:hover:bg-zinc-700 justify-center`}>
-
-                                        <div className='flex space-x-2 w-max'>
-                                            <div className=''>{copyCode}</div>
-                                            <>{
-                                                (copyCode == "Copied!") ?
-                                                    (
-                                                        <Image className='duration-200 text-zinc-300 fill-orange-400' alt="check" src="/check.svg" width={16} height={16}></Image>
-                                                    ) : (
-                                                        <Image className='duration-200 text-zinc-300 fill-orange-400' alt="copy" src="/copy.svg" width={16} height={16}></Image>
-                                                    )
-                                            }
-                                            </>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <pre className='flex w-full h-full bg-zinc-900 rounded-lg rounded-t-none '><code style={{ background: '#18181b' }} className="js no-scrollbar rounded-lg">
-                                    {question.code}
-                                </code></pre>
-                            </div> */}
-                            {/* 
-                            <div className="mockup-code pb-0 mt-8 bg-zinc-950 bg-transparent border border-zinc-900 overflow-scroll no-scrollbar">
-                                <pre className='flex'><code style={{ background: '#09090b' }} className="js overflow-x-scroll scrollbar rounded-lg">{question.code}</code></pre>
-                            </div>
-
-                            <div className='flex flex-row space-x-8'>
-                                <div className='flex opacity-60 hover:opacity-100 tracking-widest text-xs border border-zinc-900 w-max px-2 h-8 rounded-md justify-center items-center hover:border-orange-400 duration-200 cursor-pointer text-zinc-200 hover:text-orange-400'>
-                                    <svg className='text-current' width={20} fill="currentColor" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg" transform="matrix(-1, 0, 0, 1, 0, 0)" stroke="currentColor"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M694.018 926.244c-27.296 18.796-27.3 49.269 0 68.067l509.836 351.074c27.296 18.797 49.424 7.18 49.424-25.959V601.13c0-33.133-22.125-44.757-49.424-25.959L694.018 926.244Z" fill-rule="evenodd"></path> </g></svg>
-                                    <span className='flex font-medium text-center items-center'>RUN</span>
-                                </div>
-                                <div className='flex opacity-60 hover:opacity-100 tracking-widest text-xs border border-zinc-900 w-max px-2 h-8 rounded-md justify-center items-center hover:border-orange-400 duration-200 cursor-pointer text-zinc-200 hover:text-orange-400'>
-                                    <svg className="text-current" width={20} fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M21,8H9A1,1,0,0,0,8,9V21a1,1,0,0,0,1,1H21a1,1,0,0,0,1-1V9A1,1,0,0,0,21,8ZM20,20H10V10H20ZM6,15a1,1,0,0,1-1,1H3a1,1,0,0,1-1-1V3A1,1,0,0,1,3,2H15a1,1,0,0,1,1,1V5a1,1,0,0,1-2,0V4H4V14H5A1,1,0,0,1,6,15Z"></path></g></svg>
-                                </div>
-                            </div>
-                            <div className="mockup-code bg-zinc-950 border border-zinc-900">
-                                <pre className="flex flex-row mb-0"><code style={{ background: '#09090b' }}>{3.304}</code></pre>
-                            </div> */}
-
                             <div className='flex flex-col mt-8 space-y-0 h-4/5 w-full overflow-x-hidden'>
 
                                 <div className='flex flex-row space-x-8 w-full justify-between items-center border border-b-0 border-zinc-900  rounded-t-lg px-4 py-2'>
@@ -319,7 +267,6 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                                 )
                                             }</>
 
-                                            {/* <span className='flex font-bold text-center justify-center items-center pr-1'>RUN</span> */}
                                         </div>
                                         <div onClick={() => { copyConf() }} className='flex duration-200 hover:bg-zinc-900 hover:opacity-100 tracking-widest text-xs border-zinc-900 w-max px-2 h-8 rounded-md justify-center items-center hover:border-orange-400 duration-200 cursor-pointer text-zinc-400 hover:text-orange-400'>
                                             {copy}
@@ -336,11 +283,6 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                 </div>
                             </div>
 
-
-                            {/* <a target='_blank' href={question.replit} className='flex cursor-pointer flex-grow w-full border border-zinc-900 rounded-2xl hover:border-orange-400 duration-200'>
-                                <iframe src={question.replit} className='flex w-full h-full rounded-2xl cursor-pointer'/>
-                            </a> */}
-
                             <div className='flex space-x-4 pb-16 '>
                                 <form onSubmit={handleSubmit} className="flex w-full space-x-4">
                                     <input
@@ -352,18 +294,6 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                     />
 
                                     <button className='flex bg-transparent border-2 rounded-md border-orange-400 opacity-90 hover:opacity-100 duration-200 items-center justify-center h-10 p-2 px-4 font-bold text-white duration-200 cursor-pointer' type="submit">
-
-                                        {/* <div className='flex justify-center items-center'>{(
-                                            load ? (
-                                                <svg className="flex animate-spin h-5 w-5 text-black dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                                </svg>
-                                            ) :
-                                                (
-                                                    <Image className='opacity-70 hover:opacity-100 duration-200' alt="check" src="/check.svg" width={24} height={24}></Image>
-                                                ))}
-                                        </div> */}
 
                                         <span className='flex justify-center font-semibold text-orange-400 tracking-widest'>{(
                                             load ? (

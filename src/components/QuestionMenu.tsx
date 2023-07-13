@@ -15,7 +15,6 @@ export default function QuestionMenu({ setSelectedComponent, progress, userData,
             }
             else {
                 const index = selectedTags.findIndex((e: any) => e === tag);
-                // setSelectedComponent([])
                 newArray.splice(index, 1)
                 setSelectedTags(newArray)
             }
