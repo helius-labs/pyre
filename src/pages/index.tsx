@@ -63,7 +63,9 @@ getBalances();`,
       solved: false,
       type: "cnft",
       example_answer: "12501",
-      hints: ["https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset-proof"],
+      hints: ["Find the Merkle Tree ID and look it up on https://xray.helius.xyz/.", 
+              "Call the ConcurrentMerkleTreeAccount function on the Merkle Tree ID", 
+              "Find the rightMostPath property."],
       code:
 `
 const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
@@ -98,7 +100,9 @@ getAsset()`,
       solved: false,
       type: "cnft",
       example_answer: "8192",
-      hints: ["https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset-proof"],
+      hints: ["Find the Merkle Tree ID and look it up on https://xray.helius.xyz/.", 
+              "Call the ConcurrentMerkleTreeAccount function on the Merkle Tree ID", 
+              "Find the maxDepth property and the size of the tree is 2 to the maxDepth."],      
       code:
 `
 const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
@@ -133,7 +137,9 @@ getAssetProof()`,
       solved: false,
       type: "cnft",
       example_answer: "2kuTFCcjbV22wvUmtmgsFR7cas7eZUzAu96jzJUvUcb7",
-      hints: ["https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset-proof"],
+      hints: ["Read the docs: https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset-proof", 
+              "Find the property by scrolling through the example output in the demo",
+              "The property is called, under compression.tree"],
       code:
 `
 const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
