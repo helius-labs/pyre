@@ -276,7 +276,7 @@ getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")`,
 `
 const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
 
-const getAsset = async (context:string) => {
+const getAsset = async () => {
   const response = await fetch(url, {
     method: 'POST',
     headers: {
@@ -287,13 +287,14 @@ const getAsset = async (context:string) => {
       id: 'my-id',
       method: 'getAsset',
       params: {
-        id: context
+        id: Bu1DEKeawy7txbnCEJE4BU3BKLXaNAKCYcHR4XhndGss
       },
     }),
   });
   const { result } = await response.json();
   console.log(result)
-};`,
+};
+getAsset()`,
       docs: "https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset",
       tags: ["DAS", "RPC", "CNFT"]
     },
@@ -327,7 +328,8 @@ const getAssetProof = async () => {
   });
   const { result } = await response.json();
   console.log("Assets Proof: ", result);
-};`,
+};
+getAssetProof()`,
       docs: "https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset",
       tags: ["DAS", "RPC", "CNFT"]
     },
@@ -361,8 +363,46 @@ const getAssetProof = async () => {
   });
   const { result } = await response.json();
   console.log("Assets Proof: ", result);
-};`,
+};
+getAssetProof()`,
       docs: "https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset",
+      tags: ["DAS", "RPC", "CNFT"]
+    },
+    {
+      name: "A cNFT's Transactions",
+      description: "You are provided a cNFT mint address. Make use of Helius's services in order to find the number of transactions relating to the cNFT.",
+      difficulty: 1,
+      api: "cnft_sigs",
+      solved: false,
+      type: "cnft",
+      example_answer: "2",
+      hints: ["https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-signatures-for-asset"],
+      code:
+`
+const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
+
+const getSignaturesForAsset = async () => {
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      jsonrpc: '2.0',
+      id: 'my-id',
+      method: 'getSignaturesForAsset',
+      params: {
+        id: 'FNt6A9Mfnqbwc1tY7uwAguKQ1JcpBrxmhczDgbdJy5AC',
+        page: 1, // Starts at 1
+        limit: 1000, // Limit 1000 per request.
+      },
+    }),
+  });
+  const { result } = await response.json();
+  console.log("Signatures: ", result);
+};
+getSignaturesForAsset();`,
+      docs: "https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-signatures-for-asset",
       tags: ["DAS", "RPC", "CNFT"]
     },
   ]
