@@ -3,10 +3,13 @@
 An educational app that teaches users about Helius and Solana.
 
 ![Pyre Demo](/public/pyre-demo.png)
-
-**Access [here](https://pyre.helius.xyz/)**
-
 [![License](https://img.shields.io/github/license/saltstack/salt)](https://opensource.org/license/apache-2-0/T)
+
+<br>
+
+## **To access the full hosted application, please click [here](www.https://pyre.helius.xyz/)**
+
+<br>
 
 ## Description
 Pyre is a Next.js app that allows users to learn about Helius and Solana through bite-sized questions. Each question is accompanied by unique contexts to provide a dynamic learning experience.
@@ -115,7 +118,7 @@ You can also contribute to the project by opening issues and submitting pull req
 This project is open source and available under the Apache 2.0 License.
 
 ## Related Links
-* [Live Demo](https://www.https://pyre.helius.xyz/)
+* [Live Demo](www.https://pyre.helius.xyz/)
 * [Helius Dev Portal](https://dev.helius.xyz/dashboard/app)
 * [Helius Documentation](https://docs.helius.xyz/)
 * [xNFT Version](https://www.xnft.gg/app/7BvNHEnUZ9oVhpAVFaKSxgYUuHnJqb1sz51fVejFokpb)
