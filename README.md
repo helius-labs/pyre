@@ -4,6 +4,7 @@ An educational app that teaches users about Helius and Solana.
 
 ![Pyre Demo](/public/pyre-demo.png)
 
+**Access [here](www.https://pyre.helius.xyz/)**
 
 [![License](https://img.shields.io/github/license/saltstack/salt)](https://opensource.org/license/apache-2-0/T)
 
