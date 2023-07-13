@@ -1,4 +1,46 @@
+# Pyre
+
+An educational app that teaches users about Helius and Solana.
+
+![Pyre Demo](/public/pyre-demo.png)
+
+
+[![License](https://img.shields.io/github/license/saltstack/salt)](https://opensource.org/license/apache-2-0/T)
+
+## Description
+Pyre is a Next.js app that allows users to learn about Helius and Solana through bite-sized questions. Each question is accompanied by unique contexts to provide a dynamic learning experience.
+
+## Installation and Setup
+1. Ensure you have Node.js installed.
+2. Clone this repository to your local machine:
+   ```bash
+   git clone https://github.com/helius-labs/pyre.git
+3. Change to the project directory
+    ```bash 
+    cd pyre
+4. Install the project dependencies:
+    ```bash
+    npm install
+## Usage
+1. Start the development server: 
+    ```bash
+    npm run dev
+2. Open your browser and navigate to http://localhost:3000 to access the Pyre app.
+
+![Pyre Landing](/public/pyre-landing.png)
+
+## License
+This project is open source and available under the Apache 2.0 License.
+
 # **Contribute**
+
+Contributions are welcome! If you'd like to contribute to Helius RPC Playground, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them with descriptive messages.
+4. Push your changes to your forked repository.
+5. Submit a pull request with all relevant details.
 
 Help add questions by following the interface below:
 
@@ -18,11 +60,14 @@ interface Questions {
 }
 ```
 
+![Pyre Question](/public/pyre-question.png)
+
+
 Here is an example:
 ```js
     
       name: "Number of NFTs Held",
-      description: "You are provided a wallet address. Make use of Helius's service to determine the number of NFTs held by the provided wallet.",
+      description: "You are provided a wallet address. Make use of Helius' service to determine the number of NFTs held by the provided wallet.",
       difficulty: 1,
       api: 'nfts_held',
       solved: false,
