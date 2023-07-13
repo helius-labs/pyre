@@ -90,7 +90,7 @@ export default function QuestionMenu({ setSelectedComponent, progress, userData,
                     <div className='flex w-full h-full px-4 xl:p-4 space-x-4'>
 
                         <div className='flex w-full'>
-                            <div className='flex w-full h-max flex-col justify-center items-center gap-4 no-scrollbar'>
+                            <div className='flex w-full h-max flex-col justify-center items-center gap-4 no-scrollbar pb-16'>
                                 {questionDIVs}
                             </div>
 
