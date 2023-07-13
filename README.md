@@ -7,7 +7,7 @@ An educational app that teaches users about Helius and Solana.
 
 <br>
 
-## **To access the full hosted application, please click [here](www.https://pyre.helius.xyz/)**
+## **To access the full hosted application, please click [here](https://pyre.helius.xyz/)**
 
 <br>
 
