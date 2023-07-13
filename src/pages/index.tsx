@@ -344,7 +344,10 @@ const parseTransaction = async () => {
 
   const data = await response.json();
   console.log("parsed transaction: ", data);
-};`,
+};
+
+parseTransaction()
+`,
       docs: "https://docs.helius.xyz/solana-apis/enhanced-transactions-api/parse-transaction-s",
       tags: ["ENHANCED API"]
     },
@@ -368,7 +371,10 @@ const parseTransactions = async () => {
   const data = await response.json();
 
   console.log("parsed transactions: ", data);
-};`,
+};
+
+parseTransactions()
+`,
       docs: "https://docs.helius.xyz/solana-apis/enhanced-transactions-api/parsed-transaction-history",
       tags: ["RPC"]
     },
