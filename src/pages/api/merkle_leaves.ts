@@ -27,7 +27,7 @@ const getAsset = async (context:string) => {
 
     const cmt = await ConcurrentMerkleTreeAccount.fromAccountAddress(connection, publicKey)
 
-    return cmt.tree.rightMostPath.index-1
+    return cmt.tree.rightMostPath.index
 };
 
 const getExample = async (context:string) => {
