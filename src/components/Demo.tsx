@@ -19,7 +19,7 @@ export default function Demo({ copyContext, handleCorrect }: any) {
                 skip demo
             </div>
 
-            <div className='flex text-md font-medium text-zinc-900 dark:text-zinc-300 rounded-md xl:text-xl'>
+            <div className='flex text-md font-medium text-zinc-300 rounded-md xl:text-xl'>
                 You are provided a wallet address. Make use of Helius' services in order to retrieve the wallet's native balance and convert into SOL.
             </div>
 
@@ -29,7 +29,7 @@ export default function Demo({ copyContext, handleCorrect }: any) {
             </div>
 
             <div className='flex flex-col space-y-4'>
-                <div className='flex text-lg text-zinc-900 dark:text-zinc-300 xl:text-3xl font-semibold'>
+                <div className='flex text-lg text-zinc-300 xl:text-3xl font-semibold'>
                     Prerequisites
                 </div>
                 <ul className='list-inside list-disc space-y-1'>
@@ -40,7 +40,7 @@ export default function Demo({ copyContext, handleCorrect }: any) {
             </div>
 
             <div className='flex w-full flex-col space-y-6'>
-                <div className='flex text-lg text-zinc-900 dark:text-zinc-300 xl:text-3xl font-semibold'>
+                <div className='flex text-lg text-zinc-300 xl:text-3xl font-semibold'>
                     Walkthrough
                 </div>
                 <div className='flex w-full flex-col space-y-16'>
