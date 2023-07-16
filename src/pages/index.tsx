@@ -2,6 +2,7 @@ import Landing from '../components/Landing';
 import QuestionMenu from '../components/QuestionMenu';
 import Question from '../components/Question';
 import End from '../components/End';
+import Tracks from '../components/Tracks';
 import axios from 'axios';
 import Demo from '../components/Demo'
 import Image from 'next/image';
@@ -63,11 +64,11 @@ getBalances();`,
       solved: false,
       type: "cnft",
       example_answer: "12501",
-      hints: ["Find the Merkle Tree ID and look it up on https://xray.helius.xyz/.", 
-              "Call the ConcurrentMerkleTreeAccount function on the Merkle Tree ID", 
-              "Find the rightMostPath property."],
+      hints: ["Find the Merkle Tree ID and look it up on https://xray.helius.xyz/.",
+        "Call the ConcurrentMerkleTreeAccount function on the Merkle Tree ID",
+        "Find the rightMostPath property."],
       code:
-`
+        `
 const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
 
 const getAsset = async () => {
@@ -100,11 +101,11 @@ getAsset()`,
       solved: false,
       type: "cnft",
       example_answer: "8192",
-      hints: ["Find the Merkle Tree ID and look it up on https://xray.helius.xyz/.", 
-              "Call the ConcurrentMerkleTreeAccount function on the Merkle Tree ID", 
-              "Find the maxDepth property and the size of the tree is 2 to the maxDepth."],      
+      hints: ["Find the Merkle Tree ID and look it up on https://xray.helius.xyz/.",
+        "Call the ConcurrentMerkleTreeAccount function on the Merkle Tree ID",
+        "Find the maxDepth property and the size of the tree is 2 to the maxDepth."],
       code:
-`
+        `
 const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
 
 const getAssetProof = async () => {
@@ -137,11 +138,11 @@ getAssetProof()`,
       solved: false,
       type: "cnft",
       example_answer: "2kuTFCcjbV22wvUmtmgsFR7cas7eZUzAu96jzJUvUcb7",
-      hints: ["Read the docs: https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset-proof", 
-              "Find the property by scrolling through the example output in the demo",
-              "The property is called, under compression.tree"],
+      hints: ["Read the docs: https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset-proof",
+        "Find the property by scrolling through the example output in the demo",
+        "The property is called, under compression.tree"],
       code:
-`
+        `
 const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
 
 const getAssetProof = async () => {
@@ -176,7 +177,7 @@ getAssetProof()`,
       example_answer: "2",
       hints: ["https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-signatures-for-asset"],
       code:
-`
+        `
 const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
 
 const getSignaturesForAsset = async () => {
@@ -423,6 +424,8 @@ getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")`,
   const [mintedAward, setMintedAward] = useState(false);
   const sessionData: any = useSession();
   const [completed, setCompleted] = useState([]);
+  const [track, setTrack] = useState();
+
 
   useEffect(() => {
     async function saveProgress() {
@@ -457,7 +460,7 @@ getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")`,
     }
 
     async function retrieveProgress() {
-
+      
       const { data } = await axios.post("/api/retrieve_progress",
         {
           user: sessionData?.data?.publicKey
@@ -513,14 +516,19 @@ getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")`,
           <>
             {
               (questions.length == 0) ?
-                (<End mintedAward={mintedAward} setMintedAward={setMintedAward} setSelectedComponent={setSelectedComponent} progress={progress}></End>)
-                : (<QuestionMenu userData={userData} questions={questions} progress={progress} setProgress={setProgress} setQuestion={setQuestion} setSelectedComponent={setSelectedComponent} />
+                <End mintedAward={mintedAward} setMintedAward={setMintedAward} setSelectedComponent={setSelectedComponent} progress={progress}></End>
+                : (
+
+                  (track) ?
+                    <QuestionMenu userData={userData} questions={questions} progress={progress} setProgress={setProgress} setQuestion={setQuestion} setSelectedComponent={setSelectedComponent} />
+                    :
+                    <Tracks setTrack={setTrack} progress={progress} setProgress={setProgress} setQuestion={setQuestion} setSelectedComponent={setSelectedComponent}/>
                 )
             }
           </>
-        ) : (
+        ) :
           <Question originalQuestions={originalQuestions} completed={completed} setCompleted={setCompleted} question={question} questions={questions} progress={progress} setQuestions={setQuestions} setProgress={setProgress} setSelectedComponent={setSelectedComponent} />
-        )
+
       )}
 
     </main>
