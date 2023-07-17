@@ -73,7 +73,7 @@ export default function End({ setSelectedComponent, progress, setMintedAward, mi
                                     <div className='flex flex-col space-y-8 py-8 items-center justify-center'>
                                         <Image className='animate-pulse' alt="Helius" src="/helius.svg" width={150} height={150}></Image>
                                         <div className='flex flex-col space-y-4 text-center'>
-                                            <div className='text-3xl font-bold'>An error occurred!</div>
+                                            <div className='text-3xl font-bold text-zinc-300'>An error occurred!</div>
                                             <div className='text-md text-zinc-500'>Common errors include, not connecting your wallet and already minting a cNFT! Visit the <a className='text-blue-500' href='https://discord.gg/helius' target='_blank'>Helius Discord</a> for more help!</div>
                                         </div>
                                     </div>
@@ -88,7 +88,7 @@ export default function End({ setSelectedComponent, progress, setMintedAward, mi
                                             </div>
 
                                             <div className='flex w-full justify-between space-x-4'>
-                                                <div className='w-[75%] h-min rounded-md p-2 border border-zinc-800 truncate'>https://explorer.solana.com/tx/{tx}</div>
+                                                <div className='w-[75%] h-min rounded-md p-2 border border-zinc-800 text-zinc-400 truncate'>https://explorer.solana.com/tx/{tx}</div>
 
                                                 <div className='flex flex-row w-[25%] justify-end space-x-2'>
 
