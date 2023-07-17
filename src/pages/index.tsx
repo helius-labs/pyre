@@ -467,6 +467,7 @@ getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")`,
         setCompleted(data[0].completed_questions)
         updateQuestions(data[0].completed_questions)
         setUserData(data[0])
+        setMintedAward(data[0].minted_award)
       }
       else {
         setProgress(0)
