@@ -419,13 +419,13 @@ getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")`,
       tags: ["NFT API"]
     },
   ]
+  console.log(originalQuestions.length, 'asdoih')
   const [questions, setQuestions] = useState(originalQuestions)
   const [userData, setUserData] = useState()
   const [mintedAward, setMintedAward] = useState(false);
   const sessionData: any = useSession();
   const [completed, setCompleted] = useState([]);
   const [track, setTrack] = useState();
-
 
   useEffect(() => {
     async function saveProgress() {
@@ -488,6 +488,7 @@ getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")`,
   }, [sessionData?.data?.publicKey])
 
 
+
   return (
     <main className={`flex scrollbar w-full h-screen flex-col items-center justify-between bg-black text-zinc-200 scrollbar ${inter.className}`}>
       <title>Pyre</title>
@@ -518,11 +519,10 @@ getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")`,
               (questions.length == 0) ?
                 <End mintedAward={mintedAward} setMintedAward={setMintedAward} setSelectedComponent={setSelectedComponent} progress={progress}></End>
                 : (
-
                   (track) ?
-                    <QuestionMenu userData={userData} questions={questions} progress={progress} setProgress={setProgress} setQuestion={setQuestion} setSelectedComponent={setSelectedComponent} />
+                    <QuestionMenu completed={completed} originalQuestions={originalQuestions} sessionData={sessionData} track={track} setTrack={setTrack} userData={userData} questions={questions} progress={progress} setProgress={setProgress} setQuestion={setQuestion} setSelectedComponent={setSelectedComponent} />
                     :
-                    <Tracks setTrack={setTrack} progress={progress} setProgress={setProgress} setQuestion={setQuestion} setSelectedComponent={setSelectedComponent}/>
+                    <Tracks originalQuestions={originalQuestions} setTrack={setTrack} progress={progress} setProgress={setProgress} setQuestion={setQuestion} setSelectedComponent={setSelectedComponent}/>
                 )
             }
           </>
