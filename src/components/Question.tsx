@@ -177,6 +177,9 @@ export default function Question({ setSelectedComponent, question, questions, pr
             }
             else if (response.data != answer) {
                 setLoad(false)
+                setTimeout(()=>{
+                    setSubmit(false)
+                }, 3000)
             }
         }
         catch (err: any) {

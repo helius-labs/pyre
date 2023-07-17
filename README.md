@@ -14,27 +14,6 @@ An educational app that teaches users about Helius and Solana.
 ## Description
 Pyre is a Next.js app that allows users to learn about Helius and Solana through bite-sized questions. Each question is accompanied by unique contexts to provide a dynamic learning experience.
 
-## Installation and Setup
-1. Ensure you have Node.js installed.
-2. Clone this repository to your local machine:
-   ```bash
-   git clone https://github.com/helius-labs/pyre.git
-3. Change to the project directory
-    ```bash 
-    cd pyre
-4. Install the project dependencies:
-    ```bash
-    npm install
-## Usage
-1. Start the development server: 
-    ```bash
-    npm run dev
-2. Open your browser and navigate to http://localhost:3000 to access the Pyre app.
-
-![Pyre Landing](/public/pyre-landing.png)
-
-## License
-This project is open source and available under the Apache 2.0 License.
 
 # **Contribute**
 
@@ -113,6 +92,26 @@ getAssetsByOwner();`,
 ```
 
 You can also contribute to the project by opening issues and submitting pull requests to fix bugs or add new features! For any inquiries, visit the [Helius Discord](https://discord.gg/helius) or message Tidelaw#0707.
+
+
+## Installation and Setup
+1. Ensure you have Node.js installed.
+2. Clone this repository to your local machine:
+   ```bash
+   git clone https://github.com/helius-labs/pyre.git
+3. Change to the project directory
+    ```bash 
+    cd pyre
+4. Install the project dependencies:
+    ```bash
+    npm install
+## Usage
+1. Start the development server: 
+    ```bash
+    npm run dev
+2. Open your browser and navigate to http://localhost:3000 to access the Pyre app.
+
+![Pyre Landing](/public/pyre-landing.png)
 
 ## License
 This project is open source and available under the Apache 2.0 License.
