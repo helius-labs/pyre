@@ -417,6 +417,73 @@ getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")`,
       docs: "https://docs.helius.xyz/solana-apis/nft-api/nft-events-historical-querying",
       tags: ["NFT API"]
     },
+
+
+
+
+
+    {
+      name: "Get the current Epoch",
+      description: "Make use of the getEpochInfo RPC method to get information about the current epoch.",
+      difficulty: 1,
+      api: "",
+      solved: false,
+      type: "RPC",
+      example_answer: "420",
+      hints: ["Look for the epoch variable in the response. Find more information in the docs: https://docs.solana.com/api/http#getepochinfo",],
+      code:
+      `
+      const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
+      
+      const getEpochInfo = async () => {
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            "jsonrpc": "2.0", "id": 1,
+          "method": "getEpochInfo"
+          }),
+        });
+        const { result } = await response.json();
+        console.log(result)
+      };
+      getEpochInfo()`,
+      docs: "https://docs.solana.com/api/http#getepochinfo",
+      tags: ["RPC"]
+    },
+    {
+      name: "Find the Genesis Hash",
+      description: "Make use of the getGenesisHash RPC method to get the genesis hash",
+      difficulty: 1,
+      api: "",
+      solved: false,
+      type: "RPC",
+      example_answer: "GH7ome3EiwEr7tu9JuTh2dpYWBJK3z69Xm1ZE3MEE6JC",
+      hints: ["Look for the result variable in the method response.","You can find more info in the Solana docs: https://docs.solana.com/api/http#getgenesishash"],
+      code:
+`
+const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
+
+const getGenesisHash = async () => {
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      "jsonrpc":"2.0","id":1, "method":"getGenesisHash"
+    }),
+  });
+  const { result } = await response.json();
+  console.log(result)
+};
+getGenesisHash()`,
+      docs: "https://docs.solana.com/api/http#getgenesishash",
+      tags: ["RPC"]
+    },
+    
   ]
   const [questions, setQuestions] = useState(originalQuestions)
   const [userData, setUserData] = useState()
