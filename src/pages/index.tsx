@@ -419,7 +419,6 @@ getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")`,
       tags: ["NFT API"]
     },
   ]
-  console.log(originalQuestions.length, 'asdoih')
   const [questions, setQuestions] = useState(originalQuestions)
   const [userData, setUserData] = useState()
   const [mintedAward, setMintedAward] = useState(false);
@@ -470,6 +469,7 @@ getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")`,
         setCompleted(data[0].completed_questions)
         updateQuestions(data[0].completed_questions)
         setUserData(data[0])
+        setMintedAward(data[0].minted_award)
       }
       else {
         setProgress(0)
@@ -517,7 +517,7 @@ getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")`,
           <>
             {
               (questions.length == 0) ?
-                <End mintedAward={mintedAward} setMintedAward={setMintedAward} setSelectedComponent={setSelectedComponent} progress={progress}></End>
+                <End originalQuestions={originalQuestions} mintedAward={mintedAward} setMintedAward={setMintedAward} setSelectedComponent={setSelectedComponent} progress={progress}></End>
                 : (
                   (track) ?
                     <QuestionMenu completed={completed} originalQuestions={originalQuestions} sessionData={sessionData} track={track} setTrack={setTrack} userData={userData} questions={questions} progress={progress} setProgress={setProgress} setQuestion={setQuestion} setSelectedComponent={setSelectedComponent} />

@@ -23,7 +23,7 @@ export default function Tracks({ setSelectedComponent, progress, setTrack, origi
 
                 <div onMouseOver={()=>{setSelected(3)}} onClick={()=>{setTrack("MISC")}} className={`flex w-[25%] border rounded-md items-center justify-center duration-200 cursor-pointer ${selected==3?"scale-110 border-orange-400 text-orange-400":"border-zinc-800"}`}>
                     <div className='tracking-widest text-3xl'>
-                        ALL</div>
+                        MISC</div>
                 </div>
             </div>
         </>
