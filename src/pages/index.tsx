@@ -375,45 +375,106 @@ parseTransactions()
       docs: "https://docs.helius.xyz/solana-apis/enhanced-transactions-api/parsed-transaction-history",
       tags: ["RPC"]
     },
-//     {
-//       name: "Sale Activity of an NFT",
-//       description: "You are provided a token address. Make use of Helius' services in order to find the number of times it has been sold.",
-//       difficulty: 1,
-//       api: "times_sold",
-//       solved: false,
-//       type: "nft",
-//       example_answer: "5",
-//       hints: ["You can use the NFT Events (Historical Querying) to determine the number of times an NFT has been sold, by changing the account to that of the token's mint address.",
-//         "Assuming you've applied the NFT_SALE filter, the number of times sold is simply the length of the returned array.",
-//         "Fiddle around with the options, e.g sources, types, and other properties found on the Gitbook to get a better understanding of this endpoint."],
-//       code:
-//         `const getNftEvents = async (context) => {
+    {
+      name: "Sale Activity of an NFT",
+      description: "You are provided a token address. Make use of Helius' services in order to find the number of times it has been sold.",
+      difficulty: 1,
+      api: "times_sold",
+      solved: false,
+      type: "nft",
+      example_answer: "5",
+      hints: ["You can use the NFT Events (Historical Querying) to determine the number of times an NFT has been sold, by changing the account to that of the token's mint address.",
+        "Assuming you've applied the NFT_SALE filter, the number of times sold is simply the length of the returned array.",
+        "Fiddle around with the options, e.g sources, types, and other properties found on the Gitbook to get a better understanding of this endpoint."],
+      code:
+        `const getNftEvents = async (context) => {
 
-//   const url = "https://api.helius.xyz/v1/nft-events?api-key=<api-key>"
+  const url = "https://api.helius.xyz/v1/nft-events?api-key=<api-key>"
 
-//   const response = await fetch(url,
-//     {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify({
-//         query: {
-//           accounts: [context],
-//           types: ["NFT_SALE"],
-//         }
-//       }),
-//     });
+  const response = await fetch(url,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: {
+          accounts: [context],
+          types: ["NFT_SALE"],
+        }
+      }),
+    });
 
-//   const data = await response.json()
-//   console.log(data)
+  const data = await response.json()
+  console.log(data)
 
-// };
+};
 
-// getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")`,
-//       docs: "https://docs.helius.xyz/solana-apis/nft-api/nft-events-historical-querying",
-//       tags: [""]
-//     }, deprecated endpoint
+getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")`,
+      docs: "https://docs.helius.xyz/solana-apis/nft-api/nft-events-historical-querying",
+      tags: ["NFT API"]
+    },
+    {
+      name: "Get the current Epoch",
+      description: "Make use of the getEpochInfo RPC method to get information about the current epoch.",
+      difficulty: 1,
+      api: "find_epoch",
+      solved: false,
+      type: "RPC",
+      example_answer: "420",
+      hints: ["Look for the epoch variable in the response. Find more information in the docs: https://docs.solana.com/api/http#getepochinfo",],
+      code:
+      `
+      const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
+      
+      const getEpochInfo = async () => {
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            "jsonrpc": "2.0", "id": 1,
+          "method": "getEpochInfo"
+          }),
+        });
+        const { result } = await response.json();
+        console.log(result)
+      };
+      getEpochInfo()`,
+      docs: "https://docs.solana.com/api/http#getepochinfo",
+      tags: ["RPC"]
+    },
+    {
+      name: "Find the Genesis Hash",
+      description: "Make use of the getGenesisHash RPC method to get the genesis hash",
+      difficulty: 1,
+      api: "find_genesis",
+      solved: false,
+      type: "RPC",
+      example_answer: "GH7ome3EiwEr7tu9JuTh2dpYWBJK3z69Xm1ZE3MEE6JC",
+      hints: ["Look for the result variable in the method response.","You can find more info in the Solana docs: https://docs.solana.com/api/http#getgenesishash"],
+      code:
+`
+const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
+
+const getGenesisHash = async () => {
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      "jsonrpc":"2.0","id":1, "method":"getGenesisHash"
+    }),
+  });
+  const { result } = await response.json();
+  console.log(result)
+};
+getGenesisHash()`,
+      docs: "https://docs.solana.com/api/http#getgenesishash",
+      tags: ["RPC"]
+    },
   ]
   const [questions, setQuestions] = useState(originalQuestions)
   const [userData, setUserData] = useState()

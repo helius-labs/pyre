@@ -64,6 +64,9 @@ export default function Question({ setSelectedComponent, question, questions, pr
 
     function randomContext(type: string) {
         switch (type) {
+
+            case null:
+                return null
             case "wallet":
                 return wallets[Math.floor(Math.random() * wallets.length)]
             case "nft":
@@ -77,7 +80,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
         }
     }
 
-    const [displayedContext, setDisplayedContext] = useState(context.slice(0, 4) + '..' + context.slice(-4))
+    const [displayedContext, setDisplayedContext] = useState(context?(context.slice(0, 4) + '..' + context.slice(-4)):null)
 
 
     const [answer, setAnswer] =
@@ -99,6 +102,8 @@ export default function Question({ setSelectedComponent, question, questions, pr
     }
 
     let copyContext =
+
+        context?
         <div onClick={() => {
             navigator.clipboard.writeText(context)
             setDisplayedContext("Copied!")
@@ -119,7 +124,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
                     )
             }
             </>
-        </div>
+        </div>:null
 
     useEffect(() => {
         hljs.initHighlighting();
