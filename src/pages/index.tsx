@@ -68,8 +68,7 @@ getBalances();`,
         "Call the ConcurrentMerkleTreeAccount function on the Merkle Tree ID",
         "Find the rightMostPath property."],
       code:
-        `
-const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
+`const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
 
 const getAsset = async () => {
   const response = await fetch(url, {
@@ -91,7 +90,7 @@ const getAsset = async () => {
 };
 getAsset()`,
       docs: "https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset",
-      tags: ["DAS", "RPC", "CNFT"]
+      tags: ["DAS", "CNFT"]
     },
     {
       name: "Size of a Merkle Tree",
@@ -105,8 +104,7 @@ getAsset()`,
         "Call the ConcurrentMerkleTreeAccount function on the Merkle Tree ID",
         "Find the maxDepth property and the size of the tree is 2 to the maxDepth."],
       code:
-        `
-const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
+`const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
 
 const getAssetProof = async () => {
   const response = await fetch(url, {
@@ -128,7 +126,7 @@ const getAssetProof = async () => {
 };
 getAssetProof()`,
       docs: "https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset",
-      tags: ["DAS", "RPC", "CNFT"]
+      tags: ["DAS", "CNFT"]
     },
     {
       name: "A cNFT's Merkle Tree",
@@ -142,8 +140,7 @@ getAssetProof()`,
         "Find the property by scrolling through the example output in the demo",
         "The property is called, under compression.tree"],
       code:
-        `
-const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
+`const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
 
 const getAssetProof = async () => {
   const response = await fetch(url, {
@@ -165,7 +162,7 @@ const getAssetProof = async () => {
 };
 getAssetProof()`,
       docs: "https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset",
-      tags: ["DAS", "RPC", "CNFT"]
+      tags: ["DAS", "CNFT"]
     },
     {
       name: "A cNFT's Transactions",
@@ -177,8 +174,7 @@ getAssetProof()`,
       example_answer: "2",
       hints: ["https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-signatures-for-asset"],
       code:
-        `
-const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
+`const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
 
 const getSignaturesForAsset = async () => {
   const response = await fetch(url, {
@@ -202,7 +198,7 @@ const getSignaturesForAsset = async () => {
 };
 getSignaturesForAsset();`,
       docs: "https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-signatures-for-asset",
-      tags: ["DAS", "RPC", "CNFT"]
+      tags: ["DAS", "CNFT"]
     },
     {
       name: "Number of NFTs Held",
@@ -379,45 +375,45 @@ parseTransactions()
       docs: "https://docs.helius.xyz/solana-apis/enhanced-transactions-api/parsed-transaction-history",
       tags: ["RPC"]
     },
-    {
-      name: "Sale Activity of an NFT",
-      description: "You are provided a token address. Make use of Helius' services in order to find the number of times it has been sold.",
-      difficulty: 1,
-      api: "times_sold",
-      solved: false,
-      type: "nft",
-      example_answer: "5",
-      hints: ["You can use the NFT Events (Historical Querying) to determine the number of times an NFT has been sold, by changing the account to that of the token's mint address.",
-        "Assuming you've applied the NFT_SALE filter, the number of times sold is simply the length of the returned array.",
-        "Fiddle around with the options, e.g sources, types, and other properties found on the Gitbook to get a better understanding of this endpoint."],
-      code:
-        `const getNftEvents = async (context) => {
+//     {
+//       name: "Sale Activity of an NFT",
+//       description: "You are provided a token address. Make use of Helius' services in order to find the number of times it has been sold.",
+//       difficulty: 1,
+//       api: "times_sold",
+//       solved: false,
+//       type: "nft",
+//       example_answer: "5",
+//       hints: ["You can use the NFT Events (Historical Querying) to determine the number of times an NFT has been sold, by changing the account to that of the token's mint address.",
+//         "Assuming you've applied the NFT_SALE filter, the number of times sold is simply the length of the returned array.",
+//         "Fiddle around with the options, e.g sources, types, and other properties found on the Gitbook to get a better understanding of this endpoint."],
+//       code:
+//         `const getNftEvents = async (context) => {
 
-  const url = "https://api.helius.xyz/v1/nft-events?api-key=<api-key>"
+//   const url = "https://api.helius.xyz/v1/nft-events?api-key=<api-key>"
 
-  const response = await fetch(url,
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        query: {
-          accounts: [context],
-          types: ["NFT_SALE"],
-        }
-      }),
-    });
+//   const response = await fetch(url,
+//     {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify({
+//         query: {
+//           accounts: [context],
+//           types: ["NFT_SALE"],
+//         }
+//       }),
+//     });
 
-  const data = await response.json()
-  console.log(data)
+//   const data = await response.json()
+//   console.log(data)
 
-};
+// };
 
-getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")`,
-      docs: "https://docs.helius.xyz/solana-apis/nft-api/nft-events-historical-querying",
-      tags: ["NFT API"]
-    },
+// getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")`,
+//       docs: "https://docs.helius.xyz/solana-apis/nft-api/nft-events-historical-querying",
+//       tags: [""]
+//     }, deprecated endpoint
   ]
   const [questions, setQuestions] = useState(originalQuestions)
   const [userData, setUserData] = useState()

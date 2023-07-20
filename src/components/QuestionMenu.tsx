@@ -112,7 +112,7 @@ export default function QuestionMenu({ completed, originalQuestions, setSelected
                                 <div className='flex text-xs text-zinc-400 font-medium tracking-widest uppercase'>Select a Tag</div>
                             </div>
 
-                            <div className='flex flex-wrap flex-row space-x-4 text-[12px] tracking-wider leading-5'>
+                            <div className='flex flex-wrap flex-row gap-4 text-[12px] tracking-wider leading-5'>
 
                                 <div onClick={(() => setTags("DAS"))} className={`flex ${(selectedTags && selectedTags.some((e: any) => e == "DAS")) ? 'border-zinc-700' : 'border-transparent'} border bg-zinc-900 rounded-md items-center justify-center px-2 py-1 w-max font-medium hover:bg-zinc-800 cursor-pointer duration-200`}>DAS</div>
                                 <div onClick={(() => setTags("RPC"))} className={`flex ${(selectedTags && selectedTags.some((e: any) => e == "RPC")) ? 'border-zinc-700' : 'border-transparent'} border bg-zinc-900 rounded-md items-center justify-center px-2 py-1 w-max font-medium hover:bg-zinc-800 cursor-pointer duration-200`}>RPC</div>
@@ -129,15 +129,17 @@ export default function QuestionMenu({ completed, originalQuestions, setSelected
                                     <div className='flex text-md tracking-widest font-medium'>TRACK</div>
                                     <div className='flex text-xs text-zinc-400 font-medium tracking-widest uppercase'>{track}</div>
                                 </div>
-                                <div className='flex w-full'>
+                                <div className='flex w-full text-zinc-400 tracking-widest text-xs items-center gap-2 flex-row'>
+                                    <div className='flex'>{trackQuestions.length-remainingTrackQuestions.length}</div>
                                     <ProgressBar current={trackQuestions.length-remainingTrackQuestions.length} total={trackQuestions.length} />
+                                    <div className='flex'>{trackQuestions.length}</div>
                                 </div>
                             </div>
                         </div>
 
                     </div>
 
-                    <div className='flex w-full h-max p-4'>
+                    <div className='flex w-full h-max p-4 px-0'>
 
                         <div className='flex w-full h-max'>
                             <div className='flex w-full h-max flex-col justify-center items-center gap-4 no-scrollbar'>
