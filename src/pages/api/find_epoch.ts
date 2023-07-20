@@ -1,7 +1,5 @@
-const axios = require('axios')
 
 const getExample = async (context: string) => {
-
   const url = `https://rpc.helius.xyz/?api-key=${process.env.HELIUS_KEY}`
 
   const response = await fetch(url, {
@@ -13,12 +11,11 @@ const getExample = async (context: string) => {
       jsonrpc: '2.0',
       id: 'my-id',
       method: 'getEpochInfo',
-      params: {},
+      params: [],
     }),
   });
   const { result } = await response.json();
-  console.log("Epoch info: ", result.epoch);
-  return result.epoch
+  return result
 };
 
 const getEpochInfo = async (context: string) => {
@@ -33,11 +30,11 @@ const getEpochInfo = async (context: string) => {
         jsonrpc: '2.0',
         id: 'my-id',
         method: 'getEpochInfo',
-        params: {},
+        params: [],
       }),
     });
     const { result } = await response.json();
-    console.log("Epoch info: ", result.epoch);
+    console.log("Epoch info: ", result);
     return result.epoch
 };
 

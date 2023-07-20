@@ -1,4 +1,3 @@
-const axios = require('axios')
 
 const getExample = async (context: string) => {
 
@@ -13,11 +12,10 @@ const getExample = async (context: string) => {
       jsonrpc: '2.0',
       id: 'my-id',
       method: 'getGenesisHash',
-      params: {},
+      params: [],
     }),
   });
   const { result } = await response.json();
-  console.log("Epoch info: ", result.epoch);
   return result
 };
 
@@ -33,11 +31,11 @@ const getGenesisHash = async (context: string) => {
         jsonrpc: '2.0',
         id: 'my-id',
         method: 'getGenesisHash',
-        params: {},
+        params: [],
       }),
     });
     const { result } = await response.json();
-    console.log("Genesis Hash: ", result.epoch);
+    console.log("Genesis Hash:", result);
     return result
 };
 

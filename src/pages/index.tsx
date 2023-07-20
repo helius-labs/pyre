@@ -417,16 +417,11 @@ getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")`,
       docs: "https://docs.helius.xyz/solana-apis/nft-api/nft-events-historical-querying",
       tags: ["NFT API"]
     },
-
-
-
-
-
     {
       name: "Get the current Epoch",
       description: "Make use of the getEpochInfo RPC method to get information about the current epoch.",
       difficulty: 1,
-      api: "",
+      api: "find_epoch",
       solved: false,
       type: "RPC",
       example_answer: "420",
@@ -457,7 +452,7 @@ getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")`,
       name: "Find the Genesis Hash",
       description: "Make use of the getGenesisHash RPC method to get the genesis hash",
       difficulty: 1,
-      api: "",
+      api: "find_genesis",
       solved: false,
       type: "RPC",
       example_answer: "GH7ome3EiwEr7tu9JuTh2dpYWBJK3z69Xm1ZE3MEE6JC",
