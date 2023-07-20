@@ -13,10 +13,8 @@ export default function QuestionMenu({ completed, originalQuestions, setSelected
     questions.map((e:any)=>{if (e.tags.some((e:string)=>{if (tags.includes(e)){return e}})){remainingTrackQuestions = [...remainingTrackQuestions, e]; }})
 
     function trackSpecificQuestions() {
-        if (track == "RPC") {
-            return ["RPC"]
-        }
-        else if (track == "CNFT") {
+
+        if (track == "COMPRESSION") {
             return ["DAS", "CNFT"]
         }
         else {
@@ -126,8 +124,8 @@ export default function QuestionMenu({ completed, originalQuestions, setSelected
                             <div className='flex w-full h-full flex-col space-y-1 justify-between'>
 
                                 <div className='flex flex-col md:items-end'>
-                                    <div className='flex text-md tracking-widest font-medium'>TRACK</div>
-                                    <div className='flex text-xs text-zinc-400 font-medium tracking-widest uppercase'>{track}</div>
+                                    <div className='flex text-md tracking-widest font-medium'>{track}</div>
+                                    <div className='flex text-xs text-zinc-400 font-medium tracking-widest uppercase'>RESELECT TRACK</div>
                                 </div>
                                 <div className='flex w-full text-zinc-400 tracking-widest text-xs items-center gap-2 flex-row'>
                                     <div className='flex'>{trackQuestions.length-remainingTrackQuestions.length}</div>
