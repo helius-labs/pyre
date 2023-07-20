@@ -13,7 +13,7 @@ export default function Tracks({ setSelectedComponent, progress, setTrack, origi
 
                 <div className='text-lg tracking-widest uppercase'>CHOOSE A TRACK</div>
 
-                <div className='flex flex-col md:flex-row gap-8 xl:gap-0 px-2 py-32 justify-evenly text-zinc-400 items-center'>
+                <div className='flex flex-col lg:flex-row gap-8 xl:gap-0 px-2 py-32 justify-evenly text-zinc-400 items-center'>
 
                     <div onClick={() => { setTrack("COMPRESSION") }} className={`flex w-full xl:w-[45%] h-max sm:h-72 bg-zinc-800 text-zinc-200 justify-between items-center animate-fade animate-fade-out rounded-2xl hover:bg-zinc-700 duration-200 cursor-pointer`}>
                         <div className='flex w-full h-full'>
