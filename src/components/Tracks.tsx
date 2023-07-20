@@ -13,9 +13,9 @@ export default function Tracks({ setSelectedComponent, progress, setTrack, origi
 
                 <div className='text-lg tracking-widest uppercase'>CHOOSE A TRACK</div>
 
-                <div className='flex flex-col md:flex-row px-8 py-32 justify-evenly text-zinc-400 items-center'>
+                <div className='flex flex-col xl:flex-row gap-8 xl:gap-0 px-8 py-32 justify-evenly text-zinc-400 items-center'>
 
-                    <div onClick={() => { setTrack("COMPRESSION") }} className={`flex w-[35%] h-72 bg-zinc-800 text-zinc-200 justify-between items-center animate-fade animate-fade-out rounded-2xl hover:bg-zinc-700 duration-200 cursor-pointer`}>
+                    <div onClick={() => { setTrack("COMPRESSION") }} className={`flex w-2/3 xl:w-[35%] h-max xl:h-72 bg-zinc-800 text-zinc-200 justify-between items-center animate-fade animate-fade-out rounded-2xl hover:bg-zinc-700 duration-200 cursor-pointer`}>
                         <div className='flex w-full h-full'>
                             <div className='flex flex-col w-32 gap-4 px-4 p-6'>
                                 <div className={`flex w-full h-1/3 rounded-3xl bg-zinc-900`}></div>
@@ -32,13 +32,13 @@ export default function Tracks({ setSelectedComponent, progress, setTrack, origi
                                     </div>
                                 </div>
                                 <div className='text-lg tracking-widest text-justified text-zinc-300'>
-                                    Compressed NFTs use State Compression and merkle trees to drastically reduce the storage cost for NFTs. Learn about the Digital Asset Standard (DAS), how to query for merkle related data, and all things cNFT.
+                                    Learn about the Digital Asset Standard (DAS); how to query for merkle tree related data, asset proofs, and all things cNFT.
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div onClick={() => { setTrack("MISCELLANEOUS") }} className={`flex w-[35%] h-72 bg-zinc-800 text-zinc-200 justify-between items-center animate-fade animate-fade-out rounded-2xl hover:bg-zinc-700 duration-200 cursor-pointer`}>
+                    <div onClick={() => { setTrack("MISCELLANEOUS") }} className={`flex w-2/3 xl:w-[35%] h-72 bg-zinc-800 text-zinc-200 justify-between items-center animate-fade animate-fade-out rounded-2xl hover:bg-zinc-700 duration-200 cursor-pointer`}>
                         <div className='flex w-full h-full'>
                             <div className='flex flex-col w-32 gap-4 px-4 p-6'>
                                 <div className={`flex w-full h-1/3 rounded-3xl bg-orange-400`}></div>
