@@ -1,7 +1,7 @@
 import Image from "next/image"
 import ProgressBar from "./ProgressBar"
 
-export default function AppBar({ setSelectedComponent, progress, component }: any) {
+export default function AppBar({ setSelectedComponent, progress, questions, component }: any) {
 
     return (
         <div className='absolute w-full border-b border-zinc-900 top-0 sticky z-10 px-2 xl:px-8 py-6 bg-zinc-950 items-center'>
@@ -16,7 +16,7 @@ export default function AppBar({ setSelectedComponent, progress, component }: an
                     </div>
                 </button>
 
-                <ProgressBar progress={progress}></ProgressBar>
+                <ProgressBar current={progress} total={questions.length} ></ProgressBar>
             </div>
         </div>
     )

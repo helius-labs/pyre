@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import Image from 'next/image';
 
-export default function End({ setSelectedComponent, progress, setMintedAward, mintedAward }) {
+export default function End({ setSelectedComponent, progress, setMintedAward, mintedAward, originalQuestions }) {
     const { publicKey } = useWallet();
     const [cNFTSerial, setCNFTSerial] = useState('')
     const [tx, setTX] = useState('')
@@ -38,7 +38,7 @@ export default function End({ setSelectedComponent, progress, setMintedAward, mi
     return (
 
         <>
-            <AppBar setSelectedComponent={setSelectedComponent} progress={progress} component="QuestionMenu" ></AppBar>
+            <AppBar setSelectedComponent={setSelectedComponent} progress={progress} questions={originalQuestions} component="QuestionMenu" ></AppBar>
 
             <div className='flex flex-col w-full h-full items-center justify-center py-16'>
 

@@ -14,7 +14,7 @@ hljs.configure({
 });
 hljs.registerLanguage('javascript', javascript);
 
-export default function Question({ setSelectedComponent, question, questions, progress, setProgress, setQuestions, completed, setCompleted, originalQuestions }: any) {
+export default function Question({ setSelectedComponent, question, questions, progress, setProgress, setQuestions, completed, setCompleted }: any) {
 
     let wallets = [
         "EHyagVK6vWdhyp8Mn3NGLeC33LtQyPdDs1idNiBddTjF",
@@ -128,10 +128,10 @@ export default function Question({ setSelectedComponent, question, questions, pr
     function handleCorrect() {
         setSolved(true);
         setProgress(progress += question.difficulty);
-        console.log(completed, 'completed')
-        console.log([...completed, question.api], 'setcom')
 
-        setCompleted([...completed, question.api])
+        if (!completed.includes(question.api)) {
+            setCompleted([...completed, question.api])
+        }
 
         let newArr: any = questions
         const index = questions.findIndex((e: any) => e.name === question.name);
@@ -146,7 +146,6 @@ export default function Question({ setSelectedComponent, question, questions, pr
     }
 
     async function questionQuery(type: string) {
-        console.log(codeOutput, 'codeO')
         let response = await axios.post(`/api/${question.api}`, { context: context, type: type });
         if (type == "example") {
             setCodeOutput(JSON.stringify(response.data, null, 4))
@@ -202,7 +201,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
     return (
         <div className='flex items-center justify-center h-full w-full flex-col bg-zinc-950 animate-fade'>
 
-            <AppBar setSelectedComponent={setSelectedComponent} progress={progress} component="Question" ></AppBar>
+            <AppBar setSelectedComponent={setSelectedComponent} progress={progress} questions={questions} component="Question" ></AppBar>
 
             <div className='flex w-full h-full p-4 md:p-0 justify-center xl:items-center overflow-y-scroll xl:overflow-y-hidden'>
 
