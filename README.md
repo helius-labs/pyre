@@ -14,8 +14,31 @@ An educational app that teaches users about Helius and Solana.
 ## Description
 Pyre is a Next.js app that allows users to learn about Helius and Solana through bite-sized questions. Each question is accompanied by unique contexts to provide a dynamic learning experience.
 
+## Installation and Setup
+1. Ensure you have Node.js installed.
+2. Clone this repository to your local machine:
+   ```bash
+   git clone https://github.com/helius-labs/pyre.git
+3. Change to the project directory
+    ```bash 
+    cd pyre
+4. Install the project dependencies:
+    ```bash
+    npm install
+## Usage
+1. Start the development server: 
+    ```bash
+    npm run dev
+2. Open your browser and navigate to http://localhost:3000 to access the Pyre app.
+
+![Pyre Landing](/public/pyre-landing.png)
+
+## License
+This project is open source and available under the Apache 2.0 License.
 
 # **Contribute**
+
+[Thread]() with more detail, [Google Form](https://docs.google.com/forms/d/e/1FAIpQLSd2qAq5LEihrA2cy36bDy9CrRBlioCE7z-n30pkDVK07hJ6pQ/viewform) to submit questions.
 
 Contributions are welcome! If you'd like to contribute to Helius RPC Playground, please follow these steps:
 
@@ -34,7 +57,7 @@ interface Questions {
   difficulty: number, // 1 to 3
   api: string, // can leave null
   solved: boolean, // always false
-  type: string, // wallet, tx, token
+  type: string, // wallet, tx, NFT, cNFT
   example_answer: string, // serves as a placeholder for input
   hints: string[] // can leave null
   code: string, // can leave null, or copy from Helius docs
@@ -92,26 +115,6 @@ getAssetsByOwner();`,
 ```
 
 You can also contribute to the project by opening issues and submitting pull requests to fix bugs or add new features! For any inquiries, visit the [Helius Discord](https://discord.gg/helius) or message Tidelaw#0707.
-
-
-## Installation and Setup
-1. Ensure you have Node.js installed.
-2. Clone this repository to your local machine:
-   ```bash
-   git clone https://github.com/helius-labs/pyre.git
-3. Change to the project directory
-    ```bash 
-    cd pyre
-4. Install the project dependencies:
-    ```bash
-    npm install
-## Usage
-1. Start the development server: 
-    ```bash
-    npm run dev
-2. Open your browser and navigate to http://localhost:3000 to access the Pyre app.
-
-![Pyre Landing](/public/pyre-landing.png)
 
 ## License
 This project is open source and available under the Apache 2.0 License.
