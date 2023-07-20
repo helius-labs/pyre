@@ -13,10 +13,8 @@ export default function QuestionMenu({ completed, originalQuestions, setSelected
     questions.map((e:any)=>{if (e.tags.some((e:string)=>{if (tags.includes(e)){return e}})){remainingTrackQuestions = [...remainingTrackQuestions, e]; }})
 
     function trackSpecificQuestions() {
-        if (track == "RPC") {
-            return ["RPC"]
-        }
-        else if (track == "CNFT") {
+
+        if (track == "COMPRESSION") {
             return ["DAS", "CNFT"]
         }
         else {
