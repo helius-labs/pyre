@@ -60,7 +60,7 @@ interface Questions {
   type: string, // wallet, tx, NFT, cNFT
   example_answer: string, // serves as a placeholder for input
   hints: string[] // can leave null
-  code: string, // can leave null, or copy from Helius docs
+  js_code: string, // can leave null, or copy from Helius docs
   docs: string, // link to the relevant docs used to solve
   tags: string[], // currently only DAS, RPC, ENHANCED API, NFT API
 }
@@ -84,7 +84,7 @@ Here is an example:
       hints: ["There are multiple ways to determine the number of NFTs held, some options include: using the Balances API, using the more efficient DAS protocol.",
         "Assuming the wallet provided has fewer NFTs than the limit returned in one query, the answer would simply be the length of the returned NFT array.",
         "You can adjust the limit of NFTs returned! For some wallets you may still need to paginate."],
-      code:
+      js_code
 `const url = "https://rpc.helius.xyz/?api-key=<api-key>"
 
 const getAssetsByOwner = async () => {

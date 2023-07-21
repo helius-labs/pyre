@@ -60,6 +60,19 @@ export default function Question({ setSelectedComponent, question, questions, pr
         "JDUqG3RvZ8ZTYrzabxShoZA986itEe9dsL449FkayJM8"
     ]
 
+    const [codeFormat, setCodeFormat] = useState("js");
+    const [codeExample, setCodeExample] = useState(question.js_code);
+
+    useEffect(()=>{
+        if (codeFormat=="js") {
+            setCodeExample(question.js_code)
+        }
+        else {
+            setCodeExample(question.py_code)
+        }
+    }, [codeFormat])
+
+
     const [context, setContext] = useState<any>(randomContext(question.type))
 
     function randomContext(type: string) {
@@ -94,13 +107,12 @@ export default function Question({ setSelectedComponent, question, questions, pr
     const [copy, setCopy] = useState(<svg className="text-current" width={20} fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M21,8H9A1,1,0,0,0,8,9V21a1,1,0,0,0,1,1H21a1,1,0,0,0,1-1V9A1,1,0,0,0,21,8ZM20,20H10V10H20ZM6,15a1,1,0,0,1-1,1H3a1,1,0,0,1-1-1V3A1,1,0,0,1,3,2H15a1,1,0,0,1,1,1V5a1,1,0,0,1-2,0V4H4V14H5A1,1,0,0,1,6,15Z"></path></g></svg>)
 
     function copyConf() {
-        navigator.clipboard.writeText(question.code)
+        navigator.clipboard.writeText(question.js_code)
         setCopy(<svg className="text-current duration-200" width={20} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="Interface / Check"> <path id="Vector" d="M6 12L10.2426 16.2426L18.727 7.75732" stroke="currentColor" strokeWidth="2" stroke-linecap="round" stroke-linejoin="round"></path> </g> </g></svg>)
         setTimeout(() => {
             setCopy(<svg className="text-current duration-200" width={20} fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M21,8H9A1,1,0,0,0,8,9V21a1,1,0,0,0,1,1H21a1,1,0,0,0,1-1V9A1,1,0,0,0,21,8ZM20,20H10V10H20ZM6,15a1,1,0,0,1-1,1H3a1,1,0,0,1-1-1V3A1,1,0,0,1,3,2H15a1,1,0,0,1,1,1V5a1,1,0,0,1-2,0V4H4V14H5A1,1,0,0,1,6,15Z"></path></g></svg>)
         }, 750);
     }
-
     let copyContext =
 
         context ?
@@ -128,7 +140,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
 
     useEffect(() => {
         hljs.initHighlighting();
-    }, [codeOutput]);
+    }, [codeOutput, codeFormat]);
 
     function handleCorrect() {
         setSolved(true);
@@ -262,7 +274,10 @@ export default function Question({ setSelectedComponent, question, questions, pr
 
                                 <div className='flex flex-row space-x-8 w-full justify-between items-center border border-b-0 border-zinc-900  rounded-t-lg px-4 py-2'>
 
-                                    <div className='flex tracking-widest text-zinc-400 font-black text-sm'>DEMO</div>
+                                    <div className='flex tracking-widest text-zinc-400 font-bold text-sm bg-zinc-900 p-1 rounded-lg space-x-4'>
+                                        <div onClick={()=>{setCodeFormat("js")}} className={`flex ${codeFormat=="js"?"bg-zinc-800":"bg-zinc-900"} p-2 rounded-lg hover:bg-zinc-800 cursor-pointer duration-200`}>JAVASCRIPT</div>
+                                        <div onClick={()=>{setCodeFormat("py")}} className={`flex ${codeFormat=="py"?"bg-zinc-800":"bg-zinc-900"} p-2 rounded-lg hover:bg-zinc-800 cursor-pointer duration-200`} >PYTHON</div>
+                                    </div>
 
                                     <div className='flex flex-row space-x-4 items-center justify-center'>
                                         <div onClick={() => {
@@ -297,7 +312,14 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                 </div>
 
                                 <div className="w-full bg-zinc-950 border border-b-0 border-zinc-900 max-h-[40%]">
-                                    <pre className='flex w-full h-full'><code style={{ background: '#09090b' }} className="js flex w-full border-b border-zinc-900 overflow-x-scroll scrollbar">{question.code}</code></pre>
+                                    <pre className='flex w-full h-full'><code style={{ background: '#09090b' }} className="js flex w-full border-b border-zinc-900 overflow-x-scroll scrollbar">
+                                    
+                                        {
+                                            question.py_code ? 
+                                            codeFormat=="js"? question.js_code : question.py_code : question.js_code
+                                        }
+                                    
+                                    </code></pre>
                                 </div>
 
                                 <div className="w-full max-h-[50%] bg-zinc-950 border border-zinc-900 rounded-b-lg">

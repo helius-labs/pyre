@@ -22,7 +22,7 @@ interface Questions {
   type: string,
   example_answer: string,
   hints: string[]
-  code: string,
+  js_code: string,
   docs: string,
   tags: string[],
 }
@@ -43,7 +43,7 @@ export default function Home() {
       hints: ["As the data returned in the Balances API is returned in terms of Lamports, you'll need to divide by 1 billion for an accurate SOL answer.",
         "You can call the native javascript function of variable.toFixed(0) to round your answer to the nearest SOL, this is necessary for this question.",
         "If you're using the Balances API, the amount of SOL held is contained in the property 'nativeBalance'."],
-      code:
+      js_code:
         `const url = "https://api.helius.xyz/v0/addresses/<address>/balances?api-key=<api-key>";
 
 const getBalances = async () => {
@@ -53,6 +53,10 @@ const getBalances = async () => {
 };
 
 getBalances();`,
+      py_code: 
+`
+print("test")
+`,
       docs: "https://docs.helius.xyz/solana-apis/balances-api",
       tags: ["ENHANCED API"]
     },
@@ -67,7 +71,7 @@ getBalances();`,
       hints: ["Find the Merkle Tree ID and look it up on https://xray.helius.xyz/.",
         "Call the ConcurrentMerkleTreeAccount function on the Merkle Tree ID",
         "Find the rightMostPath property."],
-      code:
+      js_code:
 `const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
 
 const getAsset = async () => {
@@ -103,7 +107,7 @@ getAsset()`,
       hints: ["Find the Merkle Tree ID and look it up on https://xray.helius.xyz/.",
         "Call the ConcurrentMerkleTreeAccount function on the Merkle Tree ID",
         "Find the maxDepth property and the size of the tree is 2 to the maxDepth."],
-      code:
+      js_code:
 `const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
 
 const getAssetProof = async () => {
@@ -139,7 +143,7 @@ getAssetProof()`,
       hints: ["Read the docs: https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset-proof",
         "Find the property by scrolling through the example output in the demo",
         "The property is called, under compression.tree"],
-      code:
+      js_code:
 `const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
 
 const getAssetProof = async () => {
@@ -176,7 +180,7 @@ getAssetProof()`,
       hints: ["You'll first have to retrieve the cNFT's merkle tree using the getAssetProof DAS method.",
               "Use the function ConcurrentMerkleTreeAccount from @solana/spl-account-compression to retrieve a merkle tree's data.",
               "Retrieve the canopy depth from the data returned by ConcurrentMerkleTreeAccount using the .getCanopyDepth() function."],
-      code:
+      js_code:
 `const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
 
 const getAssetProof = async () => {
@@ -210,7 +214,7 @@ getAssetProof()`,
       type: "cnft",
       example_answer: "2",
       hints: ["https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-signatures-for-asset"],
-      code:
+      js_code:
 `const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
 
 const getSignaturesForAsset = async () => {
@@ -248,7 +252,7 @@ getSignaturesForAsset();`,
       hints: ["There are multiple ways to determine the number of NFTs held, some options include: using the Balances API, using the more efficient DAS protocol.",
         "Assuming the wallet provided has fewer NFTs than the limit returned in one query, the answer would simply be the length of the returned NFT array.",
         "You can adjust the limit of NFTs returned! For some wallets you may still need to paginate."],
-      code:
+      js_code:
         `const url = "https://rpc.helius.xyz/?api-key=<api-key>"
 
 const getAssetsByOwner = async () => {
@@ -288,7 +292,7 @@ getAssetsByOwner();`,
       hints: ["You can log the data returned from the endpoint in order to find out the path that has the URL for the image.",
         "You'll need to log the 1st index, or data[0] if using the token-metadata endpoint as it is returned as an array.",
         "If the link you've provided is not accepted, try querying for the link found in the offChainMetadata property of the data returned."],
-      code:
+      js_code:
         `const getMetadata = async (context) => {
 
 
@@ -326,7 +330,7 @@ getMetadata('F9Lw3ki3hJ7PF9HQXsBzoY8GyE6sPoEZZdXJBsTTD2rk');`,
       hints: ["There are multiple ways to determine the owner, the provided boiler plate code here uses DAS, however the NFT Events API is also viable albeit less efficient.",
         "You should log the data, regardless of which method you choose, expanding each property to see what lies within.",
         "If you're using DAS, the path to locate the holder of the NFT is data.result.ownership.owner."],
-      code:
+      js_code:
         `const url = "https://rpc.helius.xyz/?api-key=<api_key>"
 
 const getAsset = async () => {
@@ -363,7 +367,7 @@ getAsset();`,
       hints: ["You can log the data returned from the endpoint in order to find out the path that has the epoch of the transaction.",
         "You'll need to log the 1st index, or data[0] if using the /v0/transactions/ endpoint as it is returned as an array.",
         "If you're using the /v0/transactions/ endpoint, the path to locate the holder of the NFT is data[0].timestamp."],
-      code:
+      js_code:
         `const url = "https://api.helius.xyz/v0/transactions/?api-key=<your-key>";
 
 const parseTransaction = async () => {
@@ -397,7 +401,7 @@ parseTransaction()
       hints: ["There are two endpoints you can use for this question, one being the provided /v0/addresses/<address>/transactions and the other by querying directly through an RPC.",
         "Depending on the wallet provided, you may need to paginate through all their transactions.",
         "If you're using the RPC, a quick way to check would be to use the before and after properties, if no transactions occur before your answer for the transaction, it is the first transaction to take place!"],
-      code:
+      js_code:
         `const url = "https://api.helius.xyz/v0/addresses/<address>/transactions?api-key=<your-key>";
 
 const parseTransactions = async () => {
@@ -422,7 +426,7 @@ parseTransactions()
       type: "RPC",
       example_answer: "420",
       hints: ["Look for the epoch variable in the response. Find more information in the docs: https://docs.solana.com/api/http#getepochinfo",],
-      code:
+      js_code:
 `const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
 
 const getEpochInfo = async () => {
@@ -452,7 +456,7 @@ getEpochInfo()`,
       type: "RPC",
       example_answer: "GH7ome3EiwEr7tu9JuTh2dpYWBJK3z69Xm1ZE3MEE6JC",
       hints: ["Look for the result variable in the method response.","You can find more info in the Solana docs: https://docs.solana.com/api/http#getgenesishash"],
-      code:
+      js_code:
 `
 const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
 
