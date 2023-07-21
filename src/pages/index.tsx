@@ -475,6 +475,40 @@ getGenesisHash()`,
       docs: "https://docs.solana.com/api/http#getgenesishash",
       tags: ["RPC"]
     },
+    {
+      name: "Find Canopy Depth",
+      description: "Make use of DAS and native RPC methods to find the canopy depth of a given cNFT's merkle tree.",
+      difficulty: 1,
+      api: "canopy_depth",
+      solved: false,
+      type: "cnft",
+      example_answer: "12",
+      hints: ["You'll first have to retrieve the cNFT's merkle tree using the getAssetProof DAS method."],
+      code:
+`const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
+
+const getAssetProof = async () => {
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      jsonrpc: '2.0',
+      id: 'my-id',
+      method: 'getAssetProof',
+      params: {
+        id: 'Bu1DEKeawy7txbnCEJE4BU3BKLXaNAKCYcHR4XhndGss'
+      },
+    }),
+  });
+  const { result } = await response.json();
+  console.log("Assets Proof: ", result);
+};
+getAssetProof()`,
+      docs: "https://docs.solana.com/api/http#getgenesishash",
+      tags: ["DAS", "RPC"]
+    },
   ]
   const [questions, setQuestions] = useState(originalQuestions)
   const [userData, setUserData] = useState()
