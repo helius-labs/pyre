@@ -59,7 +59,7 @@ getBalances();`,
     {
       name: "Leaves on a Merkle Tree",
       description: "You are provided a cNFT mint address. Make use of Helius' services in order to find the current number of leaves on the merkle tree the cNFT was minted on.",
-      difficulty: 1,
+      difficulty: 2,
       api: "merkle_leaves",
       solved: false,
       type: "cnft",
@@ -95,7 +95,7 @@ getAsset()`,
     {
       name: "Size of a Merkle Tree",
       description: "You are provided a cNFT mint address. Make use of Helius' services in order to find the maximum number of leaves on the merkle tree the cNFT was minted on.",
-      difficulty: 1,
+      difficulty: 2,
       api: "max_merkle",
       solved: false,
       type: "cnft",
@@ -163,6 +163,43 @@ const getAssetProof = async () => {
 getAssetProof()`,
       docs: "https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset",
       tags: ["DAS", "CNFT"]
+    },
+    {
+      name: "Find Canopy Depth",
+      description: "Make use of DAS and native RPC methods to find the canopy depth of a given cNFT's merkle tree.",
+      difficulty: 2,
+      api: "canopy_depth",
+      solved: false,
+      type: "cnft",
+      example_answer: "12",
+      info: ["In order to transfer transferring a cNFT, the needed asset proof is retrieved using the getAssetProof method. However the method returns the 'full proof', in order to reduce it, proof hashes are removed , in order to remove the correct number of proof addresses we need to know the tree's canopy depth."],
+      hints: ["You'll first have to retrieve the cNFT's merkle tree using the getAssetProof DAS method.",
+              "Use the function ConcurrentMerkleTreeAccount from @solana/spl-account-compression to retrieve a merkle tree's data.",
+              "Retrieve the canopy depth from the data returned by ConcurrentMerkleTreeAccount using the .getCanopyDepth() function."],
+      code:
+`const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
+
+const getAssetProof = async () => {
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      jsonrpc: '2.0',
+      id: 'my-id',
+      method: 'getAssetProof',
+      params: {
+        id: 'Bu1DEKeawy7txbnCEJE4BU3BKLXaNAKCYcHR4XhndGss'
+      },
+    }),
+  });
+  const { result } = await response.json();
+  console.log("Assets Proof: ", result);
+};
+getAssetProof()`,
+      docs: "https://docs.solana.com/api/http#getgenesishash",
+      tags: ["DAS", "RPC"]
     },
     {
       name: "A cNFT's Transactions",
@@ -247,6 +284,7 @@ getAssetsByOwner();`,
       solved: false,
       type: 'nft',
       example_answer: "https://madlads.s3.us-west-2.amazonaws.com/images/8420.png",
+      info: "The most popular application of this are NFT galleries! See here: https://token-display.vercel.app/",
       hints: ["You can log the data returned from the endpoint in order to find out the path that has the URL for the image.",
         "You'll need to log the 1st index, or data[0] if using the token-metadata endpoint as it is returned as an array.",
         "If the link you've provided is not accepted, try querying for the link found in the offChainMetadata property of the data returned."],
@@ -376,45 +414,6 @@ parseTransactions()
       tags: ["RPC"]
     },
     {
-      name: "Sale Activity of an NFT",
-      description: "You are provided a token address. Make use of Helius' services in order to find the number of times it has been sold.",
-      difficulty: 1,
-      api: "times_sold",
-      solved: false,
-      type: "nft",
-      example_answer: "5",
-      hints: ["You can use the NFT Events (Historical Querying) to determine the number of times an NFT has been sold, by changing the account to that of the token's mint address.",
-        "Assuming you've applied the NFT_SALE filter, the number of times sold is simply the length of the returned array.",
-        "Fiddle around with the options, e.g sources, types, and other properties found on the Gitbook to get a better understanding of this endpoint."],
-      code:
-        `const getNftEvents = async (context) => {
-
-  const url = "https://api.helius.xyz/v1/nft-events?api-key=<api-key>"
-
-  const response = await fetch(url,
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        query: {
-          accounts: [context],
-          types: ["NFT_SALE"],
-        }
-      }),
-    });
-
-  const data = await response.json()
-  console.log(data)
-
-};
-
-getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")`,
-      docs: "https://docs.helius.xyz/solana-apis/nft-api/nft-events-historical-querying",
-      tags: ["NFT API"]
-    },
-    {
       name: "Get the current Epoch",
       description: "Make use of the getEpochInfo RPC method to get information about the current epoch.",
       difficulty: 1,
@@ -424,24 +423,23 @@ getNftEvents("T1d3crwf5cYLcVU5ojNRgJbJUXJta2uBgbtev2xWLAW")`,
       example_answer: "420",
       hints: ["Look for the epoch variable in the response. Find more information in the docs: https://docs.solana.com/api/http#getepochinfo",],
       code:
-      `
-      const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
-      
-      const getEpochInfo = async () => {
-        const response = await fetch(url, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            "jsonrpc": "2.0", "id": 1,
-          "method": "getEpochInfo"
-          }),
-        });
-        const { result } = await response.json();
-        console.log(result)
-      };
-      getEpochInfo()`,
+`const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
+
+const getEpochInfo = async () => {
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      "jsonrpc": "2.0", "id": 1,
+    "method": "getEpochInfo"
+    }),
+  });
+  const { result } = await response.json();
+  console.log(result)
+};
+getEpochInfo()`,
       docs: "https://docs.solana.com/api/http#getepochinfo",
       tags: ["RPC"]
     },
@@ -474,40 +472,6 @@ const getGenesisHash = async () => {
 getGenesisHash()`,
       docs: "https://docs.solana.com/api/http#getgenesishash",
       tags: ["RPC"]
-    },
-    {
-      name: "Find Canopy Depth",
-      description: "Make use of DAS and native RPC methods to find the canopy depth of a given cNFT's merkle tree.",
-      difficulty: 1,
-      api: "canopy_depth",
-      solved: false,
-      type: "cnft",
-      example_answer: "12",
-      hints: ["You'll first have to retrieve the cNFT's merkle tree using the getAssetProof DAS method."],
-      code:
-`const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
-
-const getAssetProof = async () => {
-  const response = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      jsonrpc: '2.0',
-      id: 'my-id',
-      method: 'getAssetProof',
-      params: {
-        id: 'Bu1DEKeawy7txbnCEJE4BU3BKLXaNAKCYcHR4XhndGss'
-      },
-    }),
-  });
-  const { result } = await response.json();
-  console.log("Assets Proof: ", result);
-};
-getAssetProof()`,
-      docs: "https://docs.solana.com/api/http#getgenesishash",
-      tags: ["DAS", "RPC"]
     },
   ]
   const [questions, setQuestions] = useState(originalQuestions)

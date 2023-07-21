@@ -80,7 +80,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
         }
     }
 
-    const [displayedContext, setDisplayedContext] = useState(context?(context.slice(0, 4) + '..' + context.slice(-4)):null)
+    const [displayedContext, setDisplayedContext] = useState(context ? (context.slice(0, 4) + '..' + context.slice(-4)) : null)
 
 
     const [answer, setAnswer] =
@@ -103,28 +103,28 @@ export default function Question({ setSelectedComponent, question, questions, pr
 
     let copyContext =
 
-        context?
-        <div onClick={() => {
-            navigator.clipboard.writeText(context)
-            setDisplayedContext("Copied!")
-            setTimeout(() => {
-                setDisplayedContext(context.slice(0, 4) + '..' + context.slice(-4));
-            }, 1000);
-        }}
+        context ?
+            <div onClick={() => {
+                navigator.clipboard.writeText(context)
+                setDisplayedContext("Copied!")
+                setTimeout(() => {
+                    setDisplayedContext(context.slice(0, 4) + '..' + context.slice(-4));
+                }, 1000);
+            }}
 
-            className={`flex w-max font-medium text-zinc-300 p-2 duration-200 bg-zinc-950 border-2 border-zinc-900 hover:border-orange-400 space-x-2 cursor-pointer rounded-full px-4 py-2 justify-center`}>
-            <div>{displayedContext}</div>
+                className={`flex w-max font-medium text-zinc-300 p-2 duration-200 bg-zinc-950 border-2 border-zinc-900 hover:border-orange-400 space-x-2 cursor-pointer rounded-full px-4 py-2 justify-center`}>
+                <div>{displayedContext}</div>
 
-            <>{
-                (displayedContext == "Copied!") ?
-                    (
-                        <Image className='duration-200' alt="check" src="/check.svg" width={16} height={16}></Image>
-                    ) : (
-                        <Image className='duration-200' alt="copy" src="/copy.svg" width={16} height={16}></Image>
-                    )
-            }
-            </>
-        </div>:null
+                <>{
+                    (displayedContext == "Copied!") ?
+                        (
+                            <Image className='duration-200' alt="check" src="/check.svg" width={16} height={16}></Image>
+                        ) : (
+                            <Image className='duration-200' alt="copy" src="/copy.svg" width={16} height={16}></Image>
+                        )
+                }
+                </>
+            </div> : null
 
     useEffect(() => {
         hljs.initHighlighting();
@@ -182,7 +182,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
             }
             else if (response.data != answer) {
                 setLoad(false)
-                setTimeout(()=>{
+                setTimeout(() => {
                     setSubmit(false)
                 }, 3000)
             }
@@ -230,6 +230,21 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                 {question.api == 'sol_held' ? (<div></div>) : (copyContext)}
                             </>
 
+                            <>
+                                {question.info ? (
+                                    <div className='flex w-full flex-col space-y-4 px-6'>
+                                        <div className="flex flex-col gap-4 border border-orange-400 rounded-xl py-4 px-4 text-orange-400 tracking-widest">
+                                            <span className='flex flex-row space-x-4'>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="text-orange-400 w-6 h-6"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                                <span className="text-lg font-medium">INFO</span>
+                                            </span>
+                                            <span>
+                                                {question.info}</span>
+                                        </div>
+                                    </div>
+                                ) : (<div></div>)}
+                            </>
+
                             <div className='flex w-full flex-col space-y-4 px-6 pb-6'>
                                 <a href={question.docs} target='_blank' className='flex w-full bg-zinc-900 hover:bg-zinc-800 text-lg tracking-widest text-zinc-300 font-medium duration-200 rounded-lg px-4 py-3 justify-between'>
                                     <div className='flex'>
@@ -260,16 +275,16 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                                 (codeOutput == "Loading...") ? (
 
                                                     <div className='flex space-x-2 w-16 justify-between items-center w-max tracking-widest flex-row'>
-                                                    <svg className="flex text-current animate-spin" width={24} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                                    </svg>                                                    <span className='flex font-bold'>RUN</span>
+                                                        <svg className="flex text-current animate-spin" width={24} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                                        </svg>                                                    <span className='flex font-bold'>RUN</span>
                                                     </div>
                                                 ) : (
-                                                    
+
                                                     <div className='flex space-x-2 w-16 justify-between items-center w-max tracking-widest flex-row'>
-                                                    <svg className='flex text-current' width={24} fill="currentColor" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg" transform="matrix(-1, 0, 0, 1, 0, 0)" stroke="currentColor"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M694.018 926.244c-27.296 18.796-27.3 49.269 0 68.067l509.836 351.074c27.296 18.797 49.424 7.18 49.424-25.959V601.13c0-33.133-22.125-44.757-49.424-25.959L694.018 926.244Z" fill-rule="evenodd"></path> </g></svg>
-                                                    <span className='flex font-bold'>RUN</span>
+                                                        <svg className='flex text-current' width={24} fill="currentColor" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg" transform="matrix(-1, 0, 0, 1, 0, 0)" stroke="currentColor"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M694.018 926.244c-27.296 18.796-27.3 49.269 0 68.067l509.836 351.074c27.296 18.797 49.424 7.18 49.424-25.959V601.13c0-33.133-22.125-44.757-49.424-25.959L694.018 926.244Z" fill-rule="evenodd"></path> </g></svg>
+                                                        <span className='flex font-bold'>RUN</span>
                                                     </div>
                                                 )
                                             }</>
