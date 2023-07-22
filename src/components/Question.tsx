@@ -281,9 +281,9 @@ export default function Question({ setSelectedComponent, question, questions, pr
 
                                 <div className='flex flex-row space-x-8 w-full justify-between items-center border border-b-0 border-zinc-900  rounded-t-lg px-4 py-2'>
 
-                                    <div className='flex tracking-widest text-zinc-400 font-bold text-sm bg-zinc-900 p-1 rounded-lg space-x-4'>
-                                        <div onClick={()=>{setCodeFormat("js")}} className={`flex ${codeFormat=="js"?"bg-zinc-800":"bg-zinc-900"} p-2 rounded-lg hover:bg-zinc-800 cursor-pointer duration-200`}>JAVASCRIPT</div>
-                                        <div onClick={()=>{setCodeFormat("py")}} className={`flex ${codeFormat=="py"?"bg-zinc-800":"bg-zinc-900"} p-2 rounded-lg hover:bg-zinc-800 cursor-pointer duration-200`} >PYTHON</div>
+                                    <div className='flex tracking-widest text-zinc-400 font-bold text-sm p-1 rounded-lg space-x-4'>
+                                        <div onClick={()=>{setCodeFormat("js")}} className={`flex border ${codeFormat=="js"?"border-zinc-900":"border-transparent"} p-2 rounded-lg hover:border-zinc-900 cursor-pointer duration-200`}>JAVASCRIPT</div>
+                                        <div onClick={()=>{setCodeFormat("py")}} className={`flex border ${codeFormat=="py"?"border-zinc-900":"border-transparent"} p-2 rounded-lg hover:border-zinc-900 cursor-pointer duration-200`} >PYTHON</div>
                                     </div>
 
                                     <div className='flex flex-row space-x-4 items-center justify-center'>
