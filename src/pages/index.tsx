@@ -54,8 +54,19 @@ const getBalances = async () => {
 
 getBalances();`,
       py_code: 
-`
-print("test")
+`import os
+import requests
+import json
+
+API_KEY = os.getenv('API_KEY')
+ADDRESS = "<address>"
+URL = f"https://api.helius.xyz/v0/addresses/{ADDRESS}/balances?api-key={API_KEY}"
+
+def get_balances():
+    response = requests.get(URL)
+    print(json.dumps(response.json(), indent=4))
+
+get_balances()
 `,
       docs: "https://docs.helius.xyz/solana-apis/balances-api",
       tags: ["ENHANCED API"]
@@ -93,6 +104,27 @@ const getAsset = async () => {
   console.log(result)
 };
 getAsset()`,
+      py_code:
+`import os
+import requests
+import json
+
+API_KEY = os.getenv('API_KEY')
+URL = f"https://mainnet.helius-rpc.com/?api-key={API_KEY}"
+ASSET_ID = "Bu1DEKeawy7txbnCEJE4BU3BKLXaNAKCYcHR4XhndGss"
+
+def get_asset(asset_id):
+    data = {
+        "jsonrpc": "2.0",
+        "id": "request-id",
+        "method": "getAsset",
+        "params": { "id": asset_id }
+    }
+    response = requests.post(URL, headers={'Content-Type': 'application/json'}, data=json.dumps(data))
+    print(json.dumps(response.json().get('result'), indent=4))
+
+get_asset(ASSET_ID)
+`,
       docs: "https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset",
       tags: ["DAS", "CNFT"]
     },
@@ -129,6 +161,27 @@ const getAssetProof = async () => {
   console.log("Assets Proof: ", result);
 };
 getAssetProof()`,
+      py_code:
+`import os
+import requests
+import json
+
+API_KEY = os.getenv('API_KEY')
+URL = f"https://mainnet.helius-rpc.com/?api-key={API_KEY}"
+ASSET_ID = "Bu1DEKeawy7txbnCEJE4BU3BKLXaNAKCYcHR4XhndGss"
+
+def get_asset_proof(asset_id):
+    data = {
+        "jsonrpc": "2.0",
+        "id": "my-id",
+        "method": "getAssetProof",
+        "params": { "id": asset_id }
+    }
+    response = requests.post(URL, headers={'Content-Type': 'application/json'}, data=json.dumps(data))
+    print(json.dumps(response.json().get('result'), indent=4))
+
+get_asset_proof(ASSET_ID)
+`,
       docs: "https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset",
       tags: ["DAS", "CNFT"]
     },
@@ -165,6 +218,27 @@ const getAssetProof = async () => {
   console.log("Assets Proof: ", result);
 };
 getAssetProof()`,
+      py_code:
+`import os
+import requests
+import json
+
+API_KEY = os.getenv('API_KEY')
+URL = f"https://mainnet.helius-rpc.com/?api-key={API_KEY}"
+ASSET_ID = "Bu1DEKeawy7txbnCEJE4BU3BKLXaNAKCYcHR4XhndGss"
+
+def get_asset_proof(asset_id):
+    data = {
+        "jsonrpc": "2.0",
+        "id": "my-id",
+        "method": "getAssetProof",
+        "params": { "id": asset_id }
+    }
+    response = requests.post(URL, headers={'Content-Type': 'application/json'}, data=json.dumps(data))
+    print(json.dumps(response.json().get('result'), indent=4))
+
+get_asset_proof(ASSET_ID)
+`,
       docs: "https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset",
       tags: ["DAS", "CNFT"]
     },
@@ -202,6 +276,27 @@ const getAssetProof = async () => {
   console.log("Assets Proof: ", result);
 };
 getAssetProof()`,
+      py_code:
+`import os
+import requests
+import json
+
+API_KEY = os.getenv('API_KEY')
+URL = f"https://mainnet.helius-rpc.com/?api-key={API_KEY}"
+ASSET_ID = "Bu1DEKeawy7txbnCEJE4BU3BKLXaNAKCYcHR4XhndGss"
+
+def get_asset_proof(asset_id):
+    data = {
+        "jsonrpc": "2.0",
+        "id": "my-id",
+        "method": "getAssetProof",
+        "params": { "id": asset_id }
+    }
+    response = requests.post(URL, headers={'Content-Type': 'application/json'}, data=json.dumps(data))
+    print(json.dumps(response.json().get('result'), indent=4))
+
+get_asset_proof(ASSET_ID)
+`,
       docs: "https://docs.solana.com/api/http#getgenesishash",
       tags: ["DAS", "RPC"]
     },
@@ -238,6 +333,31 @@ const getSignaturesForAsset = async () => {
   console.log("Signatures: ", result);
 };
 getSignaturesForAsset();`,
+      py_code:
+`import os
+import requests
+import json
+
+API_KEY = os.getenv('API_KEY')
+URL = f"https://mainnet.helius-rpc.com/?api-key={API_KEY}"
+ASSET_ID = "FNt6A9Mfnqbwc1tY7uwAguKQ1JcpBrxmhczDgbdJy5AC"
+
+def get_signatures_for_asset(asset_id):
+    data = {
+        "jsonrpc": "2.0",
+        "id": "my-id",
+        "method": "getSignaturesForAsset",
+        "params": {
+            "id": asset_id,
+            "page": 1,
+            "limit": 1000,
+        }
+    }
+    response = requests.post(URL, headers={'Content-Type': 'application/json'}, data=json.dumps(data))
+    print(json.dumps(response.json().get('result'), indent=4))
+
+get_signatures_for_asset(ASSET_ID)
+`,
       docs: "https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-signatures-for-asset",
       tags: ["DAS", "CNFT"]
     },
@@ -277,6 +397,31 @@ const getAssetsByOwner = async () => {
 };
 
 getAssetsByOwner();`,
+      py_code:
+`import os
+import requests
+import json
+
+API_KEY = os.getenv('API_KEY')
+URL = f"https://rpc.helius.xyz/?api-key={API_KEY}"
+OWNER_ADDRESS = "86xCnPeV69n6t3DnyGvkKobf9FdN2H9oiVDdaMpo2MMY"
+
+def get_assets_by_owner(owner_address):
+    data = {
+        "jsonrpc": "2.0",
+        "id": "my-id",
+        "method": "getAssetsByOwner",
+        "params": {
+            "ownerAddress": owner_address,
+            "page": 1,
+            "limit": 1000
+        }
+    }
+    response = requests.post(URL, headers={'Content-Type': 'application/json'}, data=json.dumps(data))
+    print(json.dumps(response.json().get('result').get('items'), indent=4))
+
+get_assets_by_owner(OWNER_ADDRESS)
+`,
       docs: "https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-assets-by-owner",
       tags: ["DAS", "RPC"]
     },
@@ -316,6 +461,26 @@ getAssetsByOwner();`,
 };
 
 getMetadata('F9Lw3ki3hJ7PF9HQXsBzoY8GyE6sPoEZZdXJBsTTD2rk');`,
+      py_code:
+`import os
+import requests
+import json
+
+API_KEY = os.getenv('API_KEY')
+URL = f"https://api.helius.xyz/v0/token-metadata?api-key={API_KEY}"
+NFT_ADDRESS = 'F9Lw3ki3hJ7PF9HQXsBzoY8GyE6sPoEZZdXJBsTTD2rk'
+
+def get_metadata(nft_address):
+    data = {
+        "mintAccounts": [nft_address],
+        "includeOffChain": True,
+        "disableCache": False
+    }
+    response = requests.post(URL, headers={'Content-Type': 'application/json'}, data=json.dumps(data))
+    print(json.dumps(response.json(), indent=4))
+
+get_metadata(NFT_ADDRESS)
+`,
       docs: "https://docs.helius.xyz/solana-apis/token-metadata-api",
       tags: ["DAS", "RPC"]
     },
@@ -353,6 +518,29 @@ const getAsset = async () => {
 };
 
 getAsset();`,
+      py_code:
+`import os
+import requests
+import json
+
+API_KEY = os.getenv('API_KEY')
+URL = f"https://rpc.helius.xyz/?api-key={API_KEY}"
+ASSET_ID = 'F9Lw3ki3hJ7PF9HQXsBzoY8GyE6sPoEZZdXJBsTTD2rk'
+
+def get_asset(asset_id):
+    data = {
+        "jsonrpc": "2.0",
+        "id": "my-id",
+        "method": "getAsset",
+        "params": {
+            "id": asset_id
+        }
+    }
+    response = requests.post(URL, headers={'Content-Type': 'application/json'}, data=json.dumps(data))
+    print(json.dumps(response.json().get('result'), indent=4))
+
+get_asset(ASSET_ID)
+`,
       docs: "https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset",
       tags: ["DAS", "RPC"]
     },
@@ -387,6 +575,24 @@ const parseTransaction = async () => {
 
 parseTransaction()
 `,
+      py_code:
+`import os
+import requests
+import json
+
+API_KEY = os.getenv('API_KEY')
+URL = f"https://api.helius.xyz/v0/transactions/?api-key={API_KEY}"
+TRANSACTION_ID = 'your-txn-id-here'
+
+def parse_transaction(txn_id):
+    data = {
+        "transactions": [txn_id],
+    }
+    response = requests.post(URL, headers={'Content-Type': 'application/json'}, data=json.dumps(data))
+    print(json.dumps(response.json(), indent=4))
+
+parse_transaction(TRANSACTION_ID)
+`,
       docs: "https://docs.helius.xyz/solana-apis/enhanced-transactions-api/parse-transaction-s",
       tags: ["ENHANCED API"]
     },
@@ -413,6 +619,21 @@ const parseTransactions = async () => {
 };
 
 parseTransactions()
+`,
+      py_code:
+`import os
+import requests
+import json
+
+API_KEY = os.getenv('API_KEY')
+ADDRESS = '<address>'
+URL = f"https://api.helius.xyz/v0/addresses/{ADDRESS}/transactions?api-key={API_KEY}"
+
+def parse_transactions():
+    response = requests.get(URL)
+    print(json.dumps(response.json(), indent=4))
+
+parse_transactions()
 `,
       docs: "https://docs.helius.xyz/solana-apis/enhanced-transactions-api/parsed-transaction-history",
       tags: ["RPC"]
@@ -444,6 +665,25 @@ const getEpochInfo = async () => {
   console.log(result)
 };
 getEpochInfo()`,
+      py_code:
+`import os
+import requests
+import json
+
+API_KEY = os.getenv('API_KEY')
+URL = f"https://mainnet.helius-rpc.com/?api-key={API_KEY}"
+
+def get_epoch_info():
+    data = {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "getEpochInfo"
+    }
+    response = requests.post(URL, headers={'Content-Type': 'application/json'}, data=json.dumps(data))
+    print(json.dumps(response.json().get('result'), indent=4))
+
+get_epoch_info()
+`,
       docs: "https://docs.solana.com/api/http#getepochinfo",
       tags: ["RPC"]
     },
@@ -474,6 +714,25 @@ const getGenesisHash = async () => {
   console.log(result)
 };
 getGenesisHash()`,
+      py_code:
+`import os
+import requests
+import json
+
+API_KEY = os.getenv('API_KEY')
+URL = f"https://mainnet.helius-rpc.com/?api-key={API_KEY}"
+
+def get_genesis_hash():
+    data = {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "getGenesisHash"
+    }
+    response = requests.post(URL, headers={'Content-Type': 'application/json'}, data=json.dumps(data))
+    print(json.dumps(response.json().get('result'), indent=4))
+
+get_genesis_hash()
+`,
       docs: "https://docs.solana.com/api/http#getgenesishash",
       tags: ["RPC"]
     },
