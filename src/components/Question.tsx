@@ -229,9 +229,9 @@ export default function Question({ setSelectedComponent, question, questions, pr
 
             <div className='flex w-full h-full p-4 md:p-0 justify-center xl:items-center overflow-y-scroll xl:overflow-y-hidden'>
 
-                <div className='flex justify-center w-full h-max xl:h-full flex-col xl:items-center space-y-12'>
+                <div className='flex justify-center w-full h-max xl:h-full flex-col xl:items-center space-y-12 xl:space-y-0'>
 
-                    <div className='flex flex-col space-y-16 xl:space-y-0 xl:space-x-16 xl:items-center w-full h-full xl:flex-row'>
+                    <div className='flex flex-col space-y-16 xl:space-y-0 xl:items-center w-full h-full xl:flex-row'>
 
                         <div className='flex rounded-lg xl:rounded-none flex-col items-center space-y-8 xl:space-y-8 justify-between h-full bg-zinc-950 xl:w-1/2 overflow-y-scroll scrollbar'>
 
