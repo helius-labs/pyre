@@ -28,7 +28,7 @@ import web3 from "@solana/web3.js"
 const getAssetProof = async () => {
 
 
-    const connection = new web3.Connection(`https://rpc.helius.xyz/?api-key=c06d2673-cd88-43d0-8c04-a2a35d1f03a1`);
+    const connection = new web3.Connection(`https://rpc.helius.xyz/?api-key=${process.env.HELIUS_KEY}`);
     const publicKey = new web3.PublicKey("3RYFyDBd81h3hQ8P1PtZRgSJYgKeNKXamKJPXhWmy5e7");    
 
     const cmt = await ConcurrentMerkleTreeAccount.fromAccountAddress(connection, publicKey)
