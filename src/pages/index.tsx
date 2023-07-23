@@ -811,7 +811,7 @@ get_genesis_hash()
 
   return (
     <main className={`flex scrollbar w-full h-screen flex-col items-center justify-between bg-black text-zinc-200 scrollbar ${inter.className}`}>
-      <title>Pyre</title>
+      <title>Catalyse Your Progress</title>
       {selectedComponent === "Landing" ? (
         <>
 
