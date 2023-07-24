@@ -57,7 +57,9 @@ export default function Question({ setSelectedComponent, question, questions, pr
     let cnft = [
         "F9aEsvqM1wUtLtDFsaY5m52Bkon4SgD7BbBczTbazSGS",
         "FNt6A9Mfnqbwc1tY7uwAguKQ1JcpBrxmhczDgbdJy5AC",
-        "JDUqG3RvZ8ZTYrzabxShoZA986itEe9dsL449FkayJM8"
+        "JDUqG3RvZ8ZTYrzabxShoZA986itEe9dsL449FkayJM8",
+        "23V9jPzTevXPvTdaoEWh8uXymbZr8gKw5B8vG98KPh5m",
+        "BJS4bufcbM1YAqin1yLvXdWS6quzA6zXH74Hsu8NJ9VC"
     ]
 
     const [codeFormat, setCodeFormat] = useState("js");
@@ -255,7 +257,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                         <div className="flex flex-col gap-4 border border-orange-400 rounded-xl py-4 px-4 text-orange-400 tracking-widest">
                                             <span className='flex flex-row space-x-4'>
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="text-orange-400 w-6 h-6"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                                <span className="text-lg font-medium">INFO</span>
+                                                <span className="text-lg font-medium tracking-widest">TIP</span>
                                             </span>
                                             <span>
                                                 {question.info}</span>
@@ -277,7 +279,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
                         </div>
 
                         <div className='flex flex-col h-full space-y-8 pr-2 justify-between rounded-lg xl:w-1/2'>
-                            <div className='flex flex-col mt-8 space-y-0 h-4/5 w-full overflow-x-hidden'>
+                            <div className='flex flex-col mt-8 px-8 space-y-0 h-4/5 w-full overflow-x-hidden'>
 
                                 <div className='flex flex-row space-x-8 w-full justify-between items-center border border-b-0 border-zinc-900  rounded-t-lg px-4 py-2'>
 

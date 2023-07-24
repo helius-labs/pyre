@@ -82,6 +82,7 @@ get_balances()
       hints: ["Find the Merkle Tree ID and look it up on https://xray.helius.xyz/.",
         "Call the ConcurrentMerkleTreeAccount function on the Merkle Tree ID",
         "Find the rightMostPath property."],
+      info: "You can use this to determine a cNFT's serial number!",
       js_code:
 `const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
 
@@ -308,7 +309,8 @@ get_asset_proof(ASSET_ID)
       solved: false,
       type: "cnft",
       example_answer: "2",
-      hints: ["https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-signatures-for-asset"],
+      hints: ["Run the example code!", "The 'total' property returned is the total number of transactions that took place involving the cNFT!"],
+      info: ["You can use this in order to find the sales history of a cNFT!"],
       js_code:
 `const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
 
