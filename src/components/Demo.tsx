@@ -20,7 +20,7 @@ export default function Demo({ copyContext, handleCorrect }: any) {
             </div>
 
             <div className='flex text-md font-medium text-zinc-300 rounded-md xl:text-xl'>
-                You are provided a wallet address. Make use of Helius' services in order to retrieve the wallet's native balance and convert into SOL.
+                You are provided a wallet address. Make use of Helius' services in order to retrieve the wallet's exact native balance and convert into SOL.
             </div>
 
 

@@ -285,7 +285,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
 
                                     <div className='flex tracking-widest text-zinc-400 font-bold text-sm p-1 rounded-lg space-x-4'>
                                         <div onClick={()=>{setCodeFormat("js")}} className={`flex border ${codeFormat=="js"?"border-zinc-900":"border-transparent"} p-2 rounded-lg hover:border-zinc-900 cursor-pointer duration-200`}>JAVASCRIPT</div>
-                                        <div onClick={()=>{setCodeFormat("py")}} className={`flex border ${codeFormat=="py"?"border-zinc-900":"border-transparent"} p-2 rounded-lg hover:border-zinc-900 cursor-pointer duration-200`} >PYTHON</div>
+                                        <div onClick={()=>{ if (question.py_code) {setCodeFormat("py")}}} className={`flex border ${codeFormat=="py" && question.py_code ?"border-zinc-900":"border-transparent"} ${question.py_code?"":"cursor-not-allowed"} p-2 rounded-lg hover:border-zinc-900 cursor-pointer duration-200`} >PYTHON</div>
                                     </div>
 
                                     <div className='flex flex-row space-x-4 items-center justify-center'>
