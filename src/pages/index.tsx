@@ -771,6 +771,36 @@ getGenesisHash()`,
       docs: "https://docs.solana.com/api/http#getlatestblockhash",
       tags: ["RPC"]
     },
+    {
+      name: "TPS on Solana",
+      description: "Make use of the getRecentPerformanceSamples RPC method to find the current TPS on Solana. As TPS is constantly changing, please round younr answer to the closest 1000 when submitting.",
+      difficulty: 2,
+      api: "find_tps",
+      solved: false,
+      type: null,
+      example_answer: "3000",
+      hints: ["Log the response of the getRecentPerformanceSamples method!"],
+      info: 'This (getLatestBlockhash) is vital in creating transactions!',
+      js_code:
+`
+import { Connection } from "@solana/web3.js";
+
+const getTPS = async () => {
+  const connection = new Connection(
+    "https://mainnet.helius-rpc.com/?api-key=<api-key>",
+    "confirmed"
+  );
+
+  let recentPerformanceSamples = await connection.getRecentPerformanceSamples();
+  return recentPerformanceSamples
+};
+getTPS()
+`,
+      py_code: null
+,
+      docs: "https://docs.solana.com/api/http#getrecentperformancesamples",
+      tags: ["RPC"]
+    },    
   ]
   const [questions, setQuestions] = useState(originalQuestions)
   const [userData, setUserData] = useState()
