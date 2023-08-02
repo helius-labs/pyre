@@ -80,8 +80,8 @@ get_balances()
       type: "cnft",
       example_answer: "12501",
       hints: ["Find the Merkle Tree ID and look it up on https://xray.helius.xyz/.",
-        "Call the ConcurrentMerkleTreeAccount function on the Merkle Tree ID",
-        "Find the rightMostPath property."],
+        "Call the ConcurrentMerkleTreeAccount function on the Merkle Tree ID!",
+        "The current number of leaves actually vary across explorers, try inputting your value +- 1!"],
       info: "You can use this to determine a cNFT's serial number!",
       js_code:
 `const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
