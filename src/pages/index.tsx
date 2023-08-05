@@ -11,6 +11,8 @@ import { SignMessage } from '../components/SignMessage';
 import { useSession } from "next-auth/react"
 import { Inter } from 'next/font/google'
 
+import Head from 'next/head';
+
 const inter = Inter({ subsets: ['latin'] })
 
 interface Questions {
@@ -53,8 +55,8 @@ const getBalances = async () => {
 };
 
 getBalances();`,
-      py_code: 
-`import os
+      py_code:
+        `import os
 import requests
 import json
 
@@ -84,7 +86,7 @@ get_balances()
         "The current number of leaves actually vary across explorers, try inputting your value +- 1!"],
       info: "You can use this to determine a cNFT's serial number!",
       js_code:
-`const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
+        `const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
 
 const getAsset = async () => {
   const response = await fetch(url, {
@@ -106,7 +108,7 @@ const getAsset = async () => {
 };
 getAsset()`,
       py_code:
-`import os
+        `import os
 import requests
 import json
 
@@ -141,7 +143,7 @@ get_asset(ASSET_ID)
         "Call the ConcurrentMerkleTreeAccount function on the Merkle Tree ID",
         "Find the maxDepth property and the size of the tree is 2 to the maxDepth."],
       js_code:
-`const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
+        `const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
 
 const getAssetProof = async () => {
   const response = await fetch(url, {
@@ -163,7 +165,7 @@ const getAssetProof = async () => {
 };
 getAssetProof()`,
       py_code:
-`import os
+        `import os
 import requests
 import json
 
@@ -198,7 +200,7 @@ get_asset_proof(ASSET_ID)
         "Find the property by scrolling through the example output in the demo",
         "The property is called, under compression.tree"],
       js_code:
-`const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
+        `const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
 
 const getAssetProof = async () => {
   const response = await fetch(url, {
@@ -220,7 +222,7 @@ const getAssetProof = async () => {
 };
 getAssetProof()`,
       py_code:
-`import os
+        `import os
 import requests
 import json
 
@@ -253,10 +255,10 @@ get_asset_proof(ASSET_ID)
       example_answer: "12",
       info: ["In order to transfer transferring a cNFT, the needed asset proof is retrieved using the getAssetProof method. However the method returns the 'full proof', in order to reduce it, proof hashes are removed , in order to remove the correct number of proof addresses we need to know the tree's canopy depth."],
       hints: ["You'll first have to retrieve the cNFT's merkle tree using the getAssetProof DAS method.",
-              "Use the function ConcurrentMerkleTreeAccount from @solana/spl-account-compression to retrieve a merkle tree's data.",
-              "Retrieve the canopy depth from the data returned by ConcurrentMerkleTreeAccount using the .getCanopyDepth() function."],
+        "Use the function ConcurrentMerkleTreeAccount from @solana/spl-account-compression to retrieve a merkle tree's data.",
+        "Retrieve the canopy depth from the data returned by ConcurrentMerkleTreeAccount using the .getCanopyDepth() function."],
       js_code:
-`const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
+        `const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
 
 const getAssetProof = async () => {
   const response = await fetch(url, {
@@ -278,7 +280,7 @@ const getAssetProof = async () => {
 };
 getAssetProof()`,
       py_code:
-`import os
+        `import os
 import requests
 import json
 
@@ -312,7 +314,7 @@ get_asset_proof(ASSET_ID)
       hints: ["Run the example code!", "The 'total' property returned is the total number of transactions that took place involving the cNFT!"],
       info: ["You can use this in order to find the sales history of a cNFT!"],
       js_code:
-`const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
+        `const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
 
 const getSignaturesForAsset = async () => {
   const response = await fetch(url, {
@@ -336,7 +338,7 @@ const getSignaturesForAsset = async () => {
 };
 getSignaturesForAsset();`,
       py_code:
-`import os
+        `import os
 import requests
 import json
 
@@ -400,7 +402,7 @@ const getAssetsByOwner = async () => {
 
 getAssetsByOwner();`,
       py_code:
-`import os
+        `import os
 import requests
 import json
 
@@ -464,7 +466,7 @@ get_assets_by_owner(OWNER_ADDRESS)
 
 getMetadata('F9Lw3ki3hJ7PF9HQXsBzoY8GyE6sPoEZZdXJBsTTD2rk');`,
       py_code:
-`import os
+        `import os
 import requests
 import json
 
@@ -521,7 +523,7 @@ const getAsset = async () => {
 
 getAsset();`,
       py_code:
-`import os
+        `import os
 import requests
 import json
 
@@ -578,7 +580,7 @@ const parseTransaction = async () => {
 parseTransaction()
 `,
       py_code:
-`import os
+        `import os
 import requests
 import json
 
@@ -623,7 +625,7 @@ const parseTransactions = async () => {
 parseTransactions()
 `,
       py_code:
-`import os
+        `import os
 import requests
 import json
 
@@ -650,7 +652,7 @@ parse_transactions()
       example_answer: "420",
       hints: ["Look for the epoch variable in the response. Find more information in the docs: https://docs.solana.com/api/http#getepochinfo",],
       js_code:
-`const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
+        `const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
 
 const getEpochInfo = async () => {
   const response = await fetch(url, {
@@ -668,7 +670,7 @@ const getEpochInfo = async () => {
 };
 getEpochInfo()`,
       py_code:
-`import os
+        `import os
 import requests
 import json
 
@@ -697,9 +699,9 @@ get_epoch_info()
       solved: false,
       type: null,
       example_answer: "GH7ome3EiwEr7tu9JuTh2dpYWBJK3z69Xm1ZE3MEE6JC",
-      hints: ["Look for the result variable in the method response.","You can find more info in the Solana docs: https://docs.solana.com/api/http#getgenesishash"],
+      hints: ["Look for the result variable in the method response.", "You can find more info in the Solana docs: https://docs.solana.com/api/http#getgenesishash"],
       js_code:
-`
+        `
 const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
 
 const getGenesisHash = async () => {
@@ -717,7 +719,7 @@ const getGenesisHash = async () => {
 };
 getGenesisHash()`,
       py_code:
-`import os
+        `import os
 import requests
 import json
 
@@ -749,7 +751,7 @@ get_genesis_hash()
       hints: ["Look for the 'context' property in the response.", "Run the example code and look for the 'slot' property within the aforementioned 'context' property."],
       info: 'This (getLatestBlockhash) is vital in creating transactions!',
       js_code:
-`
+        `
 const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
 
 const getGenesisHash = async () => {
@@ -767,7 +769,7 @@ const getGenesisHash = async () => {
 };
 getGenesisHash()`,
       py_code: null
-,
+      ,
       docs: "https://docs.solana.com/api/http#getlatestblockhash",
       tags: ["RPC"]
     },
@@ -782,7 +784,7 @@ getGenesisHash()`,
       hints: ["Log the response of the getRecentPerformanceSamples method!"],
       info: 'This (getLatestBlockhash) is vital in creating transactions!',
       js_code:
-`
+        `
 import { Connection } from "@solana/web3.js";
 
 const getTPS = async () => {
@@ -797,10 +799,10 @@ const getTPS = async () => {
 getTPS()
 `,
       py_code: null
-,
+      ,
       docs: "https://docs.solana.com/api/http#getrecentperformancesamples",
       tags: ["RPC"]
-    },    
+    },
   ]
   const [questions, setQuestions] = useState(originalQuestions)
   const [userData, setUserData] = useState()
@@ -842,7 +844,7 @@ getTPS()
     }
 
     async function retrieveProgress() {
-      
+
       const { data } = await axios.post("/api/retrieve_progress",
         {
           user: sessionData?.data?.publicKey
@@ -876,7 +878,46 @@ getTPS()
 
   return (
     <main className={`flex scrollbar w-full h-screen flex-col items-center justify-between bg-black text-zinc-200 scrollbar ${inter.className}`}>
-      <title>Catalyse Your Progress</title>
+
+      <Head>
+        <title>Catalyse Your Progress!</title>
+        <meta name="description" content="An educational app that teaches users about Helius and Solana development." key="desc" />
+        <meta property="og:title" content="Pyre" />
+        <meta
+          property="og:description"
+          content="An educational app that teaches users about Helius and Solana development."
+        />
+        <meta
+          property="og:image"
+          content="https://pyre.helius.xyz/pyre-landing.png"
+        />
+        <meta
+          property="og:url"
+          content="https://www.pyre.helius.xyz/"
+        />
+        <meta
+          name="twitter:site"
+          content="@heliuslabs"
+        />
+        <meta
+          name="twitter:title"
+          content="Pyre"
+        />
+        <meta
+          name="twitter:description"
+          content="An educational app that teaches users about Helius and Solana development."
+        />
+        <meta
+          name="twitter:url"
+          content="https://www.pyre.helius.xyz/"
+        />
+        <meta
+          name="twitter:image"
+          content="https://www.pyre.helius.xyz/pyre-landing.png"
+        />
+
+      </Head>
+
       {selectedComponent === "Landing" ? (
         <>
 
@@ -907,7 +948,7 @@ getTPS()
                   (track) ?
                     <QuestionMenu completed={completed} originalQuestions={originalQuestions} sessionData={sessionData} track={track} setTrack={setTrack} userData={userData} questions={questions} progress={progress} setProgress={setProgress} setQuestion={setQuestion} setSelectedComponent={setSelectedComponent} />
                     :
-                    <Tracks originalQuestions={originalQuestions} setTrack={setTrack} progress={progress} setProgress={setProgress} setQuestion={setQuestion} setSelectedComponent={setSelectedComponent}/>
+                    <Tracks originalQuestions={originalQuestions} setTrack={setTrack} progress={progress} setProgress={setProgress} setQuestion={setQuestion} setSelectedComponent={setSelectedComponent} />
                 )
             }
           </>
