@@ -106,7 +106,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
     const [cachedAnswer, setCachedAnswer] = useState('')
     const [codeOutput, setCodeOutput] = useState("Run code for example output.")
 
-    const [copy, setCopy] = useState(<svg className="text-current" width={20} fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M21,8H9A1,1,0,0,0,8,9V21a1,1,0,0,0,1,1H21a1,1,0,0,0,1-1V9A1,1,0,0,0,21,8ZM20,20H10V10H20ZM6,15a1,1,0,0,1-1,1H3a1,1,0,0,1-1-1V3A1,1,0,0,1,3,2H15a1,1,0,0,1,1,1V5a1,1,0,0,1-2,0V4H4V14H5A1,1,0,0,1,6,15Z"></path></g></svg>)
+    const [copy, setCopy] = useState(<svg className="text-current duration-200" width={20} fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M21,8H9A1,1,0,0,0,8,9V21a1,1,0,0,0,1,1H21a1,1,0,0,0,1-1V9A1,1,0,0,0,21,8ZM20,20H10V10H20ZM6,15a1,1,0,0,1-1,1H3a1,1,0,0,1-1-1V3A1,1,0,0,1,3,2H15a1,1,0,0,1,1,1V5a1,1,0,0,1-2,0V4H4V14H5A1,1,0,0,1,6,15Z"></path></g></svg>)
 
     function copyConf() {
         
@@ -281,11 +281,11 @@ export default function Question({ setSelectedComponent, question, questions, pr
                         <div className='flex flex-col h-full space-y-8 pr-2 justify-between rounded-lg xl:w-1/2'>
                             <div className='flex flex-col mt-8 px-8 space-y-0 h-4/5 w-full overflow-x-hidden'>
 
-                                <div className='flex flex-row space-x-8 w-full justify-between items-center border border-b-0 border-zinc-900  rounded-t-lg px-4 py-2'>
+                                <div className='flex flex-row space-x-8 w-full justify-between items-center border border-b-0 border-zinc-900 rounded-t-lg px-4 py-2'>
 
-                                    <div className='flex tracking-widest text-zinc-400 font-bold text-sm p-1 rounded-lg space-x-4'>
-                                        <div onClick={()=>{setCodeFormat("js")}} className={`flex border ${codeFormat=="js"?"border-zinc-900":"border-transparent"} p-2 rounded-lg hover:border-zinc-900 cursor-pointer duration-200`}>JAVASCRIPT</div>
-                                        <div onClick={()=>{ if (question.py_code) {setCodeFormat("py")}}} className={`flex border ${codeFormat=="py" && question.py_code ?"border-zinc-900":"border-transparent"} ${question.py_code?"":"cursor-not-allowed"} p-2 rounded-lg hover:border-zinc-900 cursor-pointer duration-200`} >PYTHON</div>
+                                    <div className='flex tracking-widest text-zinc-400 font-medium text-sm p-1 rounded-lg space-x-4'>
+                                        <div onClick={()=>{setCodeFormat("js")}} className={`flex border ${codeFormat=="js"?"border-orange-400 text-orange-400":"border-transparent"} p-2 rounded-lg hover:text-orange-400 cursor-pointer duration-200`}>JAVASCRIPT</div>
+                                        <div onClick={()=>{ if (question.py_code) {setCodeFormat("py")}}} className={`flex border ${codeFormat=="py" && question.py_code ?"border-orange-400 text-orange-400":"border-transparent"} ${question.py_code?"":"cursor-not-allowed"} p-2 rounded-lg hover:text-orange-400 cursor-pointer duration-200`} >PYTHON</div>
                                     </div>
 
                                     <div className='flex flex-row space-x-4 items-center justify-center'>
@@ -293,7 +293,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                             {
                                                 if (codeOutput == "Run code for example output.") { questionQuery("example"); setCodeOutput("Loading...") }
                                             }
-                                        }} className='flex w-max px-2 hover:bg-zinc-900 space-x-8 hover:opacity-100 tracking-widest text-xs w-8 h-8 rounded-md justify-center items-center hover:border-orange-400 duration-200 cursor-pointer text-zinc-400 hover:text-orange-400'>
+                                        }} className='flex w-max px-2 space-x-8 hover:opacity-100 tracking-widest text-xs w-8 h-8 rounded-md justify-center items-center border border-zinc-900 hover:border-orange-400 duration-200 cursor-pointer text-zinc-400 hover:text-orange-400'>
 
                                             <>{
                                                 (codeOutput == "Loading...") ? (
@@ -302,7 +302,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                                         <svg className="flex text-current animate-spin" width={24} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                                             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                                                             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                                        </svg>                                                    <span className='flex font-bold'>RUN</span>
+                                                        </svg>                                                    <span className='flex font-medium'>RUN</span>
                                                     </div>
                                                 ) : (
 
@@ -314,7 +314,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                             }</>
 
                                         </div>
-                                        <div onClick={() => { copyConf() }} className='flex duration-200 hover:bg-zinc-900 hover:opacity-100 tracking-widest text-xs border-zinc-900 w-max px-2 h-8 rounded-md justify-center items-center hover:border-orange-400 duration-200 cursor-pointer text-zinc-400 hover:text-orange-400'>
+                                        <div onClick={() => { copyConf() }} className='flex duration-200 tracking-widest text-xs border border-zinc-900 w-max px-2 h-8 rounded-md justify-center items-center hover:border-orange-400 cursor-pointer text-zinc-400 hover:text-orange-400'>
                                             {copy}
                                         </div>
                                     </div>

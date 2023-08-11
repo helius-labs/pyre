@@ -20,9 +20,9 @@ export default function Hints({ content }:any) {
                 setIsActive(newArr)
             }
         }}>
-                <div className='flex w-full justify-between items-center text-zinc-300 tracking-widest font-medium text-lg px-4 py-3 rounded-lg duration-200'>
+                <div className='flex w-full justify-between items-center tracking-widest font-medium text-lg px-4 py-3 rounded-lg duration-200'>
                     <span className='flex'>{"HINT "+(i+1)}</span>
-                    <div className='text-zinc-900'>{isActive.includes(i) ? (<Image className='flex duration-200 text-zinc-900' alt="down" src="/down.svg" width={16} height={16}></Image>) : <Image className='flex duration-200 rotate-180' alt="down" src="/down.svg" width={16} height={16}></Image>}</div>
+                    <div className=''>{isActive.includes(i) ? (<Image className='flex duration-200 text-zinc-900' alt="down" src="/down.svg" width={16} height={16}></Image>) : <Image className='flex duration-200 rotate-180' alt="down" src="/down.svg" width={16} height={16}></Image>}</div>
                 </div>
             </div>
             {isActive.includes(i) &&
