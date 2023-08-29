@@ -17,6 +17,9 @@ export default function QuestionMenu({ completed, originalQuestions, setSelected
         if (track == "COMPRESSION") {
             return ["DAS", "CNFT"]
         }
+        if (track=="JUPITER") {
+            return ["RPC", "JUPITER"]
+        }
         else {
             return ["DAS", "RPC", "ENHANCED API", "NFT API"]
         }

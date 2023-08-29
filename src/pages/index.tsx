@@ -74,6 +74,36 @@ get_balances()
       tags: ["ENHANCED API"]
     },
     {
+      name: "Value of SOL in wallet",
+      description: "Make use of Jupiter's Quote API in order to find a quote for the provided wallet's SOL to USDC value. As values are constantly fluctuating, please round to the nearest USDC! Additionally, use of explorers like Solscan may be incorrect as Jupiter factors in platform fees and etc.",
+      difficulty: 2,
+      api: "jup_quote",
+      solved: false,
+      type: 'wallet',
+      example_answer: "25.01",
+      hints: ["Change the URL of the GET request provided with the amount of SOL in the provided wallet.", "Depending on how you query for the SOL balance, you'll have to divide the returned by a billion. Similarly you'll have to divide the returned USDC value by 1 million."],
+      info: 'With the returned quote object you can create a swap transaction!',
+      js_code:
+`
+async function getExample(sol) {
+  let config = {
+      method: 'get',
+      url: "https://quote-api.jup.ag/v6/quote?inputMint=So11111111111111111111111111111111111111112&outputMint=EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v&amount=<your-sol>",
+      headers: {
+        'Accept': 'application/json'
+      }
+    };
+
+  let {data} = await axios.request(config)
+  return Math.round(data.outAmount/1_000_000)
+}
+`,
+      py_code: null
+      ,
+      docs: "https://station.jup.ag/api-v6/get-quote",
+      tags: ["JUPITER", "RPC"]
+    },
+    {
       name: "Leaves on a Merkle Tree",
       description: "You are provided a cNFT mint address. Make use of Helius' services in order to find the current number of leaves on the merkle tree the cNFT was minted on.",
       difficulty: 2,
