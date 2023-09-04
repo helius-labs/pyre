@@ -82,10 +82,9 @@ get_balances()
       type: 'wallet',
       example_answer: "25.01",
       hints: ["Change the URL of the GET request provided with the amount of SOL in the provided wallet.", "Depending on how you query for the SOL balance, you'll have to divide the returned by a billion. Similarly you'll have to divide the returned USDC value by 1 million."],
-      info: 'With the returned quote object you can create a swap transaction!',
+      info: 'You can create a swap transaction with the returned quote object!',
       js_code:
-`
-async function getExample(sol) {
+`async function getExample(sol) {
   let config = {
       method: 'get',
       url: "https://quote-api.jup.ag/v6/quote?inputMint=So11111111111111111111111111111111111111112&outputMint=EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v&amount=<your-sol>",
@@ -96,8 +95,7 @@ async function getExample(sol) {
 
   let {data} = await axios.request(config)
   return Math.round(data.outAmount/1_000_000)
-}
-`,
+}`,
       py_code: null
       ,
       docs: "https://station.jup.ag/api-v6/get-quote",

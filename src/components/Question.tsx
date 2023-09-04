@@ -279,13 +279,13 @@ export default function Question({ setSelectedComponent, question, questions, pr
                         </div>
 
                         <div className='flex flex-col h-full space-y-8 pr-2 justify-between rounded-lg xl:w-1/2'>
-                            <div className='flex flex-col mt-8 px-8 space-y-0 h-4/5 w-full overflow-x-hidden'>
+                            <div className='flex flex-col mt-8 px-8 space-y-2 h-4/5 w-full overflow-x-hidden'>
 
-                                <div className='flex flex-row space-x-8 w-full justify-between items-center border border-b-0 border-zinc-900 rounded-t-lg px-4 py-2'>
+                                <div className='flex flex-row space-x-8 w-full justify-between items-center bg-zinc-950 border border-zinc-900 rounded-lg px-2 py-2'>
 
                                     <div className='flex tracking-widest text-zinc-400 font-medium text-sm p-1 rounded-lg space-x-4'>
-                                        <div onClick={()=>{setCodeFormat("js")}} className={`flex border ${codeFormat=="js"?"border-orange-400 text-orange-400":"border-transparent"} p-2 rounded-lg hover:text-orange-400 cursor-pointer duration-200`}>JAVASCRIPT</div>
-                                        <div onClick={()=>{ if (question.py_code) {setCodeFormat("py")}}} className={`flex border ${codeFormat=="py" && question.py_code ?"border-orange-400 text-orange-400":"border-transparent"} ${question.py_code?"":"cursor-not-allowed"} p-2 rounded-lg hover:text-orange-400 cursor-pointer duration-200`} >PYTHON</div>
+                                        <div onClick={()=>{setCodeFormat("js")}} className={`flex border ${codeFormat=="js"?" border-zinc-900":"border-transparent"} p-2 rounded-lg hover:opacity-80 cursor-pointer duration-200`}>JAVASCRIPT</div>
+                                        <div onClick={()=>{ if (question.py_code) {setCodeFormat("py")}}} className={`flex border ${codeFormat=="py"?"border-zinc-900":"border-transparent"} ${question.py_code?"cursor-pointer":"cursor-not-allowed"} hover:opacity-80 p-2 rounded-lg duration-200`} >PYTHON</div>
                                     </div>
 
                                     <div className='flex flex-row space-x-4 items-center justify-center'>
@@ -293,7 +293,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                             {
                                                 if (codeOutput == "Run code for example output.") { questionQuery("example"); setCodeOutput("Loading...") }
                                             }
-                                        }} className='flex w-max px-2 space-x-8 hover:opacity-100 tracking-widest text-xs w-8 h-8 rounded-md justify-center items-center border border-zinc-900 hover:border-orange-400 duration-200 cursor-pointer text-zinc-400 hover:text-orange-400'>
+                                        }} className='flex w-max px-2 space-x-8 hover:opacity-80 tracking-widest text-xs w-8 h-8 rounded-md justify-center items-center border border-zinc-900 duration-200 cursor-pointer text-zinc-400'>
 
                                             <>{
                                                 (codeOutput == "Loading...") ? (
@@ -314,14 +314,14 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                             }</>
 
                                         </div>
-                                        <div onClick={() => { copyConf() }} className='flex duration-200 tracking-widest text-xs border border-zinc-900 w-max px-2 h-8 rounded-md justify-center items-center hover:border-orange-400 cursor-pointer text-zinc-400 hover:text-orange-400'>
+                                        <div onClick={() => { copyConf() }} className='flex hover:opacity-80 duration-200 tracking-widest text-xs border border-zinc-900 w-max px-2 h-8 rounded-md justify-center items-center cursor-pointer text-zinc-400'>
                                             {copy}
                                         </div>
                                     </div>
                                 </div>
 
-                                <div className="w-full bg-zinc-950 border border-b-0 border-zinc-900 max-h-[40%]">
-                                    <pre className='flex w-full h-full'><code style={{ background: '#09090b' }} className="js flex w-full border-b border-zinc-900 overflow-x-scroll scrollbar">
+                                <div className="w-full bg-zinc-950 border border border-zinc-800 rounded-lg max-h-[35%]">
+                                    <pre className='flex w-full h-full'><code style={{ background: '#18181B' }} className="js flex w-full rounded-lg border-zinc-900 overflow-x-scroll scrollbar">
                                     
                                         {
                                             question.py_code ? 
@@ -331,8 +331,8 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                     </code></pre>
                                 </div>
 
-                                <div className="w-full max-h-[50%] bg-zinc-950 border border-zinc-900 rounded-b-lg">
-                                    <pre className="flex w-full h-full flex-row mb-0 overflow-hidden"><code style={{ background: '#09090b' }} className="flex w-full border-b border-zinc-900 js rounded-lg scrollbar max-h-1/3 flex-col-reverse">{codeOutput}</code></pre>
+                                <div className="w-full max-h-[50%] bg-zinc-950 border border-zinc-900 rounded-lg">
+                                    <pre className="flex w-full h-full flex-row mb-0 overflow-hidden"><code style={{ background: '#09090B' }} className="flex w-full border-b border-zinc-900 js rounded-lg scrollbar max-h-1/3 flex-col-reverse">{codeOutput}</code></pre>
                                 </div>
                             </div>
 
