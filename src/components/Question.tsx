@@ -133,7 +133,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
                 }, 1000);
             }}
 
-                className={`flex w-max font-medium text-zinc-300 p-2 duration-200 bg-zinc-950 border-2 border-zinc-900 hover:border-orange-400 space-x-2 cursor-pointer rounded-full px-4 py-2 justify-center`}>
+                className={`flex w-max font-medium text-zinc-400 p-2 duration-200 bg-zinc-950 border-2 border-zinc-900 hover:opacity-80 space-x-2 cursor-pointer rounded-full px-4 py-2 justify-center`}>
                 <div>{displayedContext}</div>
 
                 <>{
@@ -254,9 +254,9 @@ export default function Question({ setSelectedComponent, question, questions, pr
                             <>
                                 {question.info ? (
                                     <div className='flex w-full flex-col space-y-4 px-6'>
-                                        <div className="flex flex-col gap-4 border border-orange-400 rounded-xl py-4 px-4 text-orange-400 tracking-widest">
+                                        <div className="flex flex-col gap-4 border border-zinc-900 rounded-xl py-4 px-4 text-zinc-400 tracking-widest">
                                             <span className='flex flex-row space-x-4'>
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="text-orange-400 w-6 h-6"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="text-zinc-400 w-6 h-6"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                                 <span className="text-lg font-medium tracking-widest">TIP</span>
                                             </span>
                                             <span>
@@ -267,7 +267,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
                             </>
 
                             <div className='flex w-full flex-col space-y-4 px-6 pb-6'>
-                                <a href={question.docs} target='_blank' className='flex w-full bg-zinc-900 hover:bg-zinc-800 text-lg tracking-widest text-zinc-300 font-medium duration-200 rounded-lg px-4 py-3 justify-between'>
+                                <a href={question.docs} target='_blank' className='flex w-full bg-zinc-900 hover:opacity-80 text-lg tracking-widest text-zinc-400 font-medium duration-200 rounded-lg px-4 py-3 justify-between'>
                                     <div className='flex'>
                                         DOCS
                                     </div>
