@@ -102,6 +102,44 @@ get_balances()
       tags: ["JUPITER", "RPC"]
     },
     {
+      name: "An cNFT's Mint Signature",
+      description: "You are provided a cNFT mint address. Make use of Helius' services in order to find it's mint transaction signature.",
+      difficulty: 2,
+      api: "mint_sig",
+      solved: false,
+      type: 'cnft',
+      example_answer: "5nLi8m72bU6PBcz4Xrk23P6KTGy9ufF92kZiQXjTv9ELgkUxrNaiCGhMF4vh6RAcisw9DEQWJt9ogM3G2uCuwwV7",
+      hints: ["Run the example code!", "The 'total' property returned is the total number of transactions that took place involving the cNFT!"],
+      js_code:
+`const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
+
+const getSignaturesForAsset = async () => {
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      jsonrpc: '2.0',
+      id: 'my-id',
+      method: 'getSignaturesForAsset',
+      params: {
+        id: 'FNt6A9Mfnqbwc1tY7uwAguKQ1JcpBrxmhczDgbdJy5AC',
+        page: 1, // Starts at 1
+        limit: 1000, // Limit 1000 per request.
+      },
+    }),
+  });
+  const { result } = await response.json();
+  console.log("Signatures: ", result);
+};
+getSignaturesForAsset();`,
+      py_code: null
+      ,
+      docs: "https://docs.helius.dev/compression-and-das-api/digital-asset-standard-das-api/get-signatures-for-asset",
+      tags: ["DAS"]
+    },
+    {
       name: "Leaves on a Merkle Tree",
       description: "You are provided a cNFT mint address. Make use of Helius' services in order to find the current number of leaves on the merkle tree the cNFT was minted on.",
       difficulty: 2,
@@ -342,7 +380,7 @@ get_asset_proof(ASSET_ID)
       hints: ["Run the example code!", "The 'total' property returned is the total number of transactions that took place involving the cNFT!"],
       info: ["You can use this in order to find the sales history of a cNFT!"],
       js_code:
-        `const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
+`const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
 
 const getSignaturesForAsset = async () => {
   const response = await fetch(url, {
