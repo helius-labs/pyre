@@ -248,9 +248,9 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                 </div>
                             </div>
 
-                            <div className='flex space-y-3 flex-col items-center'>
+                            <div className='flex space-y-2 flex-col items-center'>
                                 {question.api == 'sol_held' ? (<div></div>) : (copyContext)}
-                                <div className='text-xs text-zinc-400 font-bold tracking-widest'>{"COPY "+question.type.toUpperCase()}</div>
+                                <div className='text-xs text-zinc-500 font-bold tracking-widest'>{"COPY "+question.type.toUpperCase()}</div>
                             </div>
 
                             <>
@@ -285,17 +285,17 @@ export default function Question({ setSelectedComponent, question, questions, pr
 
                                 <div className='flex flex-row space-x-8 w-full justify-between items-center bg-zinc-950 border border-zinc-900 rounded-lg px-2 py-2'>
 
-                                    <div className='flex tracking-widest text-zinc-400 font-medium text-sm p-1 rounded-lg space-x-4'>
-                                        <div onClick={()=>{setCodeFormat("js")}} className={`flex border ${codeFormat=="js"?" border-zinc-900":"border-transparent"} p-2 rounded-lg hover:opacity-80 cursor-pointer duration-200`}>JAVASCRIPT</div>
-                                        <div onClick={()=>{ if (question.py_code) {setCodeFormat("py")}}} className={`flex border ${codeFormat=="py"?"border-zinc-900":"border-transparent"} ${question.py_code?"cursor-pointer":"cursor-not-allowed"} hover:opacity-80 p-2 rounded-lg duration-200`} >PYTHON</div>
+                                    <div className='flex tracking-widest text-zinc-400 font-semibold text-sm p-1 rounded-lg space-x-4'>
+                                        <div onClick={()=>{setCodeFormat("js")}} className={`flex ${codeFormat=="js"?"text-zinc-400":"text-zinc-600"} p-2 rounded-lg hover:opacity-80 cursor-pointer duration-200`}>JAVASCRIPT</div>
+                                        <div onClick={()=>{ if (question.py_code) {setCodeFormat("py")}}} className={`flex ${codeFormat=="py"?"text-zinc-400":"text-zinc-600"} ${question.py_code?"cursor-pointer":"cursor-not-allowed"} hover:opacity-80 p-2 rounded-lg duration-200`} >PYTHON</div>
                                     </div>
 
-                                    <div className='flex flex-row space-x-4 items-center justify-center'>
+                                    <div className='flex flex-row space-x-6 px-2 items-center justify-center'>
                                         <div onClick={() => {
                                             {
                                                 if (codeOutput == "Run code for example output.") { questionQuery("example"); setCodeOutput("Loading...") }
                                             }
-                                        }} className='flex w-max px-2 space-x-8 hover:opacity-80 tracking-widest text-xs w-8 h-8 rounded-md justify-center items-center border border-zinc-900 duration-200 cursor-pointer text-zinc-400'>
+                                        }} className='flex w-max px-2 space-x-8 hover:opacity-80 tracking-widest text-xs w-8 h-8 rounded-md justify-center items-center duration-200 cursor-pointer text-zinc-400'>
 
                                             <>{
                                                 (codeOutput == "Loading...") ? (
@@ -316,7 +316,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                             }</>
 
                                         </div>
-                                        <div onClick={() => { copyConf() }} className='flex hover:opacity-80 duration-200 tracking-widest text-xs border border-zinc-900 w-max px-2 h-8 rounded-md justify-center items-center cursor-pointer text-zinc-400'>
+                                        <div onClick={() => { copyConf() }} className='flex hover:opacity-80 duration-200 tracking-widest text-xs w-max px-2 h-8 rounded-md justify-center items-center cursor-pointer text-zinc-400'>
                                             {copy}
                                         </div>
                                     </div>
@@ -338,21 +338,21 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                 </div>
                             </div>
 
-                            <div className='flex space-x-4 pb-16 '>
+                            <div className='flex space-x-4 pb-16 justify-end px-8'>
                                 <form onSubmit={handleSubmit} className="flex w-full space-x-4">
                                     <input
                                         type="text"
                                         value={answer}
                                         className={`flex duration-200 ${(solved) ? (`border-green-500`) : (submit == false ? ('border border-zinc-900') : ('border-red-500 animate-shake'))} border rounded-full w-full items-center justify-center px-4 py-2 rounded-full w-full outline-0 bg-zinc-950 text-zinc-300 placeholder-zinc-500`}
                                         onChange={(e: any) => setAnswer(e.target.value)}
-                                        placeholder={question.example_answer}
+                                        placeholder={"Input your example here, e.g "+question.example_answer}
                                     />
 
-                                    <button className='flex bg-transparent border-2 rounded-md border-orange-400 opacity-90 hover:opacity-100 duration-200 items-center justify-center h-10 p-2 px-4 font-bold text-white duration-200 cursor-pointer' type="submit">
+                                    <button className='flex bg-transparent rounded-md border border-zinc-900 hover:border-zinc-800 opacity-90 hover:opacity-100 duration-200 items-center justify-center h-10 p-2 px-4 font-medium text-zinc-400 duration-200 cursor-pointer' type="submit">
 
-                                        <span className='flex justify-center font-semibold text-orange-400 tracking-widest'>{(
+                                        <span className='flex justify-center text-sm font-medium text-zinc-400 tracking-widest'>{(
                                             load ? (
-                                                <svg className="flex w-20 animate-spin h-5 w-5 text-orange-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                <svg className="flex w-20 animate-spin h-5 w-5 text-zinc-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                                                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                                 </svg>

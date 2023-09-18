@@ -14,8 +14,8 @@ export default function Demo({ copyContext, handleCorrect }: any) {
 
     return (
         <div className='flex max-w-full flex-col space-y-12'>
-            
-            <div onClick={()=>{handleCorrect()}} className="absolute cursor-pointer top-8 right-8 z-20 text-lg text-zinc-800 font-medium tracking-widest duration-200 items-center justify-center px-8 py-2 rounded-md overflow-show bg-orange-400 hover:bg-orange-300">
+
+            <div onClick={() => { handleCorrect() }} className="absolute cursor-pointer top-8 right-8 z-20 text-lg text-zinc-800 font-medium tracking-widest duration-200 items-center justify-center px-8 py-2 rounded-md overflow-show bg-orange-400 hover:bg-orange-300">
                 skip demo
             </div>
 
@@ -25,7 +25,10 @@ export default function Demo({ copyContext, handleCorrect }: any) {
 
 
             <div className='flex w-full justify-center'>
-                {copyContext}
+                <div className='flex space-y-2 flex-col items-center'>
+                    {copyContext}
+                    <div className='text-xs text-zinc-500 font-bold tracking-widest'>{"COPY WALLET"}</div>
+                </div>
             </div>
 
             <div className='flex flex-col space-y-4'>
@@ -70,7 +73,7 @@ export default function Demo({ copyContext, handleCorrect }: any) {
                         <div className='flex w-full rounded-lg border border-zinc-900'>
 
                             <pre className='flex w-full rounded-lg overflow-x-scroll no-scrollbar'><code style={{ background: '#09090b' }} className="js rounded-2xl w-full overflow-x-scroll no-scrollbar">
-{`balances:  {
+                                {`balances:  {
     tokens: [
         {
         tokenAccount: '6XPjWrGJh9QJsknPWDP1ja5zLjyUKehzqfcaTou1X9BJ',
