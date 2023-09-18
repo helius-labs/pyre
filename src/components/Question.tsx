@@ -247,9 +247,11 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                         ) : (question.description)}</div>
                                 </div>
                             </div>
-                            <>
+
+                            <div className='flex space-y-3 flex-col items-center'>
                                 {question.api == 'sol_held' ? (<div></div>) : (copyContext)}
-                            </>
+                                <div className='text-xs text-zinc-400 font-bold tracking-widest'>{"COPY "+question.type.toUpperCase()}</div>
+                            </div>
 
                             <>
                                 {question.info ? (
