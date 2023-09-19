@@ -29,6 +29,7 @@
     "eslint": "8.41.0",
     "eslint-config-next": "13.4.4",
     "highlight.js": "^11.8.0",
+    "monaco-editor": "^0.43.0",
     "next": "13.4.4",
     "next-auth": "^4.22.1",
     "postcss": "8.4.23",
