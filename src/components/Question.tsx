@@ -9,6 +9,8 @@ import 'highlight.js/styles/github-dark.css';
 import javascript from 'highlight.js/lib/languages/javascript';
 import Demo from './Demo';
 
+import CodeEditorWindow from './CodeEditor';
+
 hljs.configure({
     ignoreUnescapedHTML: true
 });
@@ -65,8 +67,8 @@ export default function Question({ setSelectedComponent, question, questions, pr
     const [codeFormat, setCodeFormat] = useState("js");
     const [codeExample, setCodeExample] = useState(question.js_code);
 
-    useEffect(()=>{
-        if (codeFormat=="js") {
+    useEffect(() => {
+        if (codeFormat == "js") {
             setCodeExample(question.js_code)
         }
         else {
@@ -109,8 +111,8 @@ export default function Question({ setSelectedComponent, question, questions, pr
     const [copy, setCopy] = useState(<svg className="text-current duration-0" width={20} fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M21,8H9A1,1,0,0,0,8,9V21a1,1,0,0,0,1,1H21a1,1,0,0,0,1-1V9A1,1,0,0,0,21,8ZM20,20H10V10H20ZM6,15a1,1,0,0,1-1,1H3a1,1,0,0,1-1-1V3A1,1,0,0,1,3,2H15a1,1,0,0,1,1,1V5a1,1,0,0,1-2,0V4H4V14H5A1,1,0,0,1,6,15Z"></path></g></svg>)
 
     function copyConf() {
-        
-        if (codeFormat=="js") {
+
+        if (codeFormat == "js") {
             navigator.clipboard.writeText(question.js_code)
         }
         else {
@@ -250,7 +252,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
 
                             <div className='flex space-y-2 flex-col items-center'>
                                 {question.api == 'sol_held' ? (<div></div>) : (copyContext)}
-                                <div className='text-xs text-zinc-500 font-bold tracking-widest'>{"COPY "+question.type.toUpperCase()}</div>
+                                <div className='text-xs text-zinc-500 font-bold tracking-widest'>{"COPY " + question.type.toUpperCase()}</div>
                             </div>
 
                             <>
@@ -258,7 +260,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                     <div className='flex w-full flex-col space-y-4 px-6'>
                                         <div className="flex flex-col gap-4 border border-zinc-900 rounded-xl py-4 px-4 text-zinc-400 tracking-widest">
                                             <span className='flex flex-row space-x-4'>
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="text-zinc-400 w-6 h-6"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="text-zinc-400 w-6 h-6"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                                 <span className="text-lg font-medium tracking-widest">TIP</span>
                                             </span>
                                             <span>
@@ -286,8 +288,8 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                 <div className='flex flex-row space-x-8 w-full justify-between items-center bg-zinc-950 border border-zinc-900 rounded-lg px-2 py-2'>
 
                                     <div className='flex tracking-widest text-zinc-400 font-semibold text-sm p-1 rounded-lg space-x-4'>
-                                        <div onClick={()=>{setCodeFormat("js")}} className={`flex ${codeFormat=="js"?"text-zinc-400":"text-zinc-600"} p-2 rounded-lg hover:opacity-80 cursor-pointer duration-200`}>JAVASCRIPT</div>
-                                        <div onClick={()=>{ if (question.py_code) {setCodeFormat("py")}}} className={`flex ${codeFormat=="py"?"text-zinc-400":"text-zinc-600"} ${question.py_code?"cursor-pointer":"cursor-not-allowed"} hover:opacity-80 p-2 rounded-lg duration-200`} >PYTHON</div>
+                                        <div onClick={() => { setCodeFormat("js") }} className={`flex ${codeFormat == "js" ? "text-zinc-400" : "text-zinc-600"} p-2 rounded-lg hover:opacity-80 cursor-pointer duration-200`}>JAVASCRIPT</div>
+                                        <div onClick={() => { if (question.py_code) { setCodeFormat("py") } }} className={`flex ${codeFormat == "py" ? "text-zinc-400" : "text-zinc-600"} ${question.py_code ? "cursor-pointer" : "cursor-not-allowed"} hover:opacity-80 p-2 rounded-lg duration-200`} >PYTHON</div>
                                     </div>
 
                                     <div className='flex flex-row space-x-6 px-2 items-center justify-center'>
@@ -323,14 +325,21 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                 </div>
 
                                 <div className="w-full bg-zinc-950 border border border-zinc-800 rounded-lg max-h-[35%]">
-                                    <pre className='flex w-full h-full'><code style={{ background: '#18181B' }} className="js flex w-full rounded-lg border-zinc-900 overflow-x-scroll scrollbar">
+                                    {/* <pre className='flex w-full h-full'><code style={{ background: '#18181B' }} className="js flex w-full rounded-lg border-zinc-900 overflow-x-scroll scrollbar">
                                     
                                         {
                                             question.py_code ? 
                                             codeFormat=="js"? question.js_code : question.py_code : question.js_code
                                         }
                                     
-                                    </code></pre>
+                                    </code></pre> */}
+
+                                    <CodeEditorWindow
+                                        code={question.js_code}
+                                        onChange
+                                        // language={language?.value}
+                                        theme="night-dark"
+                                    />
                                 </div>
 
                                 <div className="w-full max-h-[50%] bg-zinc-950 border border-zinc-900 rounded-lg">
@@ -345,7 +354,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                         value={answer}
                                         className={`flex duration-200 ${(solved) ? (`border-green-500`) : (submit == false ? ('border border-zinc-900') : ('border-red-500 animate-shake'))} border rounded-full w-full items-center justify-center px-4 py-2 rounded-full w-full outline-0 bg-zinc-950 text-zinc-300 placeholder-zinc-500`}
                                         onChange={(e: any) => setAnswer(e.target.value)}
-                                        placeholder={"Input your example here, e.g "+question.example_answer}
+                                        placeholder={"Input your example here, e.g " + question.example_answer}
                                     />
 
                                     <button className='flex bg-transparent rounded-md border border-zinc-900 hover:border-zinc-800 opacity-90 hover:opacity-100 duration-200 items-center justify-center h-10 p-2 px-4 font-medium text-zinc-400 duration-200 cursor-pointer' type="submit">
