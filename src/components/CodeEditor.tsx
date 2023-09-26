@@ -2,15 +2,14 @@ import React, { useState } from "react";
 
 import Editor from "@monaco-editor/react";
 
-const CodeEditorWindow = ({ onChange, language, code, theme }:any) => {
+const CodeEditorWindow = ({ onChange, language, code, theme, setUserCode}:any) => {
   const [value, setValue] = useState(code || "");
 
   const handleEditorChange = (value:any) => {
     setValue(value);
-    onChange("code", value);
+    setUserCode(value);
+    // onChange("code", value);
   };
-
-  console.log(theme, code)
 
   return (
     <div className="rounded-lg overflow-hidden w-full h-full">

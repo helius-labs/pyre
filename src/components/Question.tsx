@@ -66,6 +66,8 @@ export default function Question({ setSelectedComponent, question, questions, pr
 
     const [codeFormat, setCodeFormat] = useState("js");
     const [codeExample, setCodeExample] = useState(question.js_code);
+    const [userCode, setUserCode] = useState(question.js_code)
+
 
     useEffect(() => {
         if (codeFormat == "js") {
@@ -174,11 +176,16 @@ export default function Question({ setSelectedComponent, question, questions, pr
     }
 
     async function questionQuery(type: string) {
-        let response = await axios.post(`/api/${question.api}`, { context: context, type: type });
-        if (type == "example") {
-            setCodeOutput(JSON.stringify(response.data, null, 4))
-        }
-        return response.data
+        // let response = await axios.post(`/api/${question.api}`, { context: context, type: type });
+        // if (type == "example") {
+        //     setCodeOutput(JSON.stringify(response.data, null, 4))
+        // }
+        // return response.data
+        console.log(userCode, 'usc')
+        
+        let response = await axios.post(`/api/eval_code`, {context: userCode})
+        await console.log(response, 'sdfpis')
+        return response.data;
     }
 
     async function handleSubmit(event: any) {
@@ -339,6 +346,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                         onChange
                                         // language={language?.value}
                                         theme="night-dark"
+                                        setUserCode={setUserCode}
                                     />
                                 </div>
 
