@@ -176,16 +176,10 @@ export default function Question({ setSelectedComponent, question, questions, pr
     }
 
     async function questionQuery(type: string) {
-        // let response = await axios.post(`/api/${question.api}`, { context: context, type: type });
-        // if (type == "example") {
-        //     setCodeOutput(JSON.stringify(response.data, null, 4))
-        // }
-        // return response.data
-        console.log(userCode, 'usc')
-        
-        let response = await axios.post(`/api/eval_code`, {context: userCode})
-        await console.log(response, 'sdfpis')
-        return response.data;
+        let response = await eval(userCode);
+        console.log(response)
+        setCodeOutput(JSON.stringify(response, null, 4))
+        return response;
     }
 
     async function handleSubmit(event: any) {
@@ -196,7 +190,6 @@ export default function Question({ setSelectedComponent, question, questions, pr
             }
             else {
                 setLoad(false)
-
             }
         }
 
@@ -218,7 +211,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
             }
         }
         catch (err: any) {
-            console.log(err.response.data)
+            console.log(err.response.data, 'catch')
         }
     }
 
