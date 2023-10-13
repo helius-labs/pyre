@@ -68,7 +68,6 @@ export default function Question({ setSelectedComponent, question, questions, pr
     const [codeExample, setCodeExample] = useState(question.js_code);
     const [userCode, setUserCode] = useState(question.js_code)
 
-
     useEffect(() => {
         if (codeFormat == "js") {
             setCodeExample(question.js_code)
@@ -298,55 +297,56 @@ export default function Question({ setSelectedComponent, question, questions, pr
                             </div>
                         </div>
 
-                        <div className='flex bg-zinc-950 flex-col h-full space-y-8 pr-2 justify-between xl:w-1/2 border-l border-l-zinc-900'>
+                        <div className='flex bg-zinc-950 flex-col h-full space-y-8 pr-2 justify-between xl:w-1/2 border-l border-zinc-900'>
                             <div className='flex flex-col h-full w-full overflow-x-hidden'>
 
-                                <div className='flex flex-row space-x-8 w-full justify-between items-center bg-zinc-950 border border-zinc-900'>
+                                <div className='flex flex-col w-full h-1/2 border-b border-zinc-900'>
+                                    <div className='flex flex-row space-x-8 w-full justify-between items-center bg-zinc-950 border-b border-zinc-900'>
 
-                                    <div className='flex tracking-widest text-zinc-400 font-semibold text-sm space-x-4'>
-                                        <div onClick={() => { setCodeFormat("js") }} className={`flex border-t-2 w-32 h-12 items-center justify-center ${codeFormat == "js" ? "text-zinc-400 border-orange-400" : "text-zinc-600 border-zinc-950"} p-2 hover:opacity-80 cursor-pointer duration-200`}>
-                                            JAVASCRIPT
+                                        <div className='flex tracking-widest text-zinc-400 font-semibold text-sm space-x-4'>
+                                            <div onClick={() => { setCodeFormat("js") }} className={`flex border-t-2 w-32 h-12 items-center justify-center ${codeFormat == "js" ? "text-zinc-400 border-orange-400" : "text-zinc-600 border-zinc-950"} p-2 hover:opacity-80 cursor-pointer duration-200`}>
+                                                JAVASCRIPT
+                                            </div>
+
+                                            <div onClick={() => { if (question.py_code) { setCodeFormat("py") } }} className={`flex border-t-2 w-24 h-12 items-center justify-center ${codeFormat == "py" ? "text-zinc-400 border-orange-400" : "text-zinc-600 border-zinc-950"} ${question.py_code ? "cursor-pointer" : "cursor-not-allowed"} hover:opacity-80 p-2 duration-200`} >PYTHON</div>
                                         </div>
 
-                                        <div onClick={() => { if (question.py_code) { setCodeFormat("py") } }} className={`flex border-t-2 w-24 h-12 items-center justify-center ${codeFormat == "py" ? "text-zinc-400 border-orange-400" : "text-zinc-600 border-zinc-950"} ${question.py_code ? "cursor-pointer" : "cursor-not-allowed"} hover:opacity-80 p-2 duration-200`} >PYTHON</div>
+                                        <div className='flex flex-row space-x-6 px-2 items-center justify-center'>
+                                            <div onClick={() => {
+                                                {
+                                                    questionQuery("example");
+                                                    setCodeOutput("Loading...");
+                                                    // if (codeOutput == "Run code for example output.") { questionQuery("example"); setCodeOutput("Loading...") }
+                                                }
+                                            }} className='flex cursor-pointer w-max px-2 space-x-8 hover:opacity-80 tracking-widest text-xs w-8 h-8 justify-center items-center duration-200 cursor-pointer text-zinc-400'>
+
+                                                <>{
+                                                    (codeOutput == "Loading...") ? (
+
+                                                        <div className='flex space-x-2 w-16 justify-between items-center w-max tracking-widest flex-row'>
+                                                            <svg className="flex text-current animate-spin" width={24} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                                            </svg>                                                    <span className='flex font-medium'>RUN</span>
+                                                        </div>
+                                                    ) : (
+
+                                                        <div className='flex space-x-2 w-16 justify-between items-center w-max tracking-widest flex-row'>
+                                                            <svg className='flex text-current' width={24} fill="currentColor" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg" transform="matrix(-1, 0, 0, 1, 0, 0)" stroke="currentColor"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M694.018 926.244c-27.296 18.796-27.3 49.269 0 68.067l509.836 351.074c27.296 18.797 49.424 7.18 49.424-25.959V601.13c0-33.133-22.125-44.757-49.424-25.959L694.018 926.244Z" fill-rule="evenodd"></path> </g></svg>
+                                                            <span className='flex font-bold'>RUN</span>
+                                                        </div>
+                                                    )
+                                                }</>
+
+                                            </div>
+                                            <div onClick={() => { copyConf() }} className='flex hover:opacity-80 duration-200 tracking-widest text-xs w-max px-2 h-8 justify-center items-center cursor-pointer text-zinc-400'>
+                                                {copy}
+                                            </div>
+                                        </div>
                                     </div>
 
-                                    <div className='flex flex-row space-x-6 px-2 items-center justify-center'>
-                                        <div onClick={() => {
-                                            {
-                                                questionQuery("example");
-                                                setCodeOutput("Loading...");
-                                                // if (codeOutput == "Run code for example output.") { questionQuery("example"); setCodeOutput("Loading...") }
-                                            }
-                                        }} className='flex cursor-pointer w-max px-2 space-x-8 hover:opacity-80 tracking-widest text-xs w-8 h-8 justify-center items-center duration-200 cursor-pointer text-zinc-400'>
-
-                                            <>{
-                                                (codeOutput == "Loading...") ? (
-
-                                                    <div className='flex space-x-2 w-16 justify-between items-center w-max tracking-widest flex-row'>
-                                                        <svg className="flex text-current animate-spin" width={24} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                                        </svg>                                                    <span className='flex font-medium'>RUN</span>
-                                                    </div>
-                                                ) : (
-
-                                                    <div className='flex space-x-2 w-16 justify-between items-center w-max tracking-widest flex-row'>
-                                                        <svg className='flex text-current' width={24} fill="currentColor" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg" transform="matrix(-1, 0, 0, 1, 0, 0)" stroke="currentColor"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M694.018 926.244c-27.296 18.796-27.3 49.269 0 68.067l509.836 351.074c27.296 18.797 49.424 7.18 49.424-25.959V601.13c0-33.133-22.125-44.757-49.424-25.959L694.018 926.244Z" fill-rule="evenodd"></path> </g></svg>
-                                                        <span className='flex font-bold'>RUN</span>
-                                                    </div>
-                                                )
-                                            }</>
-
-                                        </div>
-                                        <div onClick={() => { copyConf() }} className='flex hover:opacity-80 duration-200 tracking-widest text-xs w-max px-2 h-8 justify-center items-center cursor-pointer text-zinc-400'>
-                                            {copy}
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="w-full bg-zinc-950 border-zinc-800 h-full">
-                                    {/* <pre className='flex w-full h-full'><code style={{ background: '#18181B' }} className="js flex w-full rounded-lg border-zinc-900 overflow-x-scroll scrollbar">
+                                    <div className="flex w-full h-full bg-zinc-950">
+                                        {/* <pre className='flex w-full h-full'><code style={{ background: '#18181B' }} className="js flex w-full rounded-lg border-zinc-900 overflow-x-scroll scrollbar">
                                     
                                         {
                                             question.py_code ? 
@@ -355,17 +355,17 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                     
                                     </code></pre> */}
 
-                                    <CodeEditorWindow
-                                        code={question.js_code}
-                                        onChange
-                                        // language={language?.value}
-                                        theme="night-dark"
-                                        setUserCode={setUserCode}
-                                    />
+                                        <CodeEditorWindow
+                                            code={codeExample}
+                                            onChange
+                                            // language={language?.value}
+                                            theme="night-dark"
+                                            setUserCode={setUserCode}
+                                        />
+                                    </div>
                                 </div>
-
-                                <div className="w-full h-full bg-zinc-950 border border-zinc-900">
-                                    <pre className="flex w-full h-full flex-row mb-0 overflow-hidden"><code style={{ background: '#09090B' }} className="flex w-full border-b border-zinc-900 js scrollbar max-h-1/3 flex-col-reverse">{codeOutput}</code></pre>
+                                <div className="flex w-full h-1/2 bg-zinc-950">
+                                    <pre className="flex w-full h-full flex-row mb-0 overflow-hidden"><code style={{ background: '#09090B' }} className="flex w-full js overflow-scroll scrollbar max-h-1/3 flex-col-reverse">{codeOutput}</code></pre>
                                 </div>
                             </div>
 
