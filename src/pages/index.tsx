@@ -165,7 +165,7 @@ const getAsset = async () => {
       id: 'my-id',
       method: 'getAsset',
       params: {
-        id: Bu1DEKeawy7txbnCEJE4BU3BKLXaNAKCYcHR4XhndGss
+        id: 'Bu1DEKeawy7txbnCEJE4BU3BKLXaNAKCYcHR4XhndGss'
       },
     }),
   });
