@@ -1,20 +1,49 @@
 import React, { useState } from "react";
 
-import Editor from "@monaco-editor/react";
+import Editor, { useMonaco } from "@monaco-editor/react";
 
 const CodeEditorWindow = ({ onChange, language, code, theme, setUserCode}:any) => {
   const [value, setValue] = useState(code || "");
+  const monaco:any = useMonaco();
+
 
   const handleEditorChange = (value:any) => {
     setValue(value);
     setUserCode(value);
-    // onChange("code", value);
   };
 
+  monaco.editor.defineTheme('default', {
+    base: 'vs-dark',
+    inherit: true,
+    "rules": [
+      {
+        "foreground": "aeaeae",
+        "token": "comment"
+      },
+      {
+        "foreground": "FB923C",
+        "token": "keyword"
+      },
+      {
+        "foreground": "FB923C",
+        "token": "storage"
+      },
+      {
+        "foreground": "FB923C",
+        "token": "string"
+      },
+    ],
+    "colors": {
+      "editor.background": "#09090B",
+
+    }
+    });
+monaco.editor.setTheme('default')
+
   return (
-    <div className="rounded-lg overflow-hidden w-full h-full">
+    <div className="overflow-hidden w-full h-full">
       <Editor
-        height="85vh"
+
         width={`100%`}
         language={language || "javascript"}
         value={value}

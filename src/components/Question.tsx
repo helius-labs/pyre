@@ -176,9 +176,25 @@ export default function Question({ setSelectedComponent, question, questions, pr
     }
 
     async function questionQuery(type: string) {
-        let response = await eval(userCode);
-        console.log(response)
-        setCodeOutput(JSON.stringify(response, null, 4))
+        let response;
+
+        try {
+            response = await eval(userCode);
+        } catch (e) {
+
+            response = e;
+        }
+        if (!response) {
+            setCodeOutput("No code returned.")
+        }
+        else {
+            if (typeof response == "object" && response.message) {
+                setCodeOutput(JSON.stringify(response.message, Object.getOwnPropertyNames(response), 4))
+            }
+            else {
+                setCodeOutput(JSON.stringify(response, null, 4));
+            }
+        }
         return response;
     }
 
@@ -235,9 +251,9 @@ export default function Question({ setSelectedComponent, question, questions, pr
 
                 <div className='flex justify-center w-full h-max xl:h-full flex-col xl:items-center space-y-12 xl:space-y-0'>
 
-                    <div className='flex flex-col space-y-16 xl:space-y-0 xl:items-center w-full h-full xl:flex-row'>
+                    <div className='flex flex-col space-y-16 space-x-2 xl:space-y-0 xl:items-center w-full h-full xl:flex-row'>
 
-                        <div className='flex rounded-lg xl:rounded-none flex-col items-center space-y-8 xl:space-y-8 justify-between h-full bg-zinc-950 xl:w-1/2 overflow-y-scroll scrollbar'>
+                        <div className='flex bg-zinc-950 px-2 xl:rounded-none flex-col items-center space-y-8 xl:space-y-8 justify-between h-full xl:w-1/2 overflow-y-scroll scrollbar'>
 
                             <div className='flex w-full flex-col'>
                                 <div className='text-2xl xl:text-5xl font-semibold tracking-wider text-zinc-200 w-full px-6 py-6 xl:py-8'>{(question.name)}</div>
@@ -282,22 +298,27 @@ export default function Question({ setSelectedComponent, question, questions, pr
                             </div>
                         </div>
 
-                        <div className='flex flex-col h-full space-y-8 pr-2 justify-between rounded-lg xl:w-1/2'>
-                            <div className='flex flex-col mt-8 px-8 space-y-2 h-4/5 w-full overflow-x-hidden'>
+                        <div className='flex bg-zinc-950 flex-col h-full space-y-8 pr-2 justify-between xl:w-1/2 border-l border-l-zinc-900'>
+                            <div className='flex flex-col h-full w-full overflow-x-hidden'>
 
-                                <div className='flex flex-row space-x-8 w-full justify-between items-center bg-zinc-950 border border-zinc-900 rounded-lg px-2 py-2'>
+                                <div className='flex flex-row space-x-8 w-full justify-between items-center bg-zinc-950 border border-zinc-900'>
 
-                                    <div className='flex tracking-widest text-zinc-400 font-semibold text-sm p-1 rounded-lg space-x-4'>
-                                        <div onClick={() => { setCodeFormat("js") }} className={`flex ${codeFormat == "js" ? "text-zinc-400" : "text-zinc-600"} p-2 rounded-lg hover:opacity-80 cursor-pointer duration-200`}>JAVASCRIPT</div>
-                                        <div onClick={() => { if (question.py_code) { setCodeFormat("py") } }} className={`flex ${codeFormat == "py" ? "text-zinc-400" : "text-zinc-600"} ${question.py_code ? "cursor-pointer" : "cursor-not-allowed"} hover:opacity-80 p-2 rounded-lg duration-200`} >PYTHON</div>
+                                    <div className='flex tracking-widest text-zinc-400 font-semibold text-sm space-x-4'>
+                                        <div onClick={() => { setCodeFormat("js") }} className={`flex border-t-2 w-32 h-12 items-center justify-center ${codeFormat == "js" ? "text-zinc-400 border-orange-400" : "text-zinc-600 border-zinc-950"} p-2 hover:opacity-80 cursor-pointer duration-200`}>
+                                            JAVASCRIPT
+                                        </div>
+
+                                        <div onClick={() => { if (question.py_code) { setCodeFormat("py") } }} className={`flex border-t-2 w-24 h-12 items-center justify-center ${codeFormat == "py" ? "text-zinc-400 border-orange-400" : "text-zinc-600 border-zinc-950"} ${question.py_code ? "cursor-pointer" : "cursor-not-allowed"} hover:opacity-80 p-2 duration-200`} >PYTHON</div>
                                     </div>
 
                                     <div className='flex flex-row space-x-6 px-2 items-center justify-center'>
                                         <div onClick={() => {
                                             {
-                                                if (codeOutput == "Run code for example output.") { questionQuery("example"); setCodeOutput("Loading...") }
+                                                questionQuery("example");
+                                                setCodeOutput("Loading...");
+                                                // if (codeOutput == "Run code for example output.") { questionQuery("example"); setCodeOutput("Loading...") }
                                             }
-                                        }} className='flex w-max px-2 space-x-8 hover:opacity-80 tracking-widest text-xs w-8 h-8 rounded-md justify-center items-center duration-200 cursor-pointer text-zinc-400'>
+                                        }} className='flex cursor-pointer w-max px-2 space-x-8 hover:opacity-80 tracking-widest text-xs w-8 h-8 justify-center items-center duration-200 cursor-pointer text-zinc-400'>
 
                                             <>{
                                                 (codeOutput == "Loading...") ? (
@@ -318,13 +339,13 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                             }</>
 
                                         </div>
-                                        <div onClick={() => { copyConf() }} className='flex hover:opacity-80 duration-200 tracking-widest text-xs w-max px-2 h-8 rounded-md justify-center items-center cursor-pointer text-zinc-400'>
+                                        <div onClick={() => { copyConf() }} className='flex hover:opacity-80 duration-200 tracking-widest text-xs w-max px-2 h-8 justify-center items-center cursor-pointer text-zinc-400'>
                                             {copy}
                                         </div>
                                     </div>
                                 </div>
 
-                                <div className="w-full bg-zinc-950 border border border-zinc-800 rounded-lg max-h-[35%]">
+                                <div className="w-full bg-zinc-950 border-zinc-800 h-full">
                                     {/* <pre className='flex w-full h-full'><code style={{ background: '#18181B' }} className="js flex w-full rounded-lg border-zinc-900 overflow-x-scroll scrollbar">
                                     
                                         {
@@ -343,12 +364,12 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                     />
                                 </div>
 
-                                <div className="w-full max-h-[50%] bg-zinc-950 border border-zinc-900 rounded-lg">
-                                    <pre className="flex w-full h-full flex-row mb-0 overflow-hidden"><code style={{ background: '#09090B' }} className="flex w-full border-b border-zinc-900 js rounded-lg scrollbar max-h-1/3 flex-col-reverse">{codeOutput}</code></pre>
+                                <div className="w-full h-full bg-zinc-950 border border-zinc-900">
+                                    <pre className="flex w-full h-full flex-row mb-0 overflow-hidden"><code style={{ background: '#09090B' }} className="flex w-full border-b border-zinc-900 js scrollbar max-h-1/3 flex-col-reverse">{codeOutput}</code></pre>
                                 </div>
                             </div>
 
-                            <div className='flex space-x-4 pb-16 justify-end px-8'>
+                            {/* <div className='flex space-x-4 pb-16 justify-end px-8'>
                                 <form onSubmit={handleSubmit} className="flex w-full space-x-4">
                                     <input
                                         type="text"
@@ -374,7 +395,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                     </button>
                                 </form>
 
-                            </div>
+                            </div> */}
                         </div>
 
                     </div>

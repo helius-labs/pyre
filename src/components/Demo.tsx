@@ -15,7 +15,7 @@ export default function Demo({ copyContext, handleCorrect }: any) {
     return (
         <div className='flex max-w-full flex-col space-y-12'>
 
-            <div onClick={() => { handleCorrect() }} className="absolute cursor-pointer top-8 right-8 z-20 text-lg text-zinc-800 font-medium tracking-widest duration-200 items-center justify-center px-8 py-2 rounded-md overflow-show bg-orange-400 hover:bg-orange-300">
+            <div onClick={() => { handleCorrect() }} className="absolute cursor-pointer top-6 right-6 z-20 text-lg text-zinc-800 font-medium tracking-widest duration-200 items-center justify-center px-8 py-2 rounded-md overflow-show bg-orange-400 hover:bg-orange-300">
                 skip demo
             </div>
 
