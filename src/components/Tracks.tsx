@@ -63,7 +63,7 @@ export default function Tracks({ setSelectedComponent, progress, setTrack, origi
                         </div>
                     </div>
 
-                    <div onClick={() => { setTrack("JUPITER") }} className={`flex w-full xl:w-[45%] h-72 bg-zinc-800 text-zinc-200 justify-between items-center animate-fade animate-fade-out rounded-2xl hover:bg-zinc-700 duration-200 cursor-pointer`}>
+                    <div onClick={() => { setTrack("INTEGRATIONS") }} className={`flex w-full xl:w-[45%] h-72 bg-zinc-800 text-zinc-200 justify-between items-center animate-fade animate-fade-out rounded-2xl hover:bg-zinc-700 duration-200 cursor-pointer`}>
                         <div className='flex w-full h-full'>
                             <div className='flex flex-col w-32 gap-4 px-4 p-6'>
                                 <div className={`flex w-full h-1/3 rounded-3xl bg-orange-400`}></div>
@@ -73,14 +73,14 @@ export default function Tracks({ setSelectedComponent, progress, setTrack, origi
 
                             <div className='flex w-full flex-col p-6 gap-8'>
                                 <div className='flex gap-2 flex-col'>
-                                    <div className='text-2xl sm:text-3xl font-medium truncate tracking-wider'>Jupiter</div>
+                                    <div className='text-2xl sm:text-3xl font-medium truncate tracking-wider'>Integrations</div>
                                     <div className="flex flex-row flex-wrap gap-2 text-sm tracking-widest leading-5">
                                         <div className='flex border border-zinc-700 bg-zinc-900 rounded-md items-center justify-center px-2 py-1 w-max font-medium'>RPC</div>
                                         <div className='flex border border-zinc-700 bg-zinc-900 rounded-md items-center justify-center px-2 py-1 w-max font-medium'>ENHANCED API</div>
                                     </div>
                                 </div>
                                 <div className='text-md md:text-lg tracking-widest text-justified text-zinc-300'>
-                                    This track teaches about the applications of the Jupiter Aggregator and provides snippets on swaps and routes.
+                                    This track teaches you about various integrations of protocols on Solana.
                                 </div>
                             </div>
                         </div>

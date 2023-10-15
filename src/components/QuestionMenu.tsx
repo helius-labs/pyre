@@ -17,8 +17,8 @@ export default function QuestionMenu({ completed, originalQuestions, setSelected
         if (track == "COMPRESSION") {
             return ["DAS", "CNFT"]
         }
-        if (track=="JUPITER") {
-            return ["JUPITER"]
+        if (track=="INTEGRATIONS") {
+            return ["INTEGRATIONS"]
         }
         else {
             return ["DAS", "RPC", "ENHANCED API", "NFT API"]
@@ -115,10 +115,10 @@ export default function QuestionMenu({ completed, originalQuestions, setSelected
 
                             <div className='flex flex-wrap flex-row gap-4 text-[12px] tracking-wider leading-5'>
 
-                                <div onClick={(() => setTags("DAS"))} className={`flex ${(selectedTags && selectedTags.some((e: any) => e == "DAS")) ? 'border-zinc-700' : 'border-transparent'} border bg-zinc-900 rounded-md items-center justify-center px-2 py-1 w-max font-medium hover:bg-zinc-800 cursor-pointer duration-200`}>DAS</div>
-                                <div onClick={(() => setTags("RPC"))} className={`flex ${(selectedTags && selectedTags.some((e: any) => e == "RPC")) ? 'border-zinc-700' : 'border-transparent'} border bg-zinc-900 rounded-md items-center justify-center px-2 py-1 w-max font-medium hover:bg-zinc-800 cursor-pointer duration-200`}>RPC</div>
-                                <div onClick={(() => setTags("ENHANCED API"))} className={`flex ${(selectedTags && selectedTags.some((e: any) => e == "ENHANCED API")) ? 'border-zinc-700' : 'border-transparent'} border bg-zinc-900 rounded-md items-center justify-center px-2 py-1 w-max font-medium hover:bg-zinc-800 cursor-pointer duration-200`}>ENHANCED API</div>
-                                <div onClick={(() => setTags("NFT API"))} className={`flex ${(selectedTags && selectedTags.some((e: any) => e == "NFT API")) ? 'border-zinc-700' : 'border-transparent'} border bg-zinc-900 rounded-md items-center justify-center px-2 py-1 w-max font-medium hover:bg-zinc-800 cursor-pointer duration-200`}>NFT API</div>
+                                <div className={`flex ${(selectedTags && selectedTags.some((e: any) => e == "DAS")) ? 'border-zinc-700' : 'border-transparent'} border bg-zinc-900 rounded-md items-center justify-center px-2 py-1 w-max font-medium `}>DAS</div>
+                                <div className={`flex ${(selectedTags && selectedTags.some((e: any) => e == "RPC")) ? 'border-zinc-700' : 'border-transparent'} border bg-zinc-900 rounded-md items-center justify-center px-2 py-1 w-max font-medium `}>RPC</div>
+                                <div className={`flex ${(selectedTags && selectedTags.some((e: any) => e == "ENHANCED API")) ? 'border-zinc-700' : 'border-transparent'} border bg-zinc-900 rounded-md items-center justify-center px-2 py-1 w-max font-medium `}>ENHANCED API</div>
+                                <div className={`flex ${(selectedTags && selectedTags.some((e: any) => e == "NFT API")) ? 'border-zinc-700' : 'border-transparent'} border bg-zinc-900 rounded-md items-center justify-center px-2 py-1 w-max font-medium`}>NFT API</div>
 
                             </div>
                         </div>
