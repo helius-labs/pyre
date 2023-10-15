@@ -226,7 +226,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
             }
         }
         catch (err: any) {
-            console.log(err.response.data, 'catch')
+            // console.log(err.response.data, 'catch')
         }
     }
 
