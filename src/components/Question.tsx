@@ -369,7 +369,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                 </div>
                             </div>
 
-                            {/* <div className='flex space-x-4 pb-16 justify-end px-8'>
+                            <div className='flex space-x-4 pb-16 justify-end px-8'>
                                 <form onSubmit={handleSubmit} className="flex w-full space-x-4">
                                     <input
                                         type="text"
@@ -395,7 +395,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                     </button>
                                 </form>
 
-                            </div> */}
+                            </div>
                         </div>
 
                     </div>
