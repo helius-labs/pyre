@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Editor, { useMonaco } from "@monaco-editor/react";
 
-export default function CodeEditorWindow ({ onChange, language, code, theme, setUserCode }: any) {
+export default function CodeEditorWindow({ onChange, language, code, theme, setUserCode }: any) {
   const [value, setValue] = useState(code || "");
+  const [retry, setRetry] = useState(true)
 
   const monaco:any = useMonaco();
 
@@ -37,12 +38,12 @@ export default function CodeEditorWindow ({ onChange, language, code, theme, set
       });
       monaco.editor.setTheme('default')
     }
+    console.log('asd')
   }, [monaco]);
-
   const handleEditorChange = (value: any) => {
     setValue(value);
     setUserCode(value);
-  };  
+  };
 
   return (
     <div className="overflow-hidden w-full h-full">

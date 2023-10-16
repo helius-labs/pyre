@@ -192,13 +192,16 @@ export default function Question({ setSelectedComponent, question, questions, pr
             }
             else {
                 setCodeOutput(JSON.stringify(response, null, 4));
+                setAnswer(response);
             }
         }
         return response;
     }
 
-    async function handleSubmit(event: any) {
-        event.preventDefault();
+    async function handleSubmit(
+        // event: any
+        ) {
+        // event.preventDefault();
         if (cachedAnswer) {
             if (cachedAnswer == answer) {
                 handleCorrect()
@@ -261,7 +264,12 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                     <div className='flex text-md text-zinc-400 rounded-md xl:text-lg tracking-wider'>
                                         {question.api == 'sol_held' ? (
                                             <Demo copyContext={copyContext} handleCorrect={handleCorrect}></Demo>
-                                        ) : (question.description)}</div>
+                                        ) : (
+                                            <div className='space-y-4'>
+                                                <div> {question.description} Return this in the function!</div>
+                                                {/* <div className='text-sm text-zinc-500 tracking-widest lowercase'>Return this in the function!</div> */}
+                                            </div>
+                                        )}</div>
                                 </div>
                             </div>
 
@@ -316,6 +324,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                                 {
                                                     questionQuery("example");
                                                     setCodeOutput("Loading...");
+                                                    handleSubmit();
                                                     // if (codeOutput == "Run code for example output.") { questionQuery("example"); setCodeOutput("Loading...") }
                                                 }
                                             }} className='flex cursor-pointer w-max px-2 space-x-8 hover:opacity-80 tracking-widest text-xs w-8 h-8 justify-center items-center duration-200 cursor-pointer text-zinc-400'>
@@ -369,7 +378,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                 </div>
                             </div>
 
-                            <div className='flex space-x-4 pb-16 justify-end px-8'>
+                            {/* <div className='flex space-x-4 pb-16 justify-end px-8'>
                                 <form onSubmit={handleSubmit} className="flex w-full space-x-4">
                                     <input
                                         type="text"
@@ -394,8 +403,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
 
                                     </button>
                                 </form>
-
-                            </div>
+                            </div> */}
                         </div>
 
                     </div>
