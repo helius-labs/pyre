@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Editor, { useMonaco } from "@monaco-editor/react";
 
-export default function CodeEditorWindow({ onChange, language, code, theme, setUserCode }: any) {
+export default function CodeEditorWindow({ monaco, onChange, language, code, theme, setUserCode }: any) {
   const [value, setValue] = useState(code || "");
   const [retry, setRetry] = useState(true)
-
-  const monaco:any = useMonaco();
 
   useEffect(() => {
     

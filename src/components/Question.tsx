@@ -16,7 +16,7 @@ hljs.configure({
 });
 hljs.registerLanguage('javascript', javascript);
 
-export default function Question({ setSelectedComponent, question, questions, progress, setProgress, setQuestions, completed, setCompleted }: any) {
+export default function Question({ monaco, setSelectedComponent, question, questions, progress, setProgress, setQuestions, completed, setCompleted }: any) {
 
     let wallets = [
         "EHyagVK6vWdhyp8Mn3NGLeC33LtQyPdDs1idNiBddTjF",
@@ -369,6 +369,7 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                     </code></pre> */}
 
                                         <CodeEditorWindow
+                                            monaco={monaco}
                                             code={codeExample}
                                             onChange
                                             // language={language?.value}

@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { SignMessage } from '../components/SignMessage';
 import { useSession } from "next-auth/react"
 import { Inter } from 'next/font/google'
+import Editor, { useMonaco } from "@monaco-editor/react";
 
 import Head from 'next/head';
 
@@ -877,6 +878,7 @@ getTPS()
   const sessionData: any = useSession();
   const [completed, setCompleted] = useState([]);
   const [track, setTrack] = useState();
+  const monaco:any = useMonaco();
 
   useEffect(() => {
     async function saveProgress() {
@@ -1020,7 +1022,7 @@ getTPS()
             }
           </>
         ) :
-          <Question originalQuestions={originalQuestions} completed={completed} setCompleted={setCompleted} question={question} questions={questions} progress={progress} setQuestions={setQuestions} setProgress={setProgress} setSelectedComponent={setSelectedComponent} />
+          <Question monaco={monaco} originalQuestions={originalQuestions} completed={completed} setCompleted={setCompleted} question={question} questions={questions} progress={progress} setQuestions={setQuestions} setProgress={setProgress} setSelectedComponent={setSelectedComponent} />
 
       )}
 
