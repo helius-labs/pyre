@@ -36,7 +36,6 @@ export default function CodeEditorWindow({ monaco, onChange, language, code, the
       });
       monaco.editor.setTheme('default')
     }
-    console.log('asd')
   }, [monaco]);
   const handleEditorChange = (value: any) => {
     setValue(value);

@@ -188,12 +188,14 @@ export default function Question({ monaco, setSelectedComponent, question, quest
         }
         else {
             if (typeof response == "object" && response.message) {
-                setCodeOutput(JSON.stringify(response.message, Object.getOwnPropertyNames(response), 4))
+                // setCodeOutput(JSON.stringify(response.message, Object.getOwnPropertyNames(response), 4))
+                setCodeOutput(response.toString());
             }
             else {
                 setCodeOutput(JSON.stringify(response, null, 4));
                 setAnswer(response);
             }
+            console.log(typeof response, Object.keys(response), response)
         }
         return response;
     }

@@ -52,7 +52,7 @@ export default function Home() {
 const getBalances = async () => {
   const response = await fetch(url);
   const data = await response.json();
-  console.log("balances: ", data);
+
   return data
 };
 
@@ -133,7 +133,7 @@ const getSignaturesForAsset = async () => {
     }),
   });
   const { result } = await response.json();
-  console.log("Signatures: ", result);
+  return result
 };
 getSignaturesForAsset();`,
       py_code: null
@@ -172,7 +172,7 @@ const getAsset = async () => {
     }),
   });
   const { result } = await response.json();
-  console.log(result)
+  return result
 };
 getAsset()`,
       py_code:
@@ -229,7 +229,7 @@ const getAssetProof = async () => {
     }),
   });
   const { result } = await response.json();
-  console.log("Assets Proof: ", result);
+  return result
 };
 getAssetProof()`,
       py_code:
@@ -286,7 +286,7 @@ const getAssetProof = async () => {
     }),
   });
   const { result } = await response.json();
-  console.log("Assets Proof: ", result);
+  return result
 };
 getAssetProof()`,
       py_code:
@@ -344,7 +344,7 @@ const getAssetProof = async () => {
     }),
   });
   const { result } = await response.json();
-  console.log("Assets Proof: ", result);
+  return result
 };
 getAssetProof()`,
       py_code:
@@ -402,7 +402,7 @@ const getSignaturesForAsset = async () => {
     }),
   });
   const { result } = await response.json();
-  console.log("Signatures: ", result);
+  return result
 };
 getSignaturesForAsset();`,
       py_code:
@@ -465,7 +465,7 @@ const getAssetsByOwner = async () => {
     }),
   });
   const { result } = await response.json();
-  console.log("Assets by Owner: ", result.items);
+  return result
 };
 
 getAssetsByOwner();`,
@@ -529,7 +529,7 @@ get_assets_by_owner(OWNER_ADDRESS)
   });
 
   const data = await response.json();
-  console.log("metadata: ", data);
+  return data
 };
 
 getMetadata('F9Lw3ki3hJ7PF9HQXsBzoY8GyE6sPoEZZdXJBsTTD2rk');`,
@@ -586,7 +586,7 @@ const getAsset = async () => {
     }),
   });
   const { result } = await response.json();
-  console.log("Asset: ", result);
+  return result
 };
 
 getAsset();`,
@@ -642,7 +642,7 @@ const parseTransaction = async () => {
   });
 
   const data = await response.json();
-  console.log("parsed transaction: ", data);
+  return data
 };
 
 parseTransaction()
@@ -687,7 +687,7 @@ const parseTransactions = async () => {
 
   const data = await response.json();
 
-  console.log("parsed transactions: ", data);
+  return data
 };
 
 parseTransactions()
@@ -734,7 +734,7 @@ const getEpochInfo = async () => {
     }),
   });
   const { result } = await response.json();
-  console.log(result)
+  return result
 };
 getEpochInfo()`,
       py_code:
@@ -783,7 +783,7 @@ const getGenesisHash = async () => {
     }),
   });
   const { result } = await response.json();
-  console.log(result)
+  return result
 };
 getGenesisHash()`,
       py_code:
@@ -833,7 +833,7 @@ const getGenesisHash = async () => {
     }),
   });
   const { result } = await response.json();
-  console.log(result)
+  return result
 };
 getGenesisHash()`,
       py_code: null
