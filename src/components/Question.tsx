@@ -273,9 +273,13 @@ export default function Question({ setSelectedComponent, question, questions, pr
                                 </div>
                             </div>
 
-                            <div className='flex space-y-2 flex-col items-center'>
-                                {question.api == 'sol_held' ? (<div></div>) : (copyContext)}
-                                <div className='text-xs text-zinc-500 font-bold tracking-widest'>{"COPY " + question.type.toUpperCase()}</div>
+                            <div>
+                                {question.api == 'sol_held' ? (<div></div>) : (
+                                    <div className='flex flex-col space-y-2 items-center'>
+                                    {copyContext}
+                                    <div className='text-xs text-zinc-500 font-bold tracking-widest'>{"COPY " + question.type.toUpperCase()}</div>
+                                    </div>
+                                    )}
                             </div>
 
                             <>
