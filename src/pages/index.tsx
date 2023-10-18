@@ -83,7 +83,7 @@ get_balances()
       solved: false,
       type: 'wallet',
       example_answer: "25.01",
-      hints: ["Change the URL of the GET request provided with the amount of SOL in the provided wallet.", "Depending on how you query for the SOL balance, you'll have to divide the returned by a billion. Similarly you'll have to divide the returned USDC value by 1 million."],
+      hints: ["Find the amount of SOL in the provided wallet through a method of your choice, e.g getBalance as shown in the tutorial.", "Change the URL of the GET request provided with the amount of SOL in the provided wallet.", "Depending on how you query for the SOL balance, you'll have to divide the returned by a billion. Similarly you'll have to divide the returned USDC value by 1 million."],
       info: 'You can create a swap transaction with the returned quote object!',
       js_code:
 `async function getExample(sol) {
@@ -111,7 +111,7 @@ get_balances()
       solved: false,
       type: 'cnft',
       example_answer: "5nLi8m72bU6PBcz4Xrk23P6KTGy9ufF92kZiQXjTv9ELgkUxrNaiCGhMF4vh6RAcisw9DEQWJt9ogM3G2uCuwwV7",
-      hints: ["Run the example code!", "The 'total' property returned is the total number of transactions that took place involving the cNFT!"],
+      hints: ["Run the example code!", "The 'total' property returned is the total number of transactions that took place involving the cNFT!", "The transactions array is a 2D array containing arrays that each have details on each transaction."],
       js_code:
 `const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
 
@@ -323,8 +323,10 @@ get_asset_proof(ASSET_ID)
       example_answer: "12",
       info: ["In order to transfer transferring a cNFT, the needed asset proof is retrieved using the getAssetProof method. However the method returns the 'full proof', in order to reduce it, proof hashes are removed , in order to remove the correct number of proof addresses we need to know the tree's canopy depth."],
       hints: ["You'll first have to retrieve the cNFT's merkle tree using the getAssetProof DAS method.",
-        "Use the function ConcurrentMerkleTreeAccount from @solana/spl-account-compression to retrieve a merkle tree's data.",
-        "Retrieve the canopy depth from the data returned by ConcurrentMerkleTreeAccount using the .getCanopyDepth() function."],
+        `Use the function ConcurrentMerkleTreeAccount from @solana/spl-account-compression to retrieve a merkle tree's data.
+        import { ConcurrentMerkleTreeAccount } from '@solana/spl-account-compression'`,
+        `Retrieve the canopy depth from the data returned by ConcurrentMerkleTreeAccount using the .getCanopyDepth() function.
+        const canopyDepth = treeAccount.getCanopyDepth();`],
       js_code:
         `const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
 

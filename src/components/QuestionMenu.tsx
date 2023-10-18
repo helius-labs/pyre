@@ -83,7 +83,7 @@ export default function QuestionMenu({ completed, originalQuestions, setSelected
     }, [selectedTags])
 
     return (
-        <>
+        <div className="flex w-full flex-col bg-zinc-950">
 
             <AppBar setSelectedComponent={setSelectedComponent} progress={progress} questions={originalQuestions} component="QuestionMenu" ></AppBar>
 
@@ -151,6 +151,6 @@ export default function QuestionMenu({ completed, originalQuestions, setSelected
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
