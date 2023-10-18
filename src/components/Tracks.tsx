@@ -9,11 +9,11 @@ export default function Tracks({ setSelectedComponent, progress, setTrack, origi
             <AppBar setSelectedComponent={setSelectedComponent} progress={progress} questions={originalQuestions} component="QuestionMenu" ></AppBar>
 
 
-            <div className='flex w-full h-screen flex-col px-2 md:px-8 pt-16 text-zinc-400 items-center'>
+            <div className='flex w-full h-screen flex-col px-2 md:px-8 pt-16 text-zinc-400 items-center bg-zinc-950'>
 
-                <div className='text-lg tracking-widest uppercase'>CHOOSE A TRACK</div>
+                <div className='text-lg text-zinc-500 font-medium tracking-widest uppercase'>CHOOSE A TRACK</div>
 
-                <div className='flex flex-col lg:flex-row flex-wrap gap-16 py-16 justify-evenly text-zinc-400 items-center'>
+                <div className='flex h-3/4 flex-col lg:flex-row flex-wrap gap-16 py-16 justify-evenly text-zinc-400 items-center'>
 
                     <div onClick={() => { setTrack("COMPRESSION") }} className={`flex w-full xl:w-[45%] h-max sm:h-72 bg-zinc-800 text-zinc-200 justify-between items-center animate-fade animate-fade-out rounded-2xl hover:bg-zinc-700 duration-200 cursor-pointer`}>
                         <div className='flex w-full h-full'>
@@ -63,7 +63,7 @@ export default function Tracks({ setSelectedComponent, progress, setTrack, origi
                         </div>
                     </div>
 
-                    <div onClick={() => { setTrack("INTEGRATIONS") }} className={`flex w-full xl:w-[45%] h-72 bg-zinc-800 text-zinc-200 justify-between items-center animate-fade animate-fade-out rounded-2xl hover:bg-zinc-700 duration-200 cursor-pointer`}>
+                    {/* <div onClick={() => { setTrack("INTEGRATIONS") }} className={`flex w-full xl:w-[45%] h-72 bg-zinc-800 text-zinc-200 justify-between items-center animate-fade animate-fade-out rounded-2xl hover:bg-zinc-700 duration-200 cursor-pointer`}>
                         <div className='flex w-full h-full'>
                             <div className='flex flex-col w-32 gap-4 px-4 p-6'>
                                 <div className={`flex w-full h-1/3 rounded-3xl bg-orange-400`}></div>
@@ -84,7 +84,7 @@ export default function Tracks({ setSelectedComponent, progress, setTrack, origi
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </>

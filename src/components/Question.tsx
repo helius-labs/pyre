@@ -169,6 +169,7 @@ export default function Question({ monaco, setSelectedComponent, question, quest
         }
         setQuestions(newArr)
 
+        
         setTimeout(() => {
             setSelectedComponent('QuestionMenu')
         }, 1000)
@@ -311,7 +312,7 @@ export default function Question({ monaco, setSelectedComponent, question, quest
                             </div>
                         </div>
 
-                        <div className='flex bg-zinc-950 flex-col h-full space-y-8 pr-2 justify-between xl:w-1/2 border-l border-zinc-900'>
+                        <div className={`flex bg-zinc-950 flex-col h-full space-y-8 pr-2 justify-between xl:w-1/2 border-l border-zinc-900`} >
                             <div className='flex flex-col h-full w-full overflow-x-hidden'>
 
                                 <div className='flex flex-col w-full h-1/2 border-b border-zinc-900'>
@@ -322,7 +323,9 @@ export default function Question({ monaco, setSelectedComponent, question, quest
                                                 JAVASCRIPT
                                             </div>
 
-                                            <div onClick={() => { if (question.py_code) { setCodeFormat("py") } }} className={`flex border-t-2 w-24 h-12 items-center justify-center ${codeFormat == "py" ? "text-zinc-400 border-orange-400" : "text-zinc-600 border-zinc-950"} ${question.py_code ? "cursor-pointer" : "cursor-not-allowed"} hover:opacity-80 p-2 duration-200`} >PYTHON</div>
+                                            <div
+                                            //  onClick={() => { if (question.py_code) { setCodeFormat("py") } }}
+                                             className={`flex border-t-2 w-24 h-12 items-center justify-center ${codeFormat == "py" ? "text-zinc-400 border-orange-400" : "text-zinc-600 border-zinc-950"} ${question.py_code ? "cursor-not-allowed" : "cursor-not-allowed"} hover:opacity-80 p-2 duration-200`} >PYTHON</div>
                                         </div>
 
                                         <div className='flex flex-row space-x-6 px-2 items-center justify-center'>
@@ -333,7 +336,7 @@ export default function Question({ monaco, setSelectedComponent, question, quest
                                                     handleSubmit();
                                                     // if (codeOutput == "Run code for example output.") { questionQuery("example"); setCodeOutput("Loading...") }
                                                 }
-                                            }} className='flex cursor-pointer w-max px-2 space-x-8 hover:opacity-80 tracking-widest text-xs w-8 h-8 justify-center items-center duration-200 cursor-pointer text-zinc-400'>
+                                            }} className={`flex duration-200 cursor-pointer w-max px-2 space-x-8 hover:opacity-80 tracking-widest text-xs w-8 h-8 justify-center items-center cursor-pointer text-zinc-400`}>
 
                                                 <>{
                                                     (codeOutput == "Loading...") ? (

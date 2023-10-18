@@ -100,17 +100,17 @@ export default function QuestionMenu({ completed, originalQuestions, setSelected
                 }</>
 
 
-                <div className='flex xl:space-y-4 flex-col h-full w-full xl:w-2/3 items-center no-scrollbar p-4 xl:p-0'>
+                <div className='flex xl:space-y-4 flex-col h-full w-full xl:w-2/3 items-center no-scrollbar p-4 xl:p-0 divide-ys divide-zinc-900'>
 
-                    <div className='flex border border-zinc-900 rounded-lg w-full flex-col md:flex-row xl:mt-12 space-y-4 md:space-y-0 p-4 justify-between'>
+                    <div className='flex border-zinc-900 w-full flex-col md:flex-row xl:mt-12 space-y-4 md:space-y-0 justify-between py-4'>
 
-                        <div className='flex w-full md:w-1/2 flex-col space-y-4 items-start justify-start text-zinc-300 font-semibold p-2'>
+                        <div className='flex w-full md:w-1/2 flex-col space-y-4 items-start justify-start text-zinc-300 font-semibold'>
 
 
                             <div className='flex flex-col space-y-1'>
-                                <div className='flex text-md tracking-widest font-medium'>FEATURED TAGS</div>
+                                <div className='flex text-md tracking-widest font-semibold'>FEATURED TAGS</div>
 
-                                <div className='flex text-xs text-zinc-400 font-medium tracking-widest uppercase'>Select a Tag</div>
+                                <div className='flex text-xs text-zinc-400 font-semibold tracking-widest uppercase'>Select a Tag</div>
                             </div>
 
                             <div className='flex flex-wrap flex-row gap-4 text-[12px] tracking-wider leading-5'>
@@ -123,11 +123,11 @@ export default function QuestionMenu({ completed, originalQuestions, setSelected
                             </div>
                         </div>
 
-                        <div onClick={() => { setTrack(false) }} className='flex w-full md:w-1/3 h-full flex-col md:items-end justify-between px-2 py-6 xl:py-2 hover:bg-zinc-800 cursor-pointer rounded-lg duration-200'>
+                        <div onClick={() => { setTrack(false) }} className='flex w-full md:w-1/3 h-full flex-col md:items-end justify-between px-2 py-6 xl:py-2 hover:bg-zinc-900 cursor-pointer rounded-lg duration-200'>
                             <div className='flex w-full h-full flex-col space-y-1 justify-between'>
 
                                 <div className='flex flex-col md:items-end'>
-                                    <div className='flex text-md tracking-widest font-medium'>{track}</div>
+                                    <div className='flex text-md tracking-widest font-semibold'>{track}</div>
                                     <div className='flex text-xs text-zinc-400 font-medium tracking-widest uppercase'>RESELECT TRACK</div>
                                 </div>
                                 <div className='flex w-full text-zinc-400 tracking-widest text-xs items-center gap-2 flex-row'>
@@ -142,7 +142,7 @@ export default function QuestionMenu({ completed, originalQuestions, setSelected
 
                     <div className='flex w-full h-max p-4 px-0'>
 
-                        <div className='flex w-full h-max'>
+                        <div className='flex w-full h-max py-4'>
                             <div className='flex w-full h-max flex-col justify-center items-center gap-4 no-scrollbar'>
                                 {questionDIVs}
                             </div>

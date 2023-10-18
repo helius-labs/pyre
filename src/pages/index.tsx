@@ -946,7 +946,7 @@ getTPS()
 
 
   return (
-    <main className={`flex scrollbar w-full h-screen flex-col items-center justify-between bg-black text-zinc-200 scrollbar ${inter.className}`}>
+    <main className={`flex overflow-x-hidden scrollbar w-full h-screen flex-col items-center justify-between bg-black text-zinc-200 scrollbar ${inter.className}`}>
 
       <Head>
         <title>Catalyse Your Progress!</title>
