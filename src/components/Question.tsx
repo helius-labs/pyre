@@ -175,13 +175,12 @@ export default function Question({ monaco, setSelectedComponent, question, quest
         }, 1000)
     }
 
-    async function questionQuery(type: string) {
+    async function questionQuery() {
         let response;
 
         try {
             response = await eval(userCode);
         } catch (e) {
-
             response = e;
         }
         if (!response) {
@@ -189,7 +188,6 @@ export default function Question({ monaco, setSelectedComponent, question, quest
         }
         else {
             if (typeof response == "object" && response.message) {
-                // setCodeOutput(JSON.stringify(response.message, Object.getOwnPropertyNames(response), 4))
                 setCodeOutput(response.toString());
             }
             else {
@@ -201,10 +199,7 @@ export default function Question({ monaco, setSelectedComponent, question, quest
         return response;
     }
 
-    async function handleSubmit(
-        // event: any
-        ) {
-        // event.preventDefault();
+    async function handleSubmit () {
         if (cachedAnswer) {
             if (cachedAnswer == answer) {
                 handleCorrect()
@@ -215,7 +210,7 @@ export default function Question({ monaco, setSelectedComponent, question, quest
         }
 
         setLoad(true)
-        const response = await questionQuery("answer")
+        const response = await questionQuery()
         setCachedAnswer(response)
         setSubmit(true)
         try {
@@ -232,7 +227,7 @@ export default function Question({ monaco, setSelectedComponent, question, quest
             }
         }
         catch (err: any) {
-            // console.log(err.response.data, 'catch')
+            console.log(err)
         }
     }
 
@@ -331,7 +326,6 @@ export default function Question({ monaco, setSelectedComponent, question, quest
                                         <div className='flex flex-row space-x-6 px-2 items-center justify-center'>
                                             <div onClick={() => {
                                                 {
-                                                    questionQuery("example");
                                                     setCodeOutput("Loading...");
                                                     handleSubmit();
                                                     // if (codeOutput == "Run code for example output.") { questionQuery("example"); setCodeOutput("Loading...") }
