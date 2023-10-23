@@ -141,121 +141,121 @@ getSignaturesForAsset();`,
       docs: "https://docs.helius.dev/compression-and-das-api/digital-asset-standard-das-api/get-signatures-for-asset",
       tags: ["DAS"]
     },
-    {
-      name: "Leaves on a Merkle Tree",
-      description: "You are provided a cNFT mint address. Make use of Helius' services in order to find the current number of leaves on the merkle tree the cNFT was minted on.",
-      difficulty: 2,
-      api: "merkle_leaves",
-      solved: false,
-      type: "cnft",
-      example_answer: "12501",
-      hints: ["Find the Merkle Tree ID and look it up on https://xray.helius.xyz/.",
-        "Call the ConcurrentMerkleTreeAccount function on the Merkle Tree ID!",
-        "The current number of leaves actually vary across explorers, try inputting your value +- 1!"],
-      info: "You can use this to determine a cNFT's serial number!",
-      js_code:
-        `const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
+//     {
+//       name: "Leaves on a Merkle Tree",
+//       description: "You are provided a cNFT mint address. Make use of Helius' services in order to find the current number of leaves on the merkle tree the cNFT was minted on.",
+//       difficulty: 2,
+//       api: "merkle_leaves",
+//       solved: false,
+//       type: "cnft",
+//       example_answer: "12501",
+//       hints: ["Find the Merkle Tree ID and look it up on https://xray.helius.xyz/.",
+//         "Call the ConcurrentMerkleTreeAccount function on the Merkle Tree ID!",
+//         "The current number of leaves actually vary across explorers, try inputting your value +- 1!"],
+//       info: "You can use this to determine a cNFT's serial number!",
+//       js_code:
+//         `const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
 
-const getAsset = async () => {
-  const response = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      jsonrpc: '2.0',
-      id: 'my-id',
-      method: 'getAsset',
-      params: {
-        id: 'Bu1DEKeawy7txbnCEJE4BU3BKLXaNAKCYcHR4XhndGss'
-      },
-    }),
-  });
-  const { result } = await response.json();
-  return result
-};
-getAsset()`,
-      py_code:
-        `import os
-import requests
-import json
+// const getAsset = async () => {
+//   const response = await fetch(url, {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify({
+//       jsonrpc: '2.0',
+//       id: 'my-id',
+//       method: 'getAsset',
+//       params: {
+//         id: 'Bu1DEKeawy7txbnCEJE4BU3BKLXaNAKCYcHR4XhndGss'
+//       },
+//     }),
+//   });
+//   const { result } = await response.json();
+//   return result
+// };
+// getAsset()`,
+//       py_code:
+//         `import os
+// import requests
+// import json
 
-API_KEY = os.getenv('API_KEY')
-URL = f"https://mainnet.helius-rpc.com/?api-key={API_KEY}"
-ASSET_ID = "Bu1DEKeawy7txbnCEJE4BU3BKLXaNAKCYcHR4XhndGss"
+// API_KEY = os.getenv('API_KEY')
+// URL = f"https://mainnet.helius-rpc.com/?api-key={API_KEY}"
+// ASSET_ID = "Bu1DEKeawy7txbnCEJE4BU3BKLXaNAKCYcHR4XhndGss"
 
-def get_asset(asset_id):
-    data = {
-        "jsonrpc": "2.0",
-        "id": "request-id",
-        "method": "getAsset",
-        "params": { "id": asset_id }
-    }
-    response = requests.post(URL, headers={'Content-Type': 'application/json'}, data=json.dumps(data))
-    print(json.dumps(response.json().get('result'), indent=4))
+// def get_asset(asset_id):
+//     data = {
+//         "jsonrpc": "2.0",
+//         "id": "request-id",
+//         "method": "getAsset",
+//         "params": { "id": asset_id }
+//     }
+//     response = requests.post(URL, headers={'Content-Type': 'application/json'}, data=json.dumps(data))
+//     print(json.dumps(response.json().get('result'), indent=4))
 
-get_asset(ASSET_ID)
-`,
-      docs: "https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset",
-      tags: ["DAS", "CNFT"]
-    },
-    {
-      name: "Size of a Merkle Tree",
-      description: "You are provided a cNFT mint address. Make use of Helius' services in order to find the maximum number of leaves on the merkle tree the cNFT was minted on.",
-      difficulty: 2,
-      api: "max_merkle",
-      solved: false,
-      type: "cnft",
-      example_answer: "8192",
-      hints: ["Find the Merkle Tree ID and look it up on https://xray.helius.xyz/.",
-        "Call the ConcurrentMerkleTreeAccount function on the Merkle Tree ID",
-        "Find the maxDepth property and the size of the tree is 2 to the maxDepth."],
-      js_code:
-        `const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
+// get_asset(ASSET_ID)
+// `,
+//       docs: "https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset",
+//       tags: ["DAS", "CNFT"]
+//     },
+//     {
+//       name: "Size of a Merkle Tree",
+//       description: "You are provided a cNFT mint address. Make use of Helius' services in order to find the maximum number of leaves on the merkle tree the cNFT was minted on.",
+//       difficulty: 2,
+//       api: "max_merkle",
+//       solved: false,
+//       type: "cnft",
+//       example_answer: "8192",
+//       hints: ["Find the Merkle Tree ID and look it up on https://xray.helius.xyz/.",
+//         "Call the ConcurrentMerkleTreeAccount function on the Merkle Tree ID",
+//         "Find the maxDepth property and the size of the tree is 2 to the maxDepth."],
+//       js_code:
+//         `const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
 
-const getAssetProof = async () => {
-  const response = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      jsonrpc: '2.0',
-      id: 'my-id',
-      method: 'getAssetProof',
-      params: {
-        id: 'Bu1DEKeawy7txbnCEJE4BU3BKLXaNAKCYcHR4XhndGss'
-      },
-    }),
-  });
-  const { result } = await response.json();
-  return result
-};
-getAssetProof()`,
-      py_code:
-        `import os
-import requests
-import json
+// const getAssetProof = async () => {
+//   const response = await fetch(url, {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify({
+//       jsonrpc: '2.0',
+//       id: 'my-id',
+//       method: 'getAssetProof',
+//       params: {
+//         id: 'Bu1DEKeawy7txbnCEJE4BU3BKLXaNAKCYcHR4XhndGss'
+//       },
+//     }),
+//   });
+//   const { result } = await response.json();
+//   return result
+// };
+// getAssetProof()`,
+//       py_code:
+//         `import os
+// import requests
+// import json
 
-API_KEY = os.getenv('API_KEY')
-URL = f"https://mainnet.helius-rpc.com/?api-key={API_KEY}"
-ASSET_ID = "Bu1DEKeawy7txbnCEJE4BU3BKLXaNAKCYcHR4XhndGss"
+// API_KEY = os.getenv('API_KEY')
+// URL = f"https://mainnet.helius-rpc.com/?api-key={API_KEY}"
+// ASSET_ID = "Bu1DEKeawy7txbnCEJE4BU3BKLXaNAKCYcHR4XhndGss"
 
-def get_asset_proof(asset_id):
-    data = {
-        "jsonrpc": "2.0",
-        "id": "my-id",
-        "method": "getAssetProof",
-        "params": { "id": asset_id }
-    }
-    response = requests.post(URL, headers={'Content-Type': 'application/json'}, data=json.dumps(data))
-    print(json.dumps(response.json().get('result'), indent=4))
+// def get_asset_proof(asset_id):
+//     data = {
+//         "jsonrpc": "2.0",
+//         "id": "my-id",
+//         "method": "getAssetProof",
+//         "params": { "id": asset_id }
+//     }
+//     response = requests.post(URL, headers={'Content-Type': 'application/json'}, data=json.dumps(data))
+//     print(json.dumps(response.json().get('result'), indent=4))
 
-get_asset_proof(ASSET_ID)
-`,
-      docs: "https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset",
-      tags: ["DAS", "CNFT"]
-    },
+// get_asset_proof(ASSET_ID)
+// `,
+//       docs: "https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset",
+//       tags: ["DAS", "CNFT"]
+//     },
     {
       name: "A cNFT's Merkle Tree",
       description: "You are provided a cNFT mint address. Make use of Helius' services in order to find the ID of the merkle tree the cNFT was minted on.",
@@ -313,66 +313,66 @@ get_asset_proof(ASSET_ID)
       docs: "https://docs.helius.xyz/solana-compression/digital-asset-standard-das-api/get-asset",
       tags: ["DAS", "CNFT"]
     },
-    {
-      name: "Find Canopy Depth",
-      description: "Make use of DAS and native RPC methods to find the canopy depth of a given cNFT's merkle tree.",
-      difficulty: 2,
-      api: "canopy_depth",
-      solved: false,
-      type: "cnft",
-      example_answer: "12",
-      info: ["In order to transfer transferring a cNFT, the needed asset proof is retrieved using the getAssetProof method. However the method returns the 'full proof', in order to reduce it, proof hashes are removed , in order to remove the correct number of proof addresses we need to know the tree's canopy depth."],
-      hints: ["You'll first have to retrieve the cNFT's merkle tree using the getAssetProof DAS method.",
-        `Use the function ConcurrentMerkleTreeAccount from @solana/spl-account-compression to retrieve a merkle tree's data.
-        import { ConcurrentMerkleTreeAccount } from '@solana/spl-account-compression'`,
-        `Retrieve the canopy depth from the data returned by ConcurrentMerkleTreeAccount using the .getCanopyDepth() function.
-        const canopyDepth = treeAccount.getCanopyDepth();`],
-      js_code:
-        `const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
+//     {
+//       name: "Find Canopy Depth",
+//       description: "Make use of DAS and native RPC methods to find the canopy depth of a given cNFT's merkle tree.",
+//       difficulty: 2,
+//       api: "canopy_depth",
+//       solved: false,
+//       type: "cnft",
+//       example_answer: "12",
+//       info: ["In order to transfer transferring a cNFT, the needed asset proof is retrieved using the getAssetProof method. However the method returns the 'full proof', in order to reduce it, proof hashes are removed , in order to remove the correct number of proof addresses we need to know the tree's canopy depth."],
+//       hints: ["You'll first have to retrieve the cNFT's merkle tree using the getAssetProof DAS method.",
+//         `Use the function ConcurrentMerkleTreeAccount from @solana/spl-account-compression to retrieve a merkle tree's data.
+//         import { ConcurrentMerkleTreeAccount } from '@solana/spl-account-compression'`,
+//         `Retrieve the canopy depth from the data returned by ConcurrentMerkleTreeAccount using the .getCanopyDepth() function.
+//         const canopyDepth = treeAccount.getCanopyDepth();`],
+//       js_code:
+//         `const url = "https://mainnet.helius-rpc.com/?api-key=<api_key>"
 
-const getAssetProof = async () => {
-  const response = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      jsonrpc: '2.0',
-      id: 'my-id',
-      method: 'getAssetProof',
-      params: {
-        id: 'Bu1DEKeawy7txbnCEJE4BU3BKLXaNAKCYcHR4XhndGss'
-      },
-    }),
-  });
-  const { result } = await response.json();
-  return result
-};
-getAssetProof()`,
-      py_code:
-        `import os
-import requests
-import json
+// const getAssetProof = async () => {
+//   const response = await fetch(url, {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify({
+//       jsonrpc: '2.0',
+//       id: 'my-id',
+//       method: 'getAssetProof',
+//       params: {
+//         id: 'Bu1DEKeawy7txbnCEJE4BU3BKLXaNAKCYcHR4XhndGss'
+//       },
+//     }),
+//   });
+//   const { result } = await response.json();
+//   return result
+// };
+// getAssetProof()`,
+//       py_code:
+//         `import os
+// import requests
+// import json
 
-API_KEY = os.getenv('API_KEY')
-URL = f"https://mainnet.helius-rpc.com/?api-key={API_KEY}"
-ASSET_ID = "Bu1DEKeawy7txbnCEJE4BU3BKLXaNAKCYcHR4XhndGss"
+// API_KEY = os.getenv('API_KEY')
+// URL = f"https://mainnet.helius-rpc.com/?api-key={API_KEY}"
+// ASSET_ID = "Bu1DEKeawy7txbnCEJE4BU3BKLXaNAKCYcHR4XhndGss"
 
-def get_asset_proof(asset_id):
-    data = {
-        "jsonrpc": "2.0",
-        "id": "my-id",
-        "method": "getAssetProof",
-        "params": { "id": asset_id }
-    }
-    response = requests.post(URL, headers={'Content-Type': 'application/json'}, data=json.dumps(data))
-    print(json.dumps(response.json().get('result'), indent=4))
+// def get_asset_proof(asset_id):
+//     data = {
+//         "jsonrpc": "2.0",
+//         "id": "my-id",
+//         "method": "getAssetProof",
+//         "params": { "id": asset_id }
+//     }
+//     response = requests.post(URL, headers={'Content-Type': 'application/json'}, data=json.dumps(data))
+//     print(json.dumps(response.json().get('result'), indent=4))
 
-get_asset_proof(ASSET_ID)
-`,
-      docs: "https://docs.solana.com/api/http#getgenesishash",
-      tags: ["DAS", "RPC"]
-    },
+// get_asset_proof(ASSET_ID)
+// `,
+//       docs: "https://docs.solana.com/api/http#getgenesishash",
+//       tags: ["DAS", "RPC"]
+//     },
     {
       name: "A cNFT's Transactions",
       description: "You are provided a cNFT mint address. Make use of Helius' services in order to find the number of transactions relating to the cNFT.",
@@ -843,36 +843,36 @@ getGenesisHash()`,
       docs: "https://docs.solana.com/api/http#getlatestblockhash",
       tags: ["RPC"]
     },
-    {
-      name: "TPS on Solana",
-      description: "Make use of the getRecentPerformanceSamples RPC method to find the current TPS on Solana. As TPS is constantly changing, please round younr answer to the closest 1000 when submitting.",
-      difficulty: 2,
-      api: "find_tps",
-      solved: false,
-      type: null,
-      example_answer: "3000",
-      hints: ["Log the response of the getRecentPerformanceSamples method!"],
-      info: 'This (getLatestBlockhash) is vital in creating transactions!',
-      js_code:
-        `
-import { Connection } from "@solana/web3.js";
+//     {
+//       name: "TPS on Solana",
+//       description: "Make use of the getRecentPerformanceSamples RPC method to find the current TPS on Solana. As TPS is constantly changing, please round younr answer to the closest 1000 when submitting.",
+//       difficulty: 2,
+//       api: "find_tps",
+//       solved: false,
+//       type: null,
+//       example_answer: "3000",
+//       hints: ["Log the response of the getRecentPerformanceSamples method!"],
+//       info: 'This (getLatestBlockhash) is vital in creating transactions!',
+//       js_code:
+//         `
+// import { Connection } from "@solana/web3.js";
 
-const getTPS = async () => {
-  const connection = new Connection(
-    "https://mainnet.helius-rpc.com/?api-key=<api-key>",
-    "confirmed"
-  );
+// const getTPS = async () => {
+//   const connection = new Connection(
+//     "https://mainnet.helius-rpc.com/?api-key=<api-key>",
+//     "confirmed"
+//   );
 
-  let recentPerformanceSamples = await connection.getRecentPerformanceSamples();
-  return recentPerformanceSamples
-};
-getTPS()
-`,
-      py_code: null
-      ,
-      docs: "https://docs.solana.com/api/http#getrecentperformancesamples",
-      tags: ["RPC"]
-    },
+//   let recentPerformanceSamples = await connection.getRecentPerformanceSamples();
+//   return recentPerformanceSamples
+// };
+// getTPS()
+// `,
+//       py_code: null
+//       ,
+//       docs: "https://docs.solana.com/api/http#getrecentperformancesamples",
+//       tags: ["RPC"]
+//     },
   ]
   const [questions, setQuestions] = useState(originalQuestions)
   const [userData, setUserData] = useState()
