@@ -92,13 +92,25 @@ export default function QuestionMenu({ completed, originalQuestions, setSelected
 
                 <>{
                     sessionData.status == "authenticated" ? <div></div> :
-                        <div onClick={() => { setSelectedComponent("Landing") }} className="toast z-10 hover:opacity-90 cursor-pointer duration-200">
-                            <div className="alert alert-warning font-medium">
-                                <span>Connect your wallet to save progress.</span>
+                        <div onClick={() => { setSelectedComponent("Landing") }} className="toast toast-start toast-bottom z-10 hover:opacity-90 cursor-pointer duration-200">
+                            <div className="flex bg-yellow-400 px-6 py-4 rounded-xl">
+                                <div className='flex bg-yellow-400 text-zinc-950'>Connect your wallet to save progress.</div>
                             </div>
                         </div>
                 }</>
 
+                        <div className="toast toast-bottom z-10 hover:opacity-90 cursor-pointer duration-200">
+                            <div className="flex bg-zinc-900 p-2 rounded-xl ">
+                                <div className='flex bg-zinc-950'></div>
+                                <input
+                                        type="text"
+                                        // value={answer}
+                                        className={`flex text-zinc-400 duration-200 rounded-lg w-full items-center justify-center px-4 py-2 rounded-full w-full outline-0 bg-zinc-950 text-zinc-300 placeholder-zinc-500`}
+                                        // onChange={(e: any) => setAnswer(e.target.value)}
+                                        placeholder={"Input your Helius API key."}
+                                    />
+                            </div>
+                        </div>
 
                 <div className='flex xl:space-y-4 flex-col h-full w-full xl:w-2/3 items-center no-scrollbar p-4 xl:p-0 divide-ys divide-zinc-900'>
 

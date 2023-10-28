@@ -515,7 +515,7 @@ get_assets_by_owner(OWNER_ADDRESS)
         `const getMetadata = async (context) => {
 
 
-  const url = "https://api.helius.xyz/v0/token-metadata?api-key=<api-key>=";
+  const url = "https://api.helius.xyz/v0/token-metadata?api-key=<api-key>";
   const nftAddresses = [context];
 
   const response = await fetch(url, {
