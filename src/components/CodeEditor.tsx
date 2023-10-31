@@ -9,8 +9,7 @@ export default function CodeEditorWindow({ APIKey, monaco, onChange, language, c
     const regex = /<api_key>/i;
 
     let codeWithUserKey:any = code.replace(regex, APIKey);
-
-    console.log(codeWithUserKey, 's');
+    
     return codeWithUserKey
   }
 
