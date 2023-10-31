@@ -2,10 +2,29 @@ import AppBar from './AppBar';
 import { useEffect, useState } from "react";
 import ProgressBar from './ProgressBar';
 
-export default function QuestionMenu({ completed, originalQuestions, setSelectedComponent, progress, track, setTrack, questions, setQuestion, sessionData }: any) {
+export default function QuestionMenu({ APIKey, setAPIKey, completed, originalQuestions, setSelectedComponent, progress, track, setTrack, questions, setQuestion, sessionData }: any) {
     const [selectedTags, setSelectedTags] = useState<string[]>(trackSpecificQuestions());
     const [questionDIVs, setQuestionDIVs] = useState([]);
     const [trackProgress, setTrackProgress] = useState(0);
+
+    useEffect(()=>{
+        if (APIKey && APIKey.length>36) {
+            console.log(APIKey.length)
+            const regex = /[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}/i;
+            
+            const strippedAPIKey = APIKey.match(regex)?.[0];
+            
+            setAPIKey(strippedAPIKey)
+
+            localStorage.setItem('api-key', strippedAPIKey)
+        }
+    }, [APIKey])
+
+    if (typeof window !== 'undefined') {
+        // Initialize from localStorage
+        let apiKey = localStorage.getItem('api-key') || "";
+        setAPIKey(apiKey)
+    }
 
     let tags = trackSpecificQuestions()
     let trackQuestions: any = [], remainingTrackQuestions:any = [];
@@ -100,13 +119,14 @@ export default function QuestionMenu({ completed, originalQuestions, setSelected
                 }</>
 
                         <div className="toast toast-bottom z-10 hover:opacity-90 cursor-pointer duration-200">
-                            <div className="flex bg-zinc-900 p-2 rounded-xl ">
-                                <div className='flex bg-zinc-950'></div>
+                            <div className="flex w-72 bg-zinc-900 p-2 rounded-xl ">
                                 <input
                                         type="text"
-                                        // value={answer}
-                                        className={`flex text-zinc-400 duration-200 rounded-lg w-full items-center justify-center px-4 py-2 rounded-full w-full outline-0 bg-zinc-950 text-zinc-300 placeholder-zinc-500`}
-                                        // onChange={(e: any) => setAnswer(e.target.value)}
+                                        value={APIKey}
+                                        className={`flex ${
+                                            APIKey?.match(/[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}/i)?.[0]
+                                            ?'border border-green-400':''} w-full text-zinc-400 duration-200 rounded-lg w-full items-start justify-center px-4 py-2 rounded-full w-full outline-0 bg-zinc-950 text-zinc-300 placeholder-zinc-500`}
+                                        onChange={(e: any) => setAPIKey(e.target.value)}
                                         placeholder={"Input your Helius API key."}
                                     />
                             </div>

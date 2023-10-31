@@ -1,9 +1,18 @@
 import React, { useState, useEffect } from "react";
 import Editor, { useMonaco } from "@monaco-editor/react";
 
-export default function CodeEditorWindow({ monaco, onChange, language, code, theme, setUserCode }: any) {
-  const [value, setValue] = useState(code || "");
+export default function CodeEditorWindow({ APIKey, monaco, onChange, language, code, theme, setUserCode }: any) {
+  const [value, setValue] = useState(code?insertCodeIntoSample():"");
   const [retry, setRetry] = useState(true)
+
+  function insertCodeIntoSample () {
+    const regex = /<api_key>/i;
+
+    let codeWithUserKey:any = code.replace(regex, APIKey);
+
+    console.log(codeWithUserKey, 's');
+    return codeWithUserKey
+  }
 
   useEffect(() => {
     
@@ -50,7 +59,7 @@ export default function CodeEditorWindow({ monaco, onChange, language, code, the
         language={language || "javascript"}
         value={value}
         theme="my-theme"
-        defaultValue={code}
+        defaultValue={insertCodeIntoSample()}
         onChange={handleEditorChange}
       />
     </div>
