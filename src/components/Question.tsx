@@ -273,10 +273,11 @@ export default function Question({ monaco, setSelectedComponent, question, quest
 
                             <div>
                                 {question.api == 'sol_held' ? (<div></div>) : (
+                                    question.type?
                                     <div className='flex flex-col space-y-2 items-center'>
                                     {copyContext}
-                                    <div className='text-xs text-zinc-500 font-bold tracking-widest'>{"COPY " + question.type.toUpperCase()}</div>
-                                    </div>
+                                    <div className='text-xs text-zinc-500 font-bold tracking-widest'>{"COPY " + question.type.toUpperCase() }</div>
+                                    </div>:<div></div>
                                     )}
                             </div>
 
