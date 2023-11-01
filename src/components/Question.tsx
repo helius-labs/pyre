@@ -16,7 +16,7 @@ hljs.configure({
 });
 hljs.registerLanguage('javascript', javascript);
 
-export default function Question({ monaco, setSelectedComponent, question, questions, progress, setProgress, setQuestions, completed, setCompleted }: any) {
+export default function Question({ APIKey, monaco, setSelectedComponent, question, questions, progress, setProgress, setQuestions, completed, setCompleted }: any) {
 
     let wallets = [
         "EHyagVK6vWdhyp8Mn3NGLeC33LtQyPdDs1idNiBddTjF",
@@ -175,6 +175,12 @@ export default function Question({ monaco, setSelectedComponent, question, quest
         }, 1000)
     }
 
+    async function getAnswer() {
+        let response = await axios.post(`/api/${question.api}`, { context: context, type: "answer" });
+        setAnswer(response.data)
+        return response.data
+    }
+
     async function questionQuery() {
         let response;
 
@@ -192,14 +198,14 @@ export default function Question({ monaco, setSelectedComponent, question, quest
             }
             else {
                 setCodeOutput(JSON.stringify(response, null, 4));
-                setAnswer(response);
+                return response
             }
-            console.log(typeof response, Object.keys(response), response)
         }
         return response;
     }
 
     async function handleSubmit () {
+        const userAnswer = await questionQuery();
         if (cachedAnswer) {
             if (cachedAnswer == answer) {
                 handleCorrect()
@@ -208,18 +214,18 @@ export default function Question({ monaco, setSelectedComponent, question, quest
                 setLoad(false)
             }
         }
-
         setLoad(true)
-        const response = await questionQuery()
-        setCachedAnswer(response)
+        // setCachedAnswer(answer)
+        await getAnswer()
+        console.log(answer, userAnswer)
         setSubmit(true)
         try {
-            if (response == answer) {
+            if (userAnswer == answer) {
                 if (!cachedAnswer) {
                     handleCorrect()
                 }
             }
-            else if (response.data != answer) {
+            else if (userAnswer != answer) {
                 setLoad(false)
                 setTimeout(() => {
                     setSubmit(false)
@@ -370,6 +376,7 @@ export default function Question({ monaco, setSelectedComponent, question, quest
 
                                         <CodeEditorWindow
                                             monaco={monaco}
+                                            APIKey={APIKey}
                                             code={codeExample}
                                             onChange
                                             // language={language?.value}

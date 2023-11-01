@@ -47,7 +47,7 @@ export default function Home() {
         "You can call the native javascript function of variable.toFixed(0) to round your answer to the nearest SOL, this is necessary for this question.",
         "If you're using the Balances API, the amount of SOL held is contained in the property 'nativeBalance'."],
       js_code:
-        `const url = "https://api.helius.xyz/v0/addresses/<address>/balances?api-key=<api-key>";
+        `const url = "https://api.helius.xyz/v0/addresses/<address>/balances?api-key=<api_key>";
 
 const getBalances = async () => {
   const response = await fetch(url);
@@ -447,7 +447,7 @@ get_signatures_for_asset(ASSET_ID)
         "Assuming the wallet provided has fewer NFTs than the limit returned in one query, the answer would simply be the length of the returned NFT array.",
         "You can adjust the limit of NFTs returned! For some wallets you may still need to paginate."],
       js_code:
-        `const url = "https://rpc.helius.xyz/?api-key=<api-key>"
+        `const url = "https://rpc.helius.xyz/?api-key=<api_key>"
 
 const getAssetsByOwner = async () => {
   const response = await fetch(url, {
@@ -515,7 +515,7 @@ get_assets_by_owner(OWNER_ADDRESS)
         `const getMetadata = async (context) => {
 
 
-  const url = "https://api.helius.xyz/v0/token-metadata?api-key=<api-key>";
+  const url = "https://api.helius.xyz/v0/token-metadata?api-key=<api_key>";
   const nftAddresses = [context];
 
   const response = await fetch(url, {
@@ -630,7 +630,7 @@ get_asset(ASSET_ID)
         "You'll need to log the 1st index, or data[0] if using the /v0/transactions/ endpoint as it is returned as an array.",
         "If you're using the /v0/transactions/ endpoint, the path to locate the holder of the NFT is data[0].timestamp."],
       js_code:
-        `const url = "https://api.helius.xyz/v0/transactions/?api-key=<your-key>";
+        `const url = "https://api.helius.xyz/v0/transactions/?api-key=<api_key>";
 
 const parseTransaction = async () => {
   const response = await fetch(url, {
@@ -682,7 +682,7 @@ parse_transaction(TRANSACTION_ID)
         "Depending on the wallet provided, you may need to paginate through all their transactions.",
         "If you're using the RPC, a quick way to check would be to use the before and after properties, if no transactions occur before your answer for the transaction, it is the first transaction to take place!"],
       js_code:
-        `const url = "https://api.helius.xyz/v0/addresses/<address>/transactions?api-key=<your-key>";
+        `const url = "https://api.helius.xyz/v0/addresses/<address>/transactions?api-key=<api_key>";
 
 const parseTransactions = async () => {
   const response = await fetch(url);
@@ -859,7 +859,7 @@ getGenesisHash()`,
 
 // const getTPS = async () => {
 //   const connection = new Connection(
-//     "https://mainnet.helius-rpc.com/?api-key=<api-key>",
+//     "https://mainnet.helius-rpc.com/?api-key=<api_key>",
 //     "confirmed"
 //   );
 
@@ -881,6 +881,7 @@ getGenesisHash()`,
   const [completed, setCompleted] = useState([]);
   const [track, setTrack] = useState();
   const monaco:any = useMonaco();
+  const [APIKey, setAPIKey] = useState<any>('');
 
   useEffect(() => {
     async function saveProgress() {
@@ -1017,14 +1018,14 @@ getGenesisHash()`,
                 <End originalQuestions={originalQuestions} mintedAward={mintedAward} setMintedAward={setMintedAward} setSelectedComponent={setSelectedComponent} progress={progress}></End>
                 : (
                   (track) ?
-                    <QuestionMenu completed={completed} originalQuestions={originalQuestions} sessionData={sessionData} track={track} setTrack={setTrack} userData={userData} questions={questions} progress={progress} setProgress={setProgress} setQuestion={setQuestion} setSelectedComponent={setSelectedComponent} />
+                    <QuestionMenu APIKey={APIKey} setAPIKey={setAPIKey} completed={completed} originalQuestions={originalQuestions} sessionData={sessionData} track={track} setTrack={setTrack} userData={userData} questions={questions} progress={progress} setProgress={setProgress} setQuestion={setQuestion} setSelectedComponent={setSelectedComponent} />
                     :
                     <Tracks originalQuestions={originalQuestions} setTrack={setTrack} progress={progress} setProgress={setProgress} setQuestion={setQuestion} setSelectedComponent={setSelectedComponent} />
                 )
             }
           </>
         ) :
-          <Question monaco={monaco} originalQuestions={originalQuestions} completed={completed} setCompleted={setCompleted} question={question} questions={questions} progress={progress} setQuestions={setQuestions} setProgress={setProgress} setSelectedComponent={setSelectedComponent} />
+          <Question APIKey={APIKey} monaco={monaco} originalQuestions={originalQuestions} completed={completed} setCompleted={setCompleted} question={question} questions={questions} progress={progress} setQuestions={setQuestions} setProgress={setProgress} setSelectedComponent={setSelectedComponent} />
 
       )}
 
