@@ -111,7 +111,7 @@ export default function QuestionMenu({ APIKey, setAPIKey, completed, originalQue
 
                 <>{
                     sessionData.status == "authenticated" ? <div></div> :
-                        <div onClick={() => { setSelectedComponent("Landing") }} className="toast toast-start toast-bottom z-10 hover:opacity-90 cursor-pointer duration-200">
+                        <div onClick={() => { setSelectedComponent("Landing") }} className="toast toast-start bottom-16 lg:bottom-0 toast-bottom z-10 hover:opacity-90 cursor-pointer duration-200">
                             <div className="flex bg-yellow-400 px-6 py-4 rounded-xl">
                                 <div className='flex bg-yellow-400 text-zinc-950'>Connect your wallet to save progress.</div>
                             </div>

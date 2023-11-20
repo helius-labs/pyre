@@ -169,7 +169,7 @@ export default function Question({ APIKey, monaco, setSelectedComponent, questio
         }
         setQuestions(newArr)
 
-        
+
         setTimeout(() => {
             setSelectedComponent('QuestionMenu')
         }, 1000)
@@ -204,7 +204,7 @@ export default function Question({ APIKey, monaco, setSelectedComponent, questio
         return response;
     }
 
-    async function handleSubmit () {
+    async function handleSubmit() {
         const userAnswer = await questionQuery();
         if (cachedAnswer) {
             if (cachedAnswer == answer) {
@@ -279,12 +279,12 @@ export default function Question({ APIKey, monaco, setSelectedComponent, questio
 
                             <div>
                                 {question.api == 'sol_held' ? (<div></div>) : (
-                                    question.type?
-                                    <div className='flex flex-col space-y-2 items-center'>
-                                    {copyContext}
-                                    <div className='text-xs text-zinc-500 font-bold tracking-widest'>{"COPY " + question.type.toUpperCase() }</div>
-                                    </div>:<div></div>
-                                    )}
+                                    question.type ?
+                                        <div className='flex flex-col space-y-2 items-center'>
+                                            {copyContext}
+                                            <div className='text-xs text-zinc-500 font-bold tracking-widest'>{"COPY " + question.type.toUpperCase()}</div>
+                                        </div> : <div></div>
+                                )}
                             </div>
 
                             <>
@@ -317,7 +317,7 @@ export default function Question({ APIKey, monaco, setSelectedComponent, questio
                         <div className={`flex bg-zinc-950 flex-col h-full space-y-8 pr-2 justify-between xl:w-1/2 border-l border-zinc-900`} >
                             <div className='flex flex-col h-full w-full overflow-x-hidden'>
 
-                                <div className='flex flex-col w-full h-1/2 border-b border-zinc-900'>
+                                <div className='flex flex-col w-full h-full lg:h-1/2 border-b border-zinc-900'>
                                     <div className='flex flex-row space-x-8 w-full justify-between items-center bg-zinc-950 border-b border-zinc-900'>
 
                                         <div className='flex tracking-widest text-zinc-400 font-semibold text-sm space-x-4'>
