@@ -32,7 +32,7 @@
     "highlight.js": "^11.8.0",
     "monaco-editor": "^0.43.0",
     "monaco-themes": "^0.4.4",
-    "next": "13.4.4",
+    "next": "16.2.4",
     "next-auth": "^4.22.1",
     "postcss": "8.4.23",
     "react": "18.2.0",
